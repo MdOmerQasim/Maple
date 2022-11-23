@@ -4,17 +4,23 @@
  */
 package com.maple.frontend;
 
+import java.awt.CardLayout;
+
 /**
  *
- * @author mohammedomerqasimshaik
+ * @author DKapoor
  */
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainJFrame
+     * Creates new form MainFrame
      */
     public MainJFrame() {
         initComponents();
+        HomeJPanel homeViewPanel = new HomeJPanel();
+        jRightPanel.add("HomeJPanel", homeViewPanel);
+        CardLayout layout = (CardLayout)jRightPanel.getLayout();
+        layout.next(jRightPanel);
     }
 
     /**
@@ -26,36 +32,89 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMain = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jLeftPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLoginButton = new javax.swing.JButton();
+        jRegisterButton = new javax.swing.JButton();
+        jRightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 620));
+        setMinimumSize(new java.awt.Dimension(900, 620));
+        setPreferredSize(new java.awt.Dimension(900, 620));
 
-        jMain.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jLeftPanel.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout jMainLayout = new javax.swing.GroupLayout(jMain);
-        jMain.setLayout(jMainLayout);
-        jMainLayout.setHorizontalGroup(
-            jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+        jLoginButton.setText("Login");
+        jLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginButtonActionPerformed(evt);
+            }
+        });
+
+        jRegisterButton.setText("Register");
+        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRegisterButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLoginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRegisterButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
-        jMainLayout.setVerticalGroup(
-            jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(271, 271, 271)
+                .addComponent(jLoginButton)
+                .addGap(18, 18, 18)
+                .addComponent(jRegisterButton)
+                .addContainerGap(279, Short.MAX_VALUE))
         );
+
+        jLeftPanel.add(jPanel1, "card2");
+
+        jSplitPane1.setLeftComponent(jLeftPanel);
+
+        jRightPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(jRightPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
+        LoginJPanel loginJPanel = new LoginJPanel(jRightPanel);
+        jRightPanel.add("LoginJPanel", loginJPanel);
+        CardLayout layout = (CardLayout)jRightPanel.getLayout();
+        layout.next(jRightPanel);
+    }//GEN-LAST:event_jLoginButtonActionPerformed
+
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
+        RegisterJPanel registerJPanel = new RegisterJPanel(jRightPanel);
+        jRightPanel.add("RegisterJPanel", registerJPanel);
+        CardLayout layout = (CardLayout)jRightPanel.getLayout();
+        layout.next(jRightPanel);
+    }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,6 +142,9 @@ public class MainJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -93,6 +155,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jMain;
+    private javax.swing.JPanel jLeftPanel;
+    private javax.swing.JButton jLoginButton;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jRegisterButton;
+    private javax.swing.JPanel jRightPanel;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }
