@@ -4,6 +4,9 @@
  */
 package com.maple.frontend;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author deva
@@ -13,7 +16,9 @@ public class UserCreateEvent extends javax.swing.JPanel {
     /**
      * Creates new form UserCreateEvent
      */
-    public UserCreateEvent() {
+    JPanel rightJPanel;
+    public UserCreateEvent(JPanel rightJPanel) {
+        this.rightJPanel = rightJPanel;
         initComponents();
     }
 
@@ -51,6 +56,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
         cateringCount = new javax.swing.JTextField();
         callbackBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         jLabel1.setText("Type");
 
@@ -117,6 +123,13 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("CREATE PUBLIC / PRIVATE EVENT");
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,12 +175,18 @@ public class UserCreateEvent extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(232, 232, 232))))
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(backBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -245,6 +264,14 @@ public class UserCreateEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_functionHallCheckboxActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
+        rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
+        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
+        rightLayout.next(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox accomodationCheckbox;
@@ -253,6 +280,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
     private javax.swing.JTextField accomodationCount;
     private javax.swing.JTextField areaText;
     private javax.swing.JTextField attendeesCountText;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton callbackBtn;
     private javax.swing.JTextField cateringCount;
     private javax.swing.JTextField descText;

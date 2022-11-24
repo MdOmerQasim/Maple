@@ -17,8 +17,10 @@ public class LoginJPanel extends javax.swing.JPanel {
      * Creates new form LoginJPanel
      */
     JPanel rightJPanel;
-    public LoginJPanel(JPanel rightJPanel) {
+    JPanel leftJPanel;
+    public LoginJPanel(JPanel rightJPanel, JPanel leftJPanel) {
         this.rightJPanel = rightJPanel;
+        this.leftJPanel = leftJPanel;
         initComponents();
     }
 
@@ -56,6 +58,11 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
 
         jLoginButton.setText("Login");
+        jLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,6 +177,20 @@ public class LoginJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.previous(rightJPanel);
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
+        // TODO add your handling code here:
+        // If User Logs In
+        UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(leftJPanel,rightJPanel);
+        leftJPanel.add("UserLeftPanelOptions", UserLeftPanelOptions);
+        CardLayout leftLayout = (CardLayout)leftJPanel.getLayout();
+        leftLayout.next(leftJPanel);
+        
+        UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
+        rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
+        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
+        rightLayout.next(rightJPanel);
+    }//GEN-LAST:event_jLoginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

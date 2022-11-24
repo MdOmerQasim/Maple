@@ -4,6 +4,9 @@
  */
 package com.maple.frontend;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author deva
@@ -13,7 +16,9 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
     /**
      * Creates new form UserViewPublicEvents
      */
-    public UserViewPublicEvents() {
+    JPanel rightJPanel;
+    public UserViewPublicEvents(JPanel rightJPanel) {
+        this.rightJPanel = rightJPanel;
         initComponents();
     }
 
@@ -26,6 +31,7 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backBtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -43,6 +49,14 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         dateFilter = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
+        backBtn1 = new javax.swing.JButton();
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Description");
 
@@ -59,7 +73,15 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
             new String [] {
                 "S No", "Name", "Description", "Area", "From", "To"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(eventTable);
 
         jLabel13.setText("House");
@@ -90,11 +112,22 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
 
         jLabel10.setText("Name");
 
+        backBtn1.setText("Back");
+        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(backBtn1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -129,7 +162,9 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn1))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -168,8 +203,25 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewBtnActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        rightJPanel.remove(this);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.previous(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
+        // TODO add your handling code here:
+        UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
+        rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
+        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
+        rightLayout.next(rightJPanel);
+    }//GEN-LAST:event_backBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton backBtn1;
     private com.toedter.calendar.JDateChooser dateFilter;
     private javax.swing.JTable eventTable;
     private javax.swing.JLabel jLabel10;

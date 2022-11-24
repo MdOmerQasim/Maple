@@ -4,6 +4,9 @@
  */
 package com.maple.frontend;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author deva
@@ -13,7 +16,9 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     /**
      * Creates new form UserViewMyEvent
      */
-    public UserViewMyEvent() {
+    JPanel rightJPanel;
+    public UserViewMyEvent(JPanel rightJPanel) {
+        this.rightJPanel = rightJPanel;
         initComponents();
     }
 
@@ -47,9 +52,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("VIEW MY EVENT");
+        jLabel9.setText("VIEW MY EVENTS");
 
         jLabel1.setText("Status");
 
@@ -70,7 +76,15 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             new String [] {
                 "S No", "Name", "Description", "Area", "From", "To"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(eventTable);
 
         viewBtn.setText("View");
@@ -102,11 +116,22 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         jLabel15.setText("Travel");
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(backBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -151,7 +176,9 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -196,8 +223,17 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewBtnActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
+        rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
+        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
+        rightLayout.next(rightJPanel);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private com.toedter.calendar.JDateChooser dateFilter;
     private javax.swing.JTable eventTable;
     private javax.swing.JComboBox<String> jComboBox1;
