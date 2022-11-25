@@ -197,6 +197,18 @@ public class LoginJPanel extends javax.swing.JPanel {
             leftJPanel.add("BusinessAdminScreen2", businessAdminScreen.getBaseSplitPane().getLeftComponent());
             CardLayout layout2 = (CardLayout) leftJPanel.getLayout();
             layout2.next(leftJPanel);
+        } else {
+             // If User Logs In
+            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(leftJPanel,rightJPanel);
+            leftJPanel.add("UserLeftPanelOptions", UserLeftPanelOptions);
+            CardLayout leftLayout = (CardLayout)leftJPanel.getLayout();
+            leftLayout.next(leftJPanel);
+
+            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
+            rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
+            CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
+            rightLayout.next(rightJPanel);
+
         }
         
     }//GEN-LAST:event_jLoginButtonActionPerformed
