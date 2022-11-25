@@ -19,14 +19,12 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
      * Creates new form BusinessAdminScreen
      */
     
-    JPanel rightJPanel;
-    JPanel leftJPanel;
+     JSplitPane mainSplitPane;
     
-    public BusinessAdminScreen(JPanel rightJPanel, JPanel leftJPanel) {
+    public BusinessAdminScreen(JSplitPane jSplitPane) {
         initComponents();
-        this.rightJPanel = rightJPanel;
-        this.leftJPanel = leftJPanel;
-        
+         this.mainSplitPane = jSplitPane;
+         
         //custom
         jUserName.setText("John");
         btnBadgeNotification.setBadges(9);
@@ -301,15 +299,13 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed
         // TODO add your handling code here:
-        //reset right panel
-        rightJPanel.remove(this);
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
+         HomeJPanel homeScreen = new HomeJPanel(this.mainSplitPane);
+         this.mainSplitPane.setRightComponent(homeScreen);
         
-        //reset left panel
-        leftJPanel.remove(this);
-        CardLayout layout2 = (CardLayout) leftJPanel.getLayout();
-        layout2.previous(leftJPanel);
+         //reset left panel
+        HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(this.mainSplitPane);
+         this.mainSplitPane.setLeftComponent(homeLeftPanel);
+      
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed

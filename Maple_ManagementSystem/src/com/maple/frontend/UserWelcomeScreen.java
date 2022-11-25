@@ -4,6 +4,8 @@
  */
 package com.maple.frontend;
 
+import javax.swing.JSplitPane;
+
 /**
  *
  * @author deva
@@ -13,7 +15,8 @@ public class UserWelcomeScreen extends javax.swing.JPanel {
     /**
      * Creates new form UserWelcomeScreen
      */
-    public UserWelcomeScreen() {
+
+    public UserWelcomeScreen(JSplitPane jsplitpanel) {
         initComponents();
     }
 

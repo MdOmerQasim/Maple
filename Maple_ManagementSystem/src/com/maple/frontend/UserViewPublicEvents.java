@@ -6,6 +6,7 @@ package com.maple.frontend;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -16,9 +17,9 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
     /**
      * Creates new form UserViewPublicEvents
      */
-    JPanel rightJPanel;
-    public UserViewPublicEvents(JPanel rightJPanel) {
-        this.rightJPanel = rightJPanel;
+    JSplitPane mainSplitPane;
+    public UserViewPublicEvents(JSplitPane jSplitPane) {
+        this.mainSplitPane = jSplitPane;
         initComponents();
     }
 
@@ -205,17 +206,12 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        rightJPanel.remove(this);
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
+      
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
         // TODO add your handling code here:
-        UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen();
-        rightJPanel.add("UserRightPanelWelcome", UserRightPanelWelcome);
-        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
-        rightLayout.next(rightJPanel);
+      
     }//GEN-LAST:event_backBtn1ActionPerformed
 
 

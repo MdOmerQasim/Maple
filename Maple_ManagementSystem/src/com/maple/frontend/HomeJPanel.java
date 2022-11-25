@@ -5,6 +5,7 @@
 package com.maple.frontend;
 
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -15,7 +16,7 @@ public class HomeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HomeJPanel
      */
-    public HomeJPanel(JPanel rightJPanel) {
+    public HomeJPanel(JSplitPane jSplitPane) {
         initComponents();
     }
 

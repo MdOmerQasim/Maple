@@ -6,6 +6,7 @@ package com.maple.frontend;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -16,11 +17,10 @@ public class UserLeftPanelOptions extends javax.swing.JPanel {
     /**
      * Creates new form UserLeftPanelOptions
      */
-    JPanel rightJPanel;
-    JPanel leftJPanel;
-    public UserLeftPanelOptions(JPanel leftJPanel, JPanel rightJPanel) {
-        this.rightJPanel = rightJPanel;
-        this.leftJPanel = leftJPanel;
+
+    JSplitPane mainSplitPane;
+    public UserLeftPanelOptions(JSplitPane jSplitPane) {
+         this.mainSplitPane = jSplitPane;
         initComponents();
     }
 
@@ -103,39 +103,30 @@ public class UserLeftPanelOptions extends javax.swing.JPanel {
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
-        UserViewMyEvent userViewMyEventRightPanel = new UserViewMyEvent(rightJPanel);
-        rightJPanel.add("userViewMyEventRightPanel", userViewMyEventRightPanel);
-        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
-        rightLayout.next(rightJPanel);
+        UserViewMyEvent userViewMyEventRightPanel = new UserViewMyEvent(this.mainSplitPane);
+        this.mainSplitPane.setRightComponent(userViewMyEventRightPanel);
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        UserCreateEvent userCreateRightPanel = new UserCreateEvent(rightJPanel);
-        rightJPanel.add("userCreateRightPanel", userCreateRightPanel);
-        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
-        rightLayout.next(rightJPanel);
+        UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane);
+        this.mainSplitPane.setRightComponent(userCreateRightPanel);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
         // TODO add your handling code here:
-        HomeJPanel homeScreen = new HomeJPanel(rightJPanel);
-        rightJPanel.add("homeScreen", homeScreen);
-        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
-        rightLayout.next(rightJPanel);
+        HomeJPanel homeScreen = new HomeJPanel(this.mainSplitPane);
+         this.mainSplitPane.setRightComponent(homeScreen);
         
          //reset left panel
-        leftJPanel.remove(this);
-        CardLayout layout2 = (CardLayout) leftJPanel.getLayout();
-        layout2.previous(leftJPanel);
+        HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(this.mainSplitPane);
+         this.mainSplitPane.setLeftComponent(homeLeftPanel);
     }//GEN-LAST:event_logoutbtnActionPerformed
 
     private void viewPublicBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPublicBtn1ActionPerformed
         // TODO add your handling code here:
-        UserViewPublicEvents userViewPublicRightPanel = new UserViewPublicEvents(rightJPanel);
-        rightJPanel.add("userViewMyEventRightPanel", userViewPublicRightPanel);
-        CardLayout rightLayout = (CardLayout)rightJPanel.getLayout();
-        rightLayout.next(rightJPanel);
+        UserViewPublicEvents userViewPublicRightPanel = new UserViewPublicEvents(this.mainSplitPane);
+        this.mainSplitPane.setRightComponent(userViewPublicRightPanel);
     }//GEN-LAST:event_viewPublicBtn1ActionPerformed
 
 
