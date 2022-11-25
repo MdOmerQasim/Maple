@@ -16,10 +16,16 @@ public class LoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginJPanel
      */
-    JPanel rightJPanel;
-    public LoginJPanel(JPanel rightJPanel) {
+        JPanel rightJPanel;
+        JPanel leftJPanel;
+    
+    
+    public LoginJPanel(JPanel rightJPanel, JPanel leftJPanel) {
         this.rightJPanel = rightJPanel;
+        this.leftJPanel = leftJPanel;
         initComponents();
+        jBackButton.setEnabled(false);
+        jRegisterButton.setEnabled(false);
     }
 
     /**
@@ -56,6 +62,11 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
 
         jLoginButton.setText("Login");
+        jLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -121,7 +132,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 135, Short.MAX_VALUE))
+                .addGap(0, 424, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +157,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                     .addComponent(jLoginAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLoginButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 307, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRegisterButton)
@@ -170,6 +181,25 @@ public class LoginJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.previous(rightJPanel);
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
+        // TODO add your handling code here:
+        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
+            BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(rightJPanel, leftJPanel);
+           
+            //set right panel
+            rightJPanel.add("BusinessAdminScreen", businessAdminScreen.getBaseSplitPane().getRightComponent());
+            CardLayout layout = (CardLayout) rightJPanel.getLayout();
+            layout.next(rightJPanel);
+            
+            //set left panel
+//            BusinessAdminScreen businessAdminScreen2 = new BusinessAdminScreen(leftJPanel);
+            leftJPanel.add("BusinessAdminScreen2", businessAdminScreen.getBaseSplitPane().getLeftComponent());
+            CardLayout layout2 = (CardLayout) leftJPanel.getLayout();
+            layout2.next(leftJPanel);
+        }
+        
+    }//GEN-LAST:event_jLoginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
