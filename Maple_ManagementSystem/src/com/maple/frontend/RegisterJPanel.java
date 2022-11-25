@@ -6,6 +6,7 @@ package com.maple.frontend;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -16,9 +17,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RegisterJPanel
      */
-    JPanel rightJPanel;
-    public RegisterJPanel(JPanel rightJPanel) {
-        this.rightJPanel = rightJPanel;
+    JSplitPane mainSplitPane;
+    public RegisterJPanel(JSplitPane jSplitPane) {
+        this.mainSplitPane = jSplitPane;
         initComponents();
     }
 
@@ -204,9 +205,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jNameTextFieldActionPerformed
 
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
-        rightJPanel.remove(this);
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
+       
     }//GEN-LAST:event_jBackButtonActionPerformed
 
 

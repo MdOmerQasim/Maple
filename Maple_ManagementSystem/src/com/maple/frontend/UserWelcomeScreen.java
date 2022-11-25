@@ -4,19 +4,19 @@
  */
 package com.maple.frontend;
 
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 /**
  *
- * @author DKapoor
+ * @author deva
  */
-public class HomeJPanel extends javax.swing.JPanel {
+public class UserWelcomeScreen extends javax.swing.JPanel {
 
     /**
-     * Creates new form HomeJPanel
+     * Creates new form UserWelcomeScreen
      */
-    public HomeJPanel(JSplitPane jSplitPane) {
+
+    public UserWelcomeScreen(JSplitPane jsplitpanel) {
         initComponents();
     }
 
@@ -31,22 +31,23 @@ public class HomeJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MAPLE MANAGEMENT SYSTEM");
+        jLabel1.setText("Welcome Do Somethinggggg");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(303, 303, 303)
+                .addComponent(jLabel1)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(269, 269, 269)
+                .addGap(236, 236, 236)
                 .addComponent(jLabel1)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

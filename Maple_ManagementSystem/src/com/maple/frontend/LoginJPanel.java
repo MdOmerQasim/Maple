@@ -6,6 +6,7 @@ package com.maple.frontend;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -16,13 +17,11 @@ public class LoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginJPanel
      */
-        JPanel rightJPanel;
-        JPanel leftJPanel;
+   
     
-    
-    public LoginJPanel(JPanel rightJPanel, JPanel leftJPanel) {
-        this.rightJPanel = rightJPanel;
-        this.leftJPanel = leftJPanel;
+    JSplitPane mainSplitPane;
+    public LoginJPanel(JSplitPane jSplitPane) {
+        this.mainSplitPane = jSplitPane;
         initComponents();
         jBackButton.setEnabled(false);
         jRegisterButton.setEnabled(false);
@@ -166,10 +165,7 @@ public class LoginJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
-        RegisterJPanel registerJPanel = new RegisterJPanel(rightJPanel);
-        rightJPanel.add("RegisterJPanel", registerJPanel);
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
-        layout.next(rightJPanel);
+        
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameTextFieldActionPerformed
@@ -177,26 +173,24 @@ public class LoginJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jUsernameTextFieldActionPerformed
 
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
-        rightJPanel.remove(this);
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
+       
     }//GEN-LAST:event_jBackButtonActionPerformed
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
         // TODO add your handling code here:
         if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-            BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(rightJPanel, leftJPanel);
-           
-            //set right panel
-            rightJPanel.add("BusinessAdminScreen", businessAdminScreen.getBaseSplitPane().getRightComponent());
-            CardLayout layout = (CardLayout) rightJPanel.getLayout();
-            layout.next(rightJPanel);
-            
-            //set left panel
-//            BusinessAdminScreen businessAdminScreen2 = new BusinessAdminScreen(leftJPanel);
-            leftJPanel.add("BusinessAdminScreen2", businessAdminScreen.getBaseSplitPane().getLeftComponent());
-            CardLayout layout2 = (CardLayout) leftJPanel.getLayout();
-            layout2.next(leftJPanel);
+            BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+           this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+           this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+       
+        } else {
+             // If User Logs In
+            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
+            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
+
+            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
+            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+
         }
         
     }//GEN-LAST:event_jLoginButtonActionPerformed

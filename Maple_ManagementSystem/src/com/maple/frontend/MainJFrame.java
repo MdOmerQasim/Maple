@@ -17,10 +17,22 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-        HomeJPanel homeViewPanel = new HomeJPanel();
-        jRightPanel.add("HomeJPanel", homeViewPanel);
-        CardLayout layout = (CardLayout)jRightPanel.getLayout();
-        layout.next(jRightPanel);
+        HomeJPanel homeViewPanel = new HomeJPanel(jSplitPane);
+        jSplitPane.setRightComponent(homeViewPanel);
+        
+        HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(jSplitPane);
+        jSplitPane.setLeftComponent(homeLeftPanel);
+        
+        
+        
+        
+        
+//        HomeJPanel homeViewPanel = new HomeJPanel(jRightPanel);
+//        jRightPanel.add("HomeJPanel", homeViewPanel);
+//        CardLayout layout = (CardLayout)jRightPanel.getLayout();
+//        layout.next(jRightPanel);
+            
+          
         
 //        jRightPanel.add("HomeJPanel", homeViewPanel);
 //        CardLayout layout = (CardLayout)jRightPanel.getLayout();
@@ -38,94 +50,54 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
+        jSplitPane = new javax.swing.JSplitPane();
         jLeftPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLoginButton = new javax.swing.JButton();
-        jRegisterButton = new javax.swing.JButton();
         jRightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 620));
 
-        jSplitPane1.setDividerSize(0);
+        jSplitPane.setDividerSize(0);
 
-        jLeftPanel.setLayout(new java.awt.CardLayout());
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(129, 800));
-        jPanel1.setMinimumSize(new java.awt.Dimension(129, 800));
-        jPanel1.setPreferredSize(new java.awt.Dimension(129, 800));
-
-        jLoginButton.setText("Login");
-        jLoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLoginButtonActionPerformed(evt);
-            }
-        });
-
-        jRegisterButton.setText("Register");
-        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRegisterButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLoginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRegisterButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+        javax.swing.GroupLayout jLeftPanelLayout = new javax.swing.GroupLayout(jLeftPanel);
+        jLeftPanel.setLayout(jLeftPanelLayout);
+        jLeftPanelLayout.setHorizontalGroup(
+            jLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(271, 271, 271)
-                .addComponent(jLoginButton)
-                .addGap(18, 18, 18)
-                .addComponent(jRegisterButton)
-                .addContainerGap(465, Short.MAX_VALUE))
+        jLeftPanelLayout.setVerticalGroup(
+            jLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
 
-        jLeftPanel.add(jPanel1, "card2");
+        jSplitPane.setLeftComponent(jLeftPanel);
 
-        jSplitPane1.setLeftComponent(jLeftPanel);
+        javax.swing.GroupLayout jRightPanelLayout = new javax.swing.GroupLayout(jRightPanel);
+        jRightPanel.setLayout(jRightPanelLayout);
+        jRightPanelLayout.setHorizontalGroup(
+            jRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1100, Short.MAX_VALUE)
+        );
+        jRightPanelLayout.setVerticalGroup(
+            jRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
 
-        jRightPanel.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(jRightPanel);
+        jSplitPane.setRightComponent(jRightPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
-        RegisterJPanel registerJPanel = new RegisterJPanel(jRightPanel);
-        jRightPanel.add("RegisterJPanel", registerJPanel);
-        CardLayout layout = (CardLayout)jRightPanel.getLayout();
-        layout.next(jRightPanel);
-    }//GEN-LAST:event_jRegisterButtonActionPerformed
-
-    private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
-        LoginJPanel loginJPanel = new LoginJPanel(jRightPanel, jLeftPanel);
-        jRightPanel.add("LoginJPanel", loginJPanel);
-        CardLayout layout = (CardLayout)jRightPanel.getLayout();
-        layout.next(jRightPanel);
-    }//GEN-LAST:event_jLoginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,10 +139,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jLeftPanel;
-    private javax.swing.JButton jLoginButton;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jRegisterButton;
     private javax.swing.JPanel jRightPanel;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane;
     // End of variables declaration//GEN-END:variables
 }
