@@ -4,8 +4,9 @@
  */
 package com.maple.frontend;
 
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
+import com.maple.frontend.userScreen.UserLeftPanelOptions;
+import com.maple.frontend.userScreen.UserWelcomeScreen;
 import javax.swing.JSplitPane;
 
 /**

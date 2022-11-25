@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend;
+package com.maple.frontend.businessAdminScreen;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -89,6 +89,36 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jHotelCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jHotelCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jHotelCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jHotelCardMouseExited(evt);
+            }
+        });
+
+        jCateringCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseExited(evt);
+            }
+        });
+
+        jTravelAgentCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseExited(evt);
             }
         });
 
@@ -212,11 +242,54 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_jRefreshTableBtnActionPerformed
 
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
-        
-//        jHotelCard.setBackground(Color.red);
-        
-        
+        jHotelCard.setBackground(Color.CYAN);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.white);
     }//GEN-LAST:event_jHotelCardMouseClicked
+
+    private void jHotelCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseEntered
+        // TODO add your handling code here:
+        jHotelCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jHotelCardMouseEntered
+
+    private void jHotelCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseExited
+        // TODO add your handling code here:
+        jHotelCard.setBackground(Color.white);
+    }//GEN-LAST:event_jHotelCardMouseExited
+
+    private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
+        // TODO add your handling code here:
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.CYAN);
+        jTravelAgentCard.setBackground(Color.white);
+    }//GEN-LAST:event_jCateringCardMouseClicked
+
+    private void jCateringCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseEntered
+        // TODO add your handling code here:
+        jCateringCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jCateringCardMouseEntered
+
+    private void jCateringCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseExited
+        // TODO add your handling code here:
+        jCateringCard.setBackground(Color.white);
+    }//GEN-LAST:event_jCateringCardMouseExited
+
+    private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
+        // TODO add your handling code here:
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jTravelAgentCardMouseClicked
+
+    private void jTravelAgentCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseEntered
+        // TODO add your handling code here:
+        jTravelAgentCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jTravelAgentCardMouseEntered
+
+    private void jTravelAgentCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseExited
+        // TODO add your handling code here:
+        jTravelAgentCard.setBackground(Color.white);
+    }//GEN-LAST:event_jTravelAgentCardMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

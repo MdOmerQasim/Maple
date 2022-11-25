@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend;
+package com.maple.frontend.userScreen;
 
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+import com.maple.frontend.HomeJPanel;
+import com.maple.frontend.HomeLeftJPanel;
 import javax.swing.JSplitPane;
 
 /**
@@ -20,7 +20,7 @@ public class UserLeftPanelOptions extends javax.swing.JPanel {
 
     JSplitPane mainSplitPane;
     public UserLeftPanelOptions(JSplitPane jSplitPane) {
-         this.mainSplitPane = jSplitPane;
+        this.mainSplitPane = jSplitPane;
         initComponents();
     }
 
