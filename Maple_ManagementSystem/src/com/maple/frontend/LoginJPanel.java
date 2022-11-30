@@ -5,7 +5,7 @@
 package com.maple.frontend;
 
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
-import com.maple.frontend.userScreen.UserLeftPanelOptions;
+import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import javax.swing.JSplitPane;
 
@@ -180,17 +180,20 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
         // TODO add your handling code here:
         if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-            BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+           BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
            this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
            this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
        
         } else {
              // If User Logs In
-            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
-            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
-
-            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
-            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+            UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane);
+            this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
+            this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
+//            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
+//            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
+//
+//            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
+//            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
 
         }
         
