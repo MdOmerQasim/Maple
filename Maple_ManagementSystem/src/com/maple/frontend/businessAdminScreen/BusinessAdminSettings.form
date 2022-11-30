@@ -93,6 +93,9 @@
       </Properties>
     </Component>
     <Container class="com.maple.resources.ImageAvatar" name="jUserPhoto">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUserPhotoMouseClicked"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>

@@ -17,14 +17,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+          <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jBackButton" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" pref="689" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="311" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -35,30 +30,34 @@
                           <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel9" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jLabel10" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel11" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jEmailTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jUsernameTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jRegisterAsComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPhoneNumberTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jNameTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jConfirmPasswordTextField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jUploadButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jPhotoLabel" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jEmailTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jUsernameTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jRegisterAsComboBox" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPhoneNumberTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jNameTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jConfirmPasswordTextField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jUploadButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="jPhotoLabel" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="jPostalCodeTextField" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jRegisterButton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="338" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,11 +65,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBackButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -108,16 +104,21 @@
                   <Component id="jConfirmPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPostalCodeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jUploadButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPhotoLabel" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="jPhotoLabel" min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Component id="jRegisterButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="114" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,7 +138,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Photo"/>
+        <Property name="text" type="java.lang.String" value="Postal Code"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -232,14 +233,6 @@
         <Property name="text" type="java.lang.String" value="Register as"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBackButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBackButtonActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="jUploadButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Upload"/>
@@ -247,6 +240,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUploadButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jPostalCodeTextField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Photo"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

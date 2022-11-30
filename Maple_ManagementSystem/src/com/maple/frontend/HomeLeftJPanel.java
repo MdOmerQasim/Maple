@@ -4,6 +4,9 @@
  */
 package com.maple.frontend;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JSplitPane;
 
 /**
@@ -77,7 +80,12 @@ public class HomeLeftJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        RegisterJPanel registerJPanel = new RegisterJPanel(this.mainSplitPane);
+        RegisterJPanel registerJPanel = null;
+        try {
+            registerJPanel = new RegisterJPanel(this.mainSplitPane);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeLeftJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.mainSplitPane.setRightComponent(registerJPanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 

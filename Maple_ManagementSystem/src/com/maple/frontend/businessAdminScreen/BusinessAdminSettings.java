@@ -4,7 +4,9 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -44,6 +46,12 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         jLocation.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLocation.setForeground(new java.awt.Color(4, 72, 210));
         jLocation.setText("Admin / Settings");
+
+        jUserPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUserPhotoMouseClicked(evt);
+            }
+        });
 
         jName.setLabelText("");
 
@@ -136,6 +144,26 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     private void jSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSaveBtnActionPerformed
+
+    private void jUserPhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseClicked
+        // TODO add your handling code here:
+        
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.showOpenDialog(null);
+        File file = jFileChooser.getSelectedFile();
+        if(file == null){ // If no image is selected
+           
+            return; 
+        }
+        String filename = file.getAbsolutePath();
+        System.out.println(filename);
+        ImageIcon icon = new ImageIcon(filename);
+        //Resize Image
+//        Image img = icon.getImage();
+//        Image imgScale = img.getScaledInstance(167, 188, Image.SCALE_SMOOTH);
+//        ImageIcon scaledIcon = new ImageIcon(imgScale);
+        jUserPhoto.setIcon(icon);
+    }//GEN-LAST:event_jUserPhotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
