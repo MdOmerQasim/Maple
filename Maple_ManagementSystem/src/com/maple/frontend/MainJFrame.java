@@ -4,7 +4,10 @@
  */
 package com.maple.frontend;
 
+import com.maple.DBConnection.JDBC;
 import java.awt.CardLayout;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,6 +18,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    JDBC obj;
     public MainJFrame() {
         initComponents();
         HomeJPanel homeViewPanel = new HomeJPanel(jSplitPane);
@@ -23,8 +27,15 @@ public class MainJFrame extends javax.swing.JFrame {
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(jSplitPane);
         jSplitPane.setLeftComponent(homeLeftPanel);
         
-        
-        
+        try{
+            this.obj = new JDBC();
+//            this.obj.update("UPDATE EVENT SET event_name = 'newestName' WHERE event_description = 'testDescription'", new String[]{});
+            ResultSet rs = this.obj.query("Select * from event", new String[]{});
+            while(rs.next()){
+                System.out.println(rs.getString("event_name") + " - " + rs.getString("event_description"));
+            }
+        } catch(SQLException ex){
+        }
         
         
 //        HomeJPanel homeViewPanel = new HomeJPanel(jRightPanel);

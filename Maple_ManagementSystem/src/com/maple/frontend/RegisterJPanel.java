@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend;
-
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+import com.maple.DBConnection.JDBC;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
 /**
@@ -18,8 +24,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
-    public RegisterJPanel(JSplitPane jSplitPane) {
+    JDBC obj;
+    public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
+        this.obj = new JDBC();
         initComponents();
     }
 
@@ -52,6 +60,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jRegisterButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jBackButton = new javax.swing.JButton();
+        jUploadButton = new javax.swing.JButton();
 
         jLabel3.setText("Username");
 
@@ -96,6 +105,11 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jRegisterAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
 
         jRegisterButton.setText("Register");
+        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRegisterButtonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Register as");
 
@@ -103,6 +117,13 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jBackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBackButtonActionPerformed(evt);
+            }
+        });
+
+        jUploadButton.setText("Upload");
+        jUploadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUploadButtonActionPerformed(evt);
             }
         });
 
@@ -130,16 +151,18 @@ public class RegisterJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jEmailTextField)
-                                .addComponent(jUsernameTextField)
-                                .addComponent(jRegisterAsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPhoneNumberTextField)
-                                .addComponent(jNameTextField)
-                                .addComponent(jPasswordTextField)
-                                .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jEmailTextField)
+                            .addComponent(jUsernameTextField)
+                            .addComponent(jRegisterAsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPhoneNumberTextField)
+                            .addComponent(jNameTextField)
+                            .addComponent(jPasswordTextField)
+                            .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUploadButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPhotoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106)))
@@ -184,9 +207,11 @@ public class RegisterJPanel extends javax.swing.JPanel {
                     .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jUploadButton))
+                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addComponent(jRegisterButton)
                 .addContainerGap(114, Short.MAX_VALUE))
         );
@@ -207,6 +232,72 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
        
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
+//        String role = jRegisterAsComboBox.getSelectedIndex(selectedHospitalAdmin.getGender());
+        String role = jRegisterAsComboBox.getSelectedItem().toString();
+        String name = jNameTextField.getText();
+        String email = jEmailTextField.getText();
+        String phoneNum = jPhoneNumberTextField.getText();
+        String userName = jUsernameTextField.getText();
+        String password = jPasswordTextField.getText();
+        String rePassword = jConfirmPasswordTextField.getText();
+        
+        if (role.equals("")){
+            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
+        }
+        else if (name.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your name.");
+        }
+        else if (email.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your email id.");
+        }
+        else if (phoneNum.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your phone number.");
+        }
+        else if (userName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a username.");
+        }
+        else if (password.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a password.");
+        }
+        else if (rePassword.equals("")){
+            JOptionPane.showMessageDialog(this, "Please re-enter the password.");
+        }
+        else if (rePassword.equals(password)){
+            JOptionPane.showMessageDialog(this, "Your passwords do not match.");
+        }
+        String sql = "insert into event (role, name, email, phoneNum, username, password)" + 
+                "values('" + role + "','" + name + "','" + email + "','" + phoneNum + "','" + userName + "','" + password + "','" + "')";
+
+        try {
+            obj.update(sql, new String[]{});
+            
+        } catch (SQLException ex) {
+           System.out.println("Exception is" + ex.getMessage());
+        }
+
+    }//GEN-LAST:event_jRegisterButtonActionPerformed
+
+    private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed
+        JFileChooser img_upload = new JFileChooser();
+        img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int result = img_upload.showDialog(null, "Choose my file");
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = img_upload.getSelectedFile();
+            
+            try {
+                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//                user.setPhoto(photo);
+                jPhotoLabel.setIcon(new ImageIcon(photo));
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error while saving image.");
+            }
+        }
+        else{
+                JOptionPane.showMessageDialog(this, "Upload is cancelled.");
+            }
+    }//GEN-LAST:event_jUploadButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,6 +320,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jPhotoLabel;
     private javax.swing.JComboBox<String> jRegisterAsComboBox;
     private javax.swing.JButton jRegisterButton;
+    private javax.swing.JButton jUploadButton;
     private javax.swing.JTextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables
 }

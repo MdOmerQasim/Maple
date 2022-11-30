@@ -38,17 +38,19 @@
                           <Component id="jLabel10" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jEmailTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jUsernameTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jRegisterAsComboBox" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPhoneNumberTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jNameTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jConfirmPasswordTextField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jEmailTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jUsernameTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jRegisterAsComboBox" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPhoneNumberTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jNameTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jConfirmPasswordTextField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jUploadButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jPhotoLabel" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jPhotoLabel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -107,10 +109,13 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPhotoLabel" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jUploadButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPhotoLabel" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="jRegisterButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="114" max="32767" attributes="0"/>
           </Group>
@@ -218,6 +223,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRegisterButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
@@ -230,6 +238,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBackButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jUploadButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Upload"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUploadButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
