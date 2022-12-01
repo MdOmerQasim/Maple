@@ -104,11 +104,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="btnBadgeMessage1" min="-2" max="-2" attributes="0"/>
+                              <Component id="burgerBadge" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="620" max="-2" attributes="0"/>
-                              <Component id="btnBadgeMessage" min="-2" max="-2" attributes="0"/>
+                              <Component id="messageBadge" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnBadgeNotification" min="-2" max="-2" attributes="0"/>
+                              <Component id="notificationBadge" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" pref="8" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -148,9 +148,9 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="btnBadgeNotification" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnBadgeMessage" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnBadgeMessage1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="notificationBadge" min="-2" max="-2" attributes="0"/>
+                                          <Component id="messageBadge" min="-2" max="-2" attributes="0"/>
+                                          <Component id="burgerBadge" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -195,35 +195,29 @@
                         <Property name="orientation" type="int" value="1"/>
                       </Properties>
                     </Component>
-                    <Component class="com.maple.resources.ButtonBadges" name="btnBadgeNotification">
+                    <Component class="com.maple.resources.ButtonBadges" name="notificationBadge">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/com/maple/icons/notification.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBadgeNotificationActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="notificationBadgeActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="com.maple.resources.ButtonBadges" name="btnBadgeMessage">
+                    <Component class="com.maple.resources.ButtonBadges" name="messageBadge">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/com/maple/icons/message.png"/>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBadgeMessageActionPerformed"/>
-                      </Events>
                     </Component>
-                    <Component class="com.maple.resources.ButtonBadges" name="btnBadgeMessage1">
+                    <Component class="com.maple.resources.ButtonBadges" name="burgerBadge">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/com/maple/icons/menu.png"/>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBadgeMessage1ActionPerformed"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -361,9 +355,6 @@
             </Component>
             <Component class="com.maple.resources.Button" name="jAnalyticsBtn">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="e9" green="e9" red="eb" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/maple/icons/charts.png"/>
                 </Property>

@@ -11,7 +11,7 @@ import java.util.Date;
  * @author mohammedomerqasimshaik
  */
 public class Event {
-    
+
     public int eventID;
     public int userID;
     public String eventType;
