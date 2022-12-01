@@ -5,6 +5,7 @@
 package com.maple.frontend.businessAdminScreen;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,52 +15,64 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class BusinessAdminDashboard extends javax.swing.JPanel {
-
-    /**
-     * Creates new form BusinessAdminDashboard
-     */
+    
+    ArrayList<String> workRequestList;
+    int hotelClick = 0;
+    int cateringClick = 0;
+    int travelClick = 0;
     
     public BusinessAdminDashboard() {
         initComponents();
-        populateCards();
-        populateTable();
+        populateCardData();
+        populateTableData("ALL");
         table.fixTable(jScrollPane1); //apply table theme
+        
+        workRequestList = new ArrayList<>(); // get workRequest data on start-up
+        
     }
 
     //Table Data
-    private void populateTable() {
-       DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        dtmodel.setRowCount(0);
+    private void populateTableData(String type) {
         
-        for(int i=0;i<19;i++){
-            Object[] obj = new Object[4];
-            obj[0] = "NAME";
-            obj[1] = "NAME";
-            obj[2] = "NAME";
-            obj[3] = "NAME";
-            dtmodel.addRow(obj);
-        }
+        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+        dtmodel.setRowCount(0);
+        ArrayList<String> filteredList = new ArrayList<>(); 
+        
+        if(type.equalsIgnoreCase("HOTEL")){
+//            workRequestList.stream().filter(data -> data.toID().equalsIgnoreCase()).forEach(data -> filteredList.add(data));
+        } else if(type.equalsIgnoreCase("CATERING")){
+            
+        } else if(type.equalsIgnoreCase("TRAVEL")){
+            
+        } else {
+            for(int i=0;i<19;i++){
+                Object[] obj = new Object[4];
+                obj[0] = "NAME";
+                obj[1] = "NAME";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
+        } 
     }
     
     //Card Data
-    private void populateCards(){
+    private void populateCardData(){
         
-        //Assign Hotel values - Card
+        //Load Icons
         jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
-        jHotelCard.setValues("# 324");
-        jHotelCard.setDescription("Hotels Affiliated");
-        
-        
-        //Assign Catering values - Card
         jCateringCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/catering.png")));
-        jCateringCard.setValues("# 192");
-        jCateringCard.setDescription("Caterers Affiliated");
-        
-        
-        //Assign TravelAgent values - Card
         jTravelAgentCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/travelAgent.png")));
-        jTravelAgentCard.setValues("# 102");
+        
+        //Set Description
+        jHotelCard.setDescription("Hotels Affiliated");
+        jCateringCard.setDescription("Caterers Affiliated");
         jTravelAgentCard.setDescription("Travel Agents Affiliated");
+        
+        //Assign Request Values
+        jHotelCard.setValues("# 324"); //TODO: get workRequest count for businessAdmin from HotelAdmins
+        jCateringCard.setValues("# 192"); //TODO: get workRequest count for businessAdmin from CateringAdmins
+        jTravelAgentCard.setValues("# 102"); //TODO: get workRequest count for businessAdmin from TravelAdmins
         
     }
     
@@ -235,16 +248,29 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
-        
-        //refresh table
-        populateTable();
-        
+        populateTableData("ALL");
+        //Reset card colors
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.white);
+        //Reset card click counter
+        hotelClick = 0;
+        cateringClick = 0;
+        travelClick = 0;
     }//GEN-LAST:event_jRefreshTableBtnActionPerformed
 
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
+        //Apply CSS
         jHotelCard.setBackground(Color.CYAN);
         jCateringCard.setBackground(Color.white);
         jTravelAgentCard.setBackground(Color.white);
+        
+        //Refresh Table Data
+        populateTableData("HOTEL");
+        
+        hotelClick = 1;
+        cateringClick = 0;
+        travelClick = 0;
     }//GEN-LAST:event_jHotelCardMouseClicked
 
     private void jHotelCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseEntered
@@ -254,14 +280,26 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
 
     private void jHotelCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseExited
         // TODO add your handling code here:
-        jHotelCard.setBackground(Color.white);
+        if(hotelClick==1 && cateringClick==0 && travelClick==0){
+            jHotelCard.setBackground(Color.CYAN);
+            return;
+        }
+            jHotelCard.setBackground(Color.white);
+            hotelClick = 0;
     }//GEN-LAST:event_jHotelCardMouseExited
 
     private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
-        // TODO add your handling code here:
+        // Apply CSS
         jHotelCard.setBackground(Color.white);
         jCateringCard.setBackground(Color.CYAN);
         jTravelAgentCard.setBackground(Color.white);
+        
+        //Refresh Table Data
+        populateTableData("CATERING");
+        
+        hotelClick = 0;
+        cateringClick = 1;
+        travelClick = 0;
     }//GEN-LAST:event_jCateringCardMouseClicked
 
     private void jCateringCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseEntered
@@ -271,14 +309,26 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
 
     private void jCateringCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseExited
         // TODO add your handling code here:
+        if(cateringClick==1 && hotelClick==0 && travelClick==0){
+            jCateringCard.setBackground(Color.CYAN);
+            return;
+        }
         jCateringCard.setBackground(Color.white);
+        cateringClick = 0;
     }//GEN-LAST:event_jCateringCardMouseExited
 
     private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
-        // TODO add your handling code here:
+        //Apply CSS
         jHotelCard.setBackground(Color.white);
         jCateringCard.setBackground(Color.white);
         jTravelAgentCard.setBackground(Color.CYAN);
+        
+        //Refresh Table Data
+        populateTableData("TRAVEL");
+        
+        hotelClick = 0;
+        cateringClick = 0;
+        travelClick = 1;
     }//GEN-LAST:event_jTravelAgentCardMouseClicked
 
     private void jTravelAgentCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseEntered
@@ -288,7 +338,12 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
 
     private void jTravelAgentCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseExited
         // TODO add your handling code here:
+        if(travelClick==1 && cateringClick==0 && hotelClick==0){
+            jTravelAgentCard.setBackground(Color.CYAN);
+            return;
+        }
         jTravelAgentCard.setBackground(Color.white);
+        travelClick = 0;
     }//GEN-LAST:event_jTravelAgentCardMouseExited
 
 
