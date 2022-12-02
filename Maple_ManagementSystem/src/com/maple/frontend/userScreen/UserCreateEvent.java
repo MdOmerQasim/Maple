@@ -4,7 +4,10 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.model.Event;
+import com.maple.backend.model.EventServiceClass;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -277,10 +280,11 @@ public class UserCreateEvent extends javax.swing.JPanel {
                         .addComponent(jLabel8)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hotelDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hotelCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hotelCheckbox))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hotelCheckbox, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(hotelDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(hotelCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cateringCheckbox)
@@ -309,24 +313,43 @@ public class UserCreateEvent extends javax.swing.JPanel {
 
     private void callbackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callbackBtnActionPerformed
         // TODO add your handling code here:
-        typeDropdown.getSelectedItem();
-        areaText.getText();
-        descText.getText();
-        areaText.getText();
-        attendeesCountText.getText();
-        fromDate.getDate();
-        toDate.getDate();
-        
+        Event newEvent = new Event();
+        newEvent.setEventType((String) typeDropdown.getSelectedItem());
+        newEvent.setEventName(nameText.getText());
+        newEvent.setEventDescription(descText.getText());
+        newEvent.setEventArea(areaText.getText());
+        newEvent.setAtendeesCount(attendeesCountText.getText());
+        newEvent.setEventFrom(fromDate.getDate());
+        newEvent.setEventTo(toDate.getDate());
+        ArrayList<EventServiceClass> servicesNeeded = new ArrayList<EventServiceClass>();
+
         if(hotelCheckbox.isSelected()){
-            hotelDropdown.getSelectedItem();
-            hotelCount.getText();
+             EventServiceClass service = new EventServiceClass();
+             service.setValue(true);
+             service.setCount(hotelCount.getText());
+            if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
+                service.setType("Accomodation");  
+            } else {
+                service.setType("Function Hall");
+            }
+            servicesNeeded.add(service);
         }
         if(cateringCheckbox.isSelected()){
-            cateringCount.getText();
+            EventServiceClass cateringService = new EventServiceClass();
+            cateringService.setType("Catering");
+            cateringService.setValue(true);
+            cateringService.setCount(cateringCount.getText());
+            servicesNeeded.add(cateringService);
         }
         if(travelCheckbox.isSelected()){
-            travelCount.getText();
+            EventServiceClass travelService = new EventServiceClass();
+            travelService.setType("Travel");
+            travelService.setValue(true);
+            travelService.setCount(travelCount.getText());
+            servicesNeeded.add(travelService);
         }
+        newEvent.setServicesNeeded(servicesNeeded);
+        System.out.println(newEvent.toString());
     }//GEN-LAST:event_callbackBtnActionPerformed
 
 

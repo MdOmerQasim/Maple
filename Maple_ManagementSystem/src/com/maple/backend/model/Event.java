@@ -4,6 +4,7 @@
  */
 package com.maple.backend.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ public class Event {
     public String eventDescription;
     public String eventArea;
     public String atendeesCount;
-    public String servicesNeeded;
+    public ArrayList<EventServiceClass> servicesNeeded;
     public Date eventFrom;
     public Date eventTo;
     public int eventManagerID;
@@ -83,11 +84,11 @@ public class Event {
         this.atendeesCount = atendeesCount;
     }
 
-    public String getServicesNeeded() {
+    public ArrayList<EventServiceClass> getServicesNeeded() {
         return servicesNeeded;
     }
 
-    public void setServicesNeeded(String servicesNeeded) {
+    public void setServicesNeeded(ArrayList<EventServiceClass> servicesNeeded) {
         this.servicesNeeded = servicesNeeded;
     }
 
@@ -139,5 +140,8 @@ public class Event {
         this.chosenTravelAgentID = chosenTravelAgentID;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Event{" + "eventID=" + eventID + ", userID=" + userID + ", eventType=" + eventType + ", eventName=" + eventName + ", eventDescription=" + eventDescription + ", eventArea=" + eventArea + ", atendeesCount=" + atendeesCount + ", servicesNeeded=" + servicesNeeded + ", eventFrom=" + eventFrom + ", eventTo=" + eventTo + ", eventManagerID=" + eventManagerID + ", chosenHotelID=" + chosenHotelID + ", chosenCateringID=" + chosenCateringID + ", chosenTravelAgentID=" + chosenTravelAgentID + '}';
+    }
 }
