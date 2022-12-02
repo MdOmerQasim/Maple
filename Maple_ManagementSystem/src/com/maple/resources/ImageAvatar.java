@@ -30,6 +30,7 @@ public class ImageAvatar extends JComponent {
 
     public void setIcon(Icon icon) {
         this.icon = icon;
+        repaint();
     }
 
     public int getBorderSize() {
@@ -38,6 +39,7 @@ public class ImageAvatar extends JComponent {
 
     public void setBorderSize(int borderSize) {
         this.borderSize = borderSize;
+        repaint();
     }
 
     private Icon icon;

@@ -4,7 +4,12 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import java.awt.Cursor;
+import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -18,9 +23,10 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     public BusinessAdminSettings() {
         initComponents();
         
-        jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/cat.jpeg")));
+        jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
         jName.setText("John");
         jName.setEnabled(false);
+        
     }
 
     /**
@@ -45,6 +51,19 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         jLocation.setForeground(new java.awt.Color(4, 72, 210));
         jLocation.setText("Admin / Settings");
 
+        jUserPhoto.setBackground(new java.awt.Color(255, 255, 255));
+        jUserPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUserPhotoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jUserPhotoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jUserPhotoMouseExited(evt);
+            }
+        });
+
         jName.setLabelText("");
 
         jNewPasswordField.setLabelText("New Password");
@@ -57,6 +76,11 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         });
 
         jOldPasswordField.setLabelText("Old Password");
+        jOldPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jOldPasswordFieldKeyReleased(evt);
+            }
+        });
 
         jClearBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/cross.png"))); // NOI18N
         jClearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +154,85 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     }//GEN-LAST:event_jConfirmPasswordFieldActionPerformed
 
     private void jClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClearBtnActionPerformed
-        // TODO add your handling code here:
+        jOldPasswordField.setText("");
+        jNewPasswordField.setText("");
+        jConfirmPasswordField.setText("");
     }//GEN-LAST:event_jClearBtnActionPerformed
 
     private void jSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBtnActionPerformed
-        // TODO add your handling code here:
+        
+        //Validate Old Password
+        String oldPassword = new String(jOldPasswordField.getPassword());
+        //TODO: get password from userDirectory & compare
+        
+        //Validate New Password
+        String newPassword = new String(jNewPasswordField.getPassword());
+        
+        if(!validatePassword(newPassword)){
+            //show validation message
+            return;
+        }
+        
+        //Validate Confirm Password
+        String confirmPassword = new String(jConfirmPasswordField.getPassword());
+        
+        if(!validatePassword(confirmPassword)){
+            //show validation message
+            return;
+        }
+        
+        //Compare new & confirm password
+        if(!newPassword.equals(confirmPassword)){
+            //show validation message
+            return;
+        }
+        
+        //Update newPassword in UserDirectory
+        
     }//GEN-LAST:event_jSaveBtnActionPerformed
+
+    private boolean validatePassword(String password){
+        boolean isValid;
+        String validPassword = password;
+        Pattern pattern = Pattern.compile("[A-Za-z0-9]+");
+        Matcher matcher = pattern.matcher(validPassword);
+        isValid = matcher.matches();
+        return isValid;
+    }
+    
+    private void jUserPhotoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseEntered
+        
+        //Change Cursor
+        jUserPhoto.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jUserPhoto.setBorderSize(2);
+         
+    }//GEN-LAST:event_jUserPhotoMouseEntered
+
+    private void jUserPhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseClicked
+        
+        //Upload image
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.showOpenDialog(null);
+        File file = jFileChooser.getSelectedFile();
+        if(file == null){ // If no image is selected
+            //show validation
+            return; 
+        }
+        String filename = file.getAbsolutePath(); 
+        ImageIcon icon = new ImageIcon(filename);
+        jUserPhoto.setIcon(icon);
+      
+    }//GEN-LAST:event_jUserPhotoMouseClicked
+
+    private void jOldPasswordFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jOldPasswordFieldKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jOldPasswordFieldKeyReleased
+
+    private void jUserPhotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseExited
+        // TODO add your handling code here:
+        jUserPhoto.setBorderSize(0);
+    }//GEN-LAST:event_jUserPhotoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
