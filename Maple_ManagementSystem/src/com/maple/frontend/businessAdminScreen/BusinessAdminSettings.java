@@ -4,17 +4,12 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
-import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *

@@ -4,8 +4,6 @@
  */
 package com.maple.backend.model;
 
-import java.util.Date;
-
 /**
  *
  * @author bharv
@@ -14,8 +12,8 @@ public class WorkRequest {
     
     public int ID;
     public String type;
-    public Date fromID;
-    public Date toID;
+    public int fromID;
+    public int toID;
     public String status;
     public int eventID;
     public int eventManagerID;
@@ -36,19 +34,19 @@ public class WorkRequest {
         this.type = type;
     }
 
-    public Date getFromID() {
+    public int getFromID() {
         return fromID;
     }
 
-    public void setFromID(Date fromID) {
+    public void setFromID(int fromID) {
         this.fromID = fromID;
     }
 
-    public Date getToID() {
+    public int getToID() {
         return toID;
     }
 
-    public void setToID(Date toID) {
+    public void setToID(int toID) {
         this.toID = toID;
     }
 
@@ -75,6 +73,8 @@ public class WorkRequest {
     public void setEventManagerID(int eventManagerID) {
         this.eventManagerID = eventManagerID;
     }
+
+   
     
     
     

@@ -4,8 +4,13 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.WorkRequest;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
 /**
@@ -16,21 +21,24 @@ import javax.swing.JSplitPane;
 public class BusinessAdminScreen extends javax.swing.JPanel {
     
     JSplitPane mainSplitPane;
+    WorkRequestController workRequestController;
     
-    public BusinessAdminScreen(JSplitPane jSplitPane) {
+    public BusinessAdminScreen(JSplitPane jSplitPane) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
-         
+        workRequestController = new WorkRequestController();
+       
         populateUserData();
         //Load Dashboard Screen (by default)
         BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
         jRightSplitPane.setRightComponent(businessAdminDashboard);
     }
     
-    public void populateUserData(){
+    public void populateUserData() throws SQLException{
+        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText("John"); //TODO: get userName from backend
         notificationBadge.setBadges(9); //TODO: get workRequest count for businessAdmin
-        //TODO: Hightlight Dashboard by default 
+//        ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102); --> get lst.size()
     }
     
     /**
@@ -79,8 +87,6 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
         jTopRightPanel.setMaximumSize(new java.awt.Dimension(985, 80));
         jTopRightPanel.setMinimumSize(new java.awt.Dimension(985, 80));
         jTopRightPanel.setPreferredSize(new java.awt.Dimension(985, 80));
-
-        jUserImageIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/cat.jpeg"))); // NOI18N
 
         jUserName.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jUserName.setForeground(new java.awt.Color(127, 127, 127));
