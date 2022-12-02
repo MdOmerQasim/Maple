@@ -4,7 +4,13 @@
  */
 package com.maple.frontend;
 
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -18,8 +24,11 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
-    public RegisterJPanel(JSplitPane jSplitPane) {
+    WorkRequestController workRequestController;
+    
+    public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
+        workRequestController = new WorkRequestController();
         initComponents();
     }
 
@@ -96,6 +105,11 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jRegisterAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
 
         jRegisterButton.setText("Register");
+        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRegisterButtonActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Register as");
 
@@ -207,6 +221,15 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
        
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102);
+            System.out.println("SIZE - " + lst.size());
+        } catch (SQLException ex) {}
+        
+    }//GEN-LAST:event_jRegisterButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
