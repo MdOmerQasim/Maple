@@ -23,12 +23,12 @@ public class HotelDirectory {
     }
 
     //Add hotel profile
-    public void addDoctor(Hotel hotel) {
+    public void addHotel(Hotel hotel) {
         hotelList.add(hotel);
     }
 
     //Update hotel profile
-    public void updateDoctor(Hotel hotel, ArrayList<Hotel> list) {
+    public void updateHotel(Hotel hotel, ArrayList<Hotel> list) {
         //Iterate to find hotelID
         for (Hotel hot : list) {
             if (hotel.getHotelID() == hot.getHotelID()) {
@@ -45,8 +45,8 @@ public class HotelDirectory {
         }
     }
     
-    //Remove doctor profile
-    public void removeDoctor(Hotel hotel){
+    //Remove hotel profile
+    public void removeHotel(Hotel hotel){
        hotelList.remove(hotel);
     } 
     
