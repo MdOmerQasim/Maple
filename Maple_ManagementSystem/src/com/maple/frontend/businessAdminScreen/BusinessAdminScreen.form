@@ -161,11 +161,6 @@
                   </Layout>
                   <SubComponents>
                     <Container class="com.maple.resources.ImageAvatar" name="jUserImageIcon">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/com/maple/icons/cat.jpeg"/>
-                        </Property>
-                      </Properties>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
                         <Property name="useNullLayout" type="boolean" value="true"/>

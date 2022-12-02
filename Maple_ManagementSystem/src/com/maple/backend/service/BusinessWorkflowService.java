@@ -4,8 +4,6 @@
  */
 package com.maple.backend.service;
 
-import com.maple.backend.repository.Repository;
-
 /**
  *
  * @author mohammedomerqasimshaik
@@ -13,13 +11,11 @@ import com.maple.backend.repository.Repository;
 
 public class BusinessWorkflowService {
     
-    Repository repository;
+//    Repository repository;
 
     public BusinessWorkflowService() {
-        repository = new Repository();
+//        repository = new Repository();
     }
-
-    public String appendService(String value){
-        return value + "_user";
-    }
+    
+    
 }
