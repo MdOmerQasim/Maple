@@ -19,10 +19,6 @@ public class BusinessWorkflowController {
         businessWorkflowService = new BusinessWorkflowService();
     }
     
-    // 
-    public String getAppendService(String value){
-        return businessWorkflowService.appendService(value);
-    }
     
     
 }

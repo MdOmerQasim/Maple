@@ -7,6 +7,7 @@ package com.maple.frontend;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.userScreen.UserLeftPanelOptions;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
+import java.sql.SQLException;
 import javax.swing.JSplitPane;
 
 /**
@@ -180,10 +181,13 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
         // TODO add your handling code here:
         if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-            BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
-           this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-           this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-       
+            try {
+                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+            } catch (SQLException ex) {
+                
+            }
         } else {
              // If User Logs In
             UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
