@@ -83,10 +83,11 @@ public class HomeLeftJPanel extends javax.swing.JPanel {
         RegisterJPanel registerJPanel = null;
         try {
             registerJPanel = new RegisterJPanel(this.mainSplitPane);
+            this.mainSplitPane.setRightComponent(registerJPanel);
         } catch (SQLException ex) {
             Logger.getLogger(HomeLeftJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.mainSplitPane.setRightComponent(registerJPanel);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -4,11 +4,14 @@
  */
 package com.maple.frontend;
 import com.maple.DBConnection.JDBC;
+import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -25,13 +28,15 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
-    JDBC obj;
+//    JDBC obj;
     String path;
     User user;
+    UserController userController;
     public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
-        this.obj = new JDBC();
+//        obj = new JDBC();
         user = new User();
+        userController = new UserController();
         initComponents();
     }
 
@@ -274,16 +279,21 @@ public class RegisterJPanel extends javax.swing.JPanel {
             status = "active";
         }
         int ID = user.getID();
-        String sql = "insert into user (id, role, name, email, phoneNumber, username, password, photo, postalCode, status)" + 
-        "values('" + ID + "','" + role + "','" + name + "','" + email + "','" + phoneNum + "','" + userName + "','" + password + "','" + path + "','" + postalCode + "','" + status + "')";
-
         try {
-            obj.update(sql, new String[]{});
-            
-        } catch (SQLException ex) {
-           System.out.println("Exception is" + ex.getMessage());
-        }
+            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
+//        String sql = "insert into user (id, role, name, email, phoneNumber, username, password, photo, postalCode, status)" +
+//        "values('" + ID + "','" + role + "','" + name + "','" + email + "','" + phoneNum + "','" + userName + "','" + password + "','" + path + "','" + postalCode + "','" + status + "')";
 
+//        try {
+//
+//            
+//        } catch (SQLException ex) {
+//           System.out.println("Exception is" + ex.getMessage());
+//        }
+//
+        } catch (SQLException ex) {
+            System.out.println("Error sql exception");
+        }
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed

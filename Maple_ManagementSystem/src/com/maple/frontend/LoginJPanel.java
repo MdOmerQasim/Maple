@@ -140,7 +140,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                 this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
             } catch (SQLException ex) {
-                
+             System.out.println("EROROROR");   
             }
         } else {
              // If User Logs In
