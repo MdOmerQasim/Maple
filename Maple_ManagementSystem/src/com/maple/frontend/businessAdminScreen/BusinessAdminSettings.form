@@ -93,8 +93,15 @@
       </Properties>
     </Component>
     <Container class="com.maple.resources.ImageAvatar" name="jUserPhoto">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUserPhotoMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUserPhotoMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUserPhotoMouseExited"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -123,6 +130,9 @@
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Old Password"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jOldPasswordFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="com.maple.resources.ButtonBadges" name="jClearBtn">
       <Properties>

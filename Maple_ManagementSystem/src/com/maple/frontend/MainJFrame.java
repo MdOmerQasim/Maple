@@ -5,7 +5,6 @@
 package com.maple.frontend;
 
 import com.maple.DBConnection.JDBC;
-import java.awt.CardLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -27,28 +26,17 @@ public class MainJFrame extends javax.swing.JFrame {
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(jSplitPane);
         jSplitPane.setLeftComponent(homeLeftPanel);
         
+        
+        //DATABASE
         try{
             this.obj = new JDBC();
-//            this.obj.update("UPDATE EVENT SET event_name = 'newestName' WHERE event_description = 'testDescription'", new String[]{});
+            this.obj.update("UPDATE EVENT SET event_name = 'newestName' WHERE event_description = 'testDescription'", new String[]{});
             ResultSet rs = this.obj.query("Select * from event", new String[]{});
             while(rs.next()){
                 System.out.println(rs.getString("event_name") + " - " + rs.getString("event_description"));
             }
-        } catch(SQLException ex){
-        }
+        } catch(SQLException ex){}
         
-        
-//        HomeJPanel homeViewPanel = new HomeJPanel(jRightPanel);
-//        jRightPanel.add("HomeJPanel", homeViewPanel);
-//        CardLayout layout = (CardLayout)jRightPanel.getLayout();
-//        layout.next(jRightPanel);
-            
-          
-        
-//        jRightPanel.add("HomeJPanel", homeViewPanel);
-//        CardLayout layout = (CardLayout)jRightPanel.getLayout();
-//        layout.next(jRightPanel);
-        System.out.println("--Left CardLayout stack--Right CardLayout stack--");
         
     }
 
@@ -113,7 +101,9 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    
+    
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -139,7 +129,8 @@ public class MainJFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

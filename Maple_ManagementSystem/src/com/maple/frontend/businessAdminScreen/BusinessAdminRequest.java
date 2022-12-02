@@ -4,6 +4,9 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.model.WorkRequest;
+import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,44 +19,65 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     /**
      * Creates new form BusinessAdminRequest
      */
+    
+    ArrayList<String> workRequestList;
+    int hotelClick = 0;
+    int cateringClick = 0;
+    int travelClick = 0;
+    
     public BusinessAdminRequest() {
         initComponents();
         
-         //Assign Hotel values - Card
-        jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
-        jHotelCard.setValues("# 4");
-        jHotelCard.setDescription("Hotel Requests");
-        
-        
-        //Assign Catering values - Card
-        jCateringCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/catering.png")));
-        jCateringCard.setValues("# 2");
-        jCateringCard.setDescription("Catering Requests");
-        
-        
-        //Assign TravelAgent values - Card
-        jTravelAgentCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/travelAgent.png")));
-        jTravelAgentCard.setValues("# 3");
-        jTravelAgentCard.setDescription("Travel Agents Requests");
-        
-        populateTable();
+        populateCardData();
+        populateTableData("ALL");
         table.fixTable(jScrollPane2);
     }
     
-    //Table Data
-    private void populateTable() {
-       DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        dtmodel.setRowCount(0);
+    //Card Data
+    public void populateCardData(){
         
-        for(int i=0;i<20;i++){
-            Object[] obj = new Object[5];
-            obj[0] = "NAME";
-            obj[1] = "NAME";
-            obj[2] = "NAME";
-            obj[3] = "NAME";
-            obj[4] = "PENDING";
-            dtmodel.addRow(obj);
-        }
+        //Load Icons
+        jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+        jCateringCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/catering.png")));
+        jTravelAgentCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/travelAgent.png")));
+        
+        //Set Description
+        jHotelCard.setDescription("Hotel Requests");
+        jCateringCard.setDescription("Catering Requests");
+        jTravelAgentCard.setDescription("Travel Agents Requests");
+        
+        //Assign Request Values
+        jHotelCard.setValues("# 4"); //TODO: get workRequest count for businessAdmin from HotelAdmins
+        jCateringCard.setValues("# 2"); //TODO: get workRequest count for businessAdmin from CateringAdmins
+        jTravelAgentCard.setValues("# 3"); //TODO: get workRequest count for businessAdmin from TravelAdmins
+        
+    }
+    
+    //Table Data
+    private void populateTableData(String type) {
+       
+        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+        dtmodel.setRowCount(0);
+        ArrayList<String> filteredList = new ArrayList<>(); 
+        
+        if(type.equalsIgnoreCase("HOTEL")){
+//            workRequestList.stream().filter(data -> data.toID().equalsIgnoreCase()).forEach(data -> filteredList.add(data));
+        } else if(type.equalsIgnoreCase("CATERING")){
+            
+        } else if(type.equalsIgnoreCase("TRAVEL")){
+            
+        } else {
+            for(int i=0;i<19;i++){
+                Object[] obj = new Object[5];
+                obj[0] = "NAME";
+                obj[1] = "NAME";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                obj[4] = "PENDING";
+                dtmodel.addRow(obj);
+            }
+        } 
+  
     }
 
     /**
@@ -65,28 +89,58 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        jRoute = new javax.swing.JLabel();
         jHotelCard = new com.maple.resources.Card();
         jCateringCard = new com.maple.resources.Card();
         jTravelAgentCard = new com.maple.resources.Card();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new com.maple.resources.Table();
-        buttonBadges1 = new com.maple.resources.ButtonBadges();
-        btnBadgeMessage2 = new com.maple.resources.ButtonBadges();
-        btnBadgeMessage3 = new com.maple.resources.ButtonBadges();
+        jRefreshTableBtn = new com.maple.resources.ButtonBadges();
+        jRejectBtn = new com.maple.resources.ButtonBadges();
+        jAcceptBtn = new com.maple.resources.ButtonBadges();
 
         setMaximumSize(new java.awt.Dimension(1196, 720));
         setMinimumSize(new java.awt.Dimension(1196, 720));
         setPreferredSize(new java.awt.Dimension(1196, 720));
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel2.setText("Admin / Requests");
+        jRoute.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jRoute.setForeground(new java.awt.Color(4, 72, 210));
+        jRoute.setText("Admin / Requests");
 
         jHotelCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jHotelCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jHotelCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jHotelCardMouseExited(evt);
+            }
+        });
+
+        jCateringCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jCateringCardMouseExited(evt);
+            }
+        });
+
+        jTravelAgentCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTravelAgentCardMouseExited(evt);
             }
         });
 
@@ -152,22 +206,27 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 .addGap(103, 103, 103))
         );
 
-        buttonBadges1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/refresh.png"))); // NOI18N
-        buttonBadges1.setMaximumSize(new java.awt.Dimension(20, 20));
-        buttonBadges1.setMinimumSize(new java.awt.Dimension(20, 20));
-        buttonBadges1.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        btnBadgeMessage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/cross.png"))); // NOI18N
-        btnBadgeMessage2.addActionListener(new java.awt.event.ActionListener() {
+        jRefreshTableBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/refresh.png"))); // NOI18N
+        jRefreshTableBtn.setMaximumSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn.setMinimumSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBadgeMessage2ActionPerformed(evt);
+                jRefreshTableBtnActionPerformed(evt);
             }
         });
 
-        btnBadgeMessage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/tick.png"))); // NOI18N
-        btnBadgeMessage3.addActionListener(new java.awt.event.ActionListener() {
+        jRejectBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/cross.png"))); // NOI18N
+        jRejectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBadgeMessage3ActionPerformed(evt);
+                jRejectBtnActionPerformed(evt);
+            }
+        });
+
+        jAcceptBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/tick.png"))); // NOI18N
+        jAcceptBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAcceptBtnActionPerformed(evt);
             }
         });
 
@@ -178,7 +237,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRefreshTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jHotelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,61 +245,169 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                             .addComponent(jCateringCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(40, 40, 40)
                             .addComponent(jTravelAgentCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2)
+                        .addComponent(jRoute)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(119, 119, 119))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBadgeMessage3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jAcceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBadgeMessage2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(220, 220, 220))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel2)
+                .addComponent(jRoute)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jHotelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCateringCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTravelAgentCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRefreshTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBadgeMessage2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBadgeMessage3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAcceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
-        // TODO add your handling code here:
-
+        
+        //Apply CSS
+        jHotelCard.setBackground(Color.CYAN);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.white);
+        
+        //Refresh Table Data
+        populateTableData("HOTEL");
+        
+        hotelClick = 1;
+        cateringClick = 0;
+        travelClick = 0;
+        
     }//GEN-LAST:event_jHotelCardMouseClicked
 
-    private void btnBadgeMessage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBadgeMessage2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBadgeMessage2ActionPerformed
-
-    private void btnBadgeMessage3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBadgeMessage3ActionPerformed
-        // TODO add your handling code here:
+    private void jRejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRejectBtnActionPerformed
         
-    }//GEN-LAST:event_btnBadgeMessage3ActionPerformed
+        //Select row data
+        int selectedRow = table.getSelectedRow();
+        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0);
+        
+        //TODO: Call update query
+//        selectedRowObj.setStatus("REJECTED");
+    }//GEN-LAST:event_jRejectBtnActionPerformed
+
+    private void jAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptBtnActionPerformed
+
+        //Select row data
+        int selectedRow = table.getSelectedRow();
+        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0); //TODO: change to obj[0] = workRequest;
+        
+        //TODO: Call update query
+//        selectedRowObj.setStatus("APPROVED");
+        
+    }//GEN-LAST:event_jAcceptBtnActionPerformed
+
+    private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
+ 
+        populateTableData("ALL");
+        
+        //Reset card colors
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.white);
+        
+        //Reset card click counter
+        hotelClick = 0;
+        cateringClick = 0;
+        travelClick = 0;
+        
+    }//GEN-LAST:event_jRefreshTableBtnActionPerformed
+
+    private void jHotelCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseEntered
+        jHotelCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jHotelCardMouseEntered
+
+    private void jHotelCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseExited
+        if(hotelClick==1 && cateringClick==0 && travelClick==0){
+            jHotelCard.setBackground(Color.CYAN);
+            return;
+        }
+            jHotelCard.setBackground(Color.white);
+            hotelClick = 0;
+    }//GEN-LAST:event_jHotelCardMouseExited
+
+    private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
+        // Apply CSS
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.CYAN);
+        jTravelAgentCard.setBackground(Color.white);
+        
+        //Refresh Table Data
+        populateTableData("CATERING");
+        
+        hotelClick = 0;
+        cateringClick = 1;
+        travelClick = 0;
+    }//GEN-LAST:event_jCateringCardMouseClicked
+
+    private void jCateringCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseEntered
+        jCateringCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jCateringCardMouseEntered
+
+    private void jCateringCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseExited
+        if(cateringClick==1 && hotelClick==0 && travelClick==0){
+            jCateringCard.setBackground(Color.CYAN);
+            return;
+        }
+        jCateringCard.setBackground(Color.white);
+        cateringClick = 0;
+    }//GEN-LAST:event_jCateringCardMouseExited
+
+    private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
+        //Apply CSS
+        jHotelCard.setBackground(Color.white);
+        jCateringCard.setBackground(Color.white);
+        jTravelAgentCard.setBackground(Color.CYAN);
+        
+        //Refresh Table Data
+        populateTableData("TRAVEL");
+        
+        hotelClick = 0;
+        cateringClick = 0;
+        travelClick = 1;
+    }//GEN-LAST:event_jTravelAgentCardMouseClicked
+
+    private void jTravelAgentCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseEntered
+        jTravelAgentCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jTravelAgentCardMouseEntered
+
+    private void jTravelAgentCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseExited
+        if(travelClick==1 && cateringClick==0 && hotelClick==0){
+            jTravelAgentCard.setBackground(Color.CYAN);
+            return;
+        }
+        jTravelAgentCard.setBackground(Color.white);
+        travelClick = 0;
+    }//GEN-LAST:event_jTravelAgentCardMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.maple.resources.ButtonBadges btnBadgeMessage2;
-    private com.maple.resources.ButtonBadges btnBadgeMessage3;
-    private com.maple.resources.ButtonBadges buttonBadges1;
+    private com.maple.resources.ButtonBadges jAcceptBtn;
     private com.maple.resources.Card jCateringCard;
     private com.maple.resources.Card jHotelCard;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private com.maple.resources.ButtonBadges jRefreshTableBtn;
+    private com.maple.resources.ButtonBadges jRejectBtn;
+    private javax.swing.JLabel jRoute;
     private javax.swing.JScrollPane jScrollPane2;
     private com.maple.resources.Card jTravelAgentCard;
     private com.maple.resources.Table table;
