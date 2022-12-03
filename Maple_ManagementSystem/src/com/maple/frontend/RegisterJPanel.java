@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend;
-<<<<<<< HEAD
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Image;
@@ -16,8 +15,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-=======
-
 import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
@@ -26,7 +23,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
->>>>>>> production
 import javax.swing.JSplitPane;
 
 /**
@@ -39,9 +35,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
-<<<<<<< HEAD
+
 //    JDBC obj;
     String path;
+    WorkRequestController workRequestController;
     User user;
     UserController userController;
     public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
@@ -49,13 +46,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
 //        obj = new JDBC();
         user = new User();
         userController = new UserController();
-=======
-    WorkRequestController workRequestController;
-    
-    public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
-        this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
->>>>>>> production
+
         initComponents();
     }
 
@@ -134,9 +126,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jRegisterAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
 
         jRegisterButton.setText("Register");
-        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRegisterButtonActionPerformed(evt);
+        jRegisterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRegisterButtonMouseClicked(evt);
             }
         });
 
@@ -254,8 +246,35 @@ public class RegisterJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jNameTextFieldActionPerformed
 
-    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
 //        String role = jRegisterAsComboBox.getSelectedIndex(selectedHospitalAdmin.getGender());
+
+        
+        
+    }                                               
+
+    private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed
+        JFileChooser img_upload = new JFileChooser();
+        img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int result = img_upload.showDialog(null, "Choose my file");
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = img_upload.getSelectedFile();
+            String path = file.getAbsolutePath();
+            this.path = path;
+            try {
+                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//                user.setPhoto(photo);
+                jPhotoLabel.setIcon(new ImageIcon(photo));
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error while saving image.");
+            }
+        }
+        else{
+                JOptionPane.showMessageDialog(this, "Upload is cancelled.");
+            }
+    }//GEN-LAST:event_jUploadButtonActionPerformed
+
+    private void jRegisterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterButtonMouseClicked
         String role = jRegisterAsComboBox.getSelectedItem().toString();
         String name = jNameTextField.getText();
         String email = jEmailTextField.getText();
@@ -310,16 +329,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         
         try {
             userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
-//        String sql = "insert into user (id, role, name, email, phoneNumber, username, password, photo, postalCode, status)" +
-//        "values('" + ID + "','" + role + "','" + name + "','" + email + "','" + phoneNum + "','" + userName + "','" + password + "','" + path + "','" + postalCode + "','" + status + "')";
 
-//        try {
-//
-//            
-//        } catch (SQLException ex) {
-//           System.out.println("Exception is" + ex.getMessage());
-//        }
-//
         } catch (SQLException ex) {
             System.out.println("Error sql exception");
         }
@@ -333,37 +343,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jPhotoLabel.setIcon(null);
         jPostalCodeTextField.setText("");
         }
-    }//GEN-LAST:event_jRegisterButtonActionPerformed
-
-    private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed
-        JFileChooser img_upload = new JFileChooser();
-        img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int result = img_upload.showDialog(null, "Choose my file");
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File file = img_upload.getSelectedFile();
-            String path = file.getAbsolutePath();
-            this.path = path;
-            try {
-                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
-//                user.setPhoto(photo);
-                jPhotoLabel.setIcon(new ImageIcon(photo));
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error while saving image.");
-            }
-        }
-        else{
-                JOptionPane.showMessageDialog(this, "Upload is cancelled.");
-            }
-    }//GEN-LAST:event_jUploadButtonActionPerformed
-
-    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102);
-            System.out.println("SIZE - " + lst.size());
-        } catch (SQLException ex) {}
-        
-    }//GEN-LAST:event_jRegisterButtonActionPerformed
+    }//GEN-LAST:event_jRegisterButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
