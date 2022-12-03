@@ -132,4 +132,16 @@ public class WorkRequestService {
         return travelAgentDataList; 
     }
     
+    public ArrayList<WorkRequest> getWorkRequestByEventID(int eventId) throws SQLException{
+        ArrayList<WorkRequest> filteredWorkRequestList = new ArrayList<>();
+        ResultSet resultSet = workRequestRepository.getWorkRequestData();
+        ArrayList<WorkRequest> workRequestList = workRequestDataMapper(resultSet);
+        
+        workRequestList.stream()
+                .filter(wk -> wk.getEventID()==eventId)
+                .forEach(wk -> filteredWorkRequestList.add(wk));
+        
+        return filteredWorkRequestList;
+    }
+    
 }

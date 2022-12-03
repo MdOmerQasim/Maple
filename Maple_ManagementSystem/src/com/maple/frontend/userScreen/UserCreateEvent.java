@@ -329,6 +329,10 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setAtendeesCount(attendeesCountText.getText());
             newEvent.setEventFrom(fromDate.getDate());
             newEvent.setEventTo(toDate.getDate());
+            newEvent.setEventManagerID(-1);
+            newEvent.setChosenHotelID(-1);
+            newEvent.setChosenCateringID(-1);
+            newEvent.setChosenTravelAgentID(-1);
 
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {

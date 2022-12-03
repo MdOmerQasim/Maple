@@ -21,7 +21,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="1" pref="1376" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -38,11 +38,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="eventManagerField" min="-2" pref="190" max="-2" attributes="0"/>
                           <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="managerStatus" alignment="0" min="-2" pref="691" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="259" max="32767" attributes="0"/>
                   </Group>
@@ -57,7 +59,6 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="eventManagerField" alignment="0" pref="190" max="32767" attributes="0"/>
                                       <Component id="typeField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="fromField" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -115,7 +116,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="755" max="32767" attributes="0"/>
+                      <EmptySpace pref="684" max="32767" attributes="0"/>
+                      <Component id="eventManagerField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="managerStatus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -169,9 +174,7 @@
                               <Component id="toField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="attendeesCountField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="eventManagerField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="631" max="32767" attributes="0"/>
+                          <EmptySpace pref="729" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -528,7 +531,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="hotelType">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="j"/>
+                    <Property name="text" type="java.lang.String" value="Hotel Type"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -634,6 +637,11 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="managerStatus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Event Manager hasn&apos;t been assigned yet. You will be notified soon."/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

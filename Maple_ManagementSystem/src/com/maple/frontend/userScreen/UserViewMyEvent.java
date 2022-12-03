@@ -5,7 +5,9 @@
 package com.maple.frontend.userScreen;
 
 import com.maple.backend.controller.EventController;
+import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Event;
+import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,11 +30,18 @@ public class UserViewMyEvent extends javax.swing.JPanel {
      */
     JSplitPane mainSplitPane;
      EventController eventController;
+     WorkRequestController wrController;
     public UserViewMyEvent(JSplitPane jSplitPane) {
         try {
             this.mainSplitPane = jSplitPane;
             eventController = new EventController();
+            wrController = new WorkRequestController();
             initComponents();
+            jPanel1.setVisible(false);
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(false);
+            eventManagerField.setVisible(false);
+            managerStatus.setVisible(false);
             populateTable();
             table.fixTable(jScrollPane);
         } catch (SQLException ex) {
@@ -90,6 +99,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         cateringAddress = new com.maple.resources.TextField();
         cateringName = new com.maple.resources.TextField();
         cateringImage = new javax.swing.JLabel();
+        managerStatus = new javax.swing.JLabel();
 
         attendeesCountField.setEditable(false);
         attendeesCountField.setLabelText("Attendees Count");
@@ -243,7 +253,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         hotelImage.setText("Image");
         hotelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        hotelType.setText("j");
+        hotelType.setText("Hotel Type");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -349,6 +359,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
+        managerStatus.setText("Event Manager hasn't been assigned yet. You will be notified soon.");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -356,10 +368,12 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(managerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(259, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
@@ -371,7 +385,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(eventManagerField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                                 .addComponent(typeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(fromField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(31, 31, 31)
@@ -412,7 +425,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(755, Short.MAX_VALUE)
+                .addContainerGap(684, Short.MAX_VALUE)
+                .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(managerStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,9 +473,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addComponent(fromField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(attendeesCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(28, 28, 28)
-                    .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(631, Short.MAX_VALUE)))
+                    .addContainerGap(729, Short.MAX_VALUE)))
         );
 
         jScrollPane1.setViewportView(jPanel5);
@@ -471,7 +486,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1376, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -480,64 +495,106 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_attendeesCountFieldActionPerformed
 
+    private WorkRequest getSpecificEvent(ArrayList<WorkRequest>wrEvents, String val) {
+        // based on wr status show contents
+        WorkRequest specWr = new WorkRequest();
+        for(WorkRequest wr : wrEvents) {
+            if(wr.getType() == val){
+                specWr = wr;
+            }
+        }
+        return specWr;
+    }
+    
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        // TODO add your handling code here:
-        int selectedRowIndex = table.getSelectedRow();
-        System.out.println(selectedRowIndex);
-        if(selectedRowIndex < 0 ){
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Event selectedEvent = (Event) model.getValueAt(selectedRowIndex, 0);
-        
-        typeField.setText(selectedEvent.getEventType());
-        nameField.setText(selectedEvent.getEventName());
-        areaField.setText(selectedEvent.getEventArea());
-        descriptionField.setText(selectedEvent.getEventDescription());
-        fromField.setText(selectedEvent.getEventFrom().toString());
-        toField.setText(selectedEvent.getEventTo().toString());
-        attendeesCountField.setText(selectedEvent.getAtendeesCount());
-        int eventManagerId = selectedEvent.getEventManagerID();
-//        get event manager details from user
-//        eventManagerField.setText();
-
-        boolean isAccomodation = selectedEvent.isAccomodationNeeded();
-        boolean isFunctionHall = selectedEvent.isAccomodationNeeded();
-        boolean isCatering = selectedEvent.isAccomodationNeeded();
-        boolean isTravel = selectedEvent.isTravelNeeded();
-        
-        if(isAccomodation || isFunctionHall) {
-            jPanel1.setVisible(true);
-            //  get Hotel Details
-//            hotelName
-//            hotelAddress
-//            hotelImage
-//            hotelBtn
-//change btn background and text based on status
+        try {
+            // TODO add your handling code here:
+            int selectedRowIndex = table.getSelectedRow();
+            System.out.println(selectedRowIndex);
+            if(selectedRowIndex < 0 ){
+                JOptionPane.showMessageDialog(this, "Please select a row to view");
+                return;
+            }
+            
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Event selectedEvent = (Event) model.getValueAt(selectedRowIndex, 0);
+            
+            typeField.setText(selectedEvent.getEventType());
+            nameField.setText(selectedEvent.getEventName());
+            areaField.setText(selectedEvent.getEventArea());
+            descriptionField.setText(selectedEvent.getEventDescription());
+            fromField.setText(selectedEvent.getEventFrom().toString());
+            toField.setText(selectedEvent.getEventTo().toString());
+            attendeesCountField.setText(selectedEvent.getAtendeesCount());
+            int eventManagerId = selectedEvent.getEventManagerID();
+            if(eventManagerId != -1) {
+                //  get event manager details from user
+                //  eventManagerField.setText();
+            } else {
+                managerStatus.setVisible(true);
+            }
+            
+            
+            boolean isAccomodation = selectedEvent.isAccomodationNeeded();
+            boolean isFunctionHall = selectedEvent.isFunctionHallNeeded();
+            boolean isCatering = selectedEvent.isCateringNeeded();
+            boolean isTravel = selectedEvent.isTravelNeeded();
+            
+            //        fetch all work request related to this eventId
+            ArrayList<WorkRequest> wrEvents = new ArrayList<>();
+            wrEvents = wrController.getWorkRequestByEventId(selectedEvent.getEventID());
+            
+            if(isAccomodation || isFunctionHall) {
+                jPanel1.setVisible(true);
+                hotelType.setText(isAccomodation ? "Accomodation" : "Function Hall");
+                
+                WorkRequest hotelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_HOTELADMIN");
+                hotelBtn.setText(hotelWr.getStatus());
+                //change btn background  based on status
+                int id = selectedEvent.getChosenHotelID();
+                if(id != -1) {
+                    //  get Hotel Details
+                    //            hotelName
+                    //            hotelAddress
+                    //            hotelImage
                     
-        }
-        if(isCatering) {
-            jPanel2.setVisible(true);
-            // get Catering Details
-//            cateringName
-//            cateringAddress
-//            cateringImage
-//            hotelBtn
-//change btn background and text based on status
-        }
-        if(isTravel) {
-            jPanel2.setVisible(true);
-            //            get Travel Details
-//            travelName
-//            travelAddress
-//            travelImage
-//            travelBtn
-//change btn background and text based on status
+                }
+            }
+            if(isCatering) {
+                jPanel2.setVisible(true);
+                
+                WorkRequest caterWr = getSpecificEvent(wrEvents,"EVENTMANAGER_CATERINGADMIN");
+                cateringBtn.setText(caterWr.getStatus());
+                //change btn background  based on status
+                
+                int id = selectedEvent.getChosenCateringID();
+                if(id != -1) {
+                     // get Catering Details
+            //            cateringName
+            //            cateringAddress
+            //            cateringImage
+                }
+            }
+            if(isTravel) {
+                jPanel3.setVisible(true);
+                
+                WorkRequest travelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_TRAVELADMIN");
+                travelBtn.setText(travelWr.getStatus());
+                //change btn background  based on status
+                
+                int id = selectedEvent.getChosenTravelAgentID();
+                 if(id != -1) {
+                     //            get Travel Details
+                    //            travelName
+                    //            travelAddress
+                    //            travelImage
+                 }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserViewMyEvent.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        hotelType.setText(isAccomodation ? "Accomodation" : "Function Hall");
+        
         
     }//GEN-LAST:event_tableMouseClicked
 
@@ -614,6 +671,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel managerStatus;
     private com.maple.resources.TextField nameField;
     private com.maple.resources.ScrollBar scrollBar1;
     private com.maple.resources.Button searchBtn;
