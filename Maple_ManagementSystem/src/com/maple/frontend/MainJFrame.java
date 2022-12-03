@@ -4,17 +4,42 @@
  */
 package com.maple.frontend;
 
+import com.maple.DBConnection.JDBC;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
- * @author mohammedomerqasimshaik
+ * @author DKapoor
  */
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainJFrame
+     * Creates new form MainFrame
      */
+    
+    JDBC obj;
+     
     public MainJFrame() {
         initComponents();
+        HomeJPanel homeViewPanel = new HomeJPanel(jSplitPane);
+        jSplitPane.setRightComponent(homeViewPanel);
+        
+        HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(jSplitPane);
+        jSplitPane.setLeftComponent(homeLeftPanel);
+        
+        
+        //DATABASE
+        try{
+            this.obj = new JDBC();
+            this.obj.update("UPDATE EVENT SET event_name = 'newestName' WHERE event_description = 'testDescription'", new String[]{});
+            ResultSet rs = this.obj.query("Select * from event", new String[]{});
+            while(rs.next()){
+                System.out.println(rs.getString("event_name") + " - " + rs.getString("event_description"));
+            }
+        } catch(SQLException ex){}
+        
+        
     }
 
     /**
@@ -26,32 +51,50 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMain = new javax.swing.JPanel();
+        jSplitPane = new javax.swing.JSplitPane();
+        jLeftPanel = new javax.swing.JPanel();
+        jRightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(900, 620));
 
-        jMain.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jSplitPane.setDividerSize(0);
 
-        javax.swing.GroupLayout jMainLayout = new javax.swing.GroupLayout(jMain);
-        jMain.setLayout(jMainLayout);
-        jMainLayout.setHorizontalGroup(
-            jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+        javax.swing.GroupLayout jLeftPanelLayout = new javax.swing.GroupLayout(jLeftPanel);
+        jLeftPanel.setLayout(jLeftPanelLayout);
+        jLeftPanelLayout.setHorizontalGroup(
+            jLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        jMainLayout.setVerticalGroup(
-            jMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLeftPanelLayout.setVerticalGroup(
+            jLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
+
+        jSplitPane.setLeftComponent(jLeftPanel);
+
+        javax.swing.GroupLayout jRightPanelLayout = new javax.swing.GroupLayout(jRightPanel);
+        jRightPanel.setLayout(jRightPanelLayout);
+        jRightPanelLayout.setHorizontalGroup(
+            jRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1100, Short.MAX_VALUE)
+        );
+        jRightPanelLayout.setVerticalGroup(
+            jRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+
+        jSplitPane.setRightComponent(jRightPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane)
         );
 
         pack();
@@ -60,7 +103,9 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    
+    
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -83,7 +128,11 @@ public class MainJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -93,6 +142,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jMain;
+    private javax.swing.JPanel jLeftPanel;
+    private javax.swing.JPanel jRightPanel;
+    private javax.swing.JSplitPane jSplitPane;
     // End of variables declaration//GEN-END:variables
 }
