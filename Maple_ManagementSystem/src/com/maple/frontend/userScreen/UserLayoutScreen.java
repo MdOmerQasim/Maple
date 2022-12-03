@@ -4,6 +4,7 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.*;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
@@ -24,10 +25,13 @@ public class UserLayoutScreen extends javax.swing.JPanel {
      */
     
     JSplitPane mainSplitPane;
+    User loggedInUser;
     
     public UserLayoutScreen(JSplitPane jSplitPane) {
         initComponents();
-         this.mainSplitPane = jSplitPane;
+        this.mainSplitPane = jSplitPane;
+//         latr replace it with user from login page
+        this.loggedInUser = new User();
          
         //custom
         jUserName.setText("John");
@@ -302,10 +306,10 @@ public class UserLayoutScreen extends javax.swing.JPanel {
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed
         // TODO add your handling code here:
-         HomeJPanel homeScreen = new HomeJPanel(this.mainSplitPane);
-         this.mainSplitPane.setRightComponent(homeScreen);
+        HomeJPanel homeScreen = new HomeJPanel(this.mainSplitPane);
+        this.mainSplitPane.setRightComponent(homeScreen);
         
-         //reset left panel
+        // reset left panel
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(this.mainSplitPane);
         this.mainSplitPane.setLeftComponent(homeLeftPanel);
       
@@ -315,7 +319,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             
-            UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane);
+            UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane, this.loggedInUser);
             jRightSplitPane.setBottomComponent(userCreateRightPanel);
         } catch (SQLException ex) {
             Logger.getLogger(UserLayoutScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,7 +328,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
 
     private void jRequestsBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn1ActionPerformed
         // TODO add your handling code here:
-        UserViewMyEvent userViewMyEventRightPanel = new UserViewMyEvent(this.mainSplitPane);
+        UserViewMyEvent userViewMyEventRightPanel = new UserViewMyEvent(this.mainSplitPane, this.loggedInUser);
         jRightSplitPane.setBottomComponent(userViewMyEventRightPanel);
     }//GEN-LAST:event_jRequestsBtn1ActionPerformed
 

@@ -6,6 +6,7 @@ package com.maple.frontend.userScreen;
 
 import com.maple.backend.controller.EventController;
 import com.maple.backend.model.Event;
+import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
 import java.sql.SQLException;
@@ -23,9 +24,11 @@ public class UserCreateEvent extends javax.swing.JPanel {
      * Creates new form UserCreateEvent
      */
      JSplitPane mainSplitPane;
+     User loggedInUser;
      EventController eventController;
-    public UserCreateEvent(JSplitPane jSplitPane) throws SQLException {
+    public UserCreateEvent(JSplitPane jSplitPane, User loggedUser) throws SQLException {
        this.mainSplitPane = jSplitPane;
+       this.loggedInUser = loggedUser;
        eventController = new EventController();
        initComponents();
     }
@@ -321,7 +324,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             Event newEvent = new Event();
             int eventId = eventController.getEventsList().size() + 1;
             newEvent.setEventID(eventId);
-    //        newEvent.setUserID(ERROR);
+            newEvent.setUserID(this.loggedInUser.getID());
             newEvent.setEventType((String) typeDropdown.getSelectedItem());
             newEvent.setEventName(nameText.getText());
             newEvent.setEventDescription(descText.getText());

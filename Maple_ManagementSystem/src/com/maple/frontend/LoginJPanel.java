@@ -153,20 +153,20 @@ public class LoginJPanel extends javax.swing.JPanel {
 //        ArrayList<User> userList;
         try {
             int validUser = userController.validateUser(username, password, role);
-            if (validUser == -1){
+            if(validUser == -1) {
                 JOptionPane.showMessageDialog(null, "Invalid credentials");
             }
-            else{
-            if(role.equals("Customer")){
-                UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane);
-                this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
-            }
-            else if(role.equals("Business Admin")){
-                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
-                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-            }
+            else {
+                if(role.equals("Customer")){
+                    UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane);
+                    this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
+                }
+                else if(role.equals("Business Admin")){
+                    BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+                    this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);

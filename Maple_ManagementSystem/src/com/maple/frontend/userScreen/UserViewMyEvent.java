@@ -7,6 +7,7 @@ package com.maple.frontend.userScreen;
 import com.maple.backend.controller.EventController;
 import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Event;
+import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
 import java.sql.SQLException;
@@ -29,11 +30,13 @@ public class UserViewMyEvent extends javax.swing.JPanel {
      * Creates new form UserViewMyEvent
      */
     JSplitPane mainSplitPane;
-     EventController eventController;
-     WorkRequestController wrController;
-    public UserViewMyEvent(JSplitPane jSplitPane) {
+    EventController eventController;
+    WorkRequestController wrController;
+    User loggedInUser;
+    public UserViewMyEvent(JSplitPane jSplitPane, User loggedUser) {
         try {
             this.mainSplitPane = jSplitPane;
+            this.loggedInUser = loggedUser;
             eventController = new EventController();
             wrController = new WorkRequestController();
             initComponents();
@@ -625,7 +628,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             Date date = dateFilter.getDate();   // if date null?
             String type = typeDropdown.getSelectedItem().toString();
             
-            eventList = eventController.getFilteredEventsList(1,status,date,type); //TODO: Pass USER ID 
+            eventList = eventController.getFilteredEventsList(this.loggedInUser.getID(),status,date,type); //TODO: Pass USER ID 
             for(Event eve: eventList){
                 Object[] obj = new Object[4];
                 obj[0] = eve.getEventName();  // index val
