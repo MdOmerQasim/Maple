@@ -259,7 +259,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         int result = img_upload.showDialog(null, "Choose my file");
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = img_upload.getSelectedFile();
-            String path = file.getAbsolutePath();
+            String path = file.getAbsolutePath().replace("\\", "\\\\");
             this.path = path;
             try {
                 Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
