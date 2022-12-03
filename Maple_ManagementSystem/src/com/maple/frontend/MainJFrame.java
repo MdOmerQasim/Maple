@@ -17,9 +17,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    
     JDBC obj;
-     
     public MainJFrame() {
         initComponents();
         HomeJPanel homeViewPanel = new HomeJPanel(jSplitPane);
