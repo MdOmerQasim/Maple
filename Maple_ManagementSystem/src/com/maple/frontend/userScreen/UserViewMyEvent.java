@@ -4,9 +4,18 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.controller.EventController;
+import com.maple.backend.model.Event;
 import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,11 +27,17 @@ public class UserViewMyEvent extends javax.swing.JPanel {
      * Creates new form UserViewMyEvent
      */
     JSplitPane mainSplitPane;
+     EventController eventController;
     public UserViewMyEvent(JSplitPane jSplitPane) {
-        this.mainSplitPane = jSplitPane;
-        initComponents();
-        populateTable();
-        eventTable.fixTable(jScrollPane);
+        try {
+            this.mainSplitPane = jSplitPane;
+            eventController = new EventController();
+            initComponents();
+            populateTable();
+            table.fixTable(jScrollPane);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserViewMyEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -46,7 +61,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
-        eventTable = new com.maple.resources.Table();
+        table = new com.maple.resources.Table();
         areaField = new com.maple.resources.TextField();
         scrollBar1 = new com.maple.resources.ScrollBar();
         descriptionField = new com.maple.resources.TextField();
@@ -58,22 +73,23 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         toField = new com.maple.resources.TextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        button4 = new com.maple.resources.Button();
+        travelBtn = new com.maple.resources.Button();
         travelAddress = new com.maple.resources.TextField();
         travelName = new com.maple.resources.TextField();
-        hotelImage2 = new javax.swing.JLabel();
+        travelImage = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        button2 = new com.maple.resources.Button();
+        hotelBtn = new com.maple.resources.Button();
         hotelAddress = new com.maple.resources.TextField();
         hotelName = new com.maple.resources.TextField();
         hotelImage = new javax.swing.JLabel();
+        hotelType = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        button3 = new com.maple.resources.Button();
+        cateringBtn = new com.maple.resources.Button();
         cateringAddress = new com.maple.resources.TextField();
         cateringName = new com.maple.resources.TextField();
-        hotelImage1 = new javax.swing.JLabel();
+        cateringImage = new javax.swing.JLabel();
 
         attendeesCountField.setEditable(false);
         attendeesCountField.setLabelText("Attendees Count");
@@ -108,7 +124,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("VIEW MY EVENTS");
 
-        eventTable.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -120,12 +136,12 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 "S No", "Name", "Description", "Area", "From", "To"
             }
         ));
-        eventTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eventTableMouseClicked(evt);
+                tableMouseClicked(evt);
             }
         });
-        jScrollPane.setViewportView(eventTable);
+        jScrollPane.setViewportView(table);
 
         areaField.setEditable(false);
         areaField.setLabelText("Area");
@@ -150,11 +166,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         jLabel6.setText("TRAVEL");
 
-        button4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        button4.setText("Accepted");
-        button4.addActionListener(new java.awt.event.ActionListener() {
+        travelBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        travelBtn.setText("Accepted");
+        travelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button4ActionPerformed(evt);
+                travelBtnActionPerformed(evt);
             }
         });
 
@@ -164,8 +180,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         travelName.setEditable(false);
         travelName.setLabelText("Name");
 
-        hotelImage2.setText("Image");
-        hotelImage2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        travelImage.setText("Image");
+        travelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -177,14 +193,14 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addGap(269, 269, 269)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(167, 167, 167)
-                        .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(travelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(travelName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(travelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(hotelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(travelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
@@ -193,7 +209,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(travelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -202,19 +218,19 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                             .addComponent(travelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(hotelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(travelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setText("HOTEL");
+        jLabel4.setText("HOTEL:");
 
-        button2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        button2.setText("Accepted");
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        hotelBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        hotelBtn.setText("Accepted");
+        hotelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                hotelBtnActionPerformed(evt);
             }
         });
 
@@ -227,6 +243,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         hotelImage.setText("Image");
         hotelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        hotelType.setText("j");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -234,17 +252,19 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(hotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(hotelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(hotelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hotelType)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(hotelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,7 +273,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hotelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hotelType))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -271,11 +292,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         jLabel5.setText("CATERING");
 
-        button3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        button3.setText("Accepted");
-        button3.addActionListener(new java.awt.event.ActionListener() {
+        cateringBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cateringBtn.setText("Accepted");
+        cateringBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button3ActionPerformed(evt);
+                cateringBtnActionPerformed(evt);
             }
         });
 
@@ -285,8 +306,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         cateringName.setEditable(false);
         cateringName.setLabelText("Name");
 
-        hotelImage1.setText("Image");
-        hotelImage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cateringImage.setText("Image");
+        cateringImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -298,14 +319,14 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(174, 174, 174)
-                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cateringBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(cateringName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cateringAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(hotelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cateringImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
@@ -314,7 +335,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cateringBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -324,7 +345,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addContainerGap(49, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(hotelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cateringImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -459,53 +480,127 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_attendeesCountFieldActionPerformed
 
-    private void eventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_eventTableMouseClicked
+        int selectedRowIndex = table.getSelectedRow();
+        System.out.println(selectedRowIndex);
+        if(selectedRowIndex < 0 ){
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        Event selectedEvent = (Event) model.getValueAt(selectedRowIndex, 0);
+        
+        typeField.setText(selectedEvent.getEventType());
+        nameField.setText(selectedEvent.getEventName());
+        areaField.setText(selectedEvent.getEventArea());
+        descriptionField.setText(selectedEvent.getEventDescription());
+        fromField.setText(selectedEvent.getEventFrom().toString());
+        toField.setText(selectedEvent.getEventTo().toString());
+        attendeesCountField.setText(selectedEvent.getAtendeesCount());
+        int eventManagerId = selectedEvent.getEventManagerID();
+//        get event manager details from user
+//        eventManagerField.setText();
 
-    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button4ActionPerformed
+        boolean isAccomodation = selectedEvent.isAccomodationNeeded();
+        boolean isFunctionHall = selectedEvent.isAccomodationNeeded();
+        boolean isCatering = selectedEvent.isAccomodationNeeded();
+        boolean isTravel = selectedEvent.isTravelNeeded();
+        
+        if(isAccomodation || isFunctionHall) {
+            jPanel1.setVisible(true);
+            //  get Hotel Details
+//            hotelName
+//            hotelAddress
+//            hotelImage
+//            hotelBtn
+//change btn background and text based on status
+                    
+        }
+        if(isCatering) {
+            jPanel2.setVisible(true);
+            // get Catering Details
+//            cateringName
+//            cateringAddress
+//            cateringImage
+//            hotelBtn
+//change btn background and text based on status
+        }
+        if(isTravel) {
+            jPanel2.setVisible(true);
+            //            get Travel Details
+//            travelName
+//            travelAddress
+//            travelImage
+//            travelBtn
+//change btn background and text based on status
+        }
+        
+        hotelType.setText(isAccomodation ? "Accomodation" : "Function Hall");
+        
+    }//GEN-LAST:event_tableMouseClicked
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+    private void travelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_travelBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
+    }//GEN-LAST:event_travelBtnActionPerformed
 
-    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+    private void hotelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button3ActionPerformed
+    }//GEN-LAST:event_hotelBtnActionPerformed
+
+    private void cateringBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cateringBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cateringBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        statusFilter.getSelectedItem();
-        dateFilter.getDate();
-        typeDropdown.getSelectedItem();
         populateTable();
     }//GEN-LAST:event_searchBtnActionPerformed
 
-        private void populateTable() {
-        
+    private void populateTable() {
+        try {
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            dtmodel.setRowCount(0);
+            ArrayList<Event> eventList = new ArrayList<>();
+            
+            String status = statusFilter.getSelectedItem().toString();
+            Date date = dateFilter.getDate();   // if date null?
+            String type = typeDropdown.getSelectedItem().toString();
+            
+            eventList = eventController.getFilteredEventsList(1,status,date,type); //TODO: Pass USER ID 
+            for(Event eve: eventList){
+                Object[] obj = new Object[4];
+                obj[0] = eve.getEventName();  // index val
+                obj[1] = eve.getEventName();
+                obj[2] = eve.getEventDescription();
+                obj[3] = eve.getEventArea();
+                obj[4] = eve.getEventFrom();
+                obj[5] = eve.getEventTo();
+                dtmodel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserViewMyEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.maple.resources.TextField areaField;
     private com.maple.resources.TextField attendeesCountField;
     private com.maple.resources.Button button1;
-    private com.maple.resources.Button button2;
-    private com.maple.resources.Button button3;
-    private com.maple.resources.Button button4;
     private com.maple.resources.TextField cateringAddress;
+    private com.maple.resources.Button cateringBtn;
+    private javax.swing.JLabel cateringImage;
     private com.maple.resources.TextField cateringName;
     private com.toedter.calendar.JDateChooser dateFilter;
     private com.maple.resources.TextField descriptionField;
     private com.maple.resources.TextField eventManagerField;
-    private com.maple.resources.Table eventTable;
     private com.maple.resources.TextField fromField;
     private com.maple.resources.TextField hotelAddress;
+    private com.maple.resources.Button hotelBtn;
     private javax.swing.JLabel hotelImage;
-    private javax.swing.JLabel hotelImage1;
-    private javax.swing.JLabel hotelImage2;
     private com.maple.resources.TextField hotelName;
+    private javax.swing.JLabel hotelType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -523,8 +618,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     private com.maple.resources.ScrollBar scrollBar1;
     private com.maple.resources.Button searchBtn;
     private javax.swing.JComboBox<String> statusFilter;
+    private com.maple.resources.Table table;
     private com.maple.resources.TextField toField;
     private com.maple.resources.TextField travelAddress;
+    private com.maple.resources.Button travelBtn;
+    private javax.swing.JLabel travelImage;
     private com.maple.resources.TextField travelName;
     private javax.swing.JComboBox<String> typeDropdown;
     private com.maple.resources.TextField typeField;

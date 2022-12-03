@@ -307,7 +307,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         
          //reset left panel
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(this.mainSplitPane);
-         this.mainSplitPane.setLeftComponent(homeLeftPanel);
+        this.mainSplitPane.setLeftComponent(homeLeftPanel);
       
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 

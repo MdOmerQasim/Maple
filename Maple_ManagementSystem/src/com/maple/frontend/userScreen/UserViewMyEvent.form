@@ -258,7 +258,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="com.maple.resources.Table" name="eventTable">
+                <Component class="com.maple.resources.Table" name="table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="5">
@@ -275,7 +275,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eventTableMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -340,7 +340,7 @@
                                   <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                                  <Component id="button4" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="travelBtn" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -348,7 +348,7 @@
                                   <EmptySpace pref="51" max="32767" attributes="0"/>
                                   <Component id="travelAddress" min="-2" pref="183" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                  <Component id="hotelImage2" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Component id="travelImage" min="-2" pref="182" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -361,7 +361,7 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="button4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="travelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -373,7 +373,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="hotelImage2" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <Component id="travelImage" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -387,7 +387,7 @@
                     <Property name="text" type="java.lang.String" value="TRAVEL"/>
                   </Properties>
                 </Component>
-                <Component class="com.maple.resources.Button" name="button4">
+                <Component class="com.maple.resources.Button" name="travelBtn">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -397,7 +397,7 @@
                     <Property name="text" type="java.lang.String" value="Accepted"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="travelBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="com.maple.resources.TextField" name="travelAddress">
@@ -412,7 +412,7 @@
                     <Property name="labelText" type="java.lang.String" value="Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="hotelImage2">
+                <Component class="javax.swing.JLabel" name="travelImage">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Image"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -437,18 +437,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                                  <Component id="button2" min="-2" pref="97" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                   <Component id="hotelName" min="-2" pref="183" max="-2" attributes="0"/>
                                   <EmptySpace pref="44" max="32767" attributes="0"/>
                                   <Component id="hotelAddress" min="-2" pref="183" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                   <Component id="hotelImage" min="-2" pref="182" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" min="-2" pref="59" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="hotelType" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="hotelBtn" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -461,7 +463,8 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="button2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hotelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hotelType" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -485,10 +488,10 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="HOTEL"/>
+                    <Property name="text" type="java.lang.String" value="HOTEL:"/>
                   </Properties>
                 </Component>
-                <Component class="com.maple.resources.Button" name="button2">
+                <Component class="com.maple.resources.Button" name="hotelBtn">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -498,7 +501,7 @@
                     <Property name="text" type="java.lang.String" value="Accepted"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="com.maple.resources.TextField" name="hotelAddress">
@@ -523,6 +526,11 @@
                     </Property>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="hotelType">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="j"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel2">
@@ -541,7 +549,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                                  <Component id="button3" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="cateringBtn" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -549,7 +557,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="cateringAddress" min="-2" pref="183" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                  <Component id="hotelImage1" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Component id="cateringImage" min="-2" pref="182" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -562,7 +570,7 @@
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="button3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cateringBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -575,7 +583,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="hotelImage1" max="32767" attributes="0"/>
+                                  <Component id="cateringImage" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -589,7 +597,7 @@
                     <Property name="text" type="java.lang.String" value="CATERING"/>
                   </Properties>
                 </Component>
-                <Component class="com.maple.resources.Button" name="button3">
+                <Component class="com.maple.resources.Button" name="cateringBtn">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -599,7 +607,7 @@
                     <Property name="text" type="java.lang.String" value="Accepted"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cateringBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="com.maple.resources.TextField" name="cateringAddress">
@@ -614,7 +622,7 @@
                     <Property name="labelText" type="java.lang.String" value="Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="hotelImage1">
+                <Component class="javax.swing.JLabel" name="cateringImage">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Image"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

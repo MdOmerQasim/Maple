@@ -9,6 +9,7 @@ import com.maple.backend.model.WorkRequest;
 import com.maple.backend.service.EventService;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -24,6 +25,11 @@ public class EventController {
     // Get all events
     public ArrayList<Event> getEventsList() throws SQLException{
         return eventService.getEventsListService();
+    }
+    
+     // Get User events
+    public ArrayList<Event> getFilteredEventsList(int userid, String status, Date date, String type) throws SQLException{
+        return eventService.getFilteredEventsListService(userid, status, date, type);
     }
     
     // Create Event    

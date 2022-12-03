@@ -11,6 +11,7 @@ import com.maple.backend.repository.EventRepository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,9 +34,18 @@ public class EventService {
         }
     }
     
+//    all events
     public ArrayList<Event> getEventsListService() throws SQLException{
         ArrayList<Event> eventsDataList = new ArrayList<>();
         ResultSet resultSet = eventRepository.getEventData();
+        eventsDataList = eventDataMapper(resultSet);
+        return eventsDataList; 
+    }
+    
+//    user specific events
+    public ArrayList<Event> getFilteredEventsListService(int userid, String status, Date date, String type) throws SQLException{
+        ArrayList<Event> eventsDataList = new ArrayList<>();
+        ResultSet resultSet = eventRepository.getFilteredEventData(userid, status, date, type);
         eventsDataList = eventDataMapper(resultSet);
         return eventsDataList; 
     }

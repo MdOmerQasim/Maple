@@ -253,6 +253,8 @@ public class UserViewPublicEvents extends javax.swing.JPanel {
 
     private void eventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMouseClicked
         // TODO add your handling code here:
+         int selectedRowIndex = eventTable.getSelectedRow();
+         System.out.println(selectedRowIndex);
     }//GEN-LAST:event_eventTableMouseClicked
 
 
