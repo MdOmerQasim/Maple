@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend;
+<<<<<<< HEAD
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Image;
@@ -15,6 +16,17 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+=======
+
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.WorkRequest;
+import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+>>>>>>> production
 import javax.swing.JSplitPane;
 
 /**
@@ -27,6 +39,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
+<<<<<<< HEAD
 //    JDBC obj;
     String path;
     User user;
@@ -36,6 +49,13 @@ public class RegisterJPanel extends javax.swing.JPanel {
 //        obj = new JDBC();
         user = new User();
         userController = new UserController();
+=======
+    WorkRequestController workRequestController;
+    
+    public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
+        this.mainSplitPane = jSplitPane;
+        workRequestController = new WorkRequestController();
+>>>>>>> production
         initComponents();
     }
 
@@ -335,6 +355,15 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Upload is cancelled.");
             }
     }//GEN-LAST:event_jUploadButtonActionPerformed
+
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102);
+            System.out.println("SIZE - " + lst.size());
+        } catch (SQLException ex) {}
+        
+    }//GEN-LAST:event_jRegisterButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

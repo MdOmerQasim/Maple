@@ -4,8 +4,15 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Catering;
+import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,12 +24,14 @@ import javax.swing.table.DefaultTableModel;
 public class BusinessAdminDashboard extends javax.swing.JPanel {
     
     ArrayList<String> workRequestList;
+    WorkRequestController workRequestController;
     int hotelClick = 0;
     int cateringClick = 0;
     int travelClick = 0;
     
-    public BusinessAdminDashboard() {
+    public BusinessAdminDashboard() throws SQLException {
         initComponents();
+        workRequestController = new WorkRequestController();
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane1); //apply table theme
@@ -32,18 +41,28 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     }
 
     //Table Data
-    private void populateTableData(String type) {
+    private void populateTableData(String type) throws SQLException {
         
         DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
         dtmodel.setRowCount(0);
-        ArrayList<String> filteredList = new ArrayList<>(); 
+        ArrayList<Hotel> hotelFilteredList = new ArrayList<>(); 
+        ArrayList<Catering> cateringFilteredList = new ArrayList<>();
+        ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-//            workRequestList.stream().filter(data -> data.toID().equalsIgnoreCase()).forEach(data -> filteredList.add(data));
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(102); //TODO: Pass toId from USER table
+            for(Hotel ht: hotelFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ht.getHotelName();
+                obj[1] = "HOTEL";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
         } else if(type.equalsIgnoreCase("CATERING")){
-            
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(102);
         } else if(type.equalsIgnoreCase("TRAVEL")){
-            
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(102); 
         } else {
             for(int i=0;i<19;i++){
                 Object[] obj = new Object[4];
@@ -248,7 +267,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
-        populateTableData("ALL");
+        try {
+            populateTableData("ALL");
+        } catch (SQLException ex) {}
         //Reset card colors
         jHotelCard.setBackground(Color.white);
         jCateringCard.setBackground(Color.white);
@@ -265,8 +286,12 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jCateringCard.setBackground(Color.white);
         jTravelAgentCard.setBackground(Color.white);
         
-        //Refresh Table Data
-        populateTableData("HOTEL");
+        try {
+            //Refresh Table Data
+            populateTableData("HOTEL");
+        } catch (SQLException ex) {
+            
+        }
         
         hotelClick = 1;
         cateringClick = 0;
@@ -294,8 +319,11 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jCateringCard.setBackground(Color.CYAN);
         jTravelAgentCard.setBackground(Color.white);
         
-        //Refresh Table Data
-        populateTableData("CATERING");
+        try {
+            //Refresh Table Data
+            populateTableData("CATERING");
+        } catch (SQLException ex) {
+        }
         
         hotelClick = 0;
         cateringClick = 1;
@@ -323,8 +351,11 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jCateringCard.setBackground(Color.white);
         jTravelAgentCard.setBackground(Color.CYAN);
         
-        //Refresh Table Data
-        populateTableData("TRAVEL");
+        try {
+            //Refresh Table Data
+            populateTableData("TRAVEL");
+        } catch (SQLException ex) {
+        }
         
         hotelClick = 0;
         cateringClick = 0;

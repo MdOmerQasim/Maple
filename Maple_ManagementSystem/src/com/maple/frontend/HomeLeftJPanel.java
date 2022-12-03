@@ -80,12 +80,20 @@ public class HomeLeftJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         RegisterJPanel registerJPanel = null;
+=======
+        RegisterJPanel registerJPanel;
+>>>>>>> production
         try {
             registerJPanel = new RegisterJPanel(this.mainSplitPane);
             this.mainSplitPane.setRightComponent(registerJPanel);
         } catch (SQLException ex) {
+<<<<<<< HEAD
             Logger.getLogger(HomeLeftJPanel.class.getName()).log(Level.SEVERE, null, ex);
+=======
+            
+>>>>>>> production
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed

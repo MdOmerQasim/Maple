@@ -10,6 +10,8 @@ import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
@@ -301,8 +303,10 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
-        BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
-        jRightSplitPane.setBottomComponent(businessAdminDashboard);
+        try {
+            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
+            jRightSplitPane.setBottomComponent(businessAdminDashboard);
+        } catch (SQLException ex) {}
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jAnalyticsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAnalyticsBtnActionPerformed

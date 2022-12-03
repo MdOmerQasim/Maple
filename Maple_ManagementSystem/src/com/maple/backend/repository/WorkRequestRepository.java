@@ -5,7 +5,6 @@
 package com.maple.backend.repository;
 
 import com.maple.DBConnection.JDBC;
-import com.maple.backend.model.WorkRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -45,6 +44,21 @@ public class WorkRequestRepository {
 //        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
 //        this.obj.update(updateQuery, new String[]{});           
 //    }
+    
+    public ResultSet getHotelData(int toId) throws SQLException{
+        String fetchQuery = "SELECT * FROM HOTEL WHERE H_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        return this.obj.query(fetchQuery, new String[]{}); 
+    }
+    
+    public ResultSet getCateringData(int toId) throws SQLException{
+        String fetchQuery = "SELECT * FROM CATERING WHERE C_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        return this.obj.query(fetchQuery, new String[]{}); 
+    }
+    
+    public ResultSet getTravelAgentData(int toId) throws SQLException{
+        String fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        return this.obj.query(fetchQuery, new String[]{}); 
+    }
    
     
     
