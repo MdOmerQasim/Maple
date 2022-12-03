@@ -4,10 +4,14 @@
  */
 package com.maple.frontend;
 
+import com.maple.backend.controller.UserController;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.userScreen.UserLeftPanelOptions;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
 /**
@@ -22,8 +26,10 @@ public class LoginJPanel extends javax.swing.JPanel {
    
     
     JSplitPane mainSplitPane;
-    public LoginJPanel(JSplitPane jSplitPane) {
+    UserController userController;
+    public LoginJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
+        userController = new UserController();
         initComponents();
     }
 
@@ -133,24 +139,59 @@ public class LoginJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jUsernameTextFieldActionPerformed
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
-        // TODO add your handling code here:
-        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-            try {
+        if(jUsernameTextField.getText().equals("")){  
+            System.out.println("username Cant be null bro");
+        }
+        else if(jPasswordTextField.getText().equals("")){  
+            System.out.println("Password Cant be null bro");
+        }
+        
+        String username = jUsernameTextField.getText();
+        String password = jPasswordTextField.getText();
+        String role = jLoginAsComboBox.getSelectedItem().toString();
+        
+//        ArrayList<User> userList;
+        try {
+            int validUser = userController.validateUser(username, password, role);
+            if (validUser == -1){
+                JOptionPane.showMessageDialog(null, "Invalid credentials");
+            }
+            else{
+            if(role.equals("Customer")){
+                UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
+                this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
+
+                UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
+                this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+            }
+            else if(role.equals("Business Admin")){
                 BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
                 this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-            } catch (SQLException ex) {
-             System.out.println("EROROROR");   
             }
-        } else {
-             // If User Logs In
-            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
-            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
-
-            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
-            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
-
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error here");
         }
+        
+//        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
+//            try {
+//                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+//                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+//                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+//            } catch (SQLException ex) {
+//             System.out.println("EROROROR");   
+//            }
+//        } else {
+//             // If User Logs In
+//            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
+//            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
+//
+//            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
+//            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+//
+//        }
         
     }//GEN-LAST:event_jLoginButtonActionPerformed
 

@@ -4,24 +4,23 @@
  */
 package com.maple.backend.model;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author bharv
  */
 public class User {
-    public static int len = 0;
-    public User(){
-        ID = ++len;
-    }
+//    public static int len = 0;
+//    public User(){
+//        ID = ++len;
+//        System.out.println(ID + "hjghgfc");
+//    }
     public int ID;
     public String userName;
     public String password;
     public String name;
     public String email;
     public String phoneNum;
-    public ImageIcon photo;
+    public String photo;
     public String status;
     public String role;
     public String postalCode;
@@ -66,11 +65,11 @@ public class User {
         this.email = email;
     }
 
-    public ImageIcon getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(ImageIcon photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

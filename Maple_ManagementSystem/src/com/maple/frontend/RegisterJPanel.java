@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend;
-import com.maple.DBConnection.JDBC;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Image;
@@ -273,12 +272,22 @@ public class RegisterJPanel extends javax.swing.JPanel {
         else if (path.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a photo.");
         }
-        String status = null ;
+        else{
+            String status = null ;
+        
 
         if ("customer".equals(role)){
             status = "active";
         }
-        int ID = user.getID();
+//        int ID = user.getID();
+
+        int ID = 0;
+            try {
+                ID = userController.getAllUsers();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         try {
             userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
 //        String sql = "insert into user (id, role, name, email, phoneNumber, username, password, photo, postalCode, status)" +
@@ -293,6 +302,16 @@ public class RegisterJPanel extends javax.swing.JPanel {
 //
         } catch (SQLException ex) {
             System.out.println("Error sql exception");
+        }
+        
+        jNameTextField.setText("");
+        jEmailTextField.setText("");
+        jPhoneNumberTextField.setText("");
+        jUsernameTextField.setText("");
+        jPasswordTextField.setText("");
+        jConfirmPasswordTextField.setText("");
+        jPhotoLabel.setIcon(null);
+        jPostalCodeTextField.setText("");
         }
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 

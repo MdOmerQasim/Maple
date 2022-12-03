@@ -6,6 +6,8 @@ package com.maple.backend.repository;
 
 import com.maple.DBConnection.JDBC;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,17 @@ public class UserRepository {
         String sql = "insert into user (id, role, name, email, phoneNumber, username, password, photo, postalCode, status)" + 
         "values('" + ID + "','" + role + "','" + name + "','" + email + "','" + phoneNum + "','" + userName + "','" + password + "','" + path + "','" + postalCode + "','" + status + "')";
         obj.update(sql, new String[]{});
+        JOptionPane.showMessageDialog(null, "You are registered!");
     }
     
+    public ResultSet getUserData(String role) throws SQLException{
+        System.out.println("SJDBHC " + role);
+        String sql = "select * from user where role = '" + role + "'";
+        return obj.query(sql, new String[]{});
+    }
+    
+    public ResultSet getAllUsers() throws SQLException{
+        String sql = "select * from user";
+        return obj.query(sql, new String[]{});
+    }
 }
