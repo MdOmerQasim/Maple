@@ -7,6 +7,9 @@ package com.maple.frontend.userScreen;
 import com.maple.frontend.businessAdminScreen.*;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JSplitPane;
 
 /**
@@ -309,10 +312,14 @@ public class UserLayoutScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
-        // TODO add your handling code here:
-        
-        UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane);
-        jRightSplitPane.setBottomComponent(userCreateRightPanel);
+        try {
+            // TODO add your handling code here:
+            
+            UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane);
+            jRightSplitPane.setBottomComponent(userCreateRightPanel);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserLayoutScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jRequestsBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn1ActionPerformed
