@@ -15,7 +15,7 @@ public class JDBC {
     private static final String URL
             = "jdbc:mysql://localhost:3306/maple?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "omeromer";
+    private static final String PASSWORD = "root";
 
     private Connection conn;
     private static JDBC _instance;
@@ -51,30 +51,30 @@ public class JDBC {
     
     public ResultSet getResults(String query) {
 	ResultSet rs = null;
-			try {
-				// stmt is the connection statement
-				// System.out.println("select sql query: " + query);
-				rs = this.stmt.executeQuery(query);
-				/**
-				 *
-				 * rs = this.stmt.executeQuery("select * from dbo.CustomerRequest"); while
-				 * (rs.next()) { System.out.println(rs.getString("leadId") +
-				 * rs.getString("firstName")); }
-				 */
+        try {
+                // stmt is the connection statement
+                // System.out.println("select sql query: " + query);
+                rs = this.stmt.executeQuery(query);
+                /**
+                 *
+                 * rs = this.stmt.executeQuery("select * from dbo.CustomerRequest"); while
+                 * (rs.next()) { System.out.println(rs.getString("leadId") +
+                 * rs.getString("firstName")); }
+                 */
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return rs;
-		}
-		public int updateOldversion(String sql) {
-			try {
-				// System.out.println("update sql query: " + sql);
-				return this.stmt.executeUpdate(sql);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return 0;
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+        return rs;
+        }
+        public int updateOldversion(String sql) {
+            try {
+                    // System.out.println("update sql query: " + sql);
+                    return this.stmt.executeUpdate(sql);
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }
+            return 0;
       }
 
     
