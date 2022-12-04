@@ -50,12 +50,15 @@ public class WorkRequestService {
             Hotel hotel = new Hotel();
             hotel.setHotelID(Integer.parseInt(rs.getString("H_ID")));
             hotel.setHotelName(rs.getString("H_NAME"));
-//            wk.setFromID(Integer.parseInt(rs.getString("FROM_ID")));
-//            wk.setToID(Integer.parseInt(rs.getString("TO_ID")));
-//            wk.setStatus(rs.getString("STATUS"));
-//            wk.setEventID(Integer.parseInt(rs.getString("EVENT_ID")));
-//            wk.setEventManagerID(Integer.parseInt(rs.getString("EVENT_MANAGER_ID")));
-
+            hotel.setHotelAddress(rs.getString("H_ADDRESS"));
+            hotel.setHotelArea(rs.getString("H_AREA"));
+            hotel.setHotelType(rs.getString("H_TYPE"));
+            hotel.setCapacity(rs.getString("H_CAPACITY"));
+            hotel.setHotelAdmin(rs.getString("H_ADMIN_ID"));
+            hotel.setBookedDates(rs.getString("H_BOOKED_DATES"));
+            hotel.setPhoto(rs.getString("H_PHOTO"));
+            hotel.setEmail(rs.getString("H_EMAIL"));
+            hotel.setPhone(rs.getString("H_PHONE"));
             hotelList.add(hotel);
         }
         return hotelList;
