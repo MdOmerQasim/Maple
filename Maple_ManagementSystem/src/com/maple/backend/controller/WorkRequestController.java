@@ -44,4 +44,13 @@ public class WorkRequestController {
         return workRequestService.getTravelAgentDataService(toId);
     }
     
+    // get workRequest based on eventId
+    public ArrayList<WorkRequest> getWorkRequestByEventId(int eventId) throws SQLException{
+        return workRequestService.getWorkRequestByEventID(eventId);
+    }
+    
+    public void createWorkRequest(WorkRequest wk) throws SQLException {
+        workRequestService.createWorkRequestService(wk);
+    }
+    
 }
