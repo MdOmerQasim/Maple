@@ -4,8 +4,10 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.model.User;
 import java.awt.Cursor;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -20,11 +22,13 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     /**
      * Creates new form BusinessAdminSettings
      */
-    public BusinessAdminSettings() {
+    ArrayList<User> userData;
+    
+    public BusinessAdminSettings(ArrayList<User> userData) {
         initComponents();
-        
+        this.userData = userData;
         jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
-        jName.setText("John");
+        jName.setText(userData.get(0).getName());
         jName.setEnabled(false);
         
     }
