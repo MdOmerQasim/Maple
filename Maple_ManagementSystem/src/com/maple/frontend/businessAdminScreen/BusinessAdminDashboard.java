@@ -79,9 +79,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     private void populateCardData(){
         
         //Load Icons
-        jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
-        jCateringCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/catering.png")));
-        jTravelAgentCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/travelAgent.png")));
+        jHotelCard.setIcon(new ImageIcon("/com/maple/icons/hotel.png"));
+        jCateringCard.setIcon(new ImageIcon("/com/maple/icons/catering.png"));
+        jTravelAgentCard.setIcon(new ImageIcon("/com/maple/icons/travelAgent.png"));
         
         //Set Description
         jHotelCard.setDescription("Hotels Affiliated");

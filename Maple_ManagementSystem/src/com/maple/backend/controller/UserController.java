@@ -43,4 +43,8 @@ public class UserController {
         ArrayList<User> userList = userService.getAllUsers();
         return userList.size()+1;
     }
+    
+    public ArrayList<User> getUserById(int id) throws SQLException{
+        return userService.getUserById(id);
+    }
 }

@@ -4,6 +4,8 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.model.User;
+import java.util.ArrayList;
 import javax.swing.JSplitPane;
 
 /**
@@ -16,7 +18,7 @@ public class UserWelcomeScreen extends javax.swing.JPanel {
      * Creates new form UserWelcomeScreen
      */
 
-    public UserWelcomeScreen(JSplitPane jsplitpanel) {
+    public UserWelcomeScreen(JSplitPane jsplitpanel, ArrayList<User> userData) {
         initComponents();
     }
 

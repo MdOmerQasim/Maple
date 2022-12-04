@@ -8,21 +8,14 @@ import com.maple.backend.model.User;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import com.maple.backend.controller.WorkRequestController;
-import com.maple.backend.model.WorkRequest;
-import java.awt.CardLayout;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 /**
@@ -259,7 +252,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         int result = img_upload.showDialog(null, "Choose my file");
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = img_upload.getSelectedFile();
-            String path = file.getAbsolutePath();
+            String path = file.getAbsolutePath().replace("\\", "\\\\");
             this.path = path;
             try {
                 Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
