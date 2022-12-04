@@ -3,15 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend;
-
+import com.maple.backend.controller.UserController;
+import com.maple.backend.model.User;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import com.maple.backend.controller.WorkRequestController;
-import com.maple.backend.model.WorkRequest;
-import java.awt.CardLayout;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 /**
@@ -24,11 +28,19 @@ public class RegisterJPanel extends javax.swing.JPanel {
      * Creates new form RegisterJPanel
      */
     JSplitPane mainSplitPane;
+
+//    JDBC obj;
+    String path;
     WorkRequestController workRequestController;
-    
+    User user;
+    UserController userController;
     public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
+//        obj = new JDBC();
+        user = new User();
+        userController = new UserController();
         workRequestController = new WorkRequestController();
+
         initComponents();
     }
 
@@ -60,7 +72,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jPasswordTextField = new javax.swing.JTextField();
         jRegisterButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jBackButton = new javax.swing.JButton();
+        jUploadButton = new javax.swing.JButton();
+        jPostalCodeTextField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         jLabel3.setText("Username");
 
@@ -70,7 +84,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setText("Photo");
+        jLabel5.setText("Postal Code");
 
         jLabel4.setText("Password");
 
@@ -105,33 +119,31 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jRegisterAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
 
         jRegisterButton.setText("Register");
-        jRegisterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRegisterButtonActionPerformed(evt);
+        jRegisterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRegisterButtonMouseClicked(evt);
             }
         });
 
         jLabel10.setText("Register as");
 
-        jBackButton.setText("Back");
-        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+        jUploadButton.setText("Upload");
+        jUploadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBackButtonActionPerformed(evt);
+                jUploadButtonActionPerformed(evt);
             }
         });
+
+        jLabel11.setText("Photo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(311, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -142,7 +154,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -152,21 +165,23 @@ public class RegisterJPanel extends javax.swing.JPanel {
                                 .addComponent(jPhoneNumberTextField)
                                 .addComponent(jNameTextField)
                                 .addComponent(jPasswordTextField)
-                                .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jUploadButton)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(235, 235, 235))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)))
-                .addGap(251, 251, 251))
+                        .addGap(338, 338, 338))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jBackButton))
-                .addGap(58, 58, 58)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,12 +212,18 @@ public class RegisterJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jUploadButton)
+                        .addComponent(jLabel11))
+                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jRegisterButton)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,26 +239,112 @@ public class RegisterJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jNameTextFieldActionPerformed
 
-    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
-       
-    }//GEN-LAST:event_jBackButtonActionPerformed
+    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+//        String role = jRegisterAsComboBox.getSelectedIndex(selectedHospitalAdmin.getGender());
 
-    private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102);
-            System.out.println("SIZE - " + lst.size());
-        } catch (SQLException ex) {}
         
-    }//GEN-LAST:event_jRegisterButtonActionPerformed
+        
+    }                                               
+
+    private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed
+        JFileChooser img_upload = new JFileChooser();
+        img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int result = img_upload.showDialog(null, "Choose my file");
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = img_upload.getSelectedFile();
+            String path = file.getAbsolutePath().replace("\\", "\\\\");
+            this.path = path;
+            try {
+                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//                user.setPhoto(photo);
+                jPhotoLabel.setIcon(new ImageIcon(photo));
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error while saving image.");
+            }
+        }
+        else{
+                JOptionPane.showMessageDialog(this, "Upload is cancelled.");
+            }
+    }//GEN-LAST:event_jUploadButtonActionPerformed
+
+    private void jRegisterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterButtonMouseClicked
+        String role = jRegisterAsComboBox.getSelectedItem().toString();
+        String name = jNameTextField.getText();
+        String email = jEmailTextField.getText();
+        String phoneNum = jPhoneNumberTextField.getText();
+        String userName = jUsernameTextField.getText();
+        String password = jPasswordTextField.getText();
+        String rePassword = jConfirmPasswordTextField.getText();
+        String postalCode = jPostalCodeTextField.getText();
+        
+        if (role.equals("")){
+            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
+        }
+        else if (name.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your name.");
+        }
+        else if (email.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your email id.");
+        }
+        else if (phoneNum.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter your phone number.");
+        }
+        else if (userName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a username.");
+        }
+        else if (password.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a password.");
+        }
+        else if (rePassword.equals("")){
+            JOptionPane.showMessageDialog(this, "Please re-enter the password.");
+        }
+        else if (!rePassword.equals(password)){
+            JOptionPane.showMessageDialog(this, "Your passwords do not match.");
+        }
+        else if (path.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a photo.");
+        }
+        else{
+            String status = null ;
+        
+
+        if ("customer".equals(role)){
+            status = "active";
+        }
+//        int ID = user.getID();
+
+        int ID = 0;
+            try {
+                ID = userController.getAllUsers();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        try {
+            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
+
+        } catch (SQLException ex) {
+            System.out.println("Error sql exception");
+        }
+        
+        jNameTextField.setText("");
+        jEmailTextField.setText("");
+        jPhoneNumberTextField.setText("");
+        jUsernameTextField.setText("");
+        jPasswordTextField.setText("");
+        jConfirmPasswordTextField.setText("");
+        jPhotoLabel.setIcon(null);
+        jPostalCodeTextField.setText("");
+        }
+    }//GEN-LAST:event_jRegisterButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBackButton;
     private javax.swing.JTextField jConfirmPasswordTextField;
     private javax.swing.JTextField jEmailTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -250,8 +357,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jPasswordTextField;
     private javax.swing.JTextField jPhoneNumberTextField;
     private javax.swing.JLabel jPhotoLabel;
+    private javax.swing.JTextField jPostalCodeTextField;
     private javax.swing.JComboBox<String> jRegisterAsComboBox;
     private javax.swing.JButton jRegisterButton;
+    private javax.swing.JButton jUploadButton;
     private javax.swing.JTextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables
 }

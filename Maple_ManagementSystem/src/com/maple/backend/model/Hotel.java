@@ -13,15 +13,17 @@ import javax.swing.ImageIcon;
  */
 public class Hotel {
     
-    public int hotelID;
-    public String hotelAddress;
-    public String hotelName;
-    public String hotelArea;
-    public String hotelType;
-    public ImageIcon photo;
-    public String capacity;
-    public Date bookedDates;
-    public String hotelAdmin;
+    private int hotelID;
+    private String hotelAddress;
+    private String hotelName;
+    private String hotelArea;
+    private String hotelType;
+    private String photo;
+    private String capacity;
+    private String bookedDates;
+    private String hotelAdmin;
+    private String email;
+    private String phone;
 
     public int getHotelID() {
         return hotelID;
@@ -63,11 +65,11 @@ public class Hotel {
         this.hotelType = hotelType;
     }
 
-    public ImageIcon getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(ImageIcon photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -79,11 +81,11 @@ public class Hotel {
         this.capacity = capacity;
     }
 
-    public Date getBookedDates() {
+    public String getBookedDates() {
         return bookedDates;
     }
 
-    public void setBookedDates(Date bookedDates) {
+    public void setBookedDates(String bookedDates) {
         this.bookedDates = bookedDates;
     }
 
@@ -95,7 +97,23 @@ public class Hotel {
         this.hotelAdmin = hotelAdmin;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    
     
     
 }
