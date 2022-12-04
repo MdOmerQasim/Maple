@@ -12,6 +12,8 @@ import com.maple.backend.repository.WorkRequestRepository;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -133,6 +135,26 @@ public class WorkRequestService {
         ResultSet resultSet = workRequestRepository.getTravelAgentData(toId);
         travelAgentDataList = travelAgentDataMapper(resultSet);
         return travelAgentDataList; 
+    }
+    
+    public ArrayList<WorkRequest> getWorkRequestByEventID(int eventId) throws SQLException{
+        ArrayList<WorkRequest> filteredWorkRequestList = new ArrayList<>();
+        ResultSet resultSet = workRequestRepository.getWorkRequestData();
+        ArrayList<WorkRequest> workRequestList = workRequestDataMapper(resultSet);
+        
+        workRequestList.stream()
+                .filter(wk -> wk.getEventID()==eventId)
+                .forEach(wk -> filteredWorkRequestList.add(wk));
+        
+        return filteredWorkRequestList;
+    }
+    
+    public void createWorkRequestService(WorkRequest wk) throws SQLException {
+        try {
+            workRequestRepository.createWorkRequest(wk);
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

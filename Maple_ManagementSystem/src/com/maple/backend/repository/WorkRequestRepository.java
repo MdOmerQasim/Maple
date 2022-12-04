@@ -5,6 +5,7 @@
 package com.maple.backend.repository;
 
 import com.maple.DBConnection.JDBC;
+import com.maple.backend.model.WorkRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -60,6 +61,9 @@ public class WorkRequestRepository {
         return this.obj.query(fetchQuery, new String[]{}); 
     }
    
-    
+     public void createWorkRequest(WorkRequest wr) throws SQLException{
+        String fetchQuery = "INSERT WR";
+        this.obj.update(fetchQuery, new String[]{});        
+    }
     
 }
