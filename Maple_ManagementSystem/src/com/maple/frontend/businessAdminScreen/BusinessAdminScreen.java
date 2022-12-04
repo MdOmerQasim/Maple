@@ -5,13 +5,11 @@
 package com.maple.frontend.businessAdminScreen;
 
 import com.maple.backend.controller.WorkRequestController;
-import com.maple.backend.model.WorkRequest;
+import com.maple.backend.model.User;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
@@ -25,7 +23,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     JSplitPane mainSplitPane;
     WorkRequestController workRequestController;
     
-    public BusinessAdminScreen(JSplitPane jSplitPane) throws SQLException {
+    public BusinessAdminScreen(JSplitPane jSplitPane, ArrayList<User> userData) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();

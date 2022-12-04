@@ -28,7 +28,6 @@ public class UserRepository {
     }
     
     public ResultSet getUserData(String role) throws SQLException{
-        System.out.println("SJDBHC " + role);
         String sql = "select * from user where role = '" + role + "'";
         return obj.query(sql, new String[]{});
     }
@@ -37,4 +36,11 @@ public class UserRepository {
         String sql = "select * from user";
         return obj.query(sql, new String[]{});
     }
+    
+    public ResultSet getUserById(int id) throws SQLException{
+        String sql = "select * from user where id = " + id; 
+        System.out.println("skjdbfaskjdbu" + sql);
+        System.out.println("alak" + obj.query(sql, new String[]{}));
+        return obj.query(sql, new String[]{});
+}
 }

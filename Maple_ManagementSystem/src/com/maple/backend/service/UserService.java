@@ -47,7 +47,6 @@ public class UserService {
     public void insertUserDataService(int ID, String role, String name, String email, String phoneNum, String userName, String password, String path, String postalCode, String status) throws SQLException{
         userRepository.insertUserData(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
     }
-    
     public ArrayList<User> getUserDataService(String role) throws SQLException{
         ArrayList<User> userData = new ArrayList<>();
         ResultSet resultSet = userRepository.getUserData(role);
@@ -60,6 +59,14 @@ public class UserService {
     public ArrayList<User> getAllUsers() throws SQLException{
         ArrayList<User> userData = new ArrayList<>();
         ResultSet resultSet = userRepository.getAllUsers();
+        userData = userDataMapper(resultSet);
+
+        return userData;
+    }
+    
+    public ArrayList<User> getUserById(int id) throws SQLException {
+        ArrayList<User> userData = new ArrayList<>();
+        ResultSet resultSet = userRepository.getUserById(id);
         userData = userDataMapper(resultSet);
 
         return userData;

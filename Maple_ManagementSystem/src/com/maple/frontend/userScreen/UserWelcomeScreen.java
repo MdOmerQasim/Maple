@@ -4,6 +4,8 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.model.User;
+import java.util.ArrayList;
 import javax.swing.JSplitPane;
 
 /**
