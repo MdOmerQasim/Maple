@@ -21,13 +21,20 @@ import javax.swing.JSplitPane;
 public class BusinessAdminScreen extends javax.swing.JPanel {
     
     JSplitPane mainSplitPane;
+    
     WorkRequestController workRequestController;
     
+<<<<<<< Updated upstream
     public BusinessAdminScreen(JSplitPane jSplitPane, ArrayList<User> userData) throws SQLException {
+=======
+    int businessAdminId;
+    
+    public BusinessAdminScreen(JSplitPane jSplitPane) throws SQLException {
+>>>>>>> Stashed changes
         initComponents();
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
-       
+        businessAdminId = 102; //TODO: get userID from user object
         populateUserData();
         //Load Dashboard Screen (by default)
         BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
@@ -37,8 +44,11 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText("John"); //TODO: get userName from backend
-        notificationBadge.setBadges(9); //TODO: get workRequest count for businessAdmin
-//        ArrayList<WorkRequest> lst = workRequestController.getWorkRequestByRoleService(102); --> get lst.size()
+        // get notification count
+        int notification = workRequestController.getHotelEnterpriseData(businessAdminId).size() + 
+                workRequestController.getCateringEnterpriseData(businessAdminId).size() + 
+                workRequestController.getTravelAgentEnterpriseData(businessAdminId).size();
+        notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
     }
     
     /**
@@ -281,9 +291,11 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void notificationBadgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBadgeActionPerformed
-        notificationBadge.setBadges(0);
-        BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
-        jRightSplitPane.setBottomComponent(businessAdminRequest);
+        try {
+            notificationBadge.setBadges(0);
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
+            jRightSplitPane.setBottomComponent(businessAdminRequest);
+        } catch (SQLException ex) {}
     }//GEN-LAST:event_notificationBadgeActionPerformed
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed
@@ -296,8 +308,12 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
-        BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
-        jRightSplitPane.setBottomComponent(businessAdminRequest);
+        try {
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
+            jRightSplitPane.setBottomComponent(businessAdminRequest);
+        } catch (SQLException ex) {
+            
+        }
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
@@ -309,6 +325,8 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jAnalyticsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAnalyticsBtnActionPerformed
         // TODO add your handling code here:
+        BusinessAdminAnalytics businessAdminAnalytics = new BusinessAdminAnalytics();
+        jRightSplitPane.setBottomComponent(businessAdminAnalytics);
     }//GEN-LAST:event_jAnalyticsBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed

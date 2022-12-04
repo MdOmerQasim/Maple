@@ -10,9 +10,12 @@ import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.userScreen.UserLeftPanelOptions;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
+<<<<<<< Updated upstream
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+>>>>>>> Stashed changes
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
@@ -26,9 +29,10 @@ public class LoginJPanel extends javax.swing.JPanel {
      * Creates new form LoginJPanel
      */
    
-    
     JSplitPane mainSplitPane;
+    
     UserController userController;
+    
     public LoginJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
         userController = new UserController();
@@ -179,7 +183,6 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error here");
         }
         

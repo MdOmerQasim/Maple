@@ -4,9 +4,16 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Catering;
+import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,22 +26,24 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     /**
      * Creates new form BusinessAdminRequest
      */
+    WorkRequestController workRequestController;
     
-    ArrayList<String> workRequestList;
+    int businessAdminId;
     int hotelClick = 0;
     int cateringClick = 0;
     int travelClick = 0;
     
-    public BusinessAdminRequest() {
+    public BusinessAdminRequest() throws SQLException {
         initComponents();
-        
+        workRequestController = new WorkRequestController();
+        businessAdminId = 102; // TODO: get userId from userobject
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane2);
     }
     
     //Card Data
-    public void populateCardData(){
+    public void populateCardData() throws SQLException{
         
         //Load Icons
         jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
@@ -47,37 +56,83 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Requests");
         
         //Assign Request Values
-        jHotelCard.setValues("# 4"); //TODO: get workRequest count for businessAdmin from HotelAdmins
-        jCateringCard.setValues("# 2"); //TODO: get workRequest count for businessAdmin from CateringAdmins
-        jTravelAgentCard.setValues("# 3"); //TODO: get workRequest count for businessAdmin from TravelAdmins
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId).size());
+        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
+        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
         
     }
     
     //Table Data
-    private void populateTableData(String type) {
-       
+    private void populateTableData(String type) throws SQLException {
+        
         DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
         dtmodel.setRowCount(0);
-        ArrayList<String> filteredList = new ArrayList<>(); 
+        ArrayList<Hotel> hotelFilteredList = new ArrayList<>(); 
+        ArrayList<Catering> cateringFilteredList = new ArrayList<>();
+        ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-//            workRequestList.stream().filter(data -> data.toID().equalsIgnoreCase()).forEach(data -> filteredList.add(data));
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            for(Hotel ht: hotelFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ht.getHotelName();
+                obj[1] = "HOTEL";
+                obj[2] = ht.getHotelAddress();
+                obj[3] = ht.getEmail();
+                dtmodel.addRow(obj);
+            }
         } else if(type.equalsIgnoreCase("CATERING")){
-            
-        } else if(type.equalsIgnoreCase("TRAVEL")){
-            
-        } else {
-            for(int i=0;i<19;i++){
-                Object[] obj = new Object[5];
-                obj[0] = "NAME";
-                obj[1] = "NAME";
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            for(Catering ct: cateringFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ct.getCateringName();
+                obj[1] = "CATERING";
                 obj[2] = "NAME";
                 obj[3] = "NAME";
-                obj[4] = "PENDING";
+                dtmodel.addRow(obj);
+            }
+        } else if(type.equalsIgnoreCase("TRAVEL")){
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            for(TravelAgent ta: travelAgentFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ta.getTravelAgentName();
+                obj[1] = "TRAVEL";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
+        } else {
+            //Load hotel data
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            for(Hotel ht: hotelFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ht.getHotelName();
+                obj[1] = "HOTEL";
+                obj[2] = ht.getHotelAddress();
+                obj[3] = ht.getEmail();
+                dtmodel.addRow(obj);
+            }
+            //Load catering data
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            for(Catering ct: cateringFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ct.getCateringName();
+                obj[1] = "CATERING";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
+            //Load travelAgent data
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            for(TravelAgent ta: travelAgentFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ta.getTravelAgentName();
+                obj[1] = "TRAVEL";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
                 dtmodel.addRow(obj);
             }
         } 
-  
     }
 
     /**
@@ -279,17 +334,21 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
         
-        //Apply CSS
-        jHotelCard.setBackground(Color.CYAN);
-        jCateringCard.setBackground(Color.white);
-        jTravelAgentCard.setBackground(Color.white);
-        
-        //Refresh Table Data
-        populateTableData("HOTEL");
-        
-        hotelClick = 1;
-        cateringClick = 0;
-        travelClick = 0;
+        try {
+            //Apply CSS
+            jHotelCard.setBackground(Color.CYAN);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.white);
+            
+            //Refresh Table Data
+            populateTableData("HOTEL");
+            
+            hotelClick = 1;
+            cateringClick = 0;
+            travelClick = 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jHotelCardMouseClicked
 
@@ -318,17 +377,21 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
  
-        populateTableData("ALL");
-        
-        //Reset card colors
-        jHotelCard.setBackground(Color.white);
-        jCateringCard.setBackground(Color.white);
-        jTravelAgentCard.setBackground(Color.white);
-        
-        //Reset card click counter
-        hotelClick = 0;
-        cateringClick = 0;
-        travelClick = 0;
+        try {
+            populateTableData("ALL");
+            
+            //Reset card colors
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.white);
+            
+            //Reset card click counter
+            hotelClick = 0;
+            cateringClick = 0;
+            travelClick = 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jRefreshTableBtnActionPerformed
 
@@ -346,17 +409,21 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_jHotelCardMouseExited
 
     private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
-        // Apply CSS
-        jHotelCard.setBackground(Color.white);
-        jCateringCard.setBackground(Color.CYAN);
-        jTravelAgentCard.setBackground(Color.white);
-        
-        //Refresh Table Data
-        populateTableData("CATERING");
-        
-        hotelClick = 0;
-        cateringClick = 1;
-        travelClick = 0;
+        try {
+            // Apply CSS
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.CYAN);
+            jTravelAgentCard.setBackground(Color.white);
+            
+            //Refresh Table Data
+            populateTableData("CATERING");
+            
+            hotelClick = 0;
+            cateringClick = 1;
+            travelClick = 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jCateringCardMouseClicked
 
     private void jCateringCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseEntered
@@ -373,17 +440,21 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_jCateringCardMouseExited
 
     private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
-        //Apply CSS
-        jHotelCard.setBackground(Color.white);
-        jCateringCard.setBackground(Color.white);
-        jTravelAgentCard.setBackground(Color.CYAN);
-        
-        //Refresh Table Data
-        populateTableData("TRAVEL");
-        
-        hotelClick = 0;
-        cateringClick = 0;
-        travelClick = 1;
+        try {
+            //Apply CSS
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.CYAN);
+            
+            //Refresh Table Data
+            populateTableData("TRAVEL");
+            
+            hotelClick = 0;
+            cateringClick = 0;
+            travelClick = 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTravelAgentCardMouseClicked
 
     private void jTravelAgentCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseEntered

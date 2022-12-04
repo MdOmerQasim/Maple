@@ -11,8 +11,6 @@ import com.maple.backend.model.TravelAgent;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class BusinessAdminDashboard extends javax.swing.JPanel {
     
-    ArrayList<String> workRequestList;
     WorkRequestController workRequestController;
+    
+    int businessAdminId;
     int hotelClick = 0;
     int cateringClick = 0;
     int travelClick = 0;
@@ -32,12 +31,10 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     public BusinessAdminDashboard() throws SQLException {
         initComponents();
         workRequestController = new WorkRequestController();
+        businessAdminId = 102; //TODO: get userData from loginPage
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane1); //apply table theme
-        
-        workRequestList = new ArrayList<>(); // get workRequest data on start-up
-        
     }
 
     //Table Data
@@ -50,24 +47,62 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(102); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
             for(Hotel ht: hotelFilteredList){
                 Object[] obj = new Object[4];
                 obj[0] = ht.getHotelName();
                 obj[1] = "HOTEL";
+                obj[2] = ht.getHotelAddress();
+                obj[3] = ht.getEmail();
+                dtmodel.addRow(obj);
+            }
+        } else if(type.equalsIgnoreCase("CATERING")){
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            for(Catering ct: cateringFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ct.getCateringName();
+                obj[1] = "CATERING";
                 obj[2] = "NAME";
                 obj[3] = "NAME";
                 dtmodel.addRow(obj);
             }
-        } else if(type.equalsIgnoreCase("CATERING")){
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(102);
         } else if(type.equalsIgnoreCase("TRAVEL")){
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(102); 
-        } else {
-            for(int i=0;i<19;i++){
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            for(TravelAgent ta: travelAgentFilteredList){
                 Object[] obj = new Object[4];
-                obj[0] = "NAME";
-                obj[1] = "NAME";
+                obj[0] = ta.getTravelAgentName();
+                obj[1] = "TRAVEL";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
+        } else {
+            //Load hotel data
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            for(Hotel ht: hotelFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ht.getHotelName();
+                obj[1] = "HOTEL";
+                obj[2] = ht.getHotelAddress();
+                obj[3] = ht.getEmail();
+                dtmodel.addRow(obj);
+            }
+            //Load catering data
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            for(Catering ct: cateringFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ct.getCateringName();
+                obj[1] = "CATERING";
+                obj[2] = "NAME";
+                obj[3] = "NAME";
+                dtmodel.addRow(obj);
+            }
+            //Load travelAgent data
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            for(TravelAgent ta: travelAgentFilteredList){
+                Object[] obj = new Object[4];
+                obj[0] = ta.getTravelAgentName();
+                obj[1] = "TRAVEL";
                 obj[2] = "NAME";
                 obj[3] = "NAME";
                 dtmodel.addRow(obj);
@@ -76,7 +111,7 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     }
     
     //Card Data
-    private void populateCardData(){
+    private void populateCardData() throws SQLException{
         
         //Load Icons
         jHotelCard.setIcon(new ImageIcon("/com/maple/icons/hotel.png"));
@@ -89,9 +124,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Affiliated");
         
         //Assign Request Values
-        jHotelCard.setValues("# 324"); //TODO: get workRequest count for businessAdmin from HotelAdmins
-        jCateringCard.setValues("# 192"); //TODO: get workRequest count for businessAdmin from CateringAdmins
-        jTravelAgentCard.setValues("# 102"); //TODO: get workRequest count for businessAdmin from TravelAdmins
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId).size());
+        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
+        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
         
     }
     
