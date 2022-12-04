@@ -7,7 +7,11 @@ package com.maple.frontend.hotelAdminScreen;
 import com.maple.backend.model.User;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
 /**
@@ -24,13 +28,32 @@ public class HotelAdminScreen extends javax.swing.JPanel {
     
     ArrayList<User> userData;
     
+    int hotelAdminId;
      
-    public HotelAdminScreen(JSplitPane jSplitPane,  ArrayList<User> userData) {
+    public HotelAdminScreen(JSplitPane jSplitPane,  ArrayList<User> userData) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
         this.userData = userData;
+        
+        hotelAdminId = userData.get(0).getID();
+        populateUserData();
+        //Load dashboard (by default)
+        try {
+            HotelAdminDashboard hotelAdminDashboard = new HotelAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(hotelAdminDashboard);
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    public void populateUserData() throws SQLException{
+        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
+        jUserName.setText(userData.get(0).getName());
+        // get notification count
+        int notification = 10;
+        notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,7 +142,7 @@ public class HotelAdminScreen extends javax.swing.JPanel {
                 .addComponent(notificationBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(jTopRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jUserName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jUserRole, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -259,8 +282,12 @@ public class HotelAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_burgerBadgeActionPerformed
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
-        HotelAdminDashboard hotelAdminDashboard = new HotelAdminDashboard(userData);
-        jRightSplitPane.setBottomComponent(hotelAdminDashboard);
+        try {
+            HotelAdminDashboard hotelAdminDashboard = new HotelAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(hotelAdminDashboard);
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
@@ -278,8 +305,12 @@ public class HotelAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
-        HotelAdminSettings hotelAdminSettings = new HotelAdminSettings(userData);
-        jRightSplitPane.setBottomComponent(hotelAdminSettings);
+        try {
+            HotelAdminSettings hotelAdminSettings = new HotelAdminSettings(userData);
+            jRightSplitPane.setBottomComponent(hotelAdminSettings);
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jSettingsBtnActionPerformed
 
     public JSplitPane getBaseSplitPane(){
