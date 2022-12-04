@@ -185,6 +185,9 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
             } else if(isValid==-2){
                 JOptionPane.showMessageDialog(null, "Incorrect Old Password");
                 return;
+            } else if(isValid==-3){
+                JOptionPane.showMessageDialog(null, "Fields cannot be empty");
+                return;
             }
             JOptionPane.showMessageDialog(null, "Password updated!");
             jOldPasswordField.setText("");
