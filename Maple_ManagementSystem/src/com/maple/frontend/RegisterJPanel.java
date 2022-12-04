@@ -8,21 +8,14 @@ import com.maple.backend.model.User;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import com.maple.backend.controller.WorkRequestController;
-import com.maple.backend.model.WorkRequest;
-import java.awt.CardLayout;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 /**

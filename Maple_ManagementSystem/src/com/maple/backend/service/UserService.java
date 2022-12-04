@@ -64,4 +64,12 @@ public class UserService {
         return userData;
     }
     
+    public ArrayList<User> getUserById(int id) throws SQLException {
+        ArrayList<User> userData = new ArrayList<>();
+        ResultSet resultSet = userRepository.getUserById(id);
+        userData = userDataMapper(resultSet);
+
+        return userData;
+    }
+    
 }
