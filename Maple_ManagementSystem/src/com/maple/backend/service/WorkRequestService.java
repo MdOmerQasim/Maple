@@ -12,6 +12,8 @@ import com.maple.backend.repository.WorkRequestRepository;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -145,6 +147,14 @@ public class WorkRequestService {
                 .forEach(wk -> filteredWorkRequestList.add(wk));
         
         return filteredWorkRequestList;
+    }
+    
+    public void createWorkRequestService(WorkRequest wk) throws SQLException {
+        try {
+            workRequestRepository.createWorkRequest(wk);
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

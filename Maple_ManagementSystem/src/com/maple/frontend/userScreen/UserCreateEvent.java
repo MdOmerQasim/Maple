@@ -5,6 +5,7 @@
 package com.maple.frontend.userScreen;
 
 import com.maple.backend.controller.EventController;
+import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
@@ -26,10 +27,12 @@ public class UserCreateEvent extends javax.swing.JPanel {
      JSplitPane mainSplitPane;
      User loggedInUser;
      EventController eventController;
+     WorkRequestController wrController;
     public UserCreateEvent(JSplitPane jSplitPane, User loggedUser) throws SQLException {
        this.mainSplitPane = jSplitPane;
        this.loggedInUser = loggedUser;
        eventController = new EventController();
+       wrController = new WorkRequestController();
        initComponents();
     }
 
@@ -359,7 +362,13 @@ public class UserCreateEvent extends javax.swing.JPanel {
             eventController.createAnEvent(newEvent);
             // create work request
             WorkRequest wk = new WorkRequest();
+//            wk.setID(WIDTH);
+            wk.setType("CUSTOMER_EVENTADMIN");
+            wk.setFromID(this.loggedInUser.getID());
+//            wk.setID(WIDTH);
+            wk.setStatus("Pending");
             wk.setEventID(eventId);
+            wrController.createWorkRequest(wk);
             
         } catch (SQLException e){
             

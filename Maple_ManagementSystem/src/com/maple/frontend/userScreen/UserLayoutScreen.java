@@ -9,6 +9,7 @@ import com.maple.frontend.businessAdminScreen.*;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JSplitPane;
@@ -27,11 +28,10 @@ public class UserLayoutScreen extends javax.swing.JPanel {
     JSplitPane mainSplitPane;
     User loggedInUser;
     
-    public UserLayoutScreen(JSplitPane jSplitPane) {
+    public UserLayoutScreen(JSplitPane jSplitPane, ArrayList<User> userData) {
         initComponents();
         this.mainSplitPane = jSplitPane;
-//         latr replace it with user from login page
-        this.loggedInUser = new User();
+        this.loggedInUser = userData.get(0);
          
         //custom
         jUserName.setText("John");

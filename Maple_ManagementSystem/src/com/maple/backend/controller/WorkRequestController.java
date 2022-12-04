@@ -49,4 +49,8 @@ public class WorkRequestController {
         return workRequestService.getWorkRequestByEventID(eventId);
     }
     
+    public void createWorkRequest(WorkRequest wk) throws SQLException {
+        workRequestService.createWorkRequestService(wk);
+    }
+    
 }

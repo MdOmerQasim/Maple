@@ -162,7 +162,7 @@ public class LoginJPanel extends javax.swing.JPanel {
             ArrayList<User> userData = userController.getUserById(validUser);
           
             if(role.equals("Customer")){
-                UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane);
+                UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
             }
