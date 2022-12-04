@@ -47,4 +47,8 @@ public class UserController {
     public ArrayList<User> getUserById(int id) throws SQLException{
         return userService.getUserById(id);
     }
+    
+    public int updateUserPassword(ArrayList<User> userData, String oldPwd, String newPwd, String confirmPwd) throws SQLException{
+        return userService.updateUserPasswordService(userData, oldPwd, newPwd, confirmPwd);
+    }
 }

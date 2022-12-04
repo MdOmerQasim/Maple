@@ -10,6 +10,8 @@ import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
@@ -42,7 +44,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
-        jUserName.setText(userData.get(0).getName()); //TODO: get userName from backend
+        jUserName.setText(userData.get(0).getName());
         // get notification count
         int notification = workRequestController.getHotelEnterpriseData(businessAdminId).size() + 
                 workRequestController.getCateringEnterpriseData(businessAdminId).size() + 
@@ -329,8 +331,12 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jAnalyticsBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
-        BusinessAdminSettings businessAdminSettings = new BusinessAdminSettings(userData);
-        jRightSplitPane.setBottomComponent(businessAdminSettings);
+        try {
+            BusinessAdminSettings businessAdminSettings = new BusinessAdminSettings(userData);
+            jRightSplitPane.setBottomComponent(businessAdminSettings);
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jSettingsBtnActionPerformed
 
     public JSplitPane getBaseSplitPane(){

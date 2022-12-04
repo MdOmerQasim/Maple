@@ -4,14 +4,19 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Cursor;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,9 +29,12 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
      */
     ArrayList<User> userData;
     
-    public BusinessAdminSettings(ArrayList<User> userData) {
+    UserController userController;
+    
+    public BusinessAdminSettings(ArrayList<User> userData) throws SQLException {
         initComponents();
         this.userData = userData;
+        userController = new UserController();
         jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
         jName.setText(userData.get(0).getName());
         jName.setEnabled(false);
@@ -165,33 +173,24 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
 
     private void jSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBtnActionPerformed
         
-        //Validate Old Password
-        String oldPassword = new String(jOldPasswordField.getPassword());
-        //TODO: get password from userDirectory & compare
-        
-        //Validate New Password
-        String newPassword = new String(jNewPasswordField.getPassword());
-        
-        if(!validatePassword(newPassword)){
-            //show validation message
-            return;
+        try {
+            //Validate Old Password
+            String oldPassword = new String(jOldPasswordField.getPassword());
+            String newPassword = new String(jNewPasswordField.getPassword());
+            String confirmPassword = new String(jConfirmPasswordField.getPassword());
+            int isValid = userController.updateUserPassword(userData, oldPassword, newPassword, confirmPassword);
+            if(isValid==-1){
+                JOptionPane.showMessageDialog(null, "Password mismatch");
+                return;
+            } else if(isValid==-2){
+                JOptionPane.showMessageDialog(null, "Incorrect Old Password");
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Password updated!");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminSettings.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //Validate Confirm Password
-        String confirmPassword = new String(jConfirmPasswordField.getPassword());
-        
-        if(!validatePassword(confirmPassword)){
-            //show validation message
-            return;
-        }
-        
-        //Compare new & confirm password
-        if(!newPassword.equals(confirmPassword)){
-            //show validation message
-            return;
-        }
-        
-        //Update newPassword in UserDirectory
         
     }//GEN-LAST:event_jSaveBtnActionPerformed
 
