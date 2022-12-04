@@ -7,6 +7,7 @@ package com.maple.frontend;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
+import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
@@ -170,6 +171,10 @@ public class LoginJPanel extends javax.swing.JPanel {
                 BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+            } else if(role.equals("Hotel Admin")){
+                HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
+                this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
+                this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
             }
             }
         } catch (SQLException ex) {
