@@ -187,6 +187,9 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
                 return;
             }
             JOptionPane.showMessageDialog(null, "Password updated!");
+            jOldPasswordField.setText("");
+            jNewPasswordField.setText("");
+            jConfirmPasswordField.setText("");
             
         } catch (SQLException ex) {
             Logger.getLogger(BusinessAdminSettings.class.getName()).log(Level.SEVERE, null, ex);

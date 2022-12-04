@@ -43,7 +43,7 @@ public class UserRepository {
     }
     
     public void updateUserPassword(String newPwd, int id) throws SQLException {
-        String sql = "";
-//        obj.update(sql, new String[]{});
+        String sql = "UPDATE USER SET password = '" + newPwd + "' WHERE id = " + id;
+        obj.update(sql, new String[]{});
     }
 }

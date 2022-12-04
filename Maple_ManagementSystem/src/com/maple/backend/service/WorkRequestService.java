@@ -71,12 +71,14 @@ public class WorkRequestService {
             Catering catering = new Catering();
             catering.setCateringID(Integer.parseInt(rs.getString("C_ID")));
             catering.setCateringName(rs.getString("C_NAME"));
-//            wk.setFromID(Integer.parseInt(rs.getString("FROM_ID")));
-//            wk.setToID(Integer.parseInt(rs.getString("TO_ID")));
-//            wk.setStatus(rs.getString("STATUS"));
-//            wk.setEventID(Integer.parseInt(rs.getString("EVENT_ID")));
-//            wk.setEventManagerID(Integer.parseInt(rs.getString("EVENT_MANAGER_ID")));
-
+            catering.setCateringAddress(rs.getString("C_ADDRESS"));
+            catering.setCateringArea(rs.getString("C_AREA"));
+            catering.setPhoto(rs.getString("C_PHOTO"));
+            catering.setCapacity(rs.getString("C_CAPACITY"));
+            catering.setBookedDates(rs.getString("C_BOOKED_DATES"));
+            catering.setCateringAdmin(rs.getString("C_ADMIN"));
+            catering.setEmail(rs.getString("C_EMAIL"));
+            catering.setPhone(rs.getString("C_PHONE"));
             cateringList.add(catering);
         }
         return cateringList;
@@ -89,12 +91,14 @@ public class WorkRequestService {
             TravelAgent travelAgent = new TravelAgent();
             travelAgent.setTravelAgentID(Integer.parseInt(rs.getString("TA_ID")));
             travelAgent.setTravelAgentName(rs.getString("TA_NAME"));
-//            wk.setFromID(Integer.parseInt(rs.getString("FROM_ID")));
-//            wk.setToID(Integer.parseInt(rs.getString("TO_ID")));
-//            wk.setStatus(rs.getString("STATUS"));
-//            wk.setEventID(Integer.parseInt(rs.getString("EVENT_ID")));
-//            wk.setEventManagerID(Integer.parseInt(rs.getString("EVENT_MANAGER_ID")));
-
+            travelAgent.setTravelAgentAddress(rs.getString("TA_ADDRESS"));
+            travelAgent.setTravelAgentArea(rs.getString("TA_AREA"));
+            travelAgent.setPhoto(rs.getString("TA_PHOTO"));
+            travelAgent.setCapacity(rs.getString("TA_CAPACITY"));
+            travelAgent.setBookedDates(rs.getString("TA_BOOKED_DATES"));
+            travelAgent.setTravelAgentAdmin(rs.getString("TA_ADMIN"));
+            travelAgent.setEmail(rs.getString("TA_EMAIL"));
+            travelAgent.setPhone(rs.getString("TA_PHONE"));
             travelAgentList.add(travelAgent);
         }
         return travelAgentList;
