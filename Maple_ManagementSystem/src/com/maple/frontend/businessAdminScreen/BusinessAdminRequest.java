@@ -8,6 +8,7 @@ import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
+import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -27,16 +28,18 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
      * Creates new form BusinessAdminRequest
      */
     WorkRequestController workRequestController;
+    ArrayList<User> userData;
     
     int businessAdminId;
     int hotelClick = 0;
     int cateringClick = 0;
     int travelClick = 0;
     
-    public BusinessAdminRequest() throws SQLException {
+    public BusinessAdminRequest(ArrayList<User> userData) throws SQLException {
         initComponents();
         workRequestController = new WorkRequestController();
-        businessAdminId = 102; // TODO: get userId from userobject
+        this.userData = userData;
+        businessAdminId = userData.get(0).getID();
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane2);

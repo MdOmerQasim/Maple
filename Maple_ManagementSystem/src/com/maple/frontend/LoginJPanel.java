@@ -10,14 +10,9 @@ import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.userScreen.UserLeftPanelOptions;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
-<<<<<<< Updated upstream
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-=======
->>>>>>> Stashed changes
-import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -155,17 +150,14 @@ public class LoginJPanel extends javax.swing.JPanel {
         String username = jUsernameTextField.getText();
         String password = jPasswordTextField.getText();
         String role = jLoginAsComboBox.getSelectedItem().toString();
-        
-//        ArrayList<User> userList;
+
         try {
 
             int validUser = userController.validateUser(username, password, role);
             
-
             if (validUser == -1){
                 JOptionPane.showMessageDialog(null, "Invalid credentials");
-            }
-            else{
+            } else {
 
             ArrayList<User> userData = userController.getUserById(validUser);
           

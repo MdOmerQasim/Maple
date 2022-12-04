@@ -17,27 +17,14 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    JDBC obj;
+    
     public MainJFrame() {
         initComponents();
         HomeJPanel homeViewPanel = new HomeJPanel(jSplitPane);
         jSplitPane.setRightComponent(homeViewPanel);
         
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(jSplitPane);
-        jSplitPane.setLeftComponent(homeLeftPanel);
-        
-        
-        //DATABASE
-        try{
-            this.obj = new JDBC();
-            this.obj.update("UPDATE EVENT SET event_name = 'newestName' WHERE event_description = 'testDescription'", new String[]{});
-            ResultSet rs = this.obj.query("Select * from event", new String[]{});
-            while(rs.next()){
-                System.out.println(rs.getString("event_name") + " - " + rs.getString("event_description"));
-            }
-        } catch(SQLException ex){}
-        
-        
+        jSplitPane.setLeftComponent(homeLeftPanel);        
     }
 
     /**
@@ -103,7 +90,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     
     
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

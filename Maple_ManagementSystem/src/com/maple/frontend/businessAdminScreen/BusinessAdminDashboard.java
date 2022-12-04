@@ -8,6 +8,7 @@ import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
+import com.maple.backend.model.User;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,16 +23,18 @@ import javax.swing.table.DefaultTableModel;
 public class BusinessAdminDashboard extends javax.swing.JPanel {
     
     WorkRequestController workRequestController;
+    ArrayList<User> userData;
     
     int businessAdminId;
     int hotelClick = 0;
     int cateringClick = 0;
     int travelClick = 0;
     
-    public BusinessAdminDashboard() throws SQLException {
+    public BusinessAdminDashboard(ArrayList<User> userData) throws SQLException {
         initComponents();
         workRequestController = new WorkRequestController();
-        businessAdminId = 102; //TODO: get userData from loginPage
+        this.userData = userData;
+        businessAdminId = userData.get(0).getID();
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane1); //apply table theme
@@ -114,9 +117,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
     private void populateCardData() throws SQLException{
         
         //Load Icons
-        jHotelCard.setIcon(new ImageIcon("/com/maple/icons/hotel.png"));
-        jCateringCard.setIcon(new ImageIcon("/com/maple/icons/catering.png"));
-        jTravelAgentCard.setIcon(new ImageIcon("/com/maple/icons/travelAgent.png"));
+        jHotelCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+        jCateringCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/catering.png")));
+        jTravelAgentCard.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/travelAgent.png")));
         
         //Set Description
         jHotelCard.setDescription("Hotels Affiliated");

@@ -24,26 +24,25 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     
     WorkRequestController workRequestController;
     
-<<<<<<< Updated upstream
-    public BusinessAdminScreen(JSplitPane jSplitPane, ArrayList<User> userData) throws SQLException {
-=======
+    ArrayList<User> userData;
+    
     int businessAdminId;
     
-    public BusinessAdminScreen(JSplitPane jSplitPane) throws SQLException {
->>>>>>> Stashed changes
+    public BusinessAdminScreen(JSplitPane jSplitPane, ArrayList<User> userData) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
-        businessAdminId = 102; //TODO: get userID from user object
+        this.userData = userData;
+        businessAdminId = userData.get(0).getID();
         populateUserData();
         //Load Dashboard Screen (by default)
-        BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
+        BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
         jRightSplitPane.setRightComponent(businessAdminDashboard);
     }
     
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
-        jUserName.setText("John"); //TODO: get userName from backend
+        jUserName.setText(userData.get(0).getName()); //TODO: get userName from backend
         // get notification count
         int notification = workRequestController.getHotelEnterpriseData(businessAdminId).size() + 
                 workRequestController.getCateringEnterpriseData(businessAdminId).size() + 
@@ -293,7 +292,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     private void notificationBadgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBadgeActionPerformed
         try {
             notificationBadge.setBadges(0);
-            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
             jRightSplitPane.setBottomComponent(businessAdminRequest);
         } catch (SQLException ex) {}
     }//GEN-LAST:event_notificationBadgeActionPerformed
@@ -309,7 +308,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
         try {
-            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest();
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
             jRightSplitPane.setBottomComponent(businessAdminRequest);
         } catch (SQLException ex) {
             
@@ -318,7 +317,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
-            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard();
+            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(businessAdminDashboard);
         } catch (SQLException ex) {}
     }//GEN-LAST:event_jDashboardBtnActionPerformed
@@ -330,7 +329,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jAnalyticsBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
-        BusinessAdminSettings businessAdminSettings = new BusinessAdminSettings();
+        BusinessAdminSettings businessAdminSettings = new BusinessAdminSettings(userData);
         jRightSplitPane.setBottomComponent(businessAdminSettings);
     }//GEN-LAST:event_jSettingsBtnActionPerformed
 
