@@ -31,10 +31,10 @@ public class WorkRequestRepository {
 //        this.obj.update(insertQuery, new String[]{});           
 //    }
     
-//    public void updateWorkRequestDataStatus(int wkId, String status) throws SQLException{
-//        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
-//        this.obj.update(updateQuery, new String[]{});           
-//    }
+    public void updateWorkRequestDataStatus(int wkId, String status) throws SQLException{
+        String updateQuery = "UPDATE WORK_REQUEST SET STATUS = '" + status + "' WHERE WK_ID = " + wkId;
+        this.obj.update(updateQuery, new String[]{});           
+    }
     
 //    public void updateWorkRequestDataEventId(int wkId, int eventId) throws SQLException{
 //        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";

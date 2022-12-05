@@ -46,4 +46,11 @@ public class UserRepository {
         String sql = "UPDATE USER SET password = '" + newPwd + "' WHERE id = " + id;
         obj.update(sql, new String[]{});
     }
+    
+    public void updateUserStatus(int id, String status) throws SQLException {
+        String sql = "UPDATE USER SET STATUS = '" + status + "' WHERE id = " + id;
+        obj.update(sql, new String[]{});
+    }
+    
+    
 }

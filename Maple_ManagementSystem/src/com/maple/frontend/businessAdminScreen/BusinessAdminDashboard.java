@@ -50,7 +50,7 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED"); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED"); 
             for(Hotel ht: hotelFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ht;
@@ -145,7 +145,7 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Affiliated");
         
         //Assign Request Values
-        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "ALL").size());
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED").size());
         jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
         jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
         
