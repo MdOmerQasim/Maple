@@ -96,6 +96,7 @@ public class WorkRequestService {
             catering.setCateringAdmin(rs.getString("C_ADMIN"));
             catering.setEmail(rs.getString("C_EMAIL"));
             catering.setPhone(rs.getString("C_PHONE"));
+            catering.setStatus(rs.getString("C_STATUS"));
             cateringList.add(catering);
         }
         return cateringList;
@@ -116,6 +117,7 @@ public class WorkRequestService {
             travelAgent.setTravelAgentAdmin(rs.getString("TA_ADMIN"));
             travelAgent.setEmail(rs.getString("TA_EMAIL"));
             travelAgent.setPhone(rs.getString("TA_PHONE"));
+            travelAgent.setStatus(rs.getString("TA_STATUS"));
             travelAgentList.add(travelAgent);
         }
         return travelAgentList;
@@ -152,17 +154,31 @@ public class WorkRequestService {
         return hotelDataList;
     }
     
-    public ArrayList<Catering> getCateringDataService(int toId)throws SQLException{
+    public ArrayList<Catering> getCateringDataService(int toId, String status)throws SQLException{
         ArrayList<Catering> cateringDataList = new ArrayList<>();
+        ArrayList<Catering> cateringFilteredList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getCateringData(toId);
         cateringDataList = cateringDataMapper(resultSet);
+        if(!status.equalsIgnoreCase("ALL")){
+            cateringDataList.stream()
+                .filter(catering -> catering.getStatus().equalsIgnoreCase(status))
+                .forEach(catering -> cateringFilteredList.add(catering));
+            return cateringFilteredList; 
+        }
         return cateringDataList; 
     }
     
-    public ArrayList<TravelAgent> getTravelAgentDataService(int toId)throws SQLException{
+    public ArrayList<TravelAgent> getTravelAgentDataService(int toId, String status)throws SQLException{
         ArrayList<TravelAgent> travelAgentDataList = new ArrayList<>();
+        ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getTravelAgentData(toId);
         travelAgentDataList = travelAgentDataMapper(resultSet);
+        if(!status.equalsIgnoreCase("ALL")){
+            travelAgentDataList.stream()
+                .filter(travel -> travel.getStatus().equalsIgnoreCase(status))
+                .forEach(travel -> travelAgentFilteredList.add(travel));
+            return travelAgentFilteredList; 
+        }
         return travelAgentDataList; 
     }
     

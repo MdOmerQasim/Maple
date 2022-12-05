@@ -40,13 +40,13 @@ public class WorkRequestController {
     }
     
     // get enterprise data from CATERING table based on toId
-    public ArrayList<Catering> getCateringEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getCateringDataService(toId);
+    public ArrayList<Catering> getCateringEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getCateringDataService(toId, status);
     }
 
     // get enterprise data from TRAVELAGENT table based on toId
-    public ArrayList<TravelAgent> getTravelAgentEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getTravelAgentDataService(toId);
+    public ArrayList<TravelAgent> getTravelAgentEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getTravelAgentDataService(toId, status);
     }
     
     // get workRequest based on eventId

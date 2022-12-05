@@ -32,7 +32,7 @@ public class UserController {
     public int validateUser(String userName, String password, String role) throws SQLException{
         ArrayList<User> userList = getUserDataByRole(role);
         for(User user: userList){
-            if(!user.getStatus().equalsIgnoreCase("ACCEPTED")){
+            if(user.getStatus().equalsIgnoreCase("PENDING")){
                 return -2;
             }
             if(user.getUserName().equals(userName) && user.getPassword().equals(password)){
