@@ -20,26 +20,21 @@ public class Event {
     public String eventDescription;
     public String eventArea;
     public String atendeesCount;
-    public Date eventFrom;
-    public Date eventTo;
+    public String eventFrom;
+    public String eventTo;
     public int eventManagerID;
     public int chosenHotelID;
     public int chosenCateringID;
     public int chosenTravelAgentID;
-    public boolean accomodationNeeded;
+    public String accomodationNeeded;
     public int accomodationCount;
-    public boolean functionHallNeeded;
+    public String functionHallNeeded;
     public int functionHallCount;
-    public boolean cateringNeeded;
+    public String cateringNeeded;
     public int cateringCount;
-
-    public boolean isAccomodationNeeded() {
-        return accomodationNeeded;
-    }
-
-    public void setAccomodationNeeded(boolean accomodationNeeded) {
-        this.accomodationNeeded = accomodationNeeded;
-    }
+    public String travelNeeded;
+    public int travelCount;
+ 
 
     public int getAccomodationCount() {
         return accomodationCount;
@@ -47,14 +42,6 @@ public class Event {
 
     public void setAccomodationCount(int accomodationCount) {
         this.accomodationCount = accomodationCount;
-    }
-
-    public boolean isFunctionHallNeeded() {
-        return functionHallNeeded;
-    }
-
-    public void setFunctionHallNeeded(boolean functionHallNeeded) {
-        this.functionHallNeeded = functionHallNeeded;
     }
 
     public int getFunctionHallCount() {
@@ -65,14 +52,7 @@ public class Event {
         this.functionHallCount = functionHallCount;
     }
 
-    public boolean isCateringNeeded() {
-        return cateringNeeded;
-    }
-
-    public void setCateringNeeded(boolean cateringNeeded) {
-        this.cateringNeeded = cateringNeeded;
-    }
-
+    
     public int getCateringCount() {
         return cateringCount;
     }
@@ -81,11 +61,11 @@ public class Event {
         this.cateringCount = cateringCount;
     }
 
-    public boolean isTravelNeeded() {
+    public String getTravelNeeded() {
         return travelNeeded;
     }
 
-    public void setTravelNeeded(boolean travelNeeded) {
+    public void setTravelNeeded(String travelNeeded) {
         this.travelNeeded = travelNeeded;
     }
 
@@ -96,8 +76,7 @@ public class Event {
     public void setTravelCount(int travelCount) {
         this.travelCount = travelCount;
     }
-    public boolean travelNeeded;
-    public int travelCount;
+  
 
     public int getEventID() {
         return eventID;
@@ -155,19 +134,19 @@ public class Event {
         this.atendeesCount = atendeesCount;
     }
 
-    public Date getEventFrom() {
+    public String getEventFrom() {
         return eventFrom;
     }
 
-    public void setEventFrom(Date eventFrom) {
+    public void setEventFrom(String eventFrom) {
         this.eventFrom = eventFrom;
     }
 
-    public Date getEventTo() {
+    public String getEventTo() {
         return eventTo;
     }
 
-    public void setEventTo(Date eventTo) {
+    public void setEventTo(String eventTo) {
         this.eventTo = eventTo;
     }
 
@@ -202,5 +181,31 @@ public class Event {
     public void setChosenTravelAgentID(int chosenTravelAgentID) {
         this.chosenTravelAgentID = chosenTravelAgentID;
     }
+
+    public String getAccomodationNeeded() {
+        return accomodationNeeded;
+    }
+
+    public void setAccomodationNeeded(String accomodationNeeded) {
+        this.accomodationNeeded = accomodationNeeded;
+    }
+
+    public String getFunctionHallNeeded() {
+        return functionHallNeeded;
+    }
+
+    public void setFunctionHallNeeded(String functionHallNeeded) {
+        this.functionHallNeeded = functionHallNeeded;
+    }
+
+    public String getCateringNeeded() {
+        return cateringNeeded;
+    }
+
+    public void setCateringNeeded(String cateringNeeded) {
+        this.cateringNeeded = cateringNeeded;
+    }
+    
+    
 
 }
