@@ -120,6 +120,12 @@ public class WorkRequestService {
         return filteredWorkRequestList;
     }
     
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
+        ResultSet resultSet = workRequestRepository.getWorkRequestData();
+        ArrayList<WorkRequest> workRequestList = workRequestDataMapper(resultSet);
+        return workRequestList;
+    }
+    
     public ArrayList<Hotel> getHotelDataService(int toId)throws SQLException{
         ArrayList<Hotel> hotelDataList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getHotelData(toId);

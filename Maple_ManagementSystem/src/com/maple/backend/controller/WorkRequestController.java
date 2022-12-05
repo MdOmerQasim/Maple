@@ -53,4 +53,8 @@ public class WorkRequestController {
         workRequestService.createWorkRequestService(wk);
     }
     
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
+        return workRequestService.getAllWorkRequestData();
+    }
+    
 }
