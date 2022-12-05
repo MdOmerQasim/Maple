@@ -158,6 +158,8 @@ public class LoginJPanel extends javax.swing.JPanel {
             
             if (validUser == -1){
                 JOptionPane.showMessageDialog(null, "Invalid credentials");
+            } else if(validUser == -2){
+                JOptionPane.showMessageDialog(null, "Awaiting business Admin approval!");
             } else {
 
             ArrayList<User> userData = userController.getUserById(validUser);

@@ -207,6 +207,8 @@ public class WorkRequestService {
                     .forEach(w -> filteredWRList.add(w));
             //getting wkId from list
             int wkId = filteredWRList.get(0).getID();
+            
+            //update
             userRepository.updateUserStatus(hotelAdminId, status);
             workRequestRepository.updateWorkRequestDataStatus(wkId, status);
             enterpriseRepository.updateHotelStatus(hotelAdminId, status);
