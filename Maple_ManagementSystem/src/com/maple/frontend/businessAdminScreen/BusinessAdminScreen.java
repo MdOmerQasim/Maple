@@ -47,8 +47,8 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
         jUserName.setText(userData.get(0).getName());
         // get notification count
         int notification = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size() + 
-                workRequestController.getCateringEnterpriseData(businessAdminId).size() + 
-                workRequestController.getTravelAgentEnterpriseData(businessAdminId).size();
+                workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size() + 
+                workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size();
         notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
     }
     
@@ -325,9 +325,13 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jAnalyticsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAnalyticsBtnActionPerformed
-        // TODO add your handling code here:
-        BusinessAdminAnalytics businessAdminAnalytics = new BusinessAdminAnalytics();
-        jRightSplitPane.setBottomComponent(businessAdminAnalytics);
+        try {
+            // TODO add your handling code here:
+            BusinessAdminAnalytics businessAdminAnalytics = new BusinessAdminAnalytics(userData);
+            jRightSplitPane.setBottomComponent(businessAdminAnalytics);
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jAnalyticsBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed

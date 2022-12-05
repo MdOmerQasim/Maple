@@ -60,8 +60,8 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         
         //Assign Request Values
         jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size());
-        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
-        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
+        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size()); 
+        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size()); 
         
     }
     
@@ -88,7 +88,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("CATERING")){
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING");
             for(Catering ct: cateringFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ct;
@@ -101,7 +101,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("TRAVEL")){
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING"); 
             for(TravelAgent ta: travelAgentFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ta;
@@ -128,7 +128,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 dtmodel.addRow(obj);
             }
             //Load catering data
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING");
             for(Catering ct: cateringFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ct;
@@ -141,7 +141,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 dtmodel.addRow(obj);
             }
             //Load travelAgent data
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING"); 
             for(TravelAgent ta: travelAgentFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ta;
