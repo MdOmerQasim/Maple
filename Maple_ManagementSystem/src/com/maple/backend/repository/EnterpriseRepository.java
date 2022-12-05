@@ -26,6 +26,16 @@ public class EnterpriseRepository {
         return this.obj.query(fetchQuery, new String[]{}); 
     }
     
+    public ResultSet getAllCateringData() throws SQLException{
+        String fetchQuery = "SELECT * FROM CATERING";
+        return this.obj.query(fetchQuery, new String[]{}); 
+    }
+    
+    public ResultSet getAllTravelData() throws SQLException{
+        String fetchQuery = "SELECT * FROM TRAVELAGENT";
+        return this.obj.query(fetchQuery, new String[]{}); 
+    }
+    
     public ResultSet getEnterpriseData(String type, int id) throws SQLException{
         
         String fetchQuery = "";

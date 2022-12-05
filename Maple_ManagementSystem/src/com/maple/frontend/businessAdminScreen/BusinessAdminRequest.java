@@ -402,10 +402,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             //Select row data
             int selectedRow = table.getSelectedRow();
             DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
-            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0); //hotelName
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1); //type - HOTEL/TA/Catering
             
-            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            //update STATUS in WORK_REQUEST & HCT & USER table
             workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "ACCEPTED");
             
             //refresh data in card and table
