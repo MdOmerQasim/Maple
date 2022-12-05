@@ -57,13 +57,8 @@ public class WorkRequestController {
     public void createWorkRequest(WorkRequest wk) throws SQLException {
         workRequestService.createWorkRequestService(wk);
     }
-    
-<<<<<<< HEAD
-    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
-        return workRequestService.getAllWorkRequestData();
-    }
-    
-=======
+ 
+  
     //update status 
     public void updateStatus(String enterpriseName, String enterpriseType, String status) throws SQLException{
         workRequestService.updateStatusService(enterpriseName, enterpriseType, status);
@@ -71,5 +66,4 @@ public class WorkRequestController {
     
     
     
->>>>>>> production
 }

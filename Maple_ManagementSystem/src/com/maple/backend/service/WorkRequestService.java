@@ -138,17 +138,9 @@ public class WorkRequestService {
         return filteredWorkRequestList;
     }
     
-<<<<<<< HEAD
-    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
-        ResultSet resultSet = workRequestRepository.getWorkRequestData();
-        ArrayList<WorkRequest> workRequestList = workRequestDataMapper(resultSet);
-        return workRequestList;
-    }
-    
-    public ArrayList<Hotel> getHotelDataService(int toId)throws SQLException{
-=======
+
     public ArrayList<Hotel> getHotelDataService(int toId, String status)throws SQLException{
->>>>>>> production
+
         ArrayList<Hotel> hotelDataList = new ArrayList<>();
         ArrayList<Hotel> hotelFilteredList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getHotelData(toId);
