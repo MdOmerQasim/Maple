@@ -46,7 +46,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText(userData.get(0).getName());
         // get notification count
-        int notification = workRequestController.getHotelEnterpriseData(businessAdminId).size() + 
+        int notification = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size() + 
                 workRequestController.getCateringEnterpriseData(businessAdminId).size() + 
                 workRequestController.getTravelAgentEnterpriseData(businessAdminId).size();
         notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin

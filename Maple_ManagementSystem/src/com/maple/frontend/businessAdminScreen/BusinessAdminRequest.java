@@ -59,7 +59,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Requests");
         
         //Assign Request Values
-        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId).size());
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size());
         jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
         jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
         
@@ -75,7 +75,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING"); //TODO: Pass toId from USER table
             for(Hotel ht: hotelFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ht;
@@ -115,7 +115,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             }
         } else {
             //Load hotel data
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING"); //TODO: Pass toId from USER table
             for(Hotel ht: hotelFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ht;
@@ -377,24 +377,52 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jRejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRejectBtnActionPerformed
         
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0);
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("REJECTED");
+        try {
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            
+            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "REJECTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRejectBtnActionPerformed
 
     private void jAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptBtnActionPerformed
 
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0); //TODO: change to obj[0] = workRequest;
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("APPROVED");
+        try {
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            
+            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "ACCEPTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            //Reset card colors
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.white);
+            //Reset card click counter
+            hotelClick = 0;
+            cateringClick = 0;
+            travelClick = 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jAcceptBtnActionPerformed
 

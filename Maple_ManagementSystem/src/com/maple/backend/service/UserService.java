@@ -70,7 +70,9 @@ public class UserService {
     }
     
     public int updateUserPasswordService(ArrayList<User> userData, String oldPwd, String newPwd, String confirmPwd) throws SQLException {
-
+        if(newPwd.equals("") || confirmPwd.equals("") || oldPwd.equals("")){
+            return -3;
+        }
         if(oldPwd.equals(userData.get(0).getPassword()) && newPwd.equals(confirmPwd)){
             userRepository.updateUserPassword(newPwd, userData.get(0).getID());
             return 0;
@@ -79,5 +81,6 @@ public class UserService {
         } 
         return -2;
     }
+    
     
 }

@@ -4,12 +4,15 @@
  */
 package com.maple.frontend.hotelAdminScreen;
 
+import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import java.awt.Cursor;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,11 +24,16 @@ public class HotelAdminSettings extends javax.swing.JPanel {
      * Creates new form HotelAdminSettings
      */
     ArrayList<User> userData;
+    
+    UserController userController;
 
-    public HotelAdminSettings(ArrayList<User> userData) {
+    public HotelAdminSettings(ArrayList<User> userData) throws SQLException {
         initComponents();
         this.userData = userData;
-
+        userController = new UserController();
+        jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
+        jName.setText(userData.get(0).getName());
+        jName.setEnabled(false);
     }
 
     /**
@@ -180,27 +188,30 @@ public class HotelAdminSettings extends javax.swing.JPanel {
 
     private void jSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBtnActionPerformed
 
-//        try {
-//            //Validate Old Password
-//            String oldPassword = new String(jOldPasswordField.getPassword());
-//            String newPassword = new String(jNewPasswordField.getPassword());
-//            String confirmPassword = new String(jConfirmPasswordField.getPassword());
-//            int isValid = userController.updateUserPassword(userData, oldPassword, newPassword, confirmPassword);
-//            if(isValid==-1){
-//                JOptionPane.showMessageDialog(null, "Password mismatch");
-//                return;
-//            } else if(isValid==-2){
-//                JOptionPane.showMessageDialog(null, "Incorrect Old Password");
-//                return;
-//            }
-//            JOptionPane.showMessageDialog(null, "Password updated!");
-//            jOldPasswordField.setText("");
-//            jNewPasswordField.setText("");
-//            jConfirmPasswordField.setText("");
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BusinessAdminSettings.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            //Validate Old Password
+            String oldPassword = new String(jOldPasswordField.getPassword());
+            String newPassword = new String(jNewPasswordField.getPassword());
+            String confirmPassword = new String(jConfirmPasswordField.getPassword());
+            int isValid = userController.updateUserPassword(userData, oldPassword, newPassword, confirmPassword);
+            if(isValid==-1){
+                JOptionPane.showMessageDialog(null, "Password mismatch");
+                return;
+            } else if(isValid==-2){
+                JOptionPane.showMessageDialog(null, "Incorrect Old Password");
+                return;
+            } else if(isValid==-3){
+                JOptionPane.showMessageDialog(null, "Fields cannot be empty");
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "Password updated!");
+            jOldPasswordField.setText("");
+            jNewPasswordField.setText("");
+            jConfirmPasswordField.setText("");
+
+        } catch (SQLException ex) {
+            
+        }
 
     }//GEN-LAST:event_jSaveBtnActionPerformed
 

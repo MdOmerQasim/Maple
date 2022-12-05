@@ -18,8 +18,32 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="jRoute" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="1022" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jHotelPhoto" min="-2" pref="300" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jHotelName" linkSize="1" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jHotelEmail" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                              <Component id="jHotelPhone" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jHotelType" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jHotelCapacity" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jHotelAddress" linkSize="1" min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jHotelArea" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="jRoute" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="305" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -28,7 +52,29 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="jRoute" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="655" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jHotelName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jHotelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jHotelArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jHotelCapacity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jHotelType" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jHotelPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jHotelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jHotelPhoto" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="253" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,6 +89,55 @@
           <Color blue="d2" green="48" red="4" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Admin / Dashboard"/>
+      </Properties>
+    </Component>
+    <Container class="com.maple.resources.ImageAvatar" name="jHotelPhoto">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/maple/icons/hotel.png"/>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+    </Container>
+    <Component class="com.maple.resources.TextField" name="jHotelName">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Hotel Name"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jHotelNameActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelAddress">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Address"/>
+      </Properties>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelArea">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Area"/>
+      </Properties>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelCapacity">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Capacity"/>
+      </Properties>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelType">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Hotel Type"/>
+      </Properties>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelEmail">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Email"/>
+      </Properties>
+    </Component>
+    <Component class="com.maple.resources.TextField" name="jHotelPhone">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Phone"/>
       </Properties>
     </Component>
   </SubComponents>

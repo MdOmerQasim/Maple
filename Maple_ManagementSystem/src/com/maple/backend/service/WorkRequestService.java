@@ -8,6 +8,8 @@ import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
+import com.maple.backend.repository.EnterpriseRepository;
+import com.maple.backend.repository.UserRepository;
 import com.maple.backend.repository.WorkRequestRepository;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -22,9 +24,21 @@ import java.util.logging.Logger;
 public class WorkRequestService {
     
     WorkRequestRepository workRequestRepository;
+    
+    UserRepository userRepository;
+    
+    EnterpriseRepository enterpriseRepository;
+    
+    EnterpriseService enterpriseService;
+    
+    UserService userService;
 
     public WorkRequestService() throws SQLException {
         workRequestRepository = new WorkRequestRepository();
+        userRepository = new UserRepository();
+        enterpriseRepository = new EnterpriseRepository();
+        enterpriseService = new EnterpriseService();
+        userService = new UserService();
     }
     
     private ArrayList<WorkRequest> workRequestDataMapper(ResultSet rs) throws SQLException{
@@ -61,6 +75,7 @@ public class WorkRequestService {
             hotel.setPhoto(rs.getString("H_PHOTO"));
             hotel.setEmail(rs.getString("H_EMAIL"));
             hotel.setPhone(rs.getString("H_PHONE"));
+            hotel.setStatus(rs.getString("H_STATUS"));
             hotelList.add(hotel);
         }
         return hotelList;
@@ -106,7 +121,10 @@ public class WorkRequestService {
         return travelAgentList;
     }
     
-    
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException{
+        ResultSet resultSet = workRequestRepository.getWorkRequestData();
+        return workRequestDataMapper(resultSet); 
+    }
     
     public ArrayList<WorkRequest> getWorkRequestByRole(int toId) throws SQLException{
         ArrayList<WorkRequest> filteredWorkRequestList = new ArrayList<>();
@@ -120,6 +138,7 @@ public class WorkRequestService {
         return filteredWorkRequestList;
     }
     
+<<<<<<< HEAD
     public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
         ResultSet resultSet = workRequestRepository.getWorkRequestData();
         ArrayList<WorkRequest> workRequestList = workRequestDataMapper(resultSet);
@@ -127,10 +146,20 @@ public class WorkRequestService {
     }
     
     public ArrayList<Hotel> getHotelDataService(int toId)throws SQLException{
+=======
+    public ArrayList<Hotel> getHotelDataService(int toId, String status)throws SQLException{
+>>>>>>> production
         ArrayList<Hotel> hotelDataList = new ArrayList<>();
+        ArrayList<Hotel> hotelFilteredList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getHotelData(toId);
         hotelDataList = hotelDataMapper(resultSet);
-        return hotelDataList; 
+        if(!status.equalsIgnoreCase("ALL")){
+            hotelDataList.stream()
+                .filter(hotel -> hotel.getStatus().equalsIgnoreCase(status))
+                .forEach(hotel -> hotelFilteredList.add(hotel));
+            return hotelFilteredList; 
+        }
+        return hotelDataList;
     }
     
     public ArrayList<Catering> getCateringDataService(int toId)throws SQLException{
@@ -165,6 +194,38 @@ public class WorkRequestService {
         } catch (SQLException ex) {
             Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void updateStatusService(String enterpriseName, String enterpriseType, String status) throws SQLException{
+        
+        if(enterpriseType.equalsIgnoreCase("HOTEL")){
+            //finding hotel based on name in HOTEL table
+            ArrayList<Hotel> hotelData = enterpriseService.getAllHotelDataService();
+            ArrayList<Hotel> filteredHotelList = new ArrayList<>();
+            hotelData.stream()
+                    .filter(hotel -> hotel.getHotelName().equalsIgnoreCase(enterpriseName))
+                    .forEach(doc -> filteredHotelList.add(doc));
+            //getting hotelAdminId from HOTEL table
+            int hotelAdminId = Integer.parseInt(filteredHotelList.get(0).getHotelAdmin());
+            //using hotelAdminId to find wkId in WORKREQUEST table
+            ArrayList<WorkRequest> wk = getAllWorkRequestData();
+            ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+            wk.stream()
+                    .filter(w -> w.getFromID()==hotelAdminId)
+                    .forEach(w -> filteredWRList.add(w));
+            //getting wkId from list
+            int wkId = filteredWRList.get(0).getID();
+            userRepository.updateUserStatus(hotelAdminId, status);
+            workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+            enterpriseRepository.updateHotelStatus(hotelAdminId, status);
+        } else if(enterpriseType.equalsIgnoreCase("CATERING")){
+            
+        } else if(enterpriseType.equalsIgnoreCase("TRAVEL")){
+            
+        }
+        
+     
+        
     }
     
 }

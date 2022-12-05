@@ -24,14 +24,19 @@ public class WorkRequestController {
         workRequestService = new WorkRequestService();
     }
     
+    //get all workRequest Data
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException{
+        return workRequestService.getAllWorkRequestData();
+    }
+    
     // get workRequest based on toId
     public ArrayList<WorkRequest> getWorkRequestByRoleService(int toId) throws SQLException{
         return workRequestService.getWorkRequestByRole(toId);
     }
       
     // get enterprise data from HOTEL table based on toId
-    public ArrayList<Hotel> getHotelEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getHotelDataService(toId);
+    public ArrayList<Hotel> getHotelEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getHotelDataService(toId, status);
     }
     
     // get enterprise data from CATERING table based on toId
@@ -53,8 +58,18 @@ public class WorkRequestController {
         workRequestService.createWorkRequestService(wk);
     }
     
+<<<<<<< HEAD
     public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException {
         return workRequestService.getAllWorkRequestData();
     }
     
+=======
+    //update status 
+    public void updateStatus(String enterpriseName, String enterpriseType, String status) throws SQLException{
+        workRequestService.updateStatusService(enterpriseName, enterpriseType, status);
+    }
+    
+    
+    
+>>>>>>> production
 }
