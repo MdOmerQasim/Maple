@@ -49,5 +49,10 @@ public class EnterpriseRepository {
         this.obj.update(insertQuery, new String[]{}); 
     }
     
+    public void updateHotelStatus(int hotelAdminId, String status) throws SQLException {
+        String sql = "UPDATE HOTEL SET H_STATUS = '" + status + "' WHERE H_ADMIN_ID = '" + hotelAdminId + "'";
+        this.obj.update(sql, new String[]{});
+    }
+    
     
 }

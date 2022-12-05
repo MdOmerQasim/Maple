@@ -377,24 +377,52 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jRejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRejectBtnActionPerformed
         
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0);
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("REJECTED");
+        try {
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            
+            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "REJECTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRejectBtnActionPerformed
 
     private void jAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptBtnActionPerformed
 
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0); //TODO: change to obj[0] = workRequest;
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("APPROVED");
+        try {
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            
+            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "ACCEPTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            //Reset card colors
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.white);
+            //Reset card click counter
+            hotelClick = 0;
+            cateringClick = 0;
+            travelClick = 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jAcceptBtnActionPerformed
 
