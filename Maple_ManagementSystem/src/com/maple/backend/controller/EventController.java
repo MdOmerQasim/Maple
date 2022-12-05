@@ -23,8 +23,10 @@ public class EventController {
     }
     
     // Get all events
-    public ArrayList<Event> getEventsList() throws SQLException{
-        return eventService.getEventsListService();
+    public int getEventsList() throws SQLException{
+//        return eventService.getEventsListService();
+ArrayList<Event> eventList = eventService.getEventsListService();
+        return eventList.size()+1;
     }
     
      // Get User events
@@ -34,6 +36,7 @@ public class EventController {
     
     // Create Event    
      public void createAnEvent(Event newEvent) throws SQLException{
+         System.out.println("usr controll");
         eventService.createAnEventService(newEvent);
     }
 }

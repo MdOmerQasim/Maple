@@ -5,13 +5,17 @@
 package com.maple.frontend.userScreen;
 
 import com.maple.backend.controller.EventController;
+import com.maple.backend.controller.UserController;
 import com.maple.backend.controller.WorkRequestController;
 import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
+import com.maple.frontend.RegisterJPanel;
 import java.awt.CardLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -28,11 +32,13 @@ public class UserCreateEvent extends javax.swing.JPanel {
      User loggedInUser;
      EventController eventController;
      WorkRequestController wrController;
+     UserController userController;
     public UserCreateEvent(JSplitPane jSplitPane, User loggedUser) throws SQLException {
        this.mainSplitPane = jSplitPane;
        this.loggedInUser = loggedUser;
        eventController = new EventController();
        wrController = new WorkRequestController();
+       userController = new UserController();
        initComponents();
     }
 
@@ -325,7 +331,14 @@ public class UserCreateEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             Event newEvent = new Event();
-            int eventId = eventController.getEventsList().size() + 1;
+            int eventId = 0;
+            try {
+                eventId = eventController.getEventsList();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+//            int eventId = eventController.getEventsList().size() + 1;
             newEvent.setEventID(eventId);
             newEvent.setUserID(this.loggedInUser.getID());
             newEvent.setEventType((String) typeDropdown.getSelectedItem());
@@ -333,41 +346,47 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setEventDescription(descText.getText());
             newEvent.setEventArea(areaText.getText());
             newEvent.setAtendeesCount(attendeesCountText.getText());
-            newEvent.setEventFrom(fromDate.getDate());
-            newEvent.setEventTo(toDate.getDate());
+            newEvent.setEventFrom(fromDate.getDate().toString());
+            newEvent.setEventTo(toDate.getDate().toString());
             newEvent.setEventManagerID(-1);
             newEvent.setChosenHotelID(-1);
             newEvent.setChosenCateringID(-1);
             newEvent.setChosenTravelAgentID(-1);
-
+            System.out.println("dddddd");
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
-                    newEvent.setAccomodationNeeded(true);
+                    newEvent.setAccomodationNeeded("yes");
                     newEvent.setAccomodationCount(Integer.parseInt(hotelCount.getText()));
                 } else {
-                    newEvent.setFunctionHallNeeded(true);
+                    newEvent.setFunctionHallNeeded("yes");
                     newEvent.setFunctionHallCount(Integer.parseInt(hotelCount.getText()));
                 }
             }
             if(cateringCheckbox.isSelected()){
-                    newEvent.setCateringNeeded(true);
+                    newEvent.setCateringNeeded("yes");
                     newEvent.setCateringCount(Integer.parseInt(cateringCount.getText()));
             }
             if(travelCheckbox.isSelected()){
-                newEvent.setTravelNeeded(true);
+                newEvent.setTravelNeeded("yes");
                 newEvent.setTravelCount(Integer.parseInt(travelCount.getText()));
             }
-            
+            System.out.println("hgvg");
             // create an event
             eventController.createAnEvent(newEvent);
+            
             // create work request
             WorkRequest wk = new WorkRequest();
-//            wk.setID(WIDTH);
+            
+            
+            wk.setID( wrController.getAllWorkRequestData().size() + 1);
             wk.setType("CUSTOMER_EVENTADMIN");
             wk.setFromID(this.loggedInUser.getID());
-//            wk.setID(WIDTH);
+            ArrayList<User> eventAdmin  = userController.getUserDataByRole("Event Admin");
+            wk.setToID(WIDTH);
             wk.setStatus("Pending");
             wk.setEventID(eventId);
+           
+            wk.setToID(eventAdmin.get(0).getID());
             wrController.createWorkRequest(wk);
             
         } catch (SQLException e){
