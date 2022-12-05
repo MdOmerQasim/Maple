@@ -538,10 +538,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             }
             
             
-            boolean isAccomodation = selectedEvent.isAccomodationNeeded();
-            boolean isFunctionHall = selectedEvent.isFunctionHallNeeded();
-            boolean isCatering = selectedEvent.isCateringNeeded();
-            boolean isTravel = selectedEvent.isTravelNeeded();
+            boolean isAccomodation = selectedEvent.getAccomodationNeeded() == "yes" ? true : false;
+            boolean isFunctionHall = selectedEvent.getFunctionHallNeeded()  == "yes" ? true : false;
+            boolean isCatering = selectedEvent.getCateringNeeded() == "yes" ? true : false;
+            boolean isTravel = selectedEvent.getTravelNeeded() == "yes" ? true : false;
             
             //        fetch all work request related to this eventId
             ArrayList<WorkRequest> wrEvents = new ArrayList<>();

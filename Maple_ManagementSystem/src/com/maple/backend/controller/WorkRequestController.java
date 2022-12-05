@@ -57,7 +57,8 @@ public class WorkRequestController {
     public void createWorkRequest(WorkRequest wk) throws SQLException {
         workRequestService.createWorkRequestService(wk);
     }
-    
+ 
+  
     //update status 
     public void updateStatus(String enterpriseName, String enterpriseType, String status) throws SQLException{
         workRequestService.updateStatusService(enterpriseName, enterpriseType, status);
