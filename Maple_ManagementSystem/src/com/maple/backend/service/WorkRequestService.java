@@ -61,6 +61,7 @@ public class WorkRequestService {
             hotel.setPhoto(rs.getString("H_PHOTO"));
             hotel.setEmail(rs.getString("H_EMAIL"));
             hotel.setPhone(rs.getString("H_PHONE"));
+            hotel.setStatus(rs.getString("H_STATUS"));
             hotelList.add(hotel);
         }
         return hotelList;
@@ -106,7 +107,10 @@ public class WorkRequestService {
         return travelAgentList;
     }
     
-    
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException{
+        ResultSet resultSet = workRequestRepository.getWorkRequestData();
+        return workRequestDataMapper(resultSet); 
+    }
     
     public ArrayList<WorkRequest> getWorkRequestByRole(int toId) throws SQLException{
         ArrayList<WorkRequest> filteredWorkRequestList = new ArrayList<>();
@@ -120,11 +124,18 @@ public class WorkRequestService {
         return filteredWorkRequestList;
     }
     
-    public ArrayList<Hotel> getHotelDataService(int toId)throws SQLException{
+    public ArrayList<Hotel> getHotelDataService(int toId, String status)throws SQLException{
         ArrayList<Hotel> hotelDataList = new ArrayList<>();
+        ArrayList<Hotel> hotelFilteredList = new ArrayList<>();
         ResultSet resultSet = workRequestRepository.getHotelData(toId);
         hotelDataList = hotelDataMapper(resultSet);
-        return hotelDataList; 
+        if(!status.equalsIgnoreCase("ALL")){
+            hotelDataList.stream()
+                .filter(hotel -> hotel.getStatus().equalsIgnoreCase(status))
+                .forEach(hotel -> hotelFilteredList.add(hotel));
+            return hotelFilteredList; 
+        }
+        return hotelDataList;
     }
     
     public ArrayList<Catering> getCateringDataService(int toId)throws SQLException{
