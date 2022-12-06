@@ -217,7 +217,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" + "eventID=" + eventID + '}';
+        return  String.valueOf(eventID);
     }
     
     
