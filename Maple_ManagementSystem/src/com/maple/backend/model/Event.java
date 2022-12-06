@@ -4,6 +4,7 @@
  */
 package com.maple.backend.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,13 +20,63 @@ public class Event {
     public String eventDescription;
     public String eventArea;
     public String atendeesCount;
-    public String servicesNeeded;
-    public Date eventFrom;
-    public Date eventTo;
+    public String eventFrom;
+    public String eventTo;
     public int eventManagerID;
     public int chosenHotelID;
     public int chosenCateringID;
     public int chosenTravelAgentID;
+    public String accomodationNeeded;
+    public int accomodationCount;
+    public String functionHallNeeded;
+    public int functionHallCount;
+    public String cateringNeeded;
+    public int cateringCount;
+    public String travelNeeded;
+    public int travelCount;
+ 
+
+    public int getAccomodationCount() {
+        return accomodationCount;
+    }
+
+    public void setAccomodationCount(int accomodationCount) {
+        this.accomodationCount = accomodationCount;
+    }
+
+    public int getFunctionHallCount() {
+        return functionHallCount;
+    }
+
+    public void setFunctionHallCount(int functionHallCount) {
+        this.functionHallCount = functionHallCount;
+    }
+
+    
+    public int getCateringCount() {
+        return cateringCount;
+    }
+
+    public void setCateringCount(int cateringCount) {
+        this.cateringCount = cateringCount;
+    }
+
+    public String getTravelNeeded() {
+        return travelNeeded;
+    }
+
+    public void setTravelNeeded(String travelNeeded) {
+        this.travelNeeded = travelNeeded;
+    }
+
+    public int getTravelCount() {
+        return travelCount;
+    }
+
+    public void setTravelCount(int travelCount) {
+        this.travelCount = travelCount;
+    }
+  
 
     public int getEventID() {
         return eventID;
@@ -83,27 +134,19 @@ public class Event {
         this.atendeesCount = atendeesCount;
     }
 
-    public String getServicesNeeded() {
-        return servicesNeeded;
-    }
-
-    public void setServicesNeeded(String servicesNeeded) {
-        this.servicesNeeded = servicesNeeded;
-    }
-
-    public Date getEventFrom() {
+    public String getEventFrom() {
         return eventFrom;
     }
 
-    public void setEventFrom(Date eventFrom) {
+    public void setEventFrom(String eventFrom) {
         this.eventFrom = eventFrom;
     }
 
-    public Date getEventTo() {
+    public String getEventTo() {
         return eventTo;
     }
 
-    public void setEventTo(Date eventTo) {
+    public void setEventTo(String eventTo) {
         this.eventTo = eventTo;
     }
 
@@ -138,6 +181,31 @@ public class Event {
     public void setChosenTravelAgentID(int chosenTravelAgentID) {
         this.chosenTravelAgentID = chosenTravelAgentID;
     }
+
+    public String getAccomodationNeeded() {
+        return accomodationNeeded;
+    }
+
+    public void setAccomodationNeeded(String accomodationNeeded) {
+        this.accomodationNeeded = accomodationNeeded;
+    }
+
+    public String getFunctionHallNeeded() {
+        return functionHallNeeded;
+    }
+
+    public void setFunctionHallNeeded(String functionHallNeeded) {
+        this.functionHallNeeded = functionHallNeeded;
+    }
+
+    public String getCateringNeeded() {
+        return cateringNeeded;
+    }
+
+    public void setCateringNeeded(String cateringNeeded) {
+        this.cateringNeeded = cateringNeeded;
+    }
     
     
+
 }

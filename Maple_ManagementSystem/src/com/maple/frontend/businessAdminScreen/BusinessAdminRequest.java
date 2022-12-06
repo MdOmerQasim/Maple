@@ -9,7 +9,6 @@ import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.User;
-import com.maple.backend.model.WorkRequest;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,6 +42,8 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane2);
+        jAcceptBtn.setEnabled(false);
+        jRejectBtn.setEnabled(false);
     }
     
     //Card Data
@@ -59,9 +60,9 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Requests");
         
         //Assign Request Values
-        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId).size());
-        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
-        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size());
+        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size()); 
+        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size()); 
         
     }
     
@@ -75,64 +76,82 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING");
             for(Hotel ht: hotelFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ht.getHotelName();
+                Object[] obj = new Object[7];
+                obj[0] = ht;
                 obj[1] = "HOTEL";
                 obj[2] = ht.getHotelAddress();
-                obj[3] = ht.getEmail();
+                obj[3] = ht.getHotelArea();
+                obj[4] = ht.getCapacity();
+                obj[5] = ht.getEmail();
+                obj[6] = ht.getPhone();
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("CATERING")){
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING");
             for(Catering ct: cateringFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ct.getCateringName();
+                Object[] obj = new Object[7];
+                obj[0] = ct;
                 obj[1] = "CATERING";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ct.getCateringAddress();
+                obj[3] = ct.getCateringArea();
+                obj[4] = ct.getCapacity();
+                obj[5] = ct.getEmail();
+                obj[6] = ct.getPhone();
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("TRAVEL")){
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING"); 
             for(TravelAgent ta: travelAgentFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ta.getTravelAgentName();
+                Object[] obj = new Object[7];
+                obj[0] = ta;
                 obj[1] = "TRAVEL";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ta.getTravelAgentAddress();
+                obj[3] = ta.getTravelAgentArea();
+                obj[4] = ta.getCapacity();
+                obj[5] = ta.getEmail();
+                obj[6] = ta.getPhone();
                 dtmodel.addRow(obj);
             }
         } else {
             //Load hotel data
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING"); //TODO: Pass toId from USER table
             for(Hotel ht: hotelFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ht.getHotelName();
+                Object[] obj = new Object[7];
+                obj[0] = ht;
                 obj[1] = "HOTEL";
                 obj[2] = ht.getHotelAddress();
-                obj[3] = ht.getEmail();
+                obj[3] = ht.getHotelArea();
+                obj[4] = ht.getCapacity();
+                obj[5] = ht.getEmail();
+                obj[6] = ht.getPhone();
                 dtmodel.addRow(obj);
             }
             //Load catering data
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING");
             for(Catering ct: cateringFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ct.getCateringName();
+                Object[] obj = new Object[7];
+                obj[0] = ct;
                 obj[1] = "CATERING";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ct.getCateringAddress();
+                obj[3] = ct.getCateringArea();
+                obj[4] = ct.getCapacity();
+                obj[5] = ct.getEmail();
+                obj[6] = ct.getPhone();
                 dtmodel.addRow(obj);
             }
             //Load travelAgent data
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING"); 
             for(TravelAgent ta: travelAgentFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ta.getTravelAgentName();
+                Object[] obj = new Object[7];
+                obj[0] = ta;
                 obj[1] = "TRAVEL";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ta.getTravelAgentAddress();
+                obj[3] = ta.getTravelAgentArea();
+                obj[4] = ta.getCapacity();
+                obj[5] = ta.getEmail();
+                obj[6] = ta.getPhone();
                 dtmodel.addRow(obj);
             }
         } 
@@ -206,37 +225,42 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Enterprise", "Address", "Email", "Action"
+                "Name", "Enterprise", "Address", "Area", "Capacity", "Email", "Phone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(table);
@@ -246,6 +270,8 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             table.getColumnModel().getColumn(2).setResizable(false);
             table.getColumnModel().getColumn(3).setResizable(false);
             table.getColumnModel().getColumn(4).setResizable(false);
+            table.getColumnModel().getColumn(5).setResizable(false);
+            table.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -338,6 +364,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
         
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             //Apply CSS
             jHotelCard.setBackground(Color.CYAN);
             jCateringCard.setBackground(Color.white);
@@ -357,30 +387,72 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jRejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRejectBtnActionPerformed
         
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0);
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("REJECTED");
+        try {
+            
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0);
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1);
+            
+            //update STATUS in WORK_REQUEST & HOTEL & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "REJECTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRejectBtnActionPerformed
 
     private void jAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptBtnActionPerformed
 
-        //Select row data
-        int selectedRow = table.getSelectedRow();
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
-        WorkRequest selectedRowObj = (WorkRequest) dtmodel.getValueAt(selectedRow, 0); //TODO: change to obj[0] = workRequest;
-        
-        //TODO: Call update query
-//        selectedRowObj.setStatus("APPROVED");
+        try {
+            
+            //Select row data
+            int selectedRow = table.getSelectedRow();
+            DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+            Object enterpriseName = (Object) dtmodel.getValueAt(selectedRow, 0); //hotelName
+            Object enterpriseType = (Object) dtmodel.getValueAt(selectedRow, 1); //type - HOTEL/TA/Catering
+            
+            //update STATUS in WORK_REQUEST & HCT & USER table
+            workRequestController.updateStatus(enterpriseName.toString(), enterpriseType.toString(), "ACCEPTED");
+            
+            //refresh data in card and table
+            populateCardData();
+            populateTableData("ALL");
+            //Reset card colors
+            jHotelCard.setBackground(Color.white);
+            jCateringCard.setBackground(Color.white);
+            jTravelAgentCard.setBackground(Color.white);
+            //Reset card click counter
+            hotelClick = 0;
+            cateringClick = 0;
+            travelClick = 0;
+            
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jAcceptBtnActionPerformed
 
     private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
  
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             populateTableData("ALL");
             
             //Reset card colors
@@ -413,6 +485,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             // Apply CSS
             jHotelCard.setBackground(Color.white);
             jCateringCard.setBackground(Color.CYAN);
@@ -444,6 +520,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             //Apply CSS
             jHotelCard.setBackground(Color.white);
             jCateringCard.setBackground(Color.white);
@@ -472,6 +552,14 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jTravelAgentCard.setBackground(Color.white);
         travelClick = 0;
     }//GEN-LAST:event_jTravelAgentCardMouseExited
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        
+        //Enable buttons
+        jAcceptBtn.setEnabled(true);
+        jRejectBtn.setEnabled(true);
+        
+    }//GEN-LAST:event_tableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

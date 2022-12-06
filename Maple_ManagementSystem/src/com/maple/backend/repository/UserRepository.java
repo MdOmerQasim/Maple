@@ -39,8 +39,18 @@ public class UserRepository {
     
     public ResultSet getUserById(int id) throws SQLException{
         String sql = "select * from user where id = " + id; 
-        System.out.println("skjdbfaskjdbu" + sql);
-        System.out.println("alak" + obj.query(sql, new String[]{}));
         return obj.query(sql, new String[]{});
-}
+    }
+    
+    public void updateUserPassword(String newPwd, int id) throws SQLException {
+        String sql = "UPDATE USER SET password = '" + newPwd + "' WHERE id = " + id;
+        obj.update(sql, new String[]{});
+    }
+    
+    public void updateUserStatus(int id, String status) throws SQLException {
+        String sql = "UPDATE USER SET STATUS = '" + status + "' WHERE id = " + id;
+        obj.update(sql, new String[]{});
+    }
+    
+    
 }

@@ -4,24 +4,39 @@
  */
 package com.maple.backend.model;
 
-import java.util.Date;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author bharv
  */
 public class TravelAgent {
     
-    public int travelAgentID;
-    public String travelAgentAddress;
-    public String travelAgentName;
-    public String travelAgentArea;
-    public String travelAgentType;
-    public ImageIcon photo;
-    public String capacity;
-    public Date bookedDates;
-    public String travelAgentAdmin;
+    private int travelAgentID;
+    private String travelAgentAddress;
+    private String travelAgentName;
+    private String travelAgentArea;
+    private String travelAgentType;
+    private String photo;
+    private String capacity;
+    private String bookedDates;
+    private String travelAgentAdmin;
+    private String email;
+    private String phone;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
+    
+    @Override
+    public String toString() {
+        return travelAgentName;
+    }
 
     public int getTravelAgentID() {
         return travelAgentID;
@@ -63,11 +78,11 @@ public class TravelAgent {
         this.travelAgentType = travelAgentType;
     }
 
-    public ImageIcon getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(ImageIcon photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -79,11 +94,11 @@ public class TravelAgent {
         this.capacity = capacity;
     }
 
-    public Date getBookedDates() {
+    public String getBookedDates() {
         return bookedDates;
     }
 
-    public void setBookedDates(Date bookedDates) {
+    public void setBookedDates(String bookedDates) {
         this.bookedDates = bookedDates;
     }
 
@@ -94,6 +109,23 @@ public class TravelAgent {
     public void setTravelAgentAdmin(String travelAgentAdmin) {
         this.travelAgentAdmin = travelAgentAdmin;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     
     
     

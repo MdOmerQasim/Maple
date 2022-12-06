@@ -5,6 +5,7 @@
 package com.maple.backend.repository;
 
 import com.maple.DBConnection.JDBC;
+import com.maple.backend.model.WorkRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -30,10 +31,10 @@ public class WorkRequestRepository {
 //        this.obj.update(insertQuery, new String[]{});           
 //    }
     
-//    public void updateWorkRequestDataStatus(int wkId, String status) throws SQLException{
-//        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
-//        this.obj.update(updateQuery, new String[]{});           
-//    }
+    public void updateWorkRequestDataStatus(int wkId, String status) throws SQLException{
+        String updateQuery = "UPDATE WORK_REQUEST SET STATUS = '" + status + "' WHERE WK_ID = " + wkId;
+        this.obj.update(updateQuery, new String[]{});           
+    }
     
 //    public void updateWorkRequestDataEventId(int wkId, int eventId) throws SQLException{
 //        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
@@ -46,20 +47,24 @@ public class WorkRequestRepository {
 //    }
     
     public ResultSet getHotelData(int toId) throws SQLException{
-        String fetchQuery = "SELECT * FROM HOTEL WHERE H_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        String fetchQuery = "SELECT * FROM HOTEL WHERE H_ADMIN_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
         return this.obj.query(fetchQuery, new String[]{}); 
     }
     
     public ResultSet getCateringData(int toId) throws SQLException{
-        String fetchQuery = "SELECT * FROM CATERING WHERE C_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        String fetchQuery = "SELECT * FROM CATERING WHERE C_ADMIN IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
         return this.obj.query(fetchQuery, new String[]{}); 
     }
     
     public ResultSet getTravelAgentData(int toId) throws SQLException{
-        String fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
+        String fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ADMIN IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
         return this.obj.query(fetchQuery, new String[]{}); 
     }
    
-    
+     public void createWorkRequest(WorkRequest wr) throws SQLException{
+        String insertQuery = "INSERT INTO WORK_REQUEST (WK_ID, TYPE, FROM_ID, TO_ID, STATUS, EVENT_ID, EVENT_MANAGER_ID)" + 
+        "values('" + wr.getID() + "','" + wr.getType() + "','" + wr.getFromID() + "','" + wr.getToID() + "','" + wr.getStatus() + "','" + wr.getEventID() + "','" + wr.getEventManagerID() + "')";
+        this.obj.update(insertQuery, new String[]{});       
+    }
     
 }

@@ -24,24 +24,46 @@ public class WorkRequestController {
         workRequestService = new WorkRequestService();
     }
     
+    //get all workRequest Data
+    public ArrayList<WorkRequest> getAllWorkRequestData() throws SQLException{
+        return workRequestService.getAllWorkRequestData();
+    }
+    
     // get workRequest based on toId
     public ArrayList<WorkRequest> getWorkRequestByRoleService(int toId) throws SQLException{
         return workRequestService.getWorkRequestByRole(toId);
     }
       
     // get enterprise data from HOTEL table based on toId
-    public ArrayList<Hotel> getHotelEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getHotelDataService(toId);
+    public ArrayList<Hotel> getHotelEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getHotelDataService(toId, status);
     }
     
     // get enterprise data from CATERING table based on toId
-    public ArrayList<Catering> getCateringEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getCateringDataService(toId);
+    public ArrayList<Catering> getCateringEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getCateringDataService(toId, status);
     }
 
     // get enterprise data from TRAVELAGENT table based on toId
-    public ArrayList<TravelAgent> getTravelAgentEnterpriseData(int toId) throws SQLException{
-        return workRequestService.getTravelAgentDataService(toId);
+    public ArrayList<TravelAgent> getTravelAgentEnterpriseData(int toId, String status) throws SQLException{
+        return workRequestService.getTravelAgentDataService(toId, status);
     }
+    
+    // get workRequest based on eventId
+    public ArrayList<WorkRequest> getWorkRequestByEventId(int eventId) throws SQLException{
+        return workRequestService.getWorkRequestByEventID(eventId);
+    }
+    
+    public void createWorkRequest(WorkRequest wk) throws SQLException {
+        workRequestService.createWorkRequestService(wk);
+    }
+ 
+  
+    //update status 
+    public void updateStatus(String enterpriseName, String enterpriseType, String status) throws SQLException{
+        workRequestService.updateStatusService(enterpriseName, enterpriseType, status);
+    }
+    
+    
     
 }

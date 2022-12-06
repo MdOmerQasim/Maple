@@ -33,9 +33,6 @@ public class UserService {
             u.setPostalCode(rs.getString("postalCode"));
             u.setRole(rs.getString("role"));
             u.setPhoto(rs.getString("role"));
-//            u.setEventID(Integer.parseInt(rs.getString("EVENT_ID")));
-//            u.setEventManagerID(Integer.parseInt(rs.getString("EVENT_MANAGER_ID")));
-
             userData.add(u);
         }
         return userData;
@@ -71,5 +68,19 @@ public class UserService {
 
         return userData;
     }
+    
+    public int updateUserPasswordService(ArrayList<User> userData, String oldPwd, String newPwd, String confirmPwd) throws SQLException {
+        if(newPwd.equals("") || confirmPwd.equals("") || oldPwd.equals("")){
+            return -3;
+        }
+        if(oldPwd.equals(userData.get(0).getPassword()) && newPwd.equals(confirmPwd)){
+            userRepository.updateUserPassword(newPwd, userData.get(0).getID());
+            return 0;
+        } else if(!newPwd.equals(confirmPwd)){
+            return -1;
+        } 
+        return -2;
+    }
+    
     
 }

@@ -4,24 +4,37 @@
  */
 package com.maple.backend.model;
 
-import java.util.Date;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author bharv
  */
 public class Catering {
     
-    public int cateringID;
-    public String cateringAddress;
-    public String cateringName;
-    public String cateringArea;
-    public String cateringType;
-    public ImageIcon photo;
-    public String capacity;
-    public Date bookedDates;
-    public String cateringAdmin;
+    private int cateringID;
+    private String cateringAddress;
+    private String cateringName;
+    private String cateringArea;
+    private String cateringType;
+    private String photo;
+    private String capacity;
+    private String bookedDates;
+    private String cateringAdmin;
+    private String email;
+    private String phone;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    @Override
+    public String toString() {
+        return cateringName;
+    }
 
     public int getCateringID() {
         return cateringID;
@@ -63,11 +76,11 @@ public class Catering {
         this.cateringType = cateringType;
     }
 
-    public ImageIcon getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(ImageIcon photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -79,11 +92,11 @@ public class Catering {
         this.capacity = capacity;
     }
 
-    public Date getBookedDates() {
+    public String getBookedDates() {
         return bookedDates;
     }
 
-    public void setBookedDates(Date bookedDates) {
+    public void setBookedDates(String bookedDates) {
         this.bookedDates = bookedDates;
     }
 
@@ -94,6 +107,22 @@ public class Catering {
     public void setCateringAdmin(String cateringAdmin) {
         this.cateringAdmin = cateringAdmin;
     }
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     
 }

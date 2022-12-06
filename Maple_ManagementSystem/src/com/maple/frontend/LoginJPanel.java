@@ -7,7 +7,8 @@ package com.maple.frontend;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
-import com.maple.frontend.userScreen.UserLeftPanelOptions;
+import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
+import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
 import javax.swing.JSplitPane;
@@ -157,21 +158,25 @@ public class LoginJPanel extends javax.swing.JPanel {
             
             if (validUser == -1){
                 JOptionPane.showMessageDialog(null, "Invalid credentials");
+            } else if(validUser == -2){
+                JOptionPane.showMessageDialog(null, "Awaiting business Admin approval!");
             } else {
 
             ArrayList<User> userData = userController.getUserById(validUser);
           
             if(role.equals("Customer")){
-                UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
-                this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
-
-                UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+                UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
+                this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
+                this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
             }
             else if(role.equals("Business Admin")){
                 BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+            } else if(role.equals("Hotel Admin")){
+                HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
+                this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
+                this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
             }
             }
         } catch (SQLException ex) {

@@ -4,9 +4,13 @@
  */
 package com.maple.frontend.businessAdminScreen;
 
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.User;
 import com.maple.resources.ModelPieChart;
 import com.maple.resources.PieChart;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,30 +21,67 @@ public class BusinessAdminAnalytics extends javax.swing.JPanel {
     /**
      * Creates new form BusinessAdminAnalytics
      */
-    public BusinessAdminAnalytics() {
+    
+    WorkRequestController workRequestController;
+    ArrayList<User> userData;
+    int businessAdminId;
+    
+    public BusinessAdminAnalytics(ArrayList<User> userData) throws SQLException {
         initComponents();
-        
+        workRequestController = new WorkRequestController();
+        this.userData = userData;
+        businessAdminId = userData.get(0).getID();
         populateChartData();
     }
     
-    private void populateChartData(){
+    private void populateChartData() throws SQLException{
         
         PieChart pieChart=new PieChart();
 
+        //Load Hotel Charts
         hotelChart.setChartType(PieChart.PeiChartType.DONUT_CHART);
-        hotelChart.addData(new ModelPieChart("REJECTED", 100, new Color(221, 65, 65)));
-        hotelChart.addData(new ModelPieChart("APPROVED", 80, new Color(47, 157, 64)));
-        hotelChart.addData(new ModelPieChart("PENDING", 60, new Color(196, 151, 58)));
-        
+        int approvedHotel = workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED").size();
+        int rejectedHotel = workRequestController.getHotelEnterpriseData(businessAdminId, "REJECTED").size();
+        int pendingHotel = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size();
+        if(approvedHotel!=0){
+            hotelChart.addData(new ModelPieChart("APPROVED", approvedHotel, new Color(47, 157, 64)));
+        }
+        if(rejectedHotel!=0){
+            hotelChart.addData(new ModelPieChart("REJECTED", rejectedHotel, new Color(221, 65, 65)));
+        }
+        if(pendingHotel!=0){
+            hotelChart.addData(new ModelPieChart("PENDING", pendingHotel, new Color(196, 151, 58)));
+        }
+ 
+        //Load Catering Charts
         cateringChart.setChartType(PieChart.PeiChartType.DONUT_CHART);
-        cateringChart.addData(new ModelPieChart("REJECTED", 100, new Color(221, 65, 65)));
-        cateringChart.addData(new ModelPieChart("APPROVED", 80, new Color(47, 157, 64)));
-        cateringChart.addData(new ModelPieChart("PENDING", 60, new Color(196, 151, 58)));
+        int approvedCatering = workRequestController.getCateringEnterpriseData(businessAdminId, "ACCEPTED").size();
+        int rejectedCatering = workRequestController.getCateringEnterpriseData(businessAdminId, "REJECTED").size();
+        int pendingCatering = workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size();
+        if(approvedCatering!=0){
+            cateringChart.addData(new ModelPieChart("APPROVED", approvedCatering, new Color(47, 157, 64)));
+        }
+        if(rejectedCatering!=0){
+            cateringChart.addData(new ModelPieChart("REJECTED", rejectedCatering, new Color(221, 65, 65)));
+        }
+        if(pendingCatering!=0){
+            cateringChart.addData(new ModelPieChart("PENDING", pendingCatering, new Color(196, 151, 58)));
+        }
         
+        //Load TravelAgent Charts
         travelChart.setChartType(PieChart.PeiChartType.DONUT_CHART);
-        travelChart.addData(new ModelPieChart("REJECTED", 100, new Color(221, 65, 65)));
-        travelChart.addData(new ModelPieChart("APPROVED", 80, new Color(47, 157, 64)));
-        travelChart.addData(new ModelPieChart("PENDING", 60, new Color(196, 151, 58)));
+        int approvedTravel = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "ACCEPTED").size();
+        int rejectedTravel = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "REJECTED").size();
+        int pendingTravel = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size();
+        if(approvedTravel!=0){
+            travelChart.addData(new ModelPieChart("APPROVED", approvedTravel, new Color(47, 157, 64)));
+        }
+        if(rejectedTravel!=0){
+            travelChart.addData(new ModelPieChart("REJECTED", rejectedTravel, new Color(221, 65, 65)));
+        }
+        if(pendingTravel!=0){
+            travelChart.addData(new ModelPieChart("PENDING", pendingTravel, new Color(196, 151, 58)));
+        }
     }
 
     /**

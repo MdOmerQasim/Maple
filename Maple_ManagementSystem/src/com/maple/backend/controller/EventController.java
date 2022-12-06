@@ -4,10 +4,39 @@
  */
 package com.maple.backend.controller;
 
+import com.maple.backend.model.Event;
+import com.maple.backend.model.WorkRequest;
+import com.maple.backend.service.EventService;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author mohammedomerqasimshaik
  */
 public class EventController {
+    EventService eventService;
     
+    public EventController() throws SQLException {
+        eventService = new EventService();
+    }
+    
+    // Get all events
+    public int getEventsList() throws SQLException{
+//        return eventService.getEventsListService();
+ArrayList<Event> eventList = eventService.getEventsListService();
+        return eventList.size()+1;
+    }
+    
+     // Get User events
+    public ArrayList<Event> getFilteredEventsList(int userid, String status, Date date, String type) throws SQLException{
+        return eventService.getFilteredEventsListService(userid, status, date, type);
+    }
+    
+    // Create Event    
+     public void createAnEvent(Event newEvent) throws SQLException{
+         System.out.println("usr controll");
+        eventService.createAnEventService(newEvent);
+    }
 }

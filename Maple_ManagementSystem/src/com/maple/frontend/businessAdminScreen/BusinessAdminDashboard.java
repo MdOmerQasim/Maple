@@ -50,64 +50,82 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED"); 
             for(Hotel ht: hotelFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ht.getHotelName();
+                Object[] obj = new Object[7];
+                obj[0] = ht;
                 obj[1] = "HOTEL";
                 obj[2] = ht.getHotelAddress();
-                obj[3] = ht.getEmail();
+                obj[3] = ht.getHotelArea();
+                obj[4] = ht.getCapacity();
+                obj[5] = ht.getEmail();
+                obj[6] = ht.getPhone();
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("CATERING")){
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "ACCEPTED");
             for(Catering ct: cateringFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ct.getCateringName();
+                Object[] obj = new Object[7];
+                obj[0] = ct;
                 obj[1] = "CATERING";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ct.getCateringAddress();
+                obj[3] = ct.getCateringArea();
+                obj[4] = ct.getCapacity();
+                obj[5] = ct.getEmail();
+                obj[6] = ct.getPhone();
                 dtmodel.addRow(obj);
             }
         } else if(type.equalsIgnoreCase("TRAVEL")){
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "ACCEPTED"); 
             for(TravelAgent ta: travelAgentFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ta.getTravelAgentName();
+                Object[] obj = new Object[7];
+                obj[0] = ta;
                 obj[1] = "TRAVEL";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ta.getTravelAgentAddress();
+                obj[3] = ta.getTravelAgentArea();
+                obj[4] = ta.getCapacity();
+                obj[5] = ta.getEmail();
+                obj[6] = ta.getPhone();
                 dtmodel.addRow(obj);
             }
         } else {
             //Load hotel data
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED"); //TODO: Pass toId from USER table
             for(Hotel ht: hotelFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ht.getHotelName();
+                Object[] obj = new Object[7];
+                obj[0] = ht;
                 obj[1] = "HOTEL";
                 obj[2] = ht.getHotelAddress();
-                obj[3] = ht.getEmail();
+                obj[3] = ht.getHotelArea();
+                obj[4] = ht.getCapacity();
+                obj[5] = ht.getEmail();
+                obj[6] = ht.getPhone();
                 dtmodel.addRow(obj);
             }
             //Load catering data
-            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId);
+            cateringFilteredList = workRequestController.getCateringEnterpriseData(businessAdminId, "ACCEPTED");
             for(Catering ct: cateringFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ct.getCateringName();
+                Object[] obj = new Object[7];
+                obj[0] = ct;
                 obj[1] = "CATERING";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ct.getCateringAddress();
+                obj[3] = ct.getCateringArea();
+                obj[4] = ct.getCapacity();
+                obj[5] = ct.getEmail();
+                obj[6] = ct.getPhone();
                 dtmodel.addRow(obj);
             }
             //Load travelAgent data
-            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId); 
+            travelAgentFilteredList = workRequestController.getTravelAgentEnterpriseData(businessAdminId, "ACCEPTED"); 
             for(TravelAgent ta: travelAgentFilteredList){
-                Object[] obj = new Object[4];
-                obj[0] = ta.getTravelAgentName();
+                Object[] obj = new Object[7];
+                obj[0] = ta;
                 obj[1] = "TRAVEL";
-                obj[2] = "NAME";
-                obj[3] = "NAME";
+                obj[2] = ta.getTravelAgentAddress();
+                obj[3] = ta.getTravelAgentArea();
+                obj[4] = ta.getCapacity();
+                obj[5] = ta.getEmail();
+                obj[6] = ta.getPhone();
                 dtmodel.addRow(obj);
             }
         } 
@@ -127,9 +145,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
         jTravelAgentCard.setDescription("Travel Agents Affiliated");
         
         //Assign Request Values
-        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId).size());
-        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId).size()); 
-        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId).size()); 
+        jHotelCard.setValues("# " + workRequestController.getHotelEnterpriseData(businessAdminId, "ACCEPTED").size());
+        jCateringCard.setValues("# " + workRequestController.getCateringEnterpriseData(businessAdminId, "ACCEPTED").size()); 
+        jTravelAgentCard.setValues("# " + workRequestController.getTravelAgentEnterpriseData(businessAdminId, "ACCEPTED").size()); 
         
     }
     
@@ -196,32 +214,32 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Enterprise", "Address", "Email"
+                "Name", "Enterprise", "Address", "Area", "Capacity", "Email", "Phone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -234,6 +252,9 @@ public class BusinessAdminDashboard extends javax.swing.JPanel {
             table.getColumnModel().getColumn(1).setResizable(false);
             table.getColumnModel().getColumn(2).setResizable(false);
             table.getColumnModel().getColumn(3).setResizable(false);
+            table.getColumnModel().getColumn(4).setResizable(false);
+            table.getColumnModel().getColumn(5).setResizable(false);
+            table.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout jTablePanelLayout = new javax.swing.GroupLayout(jTablePanel);

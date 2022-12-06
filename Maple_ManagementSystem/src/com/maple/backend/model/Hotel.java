@@ -4,9 +4,6 @@
  */
 package com.maple.backend.model;
 
-import java.util.Date;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author bharv
@@ -24,6 +21,20 @@ public class Hotel {
     private String hotelAdmin;
     private String email;
     private String phone;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    @Override
+    public String toString() {
+        return hotelName;
+    }
 
     public int getHotelID() {
         return hotelID;
