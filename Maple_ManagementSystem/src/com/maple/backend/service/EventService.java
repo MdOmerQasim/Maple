@@ -48,9 +48,9 @@ public class EventService {
     }
     
 //    user specific events
-    public ArrayList<Event> getFilteredEventsListService(int userid, String status, Date date, String type) throws SQLException{
+    public ArrayList<Event> getFilteredEventsListService(int userid, String status, String type) throws SQLException{
         ArrayList<Event> eventsDataList = new ArrayList<>();
-        ResultSet resultSet = eventRepository.getFilteredEventData(userid, status, date, type);
+        ResultSet resultSet = eventRepository.getFilteredEventData(userid, status, type);
         eventsDataList = eventDataMapper(resultSet);
         return eventsDataList; 
     }
