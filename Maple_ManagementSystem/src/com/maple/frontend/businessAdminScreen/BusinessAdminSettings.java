@@ -31,6 +31,7 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     
     UserController userController;
     
+    
     public BusinessAdminSettings(ArrayList<User> userData) throws SQLException {
         initComponents();
         this.userData = userData;
@@ -38,7 +39,6 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
         jName.setText(userData.get(0).getName());
         jName.setEnabled(false);
-        
     }
 
     /**
@@ -88,6 +88,11 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         });
 
         jOldPasswordField.setLabelText("Old Password");
+        jOldPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOldPasswordFieldActionPerformed(evt);
+            }
+        });
         jOldPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jOldPasswordFieldKeyReleased(evt);
@@ -174,6 +179,7 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     private void jSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveBtnActionPerformed
         
         try {
+            
             //Validate Old Password
             String oldPassword = new String(jOldPasswordField.getPassword());
             String newPassword = new String(jNewPasswordField.getPassword());
@@ -193,7 +199,7 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
             jOldPasswordField.setText("");
             jNewPasswordField.setText("");
             jConfirmPasswordField.setText("");
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(BusinessAdminSettings.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -242,6 +248,10 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         // TODO add your handling code here:
         jUserPhoto.setBorderSize(0);
     }//GEN-LAST:event_jUserPhotoMouseExited
+
+    private void jOldPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOldPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jOldPasswordFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

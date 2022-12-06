@@ -9,7 +9,6 @@ import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.User;
-import com.maple.backend.model.WorkRequest;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,6 +42,8 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         populateCardData();
         populateTableData("ALL");
         table.fixTable(jScrollPane2);
+        jAcceptBtn.setEnabled(false);
+        jRejectBtn.setEnabled(false);
     }
     
     //Card Data
@@ -75,7 +76,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
         
         if(type.equalsIgnoreCase("HOTEL")){
-            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING"); //TODO: Pass toId from USER table
+            hotelFilteredList = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING");
             for(Hotel ht: hotelFilteredList){
                 Object[] obj = new Object[7];
                 obj[0] = ht;
@@ -257,6 +258,11 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setResizable(false);
@@ -358,6 +364,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jHotelCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseClicked
         
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             //Apply CSS
             jHotelCard.setBackground(Color.CYAN);
             jCateringCard.setBackground(Color.white);
@@ -378,6 +388,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jRejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRejectBtnActionPerformed
         
         try {
+            
             //Select row data
             int selectedRow = table.getSelectedRow();
             DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
@@ -391,6 +402,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             populateCardData();
             populateTableData("ALL");
             
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
         } catch (SQLException ex) {
             Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -399,6 +414,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jAcceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAcceptBtnActionPerformed
 
         try {
+            
             //Select row data
             int selectedRow = table.getSelectedRow();
             DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
@@ -420,6 +436,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
             cateringClick = 0;
             travelClick = 0;
             
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
         } catch (SQLException ex) {
             Logger.getLogger(BusinessAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -429,6 +449,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
  
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             populateTableData("ALL");
             
             //Reset card colors
@@ -461,6 +485,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jCateringCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCateringCardMouseClicked
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             // Apply CSS
             jHotelCard.setBackground(Color.white);
             jCateringCard.setBackground(Color.CYAN);
@@ -492,6 +520,10 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
 
     private void jTravelAgentCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTravelAgentCardMouseClicked
         try {
+            //Disable buttons
+            jAcceptBtn.setEnabled(false);
+            jRejectBtn.setEnabled(false);
+            
             //Apply CSS
             jHotelCard.setBackground(Color.white);
             jCateringCard.setBackground(Color.white);
@@ -520,6 +552,14 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jTravelAgentCard.setBackground(Color.white);
         travelClick = 0;
     }//GEN-LAST:event_jTravelAgentCardMouseExited
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        
+        //Enable buttons
+        jAcceptBtn.setEnabled(true);
+        jRejectBtn.setEnabled(true);
+        
+    }//GEN-LAST:event_tableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
