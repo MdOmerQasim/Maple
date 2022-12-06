@@ -23,7 +23,7 @@ public class EventRepository {
     
     public void createAnEvent(Event newEvent) throws SQLException{
         System.out.println("create repo line 1");
-        String sql = "insert into event(event_id,event_type,event_name,event_description,event_area,attendees_count,accomodation_needed,accomodation_count,function_hall_needed,function_hall_count,catering_needed,catering_count,travel_needed,travel_count,event_from,event_to,event_manager_id,chosen_hotel_id,chosen_catering_id,chosen_travel_id, event_user_id) values('" + newEvent.getEventID() + "','" + newEvent.getEventType() + "','" + newEvent.getEventName() + "','" + newEvent.getEventDescription() + "','" + newEvent.getEventArea() + "','" + newEvent.getAtendeesCount() + "','" + newEvent.getAccomodationNeeded() + "','" + newEvent.getAccomodationCount() + "','" + newEvent.getFunctionHallNeeded() + "','" + newEvent.getFunctionHallCount() + "','" + newEvent.getCateringNeeded()+"','" + newEvent.getCateringCount()+"','" + newEvent.getTravelNeeded()+"','" + newEvent.getTravelCount()+"','" + newEvent.getEventFrom()+ "','" + newEvent.getEventTo()+ "','" + newEvent.getEventManagerID()+ "','" + newEvent.getChosenHotelID()+ "','" + newEvent.getChosenCateringID()+ "','" + newEvent.getChosenTravelAgentID()+ "','" + newEvent.getUserID()+ "')";
+        String sql = "insert into event(status, event_id,event_type,event_name,event_description,event_area,attendees_count,accomodation_needed,accomodation_count,function_hall_needed,function_hall_count,catering_needed,catering_count,travel_needed,travel_count,event_from,event_to,event_manager_id,chosen_hotel_id,chosen_catering_id,chosen_travel_id, event_user_id) values('" + newEvent.getStatus()+ "','" + newEvent.getEventID() + "','" + newEvent.getEventType() + "','" + newEvent.getEventName() + "','" + newEvent.getEventDescription() + "','" + newEvent.getEventArea() + "','" + newEvent.getAtendeesCount() + "','" + newEvent.getAccomodationNeeded() + "','" + newEvent.getAccomodationCount() + "','" + newEvent.getFunctionHallNeeded() + "','" + newEvent.getFunctionHallCount() + "','" + newEvent.getCateringNeeded()+"','" + newEvent.getCateringCount()+"','" + newEvent.getTravelNeeded()+"','" + newEvent.getTravelCount()+"','" + newEvent.getEventFrom()+ "','" + newEvent.getEventTo()+ "','" + newEvent.getEventManagerID()+ "','" + newEvent.getChosenHotelID()+ "','" + newEvent.getChosenCateringID()+ "','" + newEvent.getChosenTravelAgentID()+ "','" + newEvent.getUserID()+ "')";
         System.out.println("create " + sql);
 
         obj.update(sql, new String[]{});
@@ -37,8 +37,8 @@ public class EventRepository {
         return obj.query(fetchQuery, new String[]{});          
     }
     
-    public ResultSet getFilteredEventData(int userid, String status, Date date, String type) throws SQLException{
-        String fetchQuery = "SELECT * FROM EVENTS WHERE USER_ID == " + userid + "";  // add type, date, status filters
+    public ResultSet getFilteredEventData(int userid, String status, String type) throws SQLException{
+        String fetchQuery = "SELECT * FROM EVENT WHERE event_user_id = '" + userid + "' AND event_type = '" + type + "' AND status = '" + status + "'" ;  // add type, date, status filters
         return this.obj.query(fetchQuery, new String[]{});           
     }
 }

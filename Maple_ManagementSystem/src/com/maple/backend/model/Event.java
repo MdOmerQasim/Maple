@@ -34,6 +34,7 @@ public class Event {
     public int cateringCount;
     public String travelNeeded;
     public int travelCount;
+    public String status;
  
 
     public int getAccomodationCount() {
@@ -204,6 +205,19 @@ public class Event {
 
     public void setCateringNeeded(String cateringNeeded) {
         this.cateringNeeded = cateringNeeded;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return  String.valueOf(eventID);
     }
     
     
