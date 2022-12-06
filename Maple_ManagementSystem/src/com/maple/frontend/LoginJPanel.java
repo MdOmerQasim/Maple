@@ -182,9 +182,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
 
             else if(role.equals("Event Manager")){
-                EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane);
+                EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
+                this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
             }
             }
         } catch (SQLException ex) {
