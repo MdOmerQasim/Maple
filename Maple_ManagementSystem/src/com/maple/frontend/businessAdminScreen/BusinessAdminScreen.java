@@ -45,11 +45,14 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText(userData.get(0).getName());
+        getNotificationData();
+    }
+    public void getNotificationData() throws SQLException{
         // get notification count
         int notification = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size() + 
                 workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size() + 
                 workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size();
-        notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
+        notificationBadge.setBadges(notification); 
     }
     
     /**
@@ -293,7 +296,6 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void notificationBadgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBadgeActionPerformed
         try {
-            notificationBadge.setBadges(0);
             BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
             jRightSplitPane.setBottomComponent(businessAdminRequest);
         } catch (SQLException ex) {}
@@ -319,6 +321,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
+            getNotificationData();
             BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(businessAdminDashboard);
         } catch (SQLException ex) {}
@@ -326,6 +329,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jAnalyticsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAnalyticsBtnActionPerformed
         try {
+            getNotificationData();
             // TODO add your handling code here:
             BusinessAdminAnalytics businessAdminAnalytics = new BusinessAdminAnalytics(userData);
             jRightSplitPane.setBottomComponent(businessAdminAnalytics);
@@ -336,6 +340,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
         try {
+            getNotificationData();
             BusinessAdminSettings businessAdminSettings = new BusinessAdminSettings(userData);
             jRightSplitPane.setBottomComponent(businessAdminSettings);
         } catch (SQLException ex) {
