@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/HomeLeftJPanel.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/controller/UserController.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/userScreen/UserCreateEvent.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/repository/EventRepository.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/repository/WorkRequestRepository.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/RegisterJPanel.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/service/WorkRequestService.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/controller/WorkRequestController.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/service/UserService.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/controller/EventController.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/repository/UserRepository.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/DBConnection/JDBC.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/model/Event.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/service/EventService.java</file>
-            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/userScreen/UserViewMyEvent.java</file>
+            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/businessAdminScreen/BusinessAdminScreen.java</file>
+            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventManagerScreen/EventManagerScreen.java</file>
+            <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/LoginJPanel.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package com.maple.frontend;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
+import com.maple.frontend.eventManagerScreen.EventManagerScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
@@ -85,7 +86,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Login as");
 
-        jLoginAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
+        jLoginAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Event Manager" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,6 +154,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         String role = jLoginAsComboBox.getSelectedItem().toString();
 
         try {
+            System.out.println("the role is " + role);
 
             int validUser = userController.validateUser(username, password, role);
             
@@ -177,6 +179,12 @@ public class LoginJPanel extends javax.swing.JPanel {
                 HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
+            }
+
+            else if(role.equals("Event Manager")){
+                EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane);
+                this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
+                this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
             }
             }
         } catch (SQLException ex) {
