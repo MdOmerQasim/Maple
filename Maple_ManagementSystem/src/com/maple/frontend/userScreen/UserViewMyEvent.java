@@ -4,18 +4,24 @@
  */
 package com.maple.frontend.userScreen;
 
+import com.maple.backend.controller.EnterpriseController;
 import com.maple.backend.controller.EventController;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Catering;
 import com.maple.backend.model.Event;
+import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
 import java.awt.CardLayout;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -32,16 +38,19 @@ public class UserViewMyEvent extends javax.swing.JPanel {
      */
     JSplitPane mainSplitPane;
     EventController eventController;
+    EnterpriseController enterpriseController;
     WorkRequestController wrController;
-     UserController userController;
+    UserController userController;
     User loggedInUser;
+    
     public UserViewMyEvent(JSplitPane jSplitPane, User loggedUser) {
         try {
             this.mainSplitPane = jSplitPane;
             this.loggedInUser = loggedUser;
             eventController = new EventController();
             wrController = new WorkRequestController();
-              userController = new UserController();
+            userController = new UserController();
+            enterpriseController = new EnterpriseController();
             initComponents();
             jPanel1.setVisible(false);
             jPanel2.setVisible(false);
@@ -291,16 +300,16 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(hotelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hotelType))
-                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(49, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(hotelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(hotelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -444,7 +453,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(managerStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -489,10 +498,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1368, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -510,6 +519,64 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             }
         }
         return specWr;
+    }
+    
+    private Hotel hotelMapper(ResultSet rs) throws SQLException{
+        Hotel hotel = new Hotel();
+        while(rs.next()){
+            hotel.setHotelID(Integer.parseInt(rs.getString("H_ID")));
+            hotel.setHotelName(rs.getString("H_NAME"));
+            hotel.setHotelAddress(rs.getString("H_ADDRESS"));
+            hotel.setHotelArea(rs.getString("H_AREA"));
+            hotel.setHotelType(rs.getString("H_TYPE"));
+            hotel.setCapacity(rs.getString("H_CAPACITY"));
+            hotel.setHotelAdmin(rs.getString("H_ADMIN_ID"));
+            hotel.setBookedDates(rs.getString("H_BOOKED_DATES"));
+            hotel.setPhoto(rs.getString("H_PHOTO"));
+            hotel.setEmail(rs.getString("H_EMAIL"));
+            hotel.setPhone(rs.getString("H_PHONE"));
+            hotel.setStatus(rs.getString("H_STATUS"));
+        }
+        
+        return hotel; 
+    }
+    
+     private Catering catrMapper(ResultSet rs) throws SQLException{
+        Catering catering = new Catering();
+        while(rs.next()){
+            catering.setCateringID(Integer.parseInt(rs.getString("C_ID")));
+            catering.setCateringName(rs.getString("C_NAME"));
+            catering.setCateringAddress(rs.getString("C_ADDRESS"));
+            catering.setCateringArea(rs.getString("C_AREA"));
+            catering.setPhoto(rs.getString("C_PHOTO"));
+            catering.setCapacity(rs.getString("C_CAPACITY"));
+            catering.setBookedDates(rs.getString("C_BOOKED_DATES"));
+            catering.setCateringAdmin(rs.getString("C_ADMIN"));
+            catering.setEmail(rs.getString("C_EMAIL"));
+            catering.setPhone(rs.getString("C_PHONE"));
+            catering.setStatus(rs.getString("C_STATUS"));
+        }
+        
+        return catering; 
+    }
+     
+     private TravelAgent travelAgentMapper(ResultSet rs) throws SQLException{
+        TravelAgent travelAgent = new TravelAgent();
+        while(rs.next()){
+           travelAgent.setTravelAgentID(Integer.parseInt(rs.getString("TA_ID")));
+            travelAgent.setTravelAgentName(rs.getString("TA_NAME"));
+            travelAgent.setTravelAgentAddress(rs.getString("TA_ADDRESS"));
+            travelAgent.setTravelAgentArea(rs.getString("TA_AREA"));
+            travelAgent.setPhoto(rs.getString("TA_PHOTO"));
+            travelAgent.setCapacity(rs.getString("TA_CAPACITY"));
+            travelAgent.setBookedDates(rs.getString("TA_BOOKED_DATES"));
+            travelAgent.setTravelAgentAdmin(rs.getString("TA_ADMIN"));
+            travelAgent.setEmail(rs.getString("TA_EMAIL"));
+            travelAgent.setPhone(rs.getString("TA_PHONE"));
+            travelAgent.setStatus(rs.getString("TA_STATUS"));
+        }
+        
+        return travelAgent; 
     }
     
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -546,10 +613,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             boolean isCatering = selectedEvent.getCateringNeeded().equalsIgnoreCase("yes") ? true : false;
             boolean isTravel = selectedEvent.getTravelNeeded().equalsIgnoreCase("yes") ? true : false;
             
-            System.out.println("isAccomodation");
-            System.out.println(isAccomodation);
-            
-            //        fetch all work request related to this eventId
+            //  fetch all work request related to this eventId
             ArrayList<WorkRequest> wrEvents = new ArrayList<>();
             wrEvents = wrController.getWorkRequestByEventId(selectedEvent.getEventID());
             System.out.println(wrEvents);
@@ -559,14 +623,25 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 hotelType.setText(isAccomodation ? "Accomodation" : "Function Hall");
                 
                 WorkRequest hotelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_HOTELADMIN");
-                hotelBtn.setText(hotelWr.getStatus());
                 //change btn background  based on status
                 int id = selectedEvent.getChosenHotelID();
+                hotelBtn.setVisible(false);
+                hotelName.setVisible(false);
+                hotelAddress.setVisible(false);
+                hotelImage.setVisible(false);
                 if(id != -1) {
+                    hotelBtn.setVisible(true);
+                    hotelName.setVisible(true);
+                    hotelAddress.setVisible(true);
+                    hotelImage.setVisible(true);
+                    
+                    hotelBtn.setText(hotelWr.getStatus());
+                    ResultSet resultSet = enterpriseController.getEnterpriseData("HOTEL", id);
+                    Hotel hotelData = hotelMapper(resultSet);
                     //  get Hotel Details
-                    //            hotelName
-                    //            hotelAddress
-                    //            hotelImage
+                    hotelName.setText(hotelData.getHotelName());
+                    hotelAddress.setText(hotelData.getHotelAddress());
+                    hotelImage.setIcon(new ImageIcon(hotelData.getPhoto()));
                     
                 }
             }
@@ -574,16 +649,26 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 jPanel2.setVisible(true);
                 
                 WorkRequest caterWr = getSpecificEvent(wrEvents,"EVENTMANAGER_CATERINGADMIN");
-                cateringBtn.setText(caterWr.getStatus());
                 //change btn background  based on status
                 
                 int id = selectedEvent.getChosenCateringID();
-                System.out.println(id);
+                cateringBtn.setVisible(false);
+                cateringName.setVisible(false);
+                cateringAddress.setVisible(false);
+                cateringImage.setVisible(false);
                 if(id != -1) {
+                    cateringBtn.setVisible(true);
+                    cateringName.setVisible(true);
+                    cateringAddress.setVisible(true);
+                    cateringImage.setVisible(true);
+                    
+                    cateringBtn.setText(caterWr.getStatus());
+                    ResultSet resultSet = enterpriseController.getEnterpriseData("CATERING", id);
+                    Catering catrData = catrMapper(resultSet);
                      // get Catering Details
-            //            cateringName
-            //            cateringAddress
-            //            cateringImage
+                    cateringName.setText(catrData.getCateringName());
+                    cateringAddress.setText(catrData.getCateringAddress());
+                    cateringImage.setIcon(new ImageIcon(catrData.getPhoto()));
                 }
             }
             if(isTravel) {
@@ -594,11 +679,23 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 //change btn background  based on status
                 
                 int id = selectedEvent.getChosenTravelAgentID();
+                travelBtn.setVisible(false);
+                travelName.setVisible(false);
+                travelAddress.setVisible(false);
+                travelImage.setVisible(false);
                  if(id != -1) {
+                    travelBtn.setVisible(true);
+                    travelName.setVisible(true);
+                    travelAddress.setVisible(true);
+                    travelImage.setVisible(true);
+                    
+                    travelBtn.setText(travelWr.getStatus());
+                    ResultSet resultSet = enterpriseController.getEnterpriseData("TRAVEL", id);
+                     TravelAgent travelData = travelAgentMapper(resultSet);
                      //            get Travel Details
-                    //            travelName
-                    //            travelAddress
-                    //            travelImage
+                    travelName.setText(travelData.getTravelAgentName());
+                    travelAddress.setText(travelData.getTravelAgentAddress());
+                    travelImage.setIcon(new ImageIcon(travelData.getPhoto()));
                  }
             }
         } catch (SQLException ex) {
