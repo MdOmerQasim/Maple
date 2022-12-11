@@ -30,8 +30,8 @@ ArrayList<Event> eventList = eventService.getEventsListService();
     }
     
      // Get User events
-    public ArrayList<Event> getFilteredEventsList(int userid, String status, Date date, String type) throws SQLException{
-        return eventService.getFilteredEventsListService(userid, status, date, type);
+    public ArrayList<Event> getFilteredEventsList(int userid, String status, String type) throws SQLException{
+        return eventService.getFilteredEventsListService(userid, status, type);
     }
     
     // Create Event    
