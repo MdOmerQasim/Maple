@@ -15,7 +15,7 @@ public class JDBC {
     private static final String URL
             = "jdbc:mysql://localhost:3306/maple?zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "omeromer";
+    private static final String PASSWORD = "root";
 
     private Connection conn;
     private static JDBC _instance;

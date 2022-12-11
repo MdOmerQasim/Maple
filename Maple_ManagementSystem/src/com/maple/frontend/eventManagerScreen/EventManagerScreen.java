@@ -290,13 +290,18 @@ public class EventManagerScreen extends javax.swing.JPanel {
         } catch (SQLException ex) {
             
         }
+//        requests will have all the requests that event manager has made to HCT and its details.
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
-            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
-            jRightSplitPane.setBottomComponent(businessAdminDashboard);
-        } catch (SQLException ex) {}
+            EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData);
+//            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(eventManagerDashboard);
+        } catch (SQLException ex) {
+            System.out.println("exception in dashboard event manager");
+        }
+// dashboard will have all teh events that event admin has assigned to him, along with user details.
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     public JSplitPane getBaseSplitPane(){
