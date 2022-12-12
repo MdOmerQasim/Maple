@@ -7,11 +7,7 @@ package com.maple.frontend;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
-<<<<<<< HEAD
 import com.maple.frontend.eventManagerScreen.EventManagerScreen;
-=======
-import com.maple.frontend.eventAdminScreen.EventAdminScreen;
->>>>>>> production
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
@@ -183,7 +179,6 @@ public class LoginJPanel extends javax.swing.JPanel {
                 HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
-<<<<<<< HEAD
             }
 
             else if(role.equals("Event Manager")){
@@ -191,13 +186,6 @@ public class LoginJPanel extends javax.swing.JPanel {
                 this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
             }
-=======
-            }  else if(role.equals("Event Admin")){
-                EventAdminScreen eventAdminScreen = new EventAdminScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
-            } 
->>>>>>> production
             }
         } catch (SQLException ex) {
             System.out.println("error here");

@@ -18,7 +18,7 @@ public class EventRepository {
     JDBC obj;
 
     public EventRepository() throws SQLException {
-        obj = JDBC.getInstance();
+        obj = new JDBC();
     }
     
     public void createAnEvent(Event newEvent) throws SQLException{
@@ -41,16 +41,4 @@ public class EventRepository {
         String fetchQuery = "SELECT * FROM EVENT WHERE event_user_id = '" + userid + "' AND event_type = '" + type + "' AND status = '" + status + "'" ;  // add type, date, status filters
         return this.obj.query(fetchQuery, new String[]{});           
     }
-    
-    public void updateEventAdminFlowEventManagerId(int eventId, int eventManagerId) throws SQLException{
-        String updateQuery = "UPDATE EVENT SET EVENT_MANAGER_ID = '" + eventManagerId + "' WHERE EVENT_ID = " + eventId;
-        this.obj.update(updateQuery, new String[]{});           
-    }
-    
-    public void updateEventAdminFlowStatus(int eventId) throws SQLException{
-        String updateQuery = "UPDATE EVENT SET STATUS = 'ASSIGNED MANAGER' WHERE EVENT_ID = " + eventId;
-        this.obj.update(updateQuery, new String[]{});           
-    }
-    
-
 }

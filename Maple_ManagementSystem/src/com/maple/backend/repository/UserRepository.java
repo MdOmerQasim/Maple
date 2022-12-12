@@ -17,7 +17,7 @@ public class UserRepository {
     JDBC obj;
 
     public UserRepository() throws SQLException {
-        obj = JDBC.getInstance();
+        obj = new JDBC();
     }
     
     public void insertUserData(int ID, String role, String name, String email, String phoneNum, String userName, String password, String path, String postalCode, String status) throws SQLException{

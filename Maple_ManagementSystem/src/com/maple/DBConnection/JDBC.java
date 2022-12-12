@@ -28,7 +28,7 @@ public class JDBC {
         return _instance;
     }
 
-    private JDBC() throws SQLException {
+    public JDBC() throws SQLException {
         conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 				this.stmt = conn.createStatement();
     }
