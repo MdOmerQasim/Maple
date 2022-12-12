@@ -40,9 +40,9 @@ public class EventService {
         
         ArrayList<Event> eventsDataList = new ArrayList<>();
         ResultSet resultSet = eventRepository.getEventData();
-        System.out.println("dataaaa");
+//        System.out.println("dataaaa");
         eventsDataList = eventDataMapper(resultSet);
-        System.out.println("eventlistt");
+        System.out.println("eventlistt" + eventsDataList);
         return eventsDataList; 
     
     }
