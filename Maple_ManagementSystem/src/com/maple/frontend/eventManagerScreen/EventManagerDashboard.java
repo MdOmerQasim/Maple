@@ -6,8 +6,12 @@ package com.maple.frontend.eventManagerScreen;
 import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import com.maple.backend.service.EventService;
+import com.maple.backend.service.UserService;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +25,7 @@ public class EventManagerDashboard extends javax.swing.JPanel {
      */
     ArrayList<User> userData;
     EventService eventService;
+    UserService userService;
     public EventManagerDashboard(ArrayList<User> userData) throws SQLException {
         
         initComponents();
@@ -29,6 +34,9 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         eventService = new EventService();
         populateTableData("all");
         eventTable.fixTable(jScrollPane3);
+        AccomodationCount.setVisible(false);
+        CaterCount.setVisible(false);
+        TravelCount.setVisible(false);
     }
 
     /**
@@ -134,6 +142,11 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        eventTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(eventTable);
 
         Name.setEditable(false);
@@ -230,14 +243,13 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(jLocation2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(181, Short.MAX_VALUE)
+                        .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,8 +342,61 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         //        travelClick = 0;
     }//GEN-LAST:event_jRefreshTableBtn2ActionPerformed
 
+    private void eventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMouseClicked
+        
+        
+        int selectedRowIndex = eventTable.getSelectedRow();
+            System.out.println(selectedRowIndex);
+            if(selectedRowIndex < 0 ){
+                JOptionPane.showMessageDialog(this, "Please select a row to view");
+                return;
+            }
+            DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
+            Event e = (Event) model.getValueAt(selectedRowIndex, 0);
+            System.out.println("selectedEvent");
+            
+            int user_id = e.getUserID();
+        try {
+            UserService userService = new UserService();
+            ArrayList <User> userList = userService.getAllUsers();
+            
+            for(User u: userList){
+                
+                if(u.getID() == user_id){
+                    Name.setText(u.getName());
+                    EmailId.setText(u.getEmail());
+                    PhoneNumber.setText(u.getPhoneNum());
+                    PostalCode.setText(u.getPostalCode());
+            }
+            }
+//            
+//            Email
+        } catch (SQLException ex) {
+            Logger.getLogger(EventManagerDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            Accomodation.setText(e.getAccomodationNeeded());
+            if (e.getAccomodationNeeded().equalsIgnoreCase("yes")){
+                AccomodationCount.setVisible(true);
+                AccomodationCount.setText(String.valueOf(e.getAccomodationCount()));
+            }
+            Catering.setText(e.getCateringNeeded());
+            if (e.getCateringNeeded().equalsIgnoreCase("yes")){
+                CaterCount.setVisible(true);
+                CaterCount.setText(String.valueOf(e.getCateringCount()));
+            }
+            Travel.setText(e.getTravelNeeded());
+            if (e.getTravelNeeded().equalsIgnoreCase("yes")){
+                TravelCount.setVisible(true);
+                TravelCount.setText(String.valueOf(e.getTravelCount()));
+            }
+            String event_to = e.getEventTo();
+            String event_from = e.getEventFrom();
+            EventDate.setText(event_to.substring(0, 10) + "-" + event_from.substring(0, 10));
+    }//GEN-LAST:event_eventTableMouseClicked
+
     private void populateTableData(String type) throws SQLException {
-        System.out.println("dfjb");
+//        System.out.println("dfjb");
         DefaultTableModel dtmodel = (DefaultTableModel) eventTable.getModel();
         dtmodel.setRowCount(0);
 //        ArrayList<Event> eventList = new ArrayList<>(); 
@@ -340,7 +405,8 @@ public class EventManagerDashboard extends javax.swing.JPanel {
             ArrayList<Event> eventList = eventService.getEventsListService();
             for (Event e: eventList){
                 Object[] obj = new Object[6];
-                obj[0] = e.eventName;
+                obj[0] = e;
+                obj[1] = e.eventName;
                 obj[1] = e.eventType;
                 obj[2] = e.eventDescription;
                 obj[3] = e.eventArea;
