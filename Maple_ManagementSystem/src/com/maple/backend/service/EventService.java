@@ -48,9 +48,9 @@ public class EventService {
     }
     
 //    user specific events
-    public ArrayList<Event> getFilteredEventsListService(int userid, String status, Date date, String type) throws SQLException{
+    public ArrayList<Event> getFilteredEventsListService(int userid, String status, String type) throws SQLException{
         ArrayList<Event> eventsDataList = new ArrayList<>();
-        ResultSet resultSet = eventRepository.getFilteredEventData(userid, status, date, type);
+        ResultSet resultSet = eventRepository.getFilteredEventData(userid, status, type);
         eventsDataList = eventDataMapper(resultSet);
         return eventsDataList; 
     }
@@ -81,11 +81,38 @@ public class EventService {
             event.setCateringCount(rs.getInt("catering_count"));
             event.setTravelNeeded(rs.getString("travel_needed"));
             event.setTravelCount(rs.getInt("travel_count"));
-
+            event.setStatus(rs.getString("status"));
             eventList.add(event);
         }
         return eventList;
         
         
+    }
+    
+    
+    
+    public ArrayList<Event> getAllEventListService() throws SQLException{
+        ResultSet rs = eventRepository.getEventData();
+        return eventDataMapper(rs);
+    }
+    
+    public ArrayList<Event> getPublicEventList() throws SQLException{
+        ArrayList<Event> filteredPublicList = new ArrayList<>();
+        ArrayList<Event> eventList = new ArrayList<>();
+        eventList = eventDataMapper(eventRepository.getEventData());
+        eventList.stream()
+                .filter(evt -> evt.getEventType().equalsIgnoreCase("PUBLIC"))
+                .forEach(evt -> filteredPublicList.add(evt));
+        return filteredPublicList;
+    }
+    
+    public ArrayList<Event> getPrivateEventList() throws SQLException{
+        ArrayList<Event> filteredPrivateList = new ArrayList<>();
+        ArrayList<Event> eventList = new ArrayList<>();
+        eventList = eventDataMapper(eventRepository.getEventData());
+        eventList.stream()
+                .filter(evt -> evt.getEventType().equalsIgnoreCase("PRIVATE"))
+                .forEach(evt -> filteredPrivateList.add(evt));
+        return filteredPrivateList;
     }
 }

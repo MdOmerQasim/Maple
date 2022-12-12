@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -338,7 +339,6 @@ public class UserCreateEvent extends javax.swing.JPanel {
                 Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-//            int eventId = eventController.getEventsList().size() + 1;
             newEvent.setEventID(eventId);
             newEvent.setUserID(this.loggedInUser.getID());
             newEvent.setEventType((String) typeDropdown.getSelectedItem());
@@ -352,6 +352,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setChosenHotelID(-1);
             newEvent.setChosenCateringID(-1);
             newEvent.setChosenTravelAgentID(-1);
+            newEvent.setStatus("Pending");
             System.out.println("dddddd");
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
@@ -382,15 +383,30 @@ public class UserCreateEvent extends javax.swing.JPanel {
             wk.setType("CUSTOMER_EVENTADMIN");
             wk.setFromID(this.loggedInUser.getID());
             ArrayList<User> eventAdmin  = userController.getUserDataByRole("Event Admin");
-            wk.setToID(WIDTH);
+            wk.setToID(eventAdmin.get(0).getID());
             wk.setStatus("Pending");
             wk.setEventID(eventId);
            
-            wk.setToID(eventAdmin.get(0).getID());
+           
             wrController.createWorkRequest(wk);
+            JOptionPane.showMessageDialog(null, "Event Request has been created!");
+            
+            typeDropdown.setSelectedIndex(0);
+            nameText.setText("");
+            descText.setText("");
+            areaText.setText("");
+            attendeesCountText.setText("");
+            fromDate.setDate(null);
+            toDate.setDate(null);
+            hotelCheckbox.setSelected(false);
+            cateringCheckbox.setSelected(false);
+            travelCheckbox.setSelected(false);
+            hotelCount.setText("");
+            cateringCount.setText("");
+            travelCount.setText("");
             
         } catch (SQLException e){
-            
+            JOptionPane.showMessageDialog(null, "Failed to create event");
         }
 //        System.out.println(newEvent.toString());
 
