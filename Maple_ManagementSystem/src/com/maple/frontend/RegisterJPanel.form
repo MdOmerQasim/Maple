@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" alignment="1" pref="903" max="32767" attributes="0"/>
+          <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -73,14 +73,14 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jRegisterAsComboBox" max="32767" attributes="0"/>
+                                  <Component id="jRegisterAsComboBox" pref="236" max="32767" attributes="0"/>
                                   <Component id="jNameTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jEmailTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jPhoneNumberTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jUsernameTextField" alignment="0" pref="166" max="32767" attributes="0"/>
-                                  <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jConfirmPasswordTextField" pref="166" max="32767" attributes="0"/>
+                                  <Component id="jUsernameTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jPostalCodeTextField" max="32767" attributes="0"/>
+                                  <Component id="jPasswordTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jConfirmPasswordTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -163,13 +163,13 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jConfirmPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jConfirmPasswordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -298,16 +298,6 @@
         <Property name="text" type="java.lang.String" value="Postal Code"/>
       </Properties>
     </Component>
-    <Component class="com.maple.resources.TextField" name="jPasswordTextField">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="com.maple.resources.TextField" name="jConfirmPasswordTextField">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirm Password"/>
@@ -384,6 +374,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.maple.resources.PasswordField" name="jPasswordTextField">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordTextFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.maple.resources.PasswordField" name="jConfirmPasswordTextField">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

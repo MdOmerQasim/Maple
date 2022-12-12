@@ -43,6 +43,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         initComponents();
         this.mainSplitPane = jSplitPane;
         user = new User();
+        this.path = "";
         userController = new UserController();
         workRequestController = new WorkRequestController();
         enterpriseController = new EnterpriseController();
@@ -93,8 +94,6 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jPasswordTextField = new com.maple.resources.TextField();
-        jConfirmPasswordTextField = new com.maple.resources.TextField();
         jLabel14 = new javax.swing.JLabel();
         button1 = new com.maple.resources.Button();
         jAddressLabel = new javax.swing.JLabel();
@@ -108,6 +107,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jCapacity = new com.maple.resources.TextField();
         jCompanyName = new com.maple.resources.TextField();
         button2 = new com.maple.resources.Button();
+        jPasswordTextField = new com.maple.resources.PasswordField();
+        jConfirmPasswordTextField = new com.maple.resources.PasswordField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -150,10 +151,6 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
         jLabel13.setText("Postal Code");
 
-        jPasswordTextField.setLabelText("");
-
-        jConfirmPasswordTextField.setLabelText("");
-
         jLabel14.setText("Confirm Password");
 
         button1.setText("Upload");
@@ -192,11 +189,20 @@ public class RegisterJPanel extends javax.swing.JPanel {
             }
         });
 
+        jPasswordTextField.setLabelText("");
+        jPasswordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordTextFieldActionPerformed(evt);
+            }
+        });
+
+        jConfirmPasswordTextField.setLabelText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -241,14 +247,14 @@ public class RegisterJPanel extends javax.swing.JPanel {
                                 .addGap(178, 178, 178))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRegisterAsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRegisterAsComboBox, 0, 236, Short.MAX_VALUE)
                                     .addComponent(jNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jEmailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPhoneNumberTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(91, 91, 91)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jAddressLabel)
@@ -314,12 +320,12 @@ public class RegisterJPanel extends javax.swing.JPanel {
                             .addComponent(jCapacityLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
+                            .addComponent(jLabel12)
+                            .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,6 +391,75 @@ public class RegisterJPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_button1ActionPerformed
 
+    private void registerAPIFn(
+    String role,String name,String email,String phoneNum,String userName,String password,
+            String rePassword,String postalCode, String address,String area,String capacity,String type,String companyName) {
+              System.out.println("Successs");
+            String status = null ;
+        
+
+            if ("customer".equals(role)){
+                status = "active";
+            }
+    //        int ID = user.getID();
+
+            int ID = 0;
+                try {
+                    ID = userController.getAllUsers();
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            try {
+                //insert in USER table
+                userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
+
+                //insert in HCT table
+                Hotel hotelData = new Hotel();
+                hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
+                hotelData.setHotelName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setHotelAddress(address);
+                hotelData.setHotelAdmin(String.valueOf(ID));
+                hotelData.setHotelArea(area);
+                hotelData.setHotelType(type);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertHotelData(hotelData);
+
+                //Create WorkRequest 
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("HOTELADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+
+
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            jNameTextField.setText("");
+            jEmailTextField.setText("");
+            jPhoneNumberTextField.setText("");
+            jUsernameTextField.setText("");
+            jPasswordTextField.setText("");
+            jConfirmPasswordTextField.setText("");
+            jPhotoLabel.setIcon(null);
+            jPostalCodeTextField.setText("");
+            jAddress.setText("");
+            jType.setText("");
+            jCapacity.setText("");
+            jCompanyName.setText("");
+            disableAdditionalFields();
+    }
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
         String role = jRegisterAsComboBox.getSelectedItem().toString();
@@ -392,15 +467,14 @@ public class RegisterJPanel extends javax.swing.JPanel {
         String email = jEmailTextField.getText();
         String phoneNum = jPhoneNumberTextField.getText();
         String userName = jUsernameTextField.getText();
-        String password = jPasswordTextField.getText();
-        String rePassword = jConfirmPasswordTextField.getText();
+        String password = new String(jPasswordTextField.getPassword());
+        String rePassword = new String(jConfirmPasswordTextField.getPassword());
         String postalCode = jPostalCodeTextField.getText();
         String address = "";
         String area = "";
         String capacity = "";
         String type = "";
         String companyName = "";
-        
         //TODO: pass these too
         if(!role.equalsIgnoreCase("CUSTOMER")){
             address = jAddress.getText();
@@ -434,76 +508,43 @@ public class RegisterJPanel extends javax.swing.JPanel {
         else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
         }
+        else if (postalCode.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter postal code");
+        }
         else if (path.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a photo.");
         }
-        else{
-            String status = null ;
-        
-
-        if ("customer".equals(role)){
-            status = "active";
-        }
-//        int ID = user.getID();
-
-        int ID = 0;
-            try {
-                ID = userController.getAllUsers();
-            } catch (SQLException ex) {
-                Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        else if (!role.equalsIgnoreCase("CUSTOMER")) {
+            if (address.equals("")){
+                JOptionPane.showMessageDialog(this, "Please enter your address.");
             }
-        
-        try {
-            //insert in USER table
-            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
-            
-            //insert in HCT table
-            Hotel hotelData = new Hotel();
-            hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
-            hotelData.setHotelName(companyName);
-            hotelData.setBookedDates("");
-            hotelData.setCapacity(capacity);
-            hotelData.setEmail(email);
-            hotelData.setHotelAddress(address);
-            hotelData.setHotelAdmin(String.valueOf(ID));
-            hotelData.setHotelArea(area);
-            hotelData.setHotelType(type);
-            hotelData.setPhone(phoneNum);
-            hotelData.setStatus("PENDING");
-            
-            enterpriseController.insertHotelData(hotelData);
-            
-            //Create WorkRequest 
-            WorkRequest wr = new WorkRequest();
-            wr.setID(workRequestController.getAllWorkRequestData().size()+1);
-            wr.setType("HOTELADMIN_BUSINESSADMIN");
-            wr.setFromID(ID);
-            wr.setToID(1); //TODO: pass businessAdmin Id
-            wr.setStatus("PENDING");
-            wr.setEventID(0);
-            wr.setEventManagerID(0);
-            workRequestController.createWorkRequest(wr);
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            else if (area.equals("")){
+                JOptionPane.showMessageDialog(this, "Please enter your area.");
+            }
+             else if (companyName.equals("")){
+                JOptionPane.showMessageDialog(this, "Please enter your companyName.");
+            }
+            else if (type.equals("")){
+                JOptionPane.showMessageDialog(this, "Please enter your type.");
+            }
+            else if (capacity.equals("")){
+                JOptionPane.showMessageDialog(this, "Please enter your capacity.");
+            } 
+            else {
+                registerAPIFn(role,name,email,phoneNum,userName,password,
+                rePassword,postalCode,address,area,capacity,type,companyName);
+            }
         }
-        
-        jNameTextField.setText("");
-        jEmailTextField.setText("");
-        jPhoneNumberTextField.setText("");
-        jUsernameTextField.setText("");
-        jPasswordTextField.setText("");
-        jConfirmPasswordTextField.setText("");
-        jPhotoLabel.setIcon(null);
-        jPostalCodeTextField.setText("");
-        jAddress.setText("");
-        jType.setText("");
-        jCapacity.setText("");
-        jCompanyName.setText("");
-        disableAdditionalFields();
+        else{
+            registerAPIFn(role,name,email,phoneNum,userName,password,
+                rePassword,postalCode,address,area,capacity,type,companyName);
+
         }
     }//GEN-LAST:event_button2ActionPerformed
+
+    private void jPasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -517,7 +558,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jCapacityLabel;
     private com.maple.resources.TextField jCompanyName;
     private javax.swing.JLabel jCompanyNameLabel;
-    private com.maple.resources.TextField jConfirmPasswordTextField;
+    private com.maple.resources.PasswordField jConfirmPasswordTextField;
     private com.maple.resources.TextField jEmailTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -531,7 +572,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private com.maple.resources.TextField jNameTextField;
-    private com.maple.resources.TextField jPasswordTextField;
+    private com.maple.resources.PasswordField jPasswordTextField;
     private com.maple.resources.TextField jPhoneNumberTextField;
     private javax.swing.JLabel jPhotoLabel;
     private com.maple.resources.TextField jPostalCodeTextField;
