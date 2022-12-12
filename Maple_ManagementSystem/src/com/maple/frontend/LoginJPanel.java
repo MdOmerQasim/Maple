@@ -8,7 +8,6 @@ import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.eventAdminScreen.EventAdminScreen;
-import com.maple.frontend.eventManagerScreen.EventManagerScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import com.maple.frontend.userScreen.UserWelcomeScreen;
@@ -184,13 +183,6 @@ public class LoginJPanel extends javax.swing.JPanel {
                 this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
             } 
-            }
-
-            else if(role.equals("Event Manager")){
-                EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
-            }
             }
         } catch (SQLException ex) {
             System.out.println("error here");
