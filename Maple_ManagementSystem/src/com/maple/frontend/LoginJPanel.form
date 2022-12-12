@@ -64,10 +64,10 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jUsernameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLoginAsComboBox" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
     <Component class="javax.swing.JComboBox" name="jLoginAsComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="8">
             <StringItem index="0" value="Customer"/>
             <StringItem index="1" value="Hotel Admin"/>
             <StringItem index="2" value="Catering Admin"/>
@@ -130,8 +130,7 @@
             <StringItem index="4" value="HR Admin"/>
             <StringItem index="5" value="Business Admin"/>
             <StringItem index="6" value="Event Admin"/>
-            <StringItem index="7" value="Public Event Manager"/>
-            <StringItem index="8" value="Private Event Manager"/>
+            <StringItem index="7" value="Event Manager"/>
           </StringArray>
         </Property>
       </Properties>

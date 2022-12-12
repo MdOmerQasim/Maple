@@ -9,7 +9,6 @@ import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
-import com.maple.frontend.userScreen.UserWelcomeScreen;
 import java.sql.SQLException;
 import javax.swing.JSplitPane;
 import java.util.ArrayList;
@@ -73,7 +72,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Login as");
 
-        jLoginAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Public Event Manager", "Private Event Manager" }));
+        jLoginAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Event Manager" }));
         jLoginAsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLoginAsComboBoxActionPerformed(evt);
@@ -125,10 +124,10 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLoginAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -143,7 +142,30 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void jLoginAsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginAsComboBoxActionPerformed
         // TODO add your handling code here:
-           if(jUsernameTextField.getText().equals("")){  
+           
+        
+//        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
+//            try {
+//                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
+//                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+//                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+//            } catch (SQLException ex) {
+//             System.out.println("EROROROR");   
+//            }
+//        } else {
+//             // If User Logs In
+//            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
+//            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
+//
+//            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
+//            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
+//
+//        }
+    }//GEN-LAST:event_jLoginAsComboBoxActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+//        System.out.println("sdb" + jUsernameTextField.getText());
+        if(jUsernameTextField.getText().equals("")){  
             System.out.println("username Cant be null bro");
         }
         else if(jPasswordTextField.getText().equals("")){  
@@ -175,6 +197,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                 BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
                 this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
+                
             } else if(role.equals("Hotel Admin")){
                 HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
                 this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
@@ -184,28 +207,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         } catch (SQLException ex) {
             System.out.println("error here");
         }
-        
-//        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-//            try {
-//                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
-//                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-//                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-//            } catch (SQLException ex) {
-//             System.out.println("EROROROR");   
-//            }
-//        } else {
-//             // If User Logs In
-//            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
-//            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
-//
-//            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
-//            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
-//
-//        }
-    }//GEN-LAST:event_jLoginAsComboBoxActionPerformed
-
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_button1ActionPerformed
 
 
