@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/backend/controller/EventController.java</file>
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/DBConnection/JDBC.java</file>
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventManagerScreen/EventManagerDashboard.java</file>
@@ -10,6 +11,13 @@
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventManagerScreen/EventManagerRequests.java</file>
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/userScreen/UserViewMyEvent.java</file>
             <file>file:/D:/Users/DKapoor/Documents/NetBeansProjects/New%20folder/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventManagerScreen/NewJPanel.java</file>
+=======
+            <file>file:/Users/mohammedomerqasimshaik/Documents/GitHub/Maple/Maple_ManagementSystem/src/com/maple/backend/repository/WorkRequestRepository.java</file>
+            <file>file:/Users/mohammedomerqasimshaik/Documents/GitHub/Maple/Maple_ManagementSystem/src/com/maple/backend/service/WorkRequestService.java</file>
+            <file>file:/Users/mohammedomerqasimshaik/Documents/GitHub/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventAdminScreen/EventAdminRequest.java</file>
+            <file>file:/Users/mohammedomerqasimshaik/Documents/GitHub/Maple/Maple_ManagementSystem/src/com/maple/frontend/eventAdminScreen/EventAdminScreen.java</file>
+            <file>file:/Users/mohammedomerqasimshaik/Documents/GitHub/Maple/Maple_ManagementSystem/src/com/maple/backend/controller/WorkRequestController.java</file>
+>>>>>>> production
         </group>
     </open-files>
 </project-private>
