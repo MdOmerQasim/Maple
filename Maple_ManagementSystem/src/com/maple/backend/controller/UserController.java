@@ -54,4 +54,14 @@ public class UserController {
     public int updateUserPassword(ArrayList<User> userData, String oldPwd, String newPwd, String confirmPwd) throws SQLException{
         return userService.updateUserPasswordService(userData, oldPwd, newPwd, confirmPwd);
     }
+    
+    public ArrayList<User> getEventManagerList() throws SQLException{
+        return userService.getEventManagerListService();
+    }
+    
+    public int getUserByName(String name) throws SQLException{
+        return userService.getUserByNameService(name);
+    }
+    
+    
 }

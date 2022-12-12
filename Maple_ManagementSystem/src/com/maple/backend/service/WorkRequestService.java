@@ -5,10 +5,12 @@
 package com.maple.backend.service;
 
 import com.maple.backend.model.Catering;
+import com.maple.backend.model.Event;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import com.maple.backend.repository.EnterpriseRepository;
+import com.maple.backend.repository.EventRepository;
 import com.maple.backend.repository.UserRepository;
 import com.maple.backend.repository.WorkRequestRepository;
 import java.sql.SQLException;
@@ -32,6 +34,10 @@ public class WorkRequestService {
     EnterpriseService enterpriseService;
     
     UserService userService;
+    
+    EventService eventService;
+    
+    EventRepository eventRepository;
 
     public WorkRequestService() throws SQLException {
         workRequestRepository = new WorkRequestRepository();
@@ -39,6 +45,8 @@ public class WorkRequestService {
         enterpriseRepository = new EnterpriseRepository();
         enterpriseService = new EnterpriseService();
         userService = new UserService();
+        eventService = new EventService();
+        eventRepository = new EventRepository();
     }
     
     private ArrayList<WorkRequest> workRequestDataMapper(ResultSet rs) throws SQLException{
@@ -237,5 +245,39 @@ public class WorkRequestService {
      
         
     }
+    
+    public void updateStatusEventAdminFlow(String eventName, int eventManagerId) throws SQLException{
+        
+        
+            //finding hotel based on name in HOTEL table
+            ArrayList<Event> eventData = eventService.getAllEventListService();
+            ArrayList<Event> filteredEventList = new ArrayList<>();
+            eventData.stream()
+                    .filter(evt -> evt.getEventName().equalsIgnoreCase(eventName))
+                    .forEach(evt -> filteredEventList.add(evt));
+            
+            //getting eventId from EVENT table
+            int eventId = filteredEventList.get(0).getEventID();
+            System.out.println("EVENT ID - " + eventId);
+            //using hotelAdminId to find wkId in WORKREQUEST table
+            ArrayList<WorkRequest> wk = getAllWorkRequestData();
+            ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+            wk.stream()
+                    .filter(w -> w.getEventID()==eventId)
+                    .forEach(w -> filteredWRList.add(w));
+            
+            //getting wkId from list
+            int wkId = filteredWRList.get(0).getID();
+            System.out.println("WK ID - " + wkId);
+            //update
+            workRequestRepository.updateWorkRequestDataEventManagerId(wkId, eventManagerId);
+            workRequestRepository.updateWorkRequestDataStatus(wkId);
+            eventRepository.updateEventAdminFlowEventManagerId(eventId, eventManagerId);
+            eventRepository.updateEventAdminFlowStatus(eventId);
+            
+        
+    }
+    
+
     
 }

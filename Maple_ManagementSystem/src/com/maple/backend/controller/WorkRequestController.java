@@ -5,6 +5,7 @@
 package com.maple.backend.controller;
 
 import com.maple.backend.model.Catering;
+import com.maple.backend.model.Event;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
@@ -62,6 +63,11 @@ public class WorkRequestController {
     //update status 
     public void updateStatus(String enterpriseName, String enterpriseType, String status) throws SQLException{
         workRequestService.updateStatusService(enterpriseName, enterpriseType, status);
+    }
+    
+    //Event admin assigns event manager -> update EVENT and WORK_REQUEST table
+    public void updateStatusForEventAdminToManager(String eventName, int managerId) throws SQLException{
+        workRequestService.updateStatusEventAdminFlow(eventName, managerId);
     }
     
     
