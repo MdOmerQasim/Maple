@@ -18,7 +18,7 @@ public class EnterpriseRepository {
     JDBC obj;
 
     public EnterpriseRepository() throws SQLException {
-        obj = new JDBC();
+        obj = JDBC.getInstance();
     }
     
     public ResultSet getAllHotelData() throws SQLException{
