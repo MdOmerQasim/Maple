@@ -61,17 +61,6 @@ public class UserService {
         return userData;
     }
     
-    public ArrayList<User> getEventManagerListService() throws SQLException{
-        ArrayList<User> userData = new ArrayList<>();
-        ArrayList<User> filteredUserData = new ArrayList<>();
-        ResultSet resultSet = userRepository.getAllUsers();
-        userData = userDataMapper(resultSet);
-        userData.stream()
-                .filter(user -> user.getRole().equalsIgnoreCase("EVENT MANAGER"))
-                .forEach(user -> filteredUserData.add(user));
-        return filteredUserData;
-    }
-    
     public ArrayList<User> getUserById(int id) throws SQLException {
         ArrayList<User> userData = new ArrayList<>();
         ResultSet resultSet = userRepository.getUserById(id);
@@ -92,18 +81,6 @@ public class UserService {
         } 
         return -2;
     }
-    
-    public int getUserByNameService(String name) throws SQLException {
-        ArrayList<User> userData = new ArrayList<>();
-        ResultSet resultSet = userRepository.getAllUsers();
-        userData = userDataMapper(resultSet);
-        ArrayList<User> filteredData = new ArrayList<>();
-        userData.stream()
-                .filter(user -> user.getName().equalsIgnoreCase(name))
-                .forEach(user -> filteredData.add(user));
-        
-        return filteredData.get(0).getID();
-    } 
     
     
 }

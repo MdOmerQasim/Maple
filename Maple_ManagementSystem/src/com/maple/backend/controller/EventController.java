@@ -25,7 +25,7 @@ public class EventController {
     // Get all events
     public int getEventsList() throws SQLException{
 //        return eventService.getEventsListService();
-        ArrayList<Event> eventList = eventService.getEventsListService();
+ArrayList<Event> eventList = eventService.getEventsListService();
         return eventList.size()+1;
     }
     
@@ -39,17 +39,5 @@ public class EventController {
      public void createAnEvent(Event newEvent) throws SQLException{
          System.out.println("usr controll");
         eventService.createAnEventService(newEvent);
-    }
-     
-    public ArrayList<Event> getAllEventList() throws SQLException{
-        return eventService.getAllEventListService();
-    }
-    
-    public ArrayList<Event> getPublicEventList() throws SQLException{
-        return eventService.getPublicEventList();
-    }
-    
-    public ArrayList<Event> getPrivateEventList() throws SQLException{
-        return eventService.getPrivateEventList();
     }
 }

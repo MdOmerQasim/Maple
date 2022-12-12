@@ -18,7 +18,7 @@ public class WorkRequestRepository {
     JDBC obj;
 
     public WorkRequestRepository() throws SQLException {
-        obj = JDBC.getInstance();
+        obj = new JDBC();
     }
     
     public ResultSet getWorkRequestData() throws SQLException{
@@ -36,15 +36,15 @@ public class WorkRequestRepository {
         this.obj.update(updateQuery, new String[]{});           
     }
     
-    public void updateWorkRequestDataEventManagerId(int wkId, int eventManagerId) throws SQLException{
-        String updateQuery = "UPDATE WORK_REQUEST SET EVENT_MANAGER_ID = '" + eventManagerId + "' WHERE WK_ID = " + wkId;
-        this.obj.update(updateQuery, new String[]{});           
-    }
+//    public void updateWorkRequestDataEventId(int wkId, int eventId) throws SQLException{
+//        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
+//        this.obj.update(updateQuery, new String[]{});           
+//    }
     
-    public void updateWorkRequestDataStatus(int wkId) throws SQLException{
-        String updateQuery = "UPDATE WORK_REQUEST SET STATUS = 'ASSIGNED MANAGER' WHERE WK_ID = " + wkId;
-        this.obj.update(updateQuery, new String[]{});           
-    }
+//    public void updateWorkRequestDataEventManagerId(int wkId, int eventManagerId) throws SQLException{
+//        String updateQuery = "UPDATE WORK_REQUEST SET event_name = 'newestName' WHERE WK_ID = '1'";
+//        this.obj.update(updateQuery, new String[]{});           
+//    }
     
     public ResultSet getHotelData(int toId) throws SQLException{
         String fetchQuery = "SELECT * FROM HOTEL WHERE H_ADMIN_ID IN (SELECT FROM_ID FROM WORK_REQUEST WHERE TO_ID = " + toId + ")";
@@ -61,14 +61,10 @@ public class WorkRequestRepository {
         return this.obj.query(fetchQuery, new String[]{}); 
     }
    
-    public void createWorkRequest(WorkRequest wr) throws SQLException{
+     public void createWorkRequest(WorkRequest wr) throws SQLException{
         String insertQuery = "INSERT INTO WORK_REQUEST (WK_ID, TYPE, FROM_ID, TO_ID, STATUS, EVENT_ID, EVENT_MANAGER_ID)" + 
         "values('" + wr.getID() + "','" + wr.getType() + "','" + wr.getFromID() + "','" + wr.getToID() + "','" + wr.getStatus() + "','" + wr.getEventID() + "','" + wr.getEventManagerID() + "')";
         this.obj.update(insertQuery, new String[]{});       
     }
-    
-    
-    //Event admin
-    
     
 }
