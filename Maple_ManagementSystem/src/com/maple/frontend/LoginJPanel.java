@@ -166,7 +166,7 @@ public class LoginJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLoginAsComboBoxActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        System.out.println("sdb" + jUsernameTextField.getText());
+//        System.out.println("sdb" + jUsernameTextField.getText());
         if(jUsernameTextField.getText().equals("")){  
             System.out.println("username Cant be null bro");
         }
