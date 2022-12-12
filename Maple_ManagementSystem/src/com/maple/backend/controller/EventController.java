@@ -29,6 +29,7 @@ public class EventController {
         return eventList.size()+1;
     }
     
+    
      // Get User events
     public ArrayList<Event> getFilteredEventsList(int userid, String status, String type) throws SQLException{
         return eventService.getFilteredEventsListService(userid, status, type);

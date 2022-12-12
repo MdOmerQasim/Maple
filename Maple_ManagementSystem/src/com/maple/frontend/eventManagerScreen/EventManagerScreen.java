@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend.userScreen;
+package com.maple.frontend.eventManagerScreen;
 
-import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.*;
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.User;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
 /**
@@ -19,26 +19,36 @@ import javax.swing.JSplitPane;
  * @author mohammedomerqasimshaik
  */
 
-public class UserLayoutScreen extends javax.swing.JPanel {
-
-    /**
-     * Creates new form BusinessAdminScreen
-     */
+public class EventManagerScreen extends javax.swing.JPanel {
     
     JSplitPane mainSplitPane;
-    User loggedInUser;
     
-    public UserLayoutScreen(JSplitPane jSplitPane, ArrayList<User> userData) {
+    WorkRequestController workRequestController;
+    
+    ArrayList<User> userData;
+    
+    int businessAdminId;
+    
+    public EventManagerScreen(JSplitPane jSplitPane, ArrayList<User> userData) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
-        this.loggedInUser = userData.get(0);
-         
-        //custom
-        jUserName.setText(this.loggedInUser.getName());
-        jUserRole.setText(this.loggedInUser.getRole());
-        btnBadgeNotification.setBadges(9);
-        UserWelcomeScreen userWelcomeScreen = new UserWelcomeScreen();
-        jRightSplitPane.setRightComponent(userWelcomeScreen);
+        workRequestController = new WorkRequestController();
+        this.userData = userData;
+//        businessAdminId = userData.get(0).getID();
+//        populateUserData();
+//        //Load Dashboard Screen (by default)
+//        BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
+//        jRightSplitPane.setRightComponent(businessAdminDashboard);
+    }
+    
+    public void populateUserData() throws SQLException{
+        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
+        jUserName.setText(userData.get(0).getName());
+        // get notification count
+        int notification = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size() + 
+                workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size() + 
+                workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size();
+        notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
     }
     
     /**
@@ -59,16 +69,15 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jUserName = new javax.swing.JLabel();
         jUserRole = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnBadgeNotification = new com.maple.resources.ButtonBadges();
-        btnBadgeMessage = new com.maple.resources.ButtonBadges();
-        btnBadgeMessage1 = new com.maple.resources.ButtonBadges();
+        notificationBadge = new com.maple.resources.ButtonBadges();
+        messageBadge = new com.maple.resources.ButtonBadges();
+        burgerBadge = new com.maple.resources.ButtonBadges();
         jBottonRightPanel = new javax.swing.JPanel();
         jBaseLeftPanel = new javax.swing.JPanel();
         mapleLogo = new com.maple.resources.ImageAvatar();
+        jDashboardBtn = new com.maple.resources.Button();
         jRequestsBtn = new com.maple.resources.Button();
         jLogoutBtn = new com.maple.resources.Button();
-        jRequestsBtn1 = new com.maple.resources.Button();
-        jRequestsBtn2 = new com.maple.resources.Button();
 
         jBaseSplitPane.setDividerSize(0);
         jBaseSplitPane.setMaximumSize(new java.awt.Dimension(1100, 800));
@@ -87,37 +96,25 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jTopRightPanel.setMinimumSize(new java.awt.Dimension(985, 80));
         jTopRightPanel.setPreferredSize(new java.awt.Dimension(985, 80));
 
-        jUserImageIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/cat.jpeg"))); // NOI18N
-
         jUserName.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jUserName.setForeground(new java.awt.Color(127, 127, 127));
         jUserName.setText("User Name");
 
         jUserRole.setForeground(new java.awt.Color(127, 127, 127));
-        jUserRole.setText("Business Admin");
+        jUserRole.setText("Event Manager");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        btnBadgeNotification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/notification.png"))); // NOI18N
-        btnBadgeNotification.addActionListener(new java.awt.event.ActionListener() {
+        notificationBadge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/notification.png"))); // NOI18N
+        notificationBadge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBadgeNotificationActionPerformed(evt);
+                notificationBadgeActionPerformed(evt);
             }
         });
 
-        btnBadgeMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/message.png"))); // NOI18N
-        btnBadgeMessage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBadgeMessageActionPerformed(evt);
-            }
-        });
+        messageBadge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/message.png"))); // NOI18N
 
-        btnBadgeMessage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/menu.png"))); // NOI18N
-        btnBadgeMessage1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBadgeMessage1ActionPerformed(evt);
-            }
-        });
+        burgerBadge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/menu.png"))); // NOI18N
 
         javax.swing.GroupLayout jTopRightPanelLayout = new javax.swing.GroupLayout(jTopRightPanel);
         jTopRightPanel.setLayout(jTopRightPanelLayout);
@@ -125,11 +122,11 @@ public class UserLayoutScreen extends javax.swing.JPanel {
             jTopRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTopRightPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(btnBadgeMessage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(burgerBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(620, 620, 620)
-                .addComponent(btnBadgeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(messageBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBadgeNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(notificationBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -161,9 +158,9 @@ public class UserLayoutScreen extends javax.swing.JPanel {
                     .addGroup(jTopRightPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jTopRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBadgeNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBadgeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBadgeMessage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(notificationBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messageBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(burgerBadge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -203,8 +200,17 @@ public class UserLayoutScreen extends javax.swing.JPanel {
 
         mapleLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/maple.png"))); // NOI18N
 
+        jDashboardBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/dash.png"))); // NOI18N
+        jDashboardBtn.setText("Dashboard");
+        jDashboardBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/1.png"))); // NOI18N
+        jDashboardBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDashboardBtnActionPerformed(evt);
+            }
+        });
+
         jRequestsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn.setText("Create Event");
+        jRequestsBtn.setText("Requests");
         jRequestsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRequestsBtnActionPerformed(evt);
@@ -219,63 +225,31 @@ public class UserLayoutScreen extends javax.swing.JPanel {
             }
         });
 
-        jRequestsBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn1.setText("View My Events");
-        jRequestsBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRequestsBtn1ActionPerformed(evt);
-            }
-        });
-
-        jRequestsBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn2.setText("View Public Events");
-        jRequestsBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRequestsBtn2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jBaseLeftPanelLayout = new javax.swing.GroupLayout(jBaseLeftPanel);
         jBaseLeftPanel.setLayout(jBaseLeftPanelLayout);
         jBaseLeftPanelLayout.setHorizontalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jBaseLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
         );
         jBaseLeftPanelLayout.setVerticalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(40, 40, 40)
+                .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
-            .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                    .addGap(206, 206, 206)
-                    .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(554, Short.MAX_VALUE)))
         );
 
         jBaseSplitPane.setLeftComponent(jBaseLeftPanel);
@@ -292,69 +266,57 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBadgeMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBadgeMessageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBadgeMessageActionPerformed
-
-    private void btnBadgeNotificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBadgeNotificationActionPerformed
-        // TODO add your handling code here:
-        btnBadgeNotification.setBadges(0);
-    }//GEN-LAST:event_btnBadgeNotificationActionPerformed
-
-    private void btnBadgeMessage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBadgeMessage1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBadgeMessage1ActionPerformed
+    private void notificationBadgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBadgeActionPerformed
+        try {
+            notificationBadge.setBadges(0);
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
+            jRightSplitPane.setBottomComponent(businessAdminRequest);
+        } catch (SQLException ex) {}
+    }//GEN-LAST:event_notificationBadgeActionPerformed
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed
-        // TODO add your handling code here:
+        //Reset right panel
         HomeJPanel homeScreen = new HomeJPanel(this.mainSplitPane);
-        this.mainSplitPane.setRightComponent(homeScreen);
-        
-        // reset left panel
+        this.mainSplitPane.setRightComponent(homeScreen);  
+        //Reset left panel
         HomeLeftJPanel homeLeftPanel = new HomeLeftJPanel(this.mainSplitPane);
         this.mainSplitPane.setLeftComponent(homeLeftPanel);
-      
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
         try {
-            // TODO add your handling code here:
-            
-            UserCreateEvent userCreateRightPanel = new UserCreateEvent(this.mainSplitPane, this.loggedInUser);
-            jRightSplitPane.setBottomComponent(userCreateRightPanel);
+            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
+            jRightSplitPane.setBottomComponent(businessAdminRequest);
         } catch (SQLException ex) {
-            Logger.getLogger(UserLayoutScreen.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+//        requests will have all the requests that event manager has made to HCT and its details.
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
-    private void jRequestsBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn1ActionPerformed
-        // TODO add your handling code here:
-        UserViewMyEvent userViewMyEventRightPanel = new UserViewMyEvent(this.mainSplitPane, this.loggedInUser);
-        jRightSplitPane.setBottomComponent(userViewMyEventRightPanel);
-    }//GEN-LAST:event_jRequestsBtn1ActionPerformed
-
-    private void jRequestsBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn2ActionPerformed
-        // TODO add your handling code here:
-        UserViewPublicEvents userViewPublicRightPanel = new UserViewPublicEvents(this.mainSplitPane);
-        jRightSplitPane.setBottomComponent(userViewPublicRightPanel);
-    }//GEN-LAST:event_jRequestsBtn2ActionPerformed
+    private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
+        try {
+            EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData);
+//            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(eventManagerDashboard);
+        } catch (SQLException ex) {
+            System.out.println("exception in dashboard event manager");
+        }
+// dashboard will have all teh events that event admin has assigned to him, along with user details.
+    }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     public JSplitPane getBaseSplitPane(){
         return this.jBaseSplitPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.maple.resources.ButtonBadges btnBadgeMessage;
-    private com.maple.resources.ButtonBadges btnBadgeMessage1;
-    private com.maple.resources.ButtonBadges btnBadgeNotification;
+    private com.maple.resources.ButtonBadges burgerBadge;
     private javax.swing.JPanel jBaseLeftPanel;
     private javax.swing.JPanel jBaseRightPanel;
     private javax.swing.JSplitPane jBaseSplitPane;
     private javax.swing.JPanel jBottonRightPanel;
+    private com.maple.resources.Button jDashboardBtn;
     private com.maple.resources.Button jLogoutBtn;
     private com.maple.resources.Button jRequestsBtn;
-    private com.maple.resources.Button jRequestsBtn1;
-    private com.maple.resources.Button jRequestsBtn2;
     private javax.swing.JSplitPane jRightSplitPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jTopRightPanel;
@@ -362,6 +324,8 @@ public class UserLayoutScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jUserName;
     private javax.swing.JLabel jUserRole;
     private com.maple.resources.ImageAvatar mapleLogo;
+    private com.maple.resources.ButtonBadges messageBadge;
+    private com.maple.resources.ButtonBadges notificationBadge;
     // End of variables declaration//GEN-END:variables
 
 }
