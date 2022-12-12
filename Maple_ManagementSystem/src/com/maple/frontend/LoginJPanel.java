@@ -29,11 +29,11 @@ public class LoginJPanel extends javax.swing.JPanel {
    
     JSplitPane mainSplitPane;
     
-//    UserController userController;
+    UserController userController;
     
     public LoginJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
-//        userController = new UserController();
+        userController = new UserController();
         initComponents();
     }
 
