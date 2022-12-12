@@ -80,7 +80,7 @@ public class HomeLeftJPanel extends javax.swing.JPanel {
             LoginJPanel loginJPanel = new LoginJPanel(this.mainSplitPane);
             this.mainSplitPane.setRightComponent(loginJPanel);
         } catch (SQLException ex) {
-//            Logger.getLogger(HomeLeftJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR in HomeLeftJPanel " + ex.getMessage());
         }
     }//GEN-LAST:event_button2ActionPerformed
 

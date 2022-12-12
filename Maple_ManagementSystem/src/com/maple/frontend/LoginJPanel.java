@@ -10,6 +10,7 @@ import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
 import com.maple.frontend.eventAdminScreen.EventAdminScreen;
 import com.maple.frontend.eventManagerScreen.EventManagerScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
+import com.maple.frontend.hrAdminScreen.HRAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import java.sql.SQLException;
 import javax.swing.JSplitPane;
@@ -188,32 +189,34 @@ public class LoginJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Awaiting business Admin approval!");
             } else {
 
-            ArrayList<User> userData = userController.getUserById(validUser);
-          
-            if(role.equals("Customer")){
-                UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
-            }
-            else if(role.equals("Business Admin")){
-                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-                
-            } else if(role.equals("Hotel Admin")){
-                HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
-            }  else if(role.equals("Event Admin")){
-                EventAdminScreen eventAdminScreen = new EventAdminScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
-            } 
-            else if(role.equals("Event Manager")){
-                EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
-                this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
-                this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
-            } 
+                ArrayList<User> userData = userController.getUserById(validUser);
+
+                if(role.equals("Customer")){
+                    UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
+                } else if(role.equals("Business Admin")){
+                    BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());         
+                } else if(role.equals("Hotel Admin")){
+                    HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
+                } else if(role.equals("Event Admin")){
+                    EventAdminScreen eventAdminScreen = new EventAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
+                } else if(role.equals("HR Admin")){
+                    HRAdminScreen hrAdminScreen = new HRAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(hrAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(hrAdminScreen.getBaseSplitPane().getLeftComponent());
+                } else if(role.equals("Event Manager")){
+                    EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
+                }
+
             }
         } catch (SQLException ex) {
             System.out.println("error here");
