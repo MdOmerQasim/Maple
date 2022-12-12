@@ -79,6 +79,11 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         jName.setLabelText("");
 
         jNewPasswordField.setLabelText("New Password");
+        jNewPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewPasswordFieldActionPerformed(evt);
+            }
+        });
 
         jConfirmPasswordField.setLabelText("Confirm Password");
         jConfirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
@@ -252,6 +257,10 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
     private void jOldPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOldPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jOldPasswordFieldActionPerformed
+
+    private void jNewPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNewPasswordFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

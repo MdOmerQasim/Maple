@@ -183,6 +183,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
         jCompanyName.setLabelText("");
 
+        button2.setBackground(new java.awt.Color(255, 153, 51));
+        button2.setForeground(new java.awt.Color(255, 255, 255));
         button2.setText("Register");
         button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

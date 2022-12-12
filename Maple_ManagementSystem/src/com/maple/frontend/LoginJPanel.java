@@ -29,11 +29,11 @@ public class LoginJPanel extends javax.swing.JPanel {
    
     JSplitPane mainSplitPane;
     
-    UserController userController;
+//    UserController userController;
     
     public LoginJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
-        userController = new UserController();
+//        userController = new UserController();
         initComponents();
     }
 
@@ -52,9 +52,10 @@ public class LoginJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLoginAsComboBox = new javax.swing.JComboBox<>();
-        jPasswordTextField = new com.maple.resources.TextField();
+        jPasswordTextField1 = new com.maple.resources.TextField();
         jUsernameTextField = new com.maple.resources.TextField();
         button1 = new com.maple.resources.Button();
+        jPasswordTextField = new com.maple.resources.PasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(810, 620));
@@ -82,7 +83,7 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
         });
 
-        jPasswordTextField.setLabelText("");
+        jPasswordTextField1.setLabelText("");
 
         jUsernameTextField.setLabelText("");
 
@@ -95,6 +96,8 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
         });
 
+        jPasswordTextField.setLabelText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,18 +105,22 @@ public class LoginJPanel extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(279, 279, 279)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                        .addComponent(jLoginAsComboBox, 0, 1, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jUsernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLoginAsComboBox, 0, 165, Short.MAX_VALUE)
+                            .addComponent(jPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jPasswordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,23 +130,23 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLoginAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addGap(52, 52, 52)
+                    .addComponent(jLabel5)
+                    .addComponent(jLoginAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(jPasswordTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,60 +173,63 @@ public class LoginJPanel extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_jLoginAsComboBoxActionPerformed
 
+    private boolean isValid(String val) {
+        return val.equals("");
+    }
+    
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
 //        System.out.println("sdb" + jUsernameTextField.getText());
-        if(jUsernameTextField.getText().equals("")){  
-            System.out.println("username Cant be null bro");
-        }
-        else if(jPasswordTextField.getText().equals("")){  
-            System.out.println("Password Cant be null bro");
-        }
         
         String username = jUsernameTextField.getText();
-        String password = jPasswordTextField.getText();
+        String password = new String(jPasswordTextField.getPassword());
         String role = jLoginAsComboBox.getSelectedItem().toString();
 
-        try {
+        if( isValid(username) || isValid(password) ||isValid(role) ) {
+            JOptionPane.showMessageDialog(this, "Fill all the fields");
+        } else {
+             System.out.println(password); 
+            try {
 
-            int validUser = userController.validateUser(username, password, role);
-            
-            if (validUser == -1){
-                JOptionPane.showMessageDialog(null, "Invalid credentials");
-            } else if(validUser == -2){
-                JOptionPane.showMessageDialog(null, "Awaiting business Admin approval!");
-            } else {
+                int validUser = userController.validateUser(username, password, role);
 
-                ArrayList<User> userData = userController.getUserById(validUser);
+                if (validUser == -1){
+                    JOptionPane.showMessageDialog(null, "Invalid credentials");
+                } else if(validUser == -2){
+                    JOptionPane.showMessageDialog(null, "Awaiting business Admin approval!");
+                } else {
 
-                if(role.equals("Customer")){
-                    UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
-                } else if(role.equals("Business Admin")){
-                    BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());         
-                } else if(role.equals("Hotel Admin")){
-                    HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
-                } else if(role.equals("Event Admin")){
-                    EventAdminScreen eventAdminScreen = new EventAdminScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
-                } else if(role.equals("HR Admin")){
-                    HRAdminScreen hrAdminScreen = new HRAdminScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(hrAdminScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(hrAdminScreen.getBaseSplitPane().getLeftComponent());
-                } else if(role.equals("Event Manager")){
-                    EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
-                    this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
-                    this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
+                    ArrayList<User> userData = userController.getUserById(validUser);
+
+                    if(role.equals("Customer")){
+                        UserLayoutScreen userLayoutScreen = new UserLayoutScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(userLayoutScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(userLayoutScreen.getBaseSplitPane().getLeftComponent());
+                    } else if(role.equals("Business Admin")){
+                        BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());         
+                    } else if(role.equals("Hotel Admin")){
+                        HotelAdminScreen hotelAdminScreen = new HotelAdminScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(hotelAdminScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(hotelAdminScreen.getBaseSplitPane().getLeftComponent());
+                    } else if(role.equals("Event Admin")){
+                        EventAdminScreen eventAdminScreen = new EventAdminScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(eventAdminScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(eventAdminScreen.getBaseSplitPane().getLeftComponent());
+                    } else if(role.equals("HR Admin")){
+                        HRAdminScreen hrAdminScreen = new HRAdminScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(hrAdminScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(hrAdminScreen.getBaseSplitPane().getLeftComponent());
+                    } else if(role.equals("Event Manager")){
+                        EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
+                        this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
+                        this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
+                    }
+
                 }
-
+            } catch (SQLException ex) {
+                System.out.println("error here");
             }
-        } catch (SQLException ex) {
-            System.out.println("error here");
         }
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -232,7 +242,8 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JComboBox<String> jLoginAsComboBox;
-    private com.maple.resources.TextField jPasswordTextField;
+    private com.maple.resources.PasswordField jPasswordTextField;
+    private com.maple.resources.TextField jPasswordTextField1;
     private com.maple.resources.TextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables
 }
