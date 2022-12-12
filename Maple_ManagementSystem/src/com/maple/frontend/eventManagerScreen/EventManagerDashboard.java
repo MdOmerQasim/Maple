@@ -28,7 +28,7 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         this.userData = userData;
         eventService = new EventService();
         populateTableData("all");
-        table.fixTable(jScrollPane);
+        eventTable.fixTable(jScrollPane3);
     }
 
     /**
@@ -40,43 +40,67 @@ public class EventManagerDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLocation = new javax.swing.JLabel();
-        ongoingCard = new com.maple.resources.Card();
-        jRefreshTableBtn = new com.maple.resources.ButtonBadges();
-        button1 = new com.maple.resources.Button();
-        completedCard = new com.maple.resources.Card();
-        jScrollPane = new javax.swing.JScrollPane();
-        table = new com.maple.resources.Table();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLocation2 = new javax.swing.JLabel();
+        ongoingCard2 = new com.maple.resources.Card();
+        jRefreshTableBtn2 = new com.maple.resources.ButtonBadges();
+        completedCard2 = new com.maple.resources.Card();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        eventTable = new com.maple.resources.Table();
+        Name = new com.maple.resources.TextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        EmailId = new com.maple.resources.TextField();
+        PhoneNumber = new com.maple.resources.TextField();
+        PostalCode = new com.maple.resources.TextField();
+        Accomodation = new com.maple.resources.TextField();
+        Catering = new com.maple.resources.TextField();
+        Travel = new com.maple.resources.TextField();
+        EventDate = new com.maple.resources.TextField();
+        AccomodationCount = new com.maple.resources.TextField();
+        TravelCount = new com.maple.resources.TextField();
+        CaterCount = new com.maple.resources.TextField();
 
-        jLocation.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLocation.setForeground(new java.awt.Color(4, 72, 210));
-        jLocation.setText("Event Manager / Dashboard");
+        setMaximumSize(new java.awt.Dimension(1196, 720));
+        setMinimumSize(new java.awt.Dimension(1196, 720));
+        setPreferredSize(new java.awt.Dimension(1196, 720));
 
-        ongoingCard.addMouseListener(new java.awt.event.MouseAdapter() {
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setToolTipText("");
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setViewportBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(1196, 720));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1196, 720));
+
+        jLocation2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLocation2.setForeground(new java.awt.Color(4, 72, 210));
+        jLocation2.setText("Event Manager / Dashboard");
+
+        ongoingCard2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ongoingCardMouseClicked(evt);
+                ongoingCard2MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ongoingCardMouseEntered(evt);
+                ongoingCard2MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ongoingCardMouseExited(evt);
+                ongoingCard2MouseExited(evt);
             }
         });
 
-        jRefreshTableBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/refresh.png"))); // NOI18N
-        jRefreshTableBtn.setMaximumSize(new java.awt.Dimension(20, 20));
-        jRefreshTableBtn.setMinimumSize(new java.awt.Dimension(20, 20));
-        jRefreshTableBtn.setPreferredSize(new java.awt.Dimension(20, 20));
-        jRefreshTableBtn.addActionListener(new java.awt.event.ActionListener() {
+        jRefreshTableBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/refresh.png"))); // NOI18N
+        jRefreshTableBtn2.setMaximumSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn2.setMinimumSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn2.setPreferredSize(new java.awt.Dimension(20, 20));
+        jRefreshTableBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRefreshTableBtnActionPerformed(evt);
+                jRefreshTableBtn2ActionPerformed(evt);
             }
         });
 
-        button1.setText("View details");
-
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -110,95 +134,205 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane.setViewportView(table);
+        jScrollPane3.setViewportView(eventTable);
+
+        Name.setEditable(false);
+        Name.setLabelText("Name");
+
+        jLabel3.setText("Customer details");
+
+        jLabel4.setText("Event details");
+
+        EmailId.setEditable(false);
+        EmailId.setLabelText("Email ID");
+
+        PhoneNumber.setEditable(false);
+        PhoneNumber.setLabelText("Phone Number");
+
+        PostalCode.setEditable(false);
+        PostalCode.setLabelText("Postal Code");
+
+        Accomodation.setEditable(false);
+        Accomodation.setLabelText("Accomodation needed");
+
+        Catering.setEditable(false);
+        Catering.setLabelText("Catering needed");
+
+        Travel.setEditable(false);
+        Travel.setLabelText("Travel needed");
+
+        EventDate.setEditable(false);
+        EventDate.setLabelText("Event To-From");
+
+        AccomodationCount.setEditable(false);
+        AccomodationCount.setLabelText("Count");
+
+        TravelCount.setEditable(false);
+        TravelCount.setLabelText("Count");
+
+        CaterCount.setEditable(false);
+        CaterCount.setLabelText("Count");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLocation2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(236, 236, 236)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Catering, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Travel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EventDate, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Accomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AccomodationCount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TravelCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CaterCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel3)
+                        .addGap(401, 401, 401)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(374, Short.MAX_VALUE))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AccomodationCount, CaterCount, TravelCount});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLocation2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Accomodation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AccomodationCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2))
+                    .addComponent(Name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Catering, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CaterCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TravelCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Travel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EventDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ongoingCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(completedCard, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLocation)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRefreshTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(358, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLocation)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ongoingCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(completedCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addComponent(jRefreshTableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ongoingCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCardMouseClicked
+    private void ongoingCard2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseClicked
         //Apply CSS
-//        jEventCard.setBackground(Color.CYAN);
-//        jCateringCard.setBackground(Color.white);
-//        jTravelAgentCard.setBackground(Color.white);
-//
-//        try {
-//            //Refresh Table Data
-//            populateTableData("HOTEL");
-//        } catch (SQLException ex) {
-//
-//        }
-//
-//        hotelClick = 1;
-//        cateringClick = 0;
-//        travelClick = 0;
-    }//GEN-LAST:event_ongoingCardMouseClicked
+        //        jEventCard.setBackground(Color.CYAN);
+        //        jCateringCard.setBackground(Color.white);
+        //        jTravelAgentCard.setBackground(Color.white);
+        //
+        //        try {
+            //            //Refresh Table Data
+            //            populateTableData("HOTEL");
+            //        } catch (SQLException ex) {
+            //
+            //        }
+        //
+        //        hotelClick = 1;
+        //        cateringClick = 0;
+        //        travelClick = 0;
+    }//GEN-LAST:event_ongoingCard2MouseClicked
 
-    private void ongoingCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCardMouseEntered
-//        // TODO add your handling code here:
-//        jEventCard.setBackground(Color.CYAN);
-    }//GEN-LAST:event_ongoingCardMouseEntered
+    private void ongoingCard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseEntered
+        //        // TODO add your handling code here:
+        //        jEventCard.setBackground(Color.CYAN);
+    }//GEN-LAST:event_ongoingCard2MouseEntered
 
-    private void ongoingCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCardMouseExited
+    private void ongoingCard2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseExited
         // TODO add your handling code here:
-//        if(hotelClick==1 && cateringClick==0 && travelClick==0){
-//            jEventCard.setBackground(Color.CYAN);
-//            return;
-//        }
-//        jEventCard.setBackground(Color.white);
-//        hotelClick = 0;
-    }//GEN-LAST:event_ongoingCardMouseExited
+        //        if(hotelClick==1 && cateringClick==0 && travelClick==0){
+            //            jEventCard.setBackground(Color.CYAN);
+            //            return;
+            //        }
+        //        jEventCard.setBackground(Color.white);
+        //        hotelClick = 0;
+    }//GEN-LAST:event_ongoingCard2MouseExited
 
-    private void jRefreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtnActionPerformed
-//        try {
-//            populateTableData("ALL");
-//        } catch (SQLException ex) {}
-//        //Reset card colors
-//        jEventCard.setBackground(Color.white);
-//        jCateringCard.setBackground(Color.white);
-//        jTravelAgentCard.setBackground(Color.white);
-//        //Reset card click counter
-//        hotelClick = 0;
-//        cateringClick = 0;
-//        travelClick = 0;
-    }//GEN-LAST:event_jRefreshTableBtnActionPerformed
+    private void jRefreshTableBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtn2ActionPerformed
+        //        try {
+            //            populateTableData("ALL");
+            //        } catch (SQLException ex) {}
+        //        //Reset card colors
+        //        jEventCard.setBackground(Color.white);
+        //        jCateringCard.setBackground(Color.white);
+        //        jTravelAgentCard.setBackground(Color.white);
+        //        //Reset card click counter
+        //        hotelClick = 0;
+        //        cateringClick = 0;
+        //        travelClick = 0;
+    }//GEN-LAST:event_jRefreshTableBtn2ActionPerformed
 
     private void populateTableData(String type) throws SQLException {
-//        System.out.println("dfjb");
-        DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
+        System.out.println("dfjb");
+        DefaultTableModel dtmodel = (DefaultTableModel) eventTable.getModel();
         dtmodel.setRowCount(0);
 //        ArrayList<Event> eventList = new ArrayList<>(); 
         
@@ -303,12 +437,37 @@ public class EventManagerDashboard extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.maple.resources.TextField Accomodation;
+    private com.maple.resources.TextField AccomodationCount;
+    private com.maple.resources.TextField CaterCount;
+    private com.maple.resources.TextField Catering;
+    private com.maple.resources.TextField EmailId;
+    private com.maple.resources.TextField EventDate;
+    private com.maple.resources.TextField Name;
+    private com.maple.resources.TextField PhoneNumber;
+    private com.maple.resources.TextField PostalCode;
+    private com.maple.resources.TextField Travel;
+    private com.maple.resources.TextField TravelCount;
     private com.maple.resources.Button button1;
     private com.maple.resources.Card completedCard;
+    private com.maple.resources.Card completedCard2;
+    private com.maple.resources.Table eventTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLocation;
+    private javax.swing.JLabel jLocation2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private com.maple.resources.ButtonBadges jRefreshTableBtn;
+    private com.maple.resources.ButtonBadges jRefreshTableBtn2;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private com.maple.resources.Card ongoingCard;
+    private com.maple.resources.Card ongoingCard2;
     private com.maple.resources.Table table;
+    private com.maple.resources.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
