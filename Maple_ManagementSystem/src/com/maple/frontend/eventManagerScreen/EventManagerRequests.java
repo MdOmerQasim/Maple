@@ -4,6 +4,7 @@
  */
 package com.maple.frontend.eventManagerScreen;
 
+import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import java.util.ArrayList;
 
@@ -17,9 +18,11 @@ public class EventManagerRequests extends javax.swing.JPanel {
      * Creates new form EventManagerRequests
      */
     ArrayList<User> userData;
-    public EventManagerRequests(ArrayList<User> userData) {
+    Event e;
+    public EventManagerRequests(ArrayList<User> userData, Event e) {
         initComponents();
         this.userData = userData;
+        this.e = e;
     }
 
     /**
@@ -31,19 +34,32 @@ public class EventManagerRequests extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLocation2 = new javax.swing.JLabel();
+
+        jLocation2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLocation2.setForeground(new java.awt.Color(4, 72, 210));
+        jLocation2.setText("Event Manager / Request");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLocation2)
+                .addContainerGap(1009, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLocation2)
+                .addContainerGap(669, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLocation2;
     // End of variables declaration//GEN-END:variables
 }

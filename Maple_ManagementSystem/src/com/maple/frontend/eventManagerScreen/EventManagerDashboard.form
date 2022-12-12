@@ -87,33 +87,46 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="EmailId" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="Name" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="PhoneNumber" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="PostalCode" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Catering" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="Travel" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="EventDate" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="Accomodation" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="AccomodationCount" linkSize="1" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="TravelCount" linkSize="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CaterCount" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="EmailId" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="PhoneNumber" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="PostalCode" min="-2" pref="170" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="Travel" min="-2" pref="170" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="TravelCount" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="Catering" min="-2" pref="170" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="CaterCount" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="EventDate" min="-2" pref="170" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Name" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="Accomodation" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="AccomodationCount" linkSize="1" min="-2" pref="41" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="401" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" pref="137" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                              <Component id="requestButton" min="-2" pref="113" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="374" max="32767" attributes="0"/>
@@ -140,42 +153,40 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="186" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="requestButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Accomodation" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="AccomodationCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="Name" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Catering" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="EmailId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="Name" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Accomodation" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="AccomodationCount" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="CaterCount" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TravelCount" min="-2" max="-2" attributes="0"/>
-                          <Component id="PhoneNumber" min="-2" max="-2" attributes="0"/>
-                          <Component id="Travel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Catering" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="EmailId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CaterCount" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PostalCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="EventDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PhoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Travel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TravelCount" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="104" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PostalCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="EventDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="99" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -324,6 +335,14 @@
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Count"/>
               </Properties>
+            </Component>
+            <Component class="com.maple.resources.Button" name="requestButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage requests"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
