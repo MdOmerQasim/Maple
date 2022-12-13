@@ -85,7 +85,6 @@ public class UserCreateEvent extends javax.swing.JPanel {
         descText = new com.maple.resources.TextField();
         attendeesCountText = new com.maple.resources.TextField();
         callbackBtn = new com.maple.resources.Button();
-        button1 = new com.maple.resources.Button();
 
         jLabel1.setText("Type");
 
@@ -154,6 +153,8 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("*");
 
+        callbackBtn.setBackground(new java.awt.Color(255, 153, 0));
+        callbackBtn.setForeground(new java.awt.Color(255, 255, 255));
         callbackBtn.setText("Request Callback");
         callbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,16 +162,12 @@ public class UserCreateEvent extends javax.swing.JPanel {
             }
         });
 
-        button1.setText("Back");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(115, 115, 115)
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
@@ -242,9 +239,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -416,7 +411,6 @@ public class UserCreateEvent extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.maple.resources.TextField areaText;
     private com.maple.resources.TextField attendeesCountText;
-    private com.maple.resources.Button button1;
     private com.maple.resources.Button callbackBtn;
     private javax.swing.JCheckBox cateringCheckbox;
     private javax.swing.JTextField cateringCount;

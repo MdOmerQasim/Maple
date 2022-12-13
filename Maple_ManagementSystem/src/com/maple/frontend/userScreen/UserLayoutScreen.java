@@ -68,7 +68,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jRequestsBtn = new com.maple.resources.Button();
         jLogoutBtn = new com.maple.resources.Button();
         jRequestsBtn1 = new com.maple.resources.Button();
-        jRequestsBtn2 = new com.maple.resources.Button();
 
         jBaseSplitPane.setDividerSize(0);
         jBaseSplitPane.setMaximumSize(new java.awt.Dimension(1100, 800));
@@ -227,21 +226,10 @@ public class UserLayoutScreen extends javax.swing.JPanel {
             }
         });
 
-        jRequestsBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn2.setText("View Public Events");
-        jRequestsBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRequestsBtn2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jBaseLeftPanelLayout = new javax.swing.GroupLayout(jBaseLeftPanel);
         jBaseLeftPanel.setLayout(jBaseLeftPanelLayout);
         jBaseLeftPanelLayout.setHorizontalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jBaseLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                 .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
@@ -252,7 +240,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
                     .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -266,9 +254,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
                 .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 547, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
             .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,12 +319,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jRightSplitPane.setBottomComponent(userViewMyEventRightPanel);
     }//GEN-LAST:event_jRequestsBtn1ActionPerformed
 
-    private void jRequestsBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn2ActionPerformed
-        // TODO add your handling code here:
-        UserViewPublicEvents userViewPublicRightPanel = new UserViewPublicEvents(this.mainSplitPane);
-        jRightSplitPane.setBottomComponent(userViewPublicRightPanel);
-    }//GEN-LAST:event_jRequestsBtn2ActionPerformed
-
     public JSplitPane getBaseSplitPane(){
         return this.jBaseSplitPane;
     }
@@ -354,7 +334,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
     private com.maple.resources.Button jLogoutBtn;
     private com.maple.resources.Button jRequestsBtn;
     private com.maple.resources.Button jRequestsBtn1;
-    private com.maple.resources.Button jRequestsBtn2;
     private javax.swing.JSplitPane jRightSplitPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jTopRightPanel;
