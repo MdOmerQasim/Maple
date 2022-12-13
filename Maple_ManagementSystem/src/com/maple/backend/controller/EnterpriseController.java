@@ -4,7 +4,9 @@
  */
 package com.maple.backend.controller;
 
+import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.service.EnterpriseService;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -32,6 +34,22 @@ public class EnterpriseController {
     
     public ArrayList<Hotel> getAllHotelData() throws SQLException{
         return enterpriseService.getAllHotelDataService();
+    }
+    
+    public ArrayList<Catering> getAllCateringData() throws SQLException{
+        return enterpriseService.getAllCateringDataService();
+    }
+    
+    public ArrayList<TravelAgent> getAllTravelData() throws SQLException{
+        return enterpriseService.getAllTravelDataService();
+    }
+    
+    public void insertCateringData(Catering cateringData) throws SQLException{
+        enterpriseService.insertCateringDataService(cateringData);
+    }
+    
+    public void insertTravelData(TravelAgent travelAgent) throws SQLException{
+        enterpriseService.insertTravelDataService(travelAgent);
     }
     
 }

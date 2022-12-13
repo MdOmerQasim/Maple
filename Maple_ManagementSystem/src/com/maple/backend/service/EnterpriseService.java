@@ -51,27 +51,19 @@ public class EnterpriseService {
         ArrayList<Catering> cateringData = new ArrayList<>();
         
         while(resultSet.next()){
-            Catering cater = new Catering();
-            cater.setCateringID(Integer.parseInt(resultSet.getString("C_ID")));
-            cater.setCateringName(resultSet.getString("C_NAME"));
-            cater.setCateringAddress(resultSet.getString("C_ADDRESS"));
-            cater.setCateringArea(resultSet.getString("C_AREA"));
-            cater.setPhoto(resultSet.getString("C_PHOTO"));
-            cater.setCapacity(resultSet.getString("C_CAPACITY"));
-            cater.setBookedDates(resultSet.getString("C_BOOKED_DATES"));
-//            cater.set
-            cater.setCateringAdmin(resultSet.getString("C_ADMIN"));
-
-            
-//            hotel.setHotelID(Integer.parseInt(resultSet.getString("H_ID")));
-//            hotel.setHotelName(resultSet.getString("H_NAME"));
-//            hotel.setHotelAddress(resultSet.getString("H_ADDRESS"));
-//            hotel.setHotelArea(resultSet.getString("H_AREA"));
-//            hotel.setHotelType(resultSet.getString("H_TYPE"));
-            cater.setEmail(resultSet.getString("C_EMAIL"));
-            cater.setPhone(resultSet.getString("C_PHONE"));
-            cater.setStatus(resultSet.getString("C_STATUS"));
-            cateringData.add(cater);
+            Catering catering = new Catering();
+            catering.setCateringID(Integer.parseInt(resultSet.getString("C_ID")));
+            catering.setCateringName(resultSet.getString("C_NAME"));
+            catering.setCateringAddress(resultSet.getString("C_ADDRESS"));
+            catering.setCateringArea(resultSet.getString("C_AREA"));
+            catering.setCapacity(resultSet.getString("C_CAPACITY"));
+            catering.setCateringAdmin(resultSet.getString("C_ADMIN"));
+            catering.setBookedDates(resultSet.getString("C_BOOKED_DATES"));
+            catering.setPhoto(resultSet.getString("C_PHOTO"));
+            catering.setEmail(resultSet.getString("C_EMAIL"));
+            catering.setPhone(resultSet.getString("C_PHONE"));
+            catering.setStatus(resultSet.getString("C_STATUS"));
+            cateringData.add(catering);
         }
         
         return cateringData; 
@@ -81,20 +73,19 @@ public class EnterpriseService {
         ArrayList<TravelAgent> travelData = new ArrayList<>();
         
         while(resultSet.next()){
-            TravelAgent t = new TravelAgent();
-            t.setTravelAgentID(Integer.parseInt(resultSet.getString("TA_ID")));
-            t.setTravelAgentName(resultSet.getString("TA_NAME"));
-            t.setTravelAgentAddress(resultSet.getString("TA_ADDRESS"));
-            t.setTravelAgentArea(resultSet.getString("TA_AREA"));
-//            hotel.setHotelType(resultSet.getString("H_TYPE"));
-            t.setCapacity(resultSet.getString("TA_CAPACITY"));
-            t.setTravelAgentAdmin(resultSet.getString("TA_ADMIN"));
-            t.setBookedDates(resultSet.getString("TA_BOOKED_DATES"));
-            t.setPhoto(resultSet.getString("TA_PHOTO"));
-            t.setEmail(resultSet.getString("TA_EMAIL"));
-            t.setPhone(resultSet.getString("TA_PHONE"));
-            t.setStatus(resultSet.getString("TA_STATUS"));
-            travelData.add(t);
+            TravelAgent travel = new TravelAgent();
+            travel.setTravelAgentID(Integer.parseInt(resultSet.getString("TA_ID")));
+            travel.setTravelAgentName(resultSet.getString("TA_NAME"));
+            travel.setTravelAgentAddress(resultSet.getString("TA_ADDRESS"));
+            travel.setTravelAgentArea(resultSet.getString("TA_AREA"));
+            travel.setCapacity(resultSet.getString("TA_CAPACITY"));
+            travel.setTravelAgentAdmin(resultSet.getString("TA_ADMIN"));
+            travel.setBookedDates(resultSet.getString("TA_BOOKED_DATES"));
+            travel.setPhoto(resultSet.getString("TA_PHOTO"));
+            travel.setEmail(resultSet.getString("TA_EMAIL"));
+            travel.setPhone(resultSet.getString("TA_PHONE"));
+            travel.setStatus(resultSet.getString("TA_STATUS"));
+            travelData.add(travel);
         }
         
         return travelData; 
@@ -106,6 +97,14 @@ public class EnterpriseService {
     
     public void insertHotelDataService(Hotel hotelData) throws SQLException{
         enterpriseRepository.insertHotelData(hotelData);
+    }
+    
+    public void insertCateringDataService(Catering cateringData) throws SQLException{
+        enterpriseRepository.insertCateringData(cateringData);
+    }
+    
+    public void insertTravelDataService(TravelAgent travelData) throws SQLException{
+        enterpriseRepository.insertTravelData(travelData);
     }
     
     public ArrayList<Hotel> getAllHotelDataService() throws SQLException{
@@ -122,6 +121,7 @@ public class EnterpriseService {
         ResultSet resultSet = enterpriseRepository.getAllTravelData();
         return travelMapper(resultSet);
     }
+    
     
     
 }

@@ -14,7 +14,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import com.maple.backend.service.EventService;
 import java.sql.SQLException;
@@ -96,7 +98,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jPasswordTextField = new com.maple.resources.TextField();
         jConfirmPasswordTextField = new com.maple.resources.TextField();
         jLabel14 = new javax.swing.JLabel();
-        button1 = new com.maple.resources.Button();
+        jUploadBtn = new com.maple.resources.Button();
         jAddressLabel = new javax.swing.JLabel();
         jAreaLabel = new javax.swing.JLabel();
         jCompanyNameLabel = new javax.swing.JLabel();
@@ -107,7 +109,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jArea = new com.maple.resources.TextField();
         jCapacity = new com.maple.resources.TextField();
         jCompanyName = new com.maple.resources.TextField();
-        button2 = new com.maple.resources.Button();
+        jRegisterBtn = new com.maple.resources.Button();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -156,10 +158,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Confirm Password");
 
-        button1.setText("Upload");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        jUploadBtn.setText("Upload");
+        jUploadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                jUploadBtnActionPerformed(evt);
             }
         });
 
@@ -183,10 +185,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
         jCompanyName.setLabelText("");
 
-        button2.setText("Register");
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        jRegisterBtn.setText("Register");
+        jRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                jRegisterBtnActionPerformed(evt);
             }
         });
 
@@ -232,8 +234,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jUploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(178, 178, 178))
@@ -327,10 +329,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
                             .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jUploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11))
                                 .addGap(30, 30, 30)
-                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(jRegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -361,7 +363,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
        
     }//GEN-LAST:event_jRegisterAsComboBoxActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void jUploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadBtnActionPerformed
         // TODO add your handling code here:
         JFileChooser img_upload = new JFileChooser();
         img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -381,9 +383,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
         else{
                 JOptionPane.showMessageDialog(this, "Upload is cancelled.");
             }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_jUploadBtnActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+    private void jRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterBtnActionPerformed
         // TODO add your handling code here:
         String role = jRegisterAsComboBox.getSelectedItem().toString();
         String name = jNameTextField.getText();
@@ -419,94 +421,138 @@ public class RegisterJPanel extends javax.swing.JPanel {
         }
         else if (phoneNum.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your phone number.");
-        }
-        else if (userName.equals("")){
+        } else if (userName.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a username.");
-        }
-        else if (password.equals("")){
+        } else if (password.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a password.");
-        }
-        else if (rePassword.equals("")){
+        } else if (rePassword.equals("")){
             JOptionPane.showMessageDialog(this, "Please re-enter the password.");
-        }
-        else if (!rePassword.equals(password)){
+        } else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
-        }
-        else if (path.equals("")){
+        } else if (path.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a photo.");
-        }
-        else{
-            String status = null ;
-        
-
-        if ("customer".equals(role)){
-            status = "active";
-        }
-//        int ID = user.getID();
-
-        int ID = 0;
+        } else{
             try {
-                ID = userController.getAllUsers();
+                String status = "PENDING" ;
+                if ("customer".equals(role)){
+                    status = "active";
+                }
+                
+            int ID = userController.getAllUsers();
+
+            
+            //insert in USER table
+            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
+
+            if(role.equalsIgnoreCase("HOTEL ADMIN")){
+                //insert in HCT table
+                Hotel hotelData = new Hotel();
+                hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
+                hotelData.setHotelName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setHotelAddress(address);
+                hotelData.setHotelAdmin(String.valueOf(ID));
+                hotelData.setHotelArea(area);
+                hotelData.setHotelType(type);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertHotelData(hotelData);
+
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("HOTELADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            } else if(role.equalsIgnoreCase("CATERING ADMIN")){
+                //insert in HCT table
+                Catering hotelData = new Catering();
+                hotelData.setCateringID(enterpriseController.getAllCateringData().size()+1); //TODO: generate
+                hotelData.setCateringName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setCateringAddress(address);
+                hotelData.setCateringAdmin(String.valueOf(ID));
+                hotelData.setCateringArea(area);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertCateringData(hotelData);
+                
+                
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("CATERINGADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            } else if(role.equalsIgnoreCase("TRAVEL AGENT ADMIN")){
+                //insert in HCT table
+                TravelAgent hotelData = new TravelAgent();
+                hotelData.setTravelAgentID(enterpriseController.getAllTravelData().size()+1); //TODO: generate
+                hotelData.setTravelAgentName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setTravelAgentAddress(address);
+                hotelData.setTravelAgentAdmin(String.valueOf(ID));
+                hotelData.setTravelAgentArea(area);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertTravelData(hotelData);
+                
+                
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("TRAVELADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            }
+            
+
+
+
+
+            jNameTextField.setText("");
+            jEmailTextField.setText("");
+            jPhoneNumberTextField.setText("");
+            jUsernameTextField.setText("");
+            jPasswordTextField.setText("");
+            jConfirmPasswordTextField.setText("");
+            jPhotoLabel.setIcon(null);
+            jPostalCodeTextField.setText("");
+            jAddress.setText("");
+            jType.setText("");
+            jCapacity.setText("");
+            jCompanyName.setText("");
+            jArea.setText("");
+            disableAdditionalFields();
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        try {
-            //insert in USER table
-            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
-            
-            //insert in HCT table
-            Hotel hotelData = new Hotel();
-            hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
-            hotelData.setHotelName(companyName);
-            hotelData.setBookedDates("");
-            hotelData.setCapacity(capacity);
-            hotelData.setEmail(email);
-            hotelData.setHotelAddress(address);
-            hotelData.setHotelAdmin(String.valueOf(ID));
-            hotelData.setHotelArea(area);
-            hotelData.setHotelType(type);
-            hotelData.setPhone(phoneNum);
-            hotelData.setStatus("PENDING");
-            
-            enterpriseController.insertHotelData(hotelData);
-            
-            //Create WorkRequest 
-            WorkRequest wr = new WorkRequest();
-            wr.setID(workRequestController.getAllWorkRequestData().size()+1);
-            wr.setType("HOTELADMIN_BUSINESSADMIN");
-            wr.setFromID(ID);
-            wr.setToID(1); //TODO: pass businessAdmin Id
-            wr.setStatus("PENDING");
-            wr.setEventID(0);
-            wr.setEventManagerID(0);
-            workRequestController.createWorkRequest(wr);
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        jNameTextField.setText("");
-        jEmailTextField.setText("");
-        jPhoneNumberTextField.setText("");
-        jUsernameTextField.setText("");
-        jPasswordTextField.setText("");
-        jConfirmPasswordTextField.setText("");
-        jPhotoLabel.setIcon(null);
-        jPostalCodeTextField.setText("");
-        jAddress.setText("");
-        jType.setText("");
-        jCapacity.setText("");
-        jCompanyName.setText("");
-        disableAdditionalFields();
-        }
-    }//GEN-LAST:event_button2ActionPerformed
+    }//GEN-LAST:event_jRegisterBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.maple.resources.Button button1;
-    private com.maple.resources.Button button2;
     private com.maple.resources.TextField jAddress;
     private javax.swing.JLabel jAddressLabel;
     private com.maple.resources.TextField jArea;
@@ -534,8 +580,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jPhotoLabel;
     private com.maple.resources.TextField jPostalCodeTextField;
     private javax.swing.JComboBox<String> jRegisterAsComboBox;
+    private com.maple.resources.Button jRegisterBtn;
     private com.maple.resources.TextField jType;
     private javax.swing.JLabel jTypeLabel;
+    private com.maple.resources.Button jUploadBtn;
     private com.maple.resources.TextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables
 }
