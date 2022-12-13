@@ -34,6 +34,7 @@ public class HomeLeftJPanel extends javax.swing.JPanel {
         button1 = new com.maple.resources.Button();
         button2 = new com.maple.resources.Button();
 
+        setBackground(new java.awt.Color(255, 153, 0));
         setPreferredSize(new java.awt.Dimension(810, 615));
 
         button1.setText("Register");

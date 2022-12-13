@@ -38,7 +38,7 @@ public class UserWelcomeScreen extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(248, 247, 247));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Lava Telugu", 2, 14)); // NOI18N
         jLabel2.setText("Create Public/Private events");
