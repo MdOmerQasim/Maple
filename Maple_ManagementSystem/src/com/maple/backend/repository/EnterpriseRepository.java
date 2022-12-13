@@ -47,7 +47,7 @@ public class EnterpriseRepository {
         } else if (type.equalsIgnoreCase("CATERING")){
             fetchQuery = "SELECT * FROM CATERING WHERE C_ADMIN = " + id;
         } else if (type.equalsIgnoreCase("TRAVEL")){
-            fetchQuery = "SELECT * FROM TRAVEL WHERE TA_ADMIN = " + id;
+            fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ADMIN = " + id;
         }
         
         return this.obj.query(fetchQuery, new String[]{});           

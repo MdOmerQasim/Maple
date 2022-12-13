@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend.cateringAdminScreen;
+package com.maple.frontend.travelAgentAdminScreen;
 
 import com.maple.backend.controller.EventController;
 import com.maple.backend.controller.WorkRequestController;
@@ -22,35 +22,34 @@ import javax.swing.JSplitPane;
  *
  * @author mohammedomerqasimshaik
  */
-public class CateringAdminScreen extends javax.swing.JPanel {
+public class TravelAgentAdminScreen extends javax.swing.JPanel {
 
     /**
      * Creates new form HotelAdminSettings
      */
     
     JSplitPane mainSplitPane;
+    
+    ArrayList<User> userData;
     WorkRequestController workRequestController;
     EventController eventController;
     
-    
-    ArrayList<User> userData;
-    
-    int cateringAdminId;
+    int travelAgentAdminId;
      
-    public CateringAdminScreen(JSplitPane jSplitPane,  ArrayList<User> userData) throws SQLException {
+    public TravelAgentAdminScreen(JSplitPane jSplitPane,  ArrayList<User> userData) throws SQLException {
         initComponents();
         this.mainSplitPane = jSplitPane;
         this.userData = userData;
         workRequestController = new WorkRequestController();
         eventController = new EventController();
-        cateringAdminId = userData.get(0).getID();
+        travelAgentAdminId = userData.get(0).getID();
         populateUserData();
         //Load dashboard (by default)
         try {
-            CateringAdminDashboard cateringAdminDashboard = new CateringAdminDashboard(userData);
-            jRightSplitPane.setBottomComponent(cateringAdminDashboard);
+            TravelAgentAdminDashboard travelAdminDashboard = new TravelAgentAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(travelAdminDashboard);
         } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TravelAgentAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -64,8 +63,8 @@ public class CateringAdminScreen extends javax.swing.JPanel {
     public void getNotificationData() throws SQLException{
         // get notification count
         ArrayList<WorkRequest> wkList = new ArrayList<>(); 
-        wkList = workRequestController.getWorkRequestByRoleService(cateringAdminId);
-        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, cateringAdminId);
+        wkList = workRequestController.getWorkRequestByRoleService(travelAgentAdminId);
+        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, travelAgentAdminId);
         int notification = eventList.size();
         notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
     }
@@ -300,20 +299,20 @@ public class CateringAdminScreen extends javax.swing.JPanel {
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
             getNotificationData();
-            CateringAdminDashboard cateringAdminDashboard = new CateringAdminDashboard(userData);
-            jRightSplitPane.setBottomComponent(cateringAdminDashboard);
+            TravelAgentAdminDashboard travelAdminDashboard = new TravelAgentAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(travelAdminDashboard);
         } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TravelAgentAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
         try {
             getNotificationData();
-            CateringAdminRequest cateringAdminRequest = new CateringAdminRequest(userData);
-            jRightSplitPane.setBottomComponent(cateringAdminRequest);
+            TravelAgentAdminRequest travelAdminRequest = new TravelAgentAdminRequest(userData);
+            jRightSplitPane.setBottomComponent(travelAdminRequest);
         } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TravelAgentAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
@@ -327,13 +326,12 @@ public class CateringAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
-        try {
-            getNotificationData();
-            CateringAdminSettings cateringAdminSettings = new CateringAdminSettings(userData);
-            jRightSplitPane.setBottomComponent(cateringAdminSettings);
-        } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            CateringAdminSettings cateringAdminSettings = new CateringAdminSettings(userData);
+//            jRightSplitPane.setBottomComponent(cateringAdminSettings);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TravelAgentAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jSettingsBtnActionPerformed
 
     public JSplitPane getBaseSplitPane(){

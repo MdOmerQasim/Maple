@@ -12,6 +12,7 @@ import com.maple.frontend.eventAdminScreen.EventAdminScreen;
 import com.maple.frontend.eventManagerScreen.EventManagerScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.hrAdminScreen.HRAdminScreen;
+import com.maple.frontend.travelAgentAdminScreen.TravelAgentAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
 import java.sql.SQLException;
 import javax.swing.JSplitPane;
@@ -191,7 +192,11 @@ public class LoginJPanel extends javax.swing.JPanel {
                     CateringAdminScreen cateringAdminScreen = new CateringAdminScreen(this.mainSplitPane, userData);
                     this.mainSplitPane.setRightComponent(cateringAdminScreen.getBaseSplitPane().getRightComponent());
                     this.mainSplitPane.setLeftComponent(cateringAdminScreen.getBaseSplitPane().getLeftComponent());
-                } 
+                } else if(role.equals("Travel Agent Admin")){
+                    TravelAgentAdminScreen travelAdminScreen = new TravelAgentAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(travelAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(travelAdminScreen.getBaseSplitPane().getLeftComponent());
+                }
 
             }
         } catch (SQLException ex) {

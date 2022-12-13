@@ -434,8 +434,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
         } else{
             try {
                 String status = "PENDING" ;
-                if ("customer".equals(role)){
-                    status = "active";
+                if ("customer".equalsIgnoreCase(role)){
+                    status = "ACCEPTED";
                 }
                 
             int ID = userController.getAllUsers();
