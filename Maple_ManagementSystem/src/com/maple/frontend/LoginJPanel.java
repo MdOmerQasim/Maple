@@ -7,6 +7,7 @@ package com.maple.frontend;
 import com.maple.backend.controller.UserController;
 import com.maple.backend.model.User;
 import com.maple.frontend.businessAdminScreen.BusinessAdminScreen;
+import com.maple.frontend.cateringAdminScreen.CateringAdminScreen;
 import com.maple.frontend.eventAdminScreen.EventAdminScreen;
 import com.maple.frontend.eventManagerScreen.EventManagerScreen;
 import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
@@ -33,8 +34,8 @@ public class LoginJPanel extends javax.swing.JPanel {
     
     public LoginJPanel(JSplitPane jSplitPane) throws SQLException {
         this.mainSplitPane = jSplitPane;
-        userController = new UserController();
         initComponents();
+        userController = new UserController();
     }
 
     /**
@@ -54,7 +55,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         jLoginAsComboBox = new javax.swing.JComboBox<>();
         jPasswordTextField = new com.maple.resources.TextField();
         jUsernameTextField = new com.maple.resources.TextField();
-        button1 = new com.maple.resources.Button();
+        jLoginBtn = new com.maple.resources.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(810, 620));
@@ -76,22 +77,17 @@ public class LoginJPanel extends javax.swing.JPanel {
         jLabel5.setText("Login as");
 
         jLoginAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin", "HR Admin", "Business Admin", "Event Admin", "Event Manager" }));
-        jLoginAsComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLoginAsComboBoxActionPerformed(evt);
-            }
-        });
 
         jPasswordTextField.setLabelText("");
 
         jUsernameTextField.setLabelText("");
 
-        button1.setBackground(new java.awt.Color(255, 153, 0));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("Login");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        jLoginBtn.setBackground(new java.awt.Color(255, 153, 0));
+        jLoginBtn.setForeground(new java.awt.Color(255, 255, 255));
+        jLoginBtn.setText("Login");
+        jLoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                jLoginBtnActionPerformed(evt);
             }
         });
 
@@ -110,7 +106,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                         .addComponent(jLoginAsComboBox, 0, 1, Short.MAX_VALUE)))
@@ -127,7 +123,6 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
@@ -138,35 +133,12 @@ public class LoginJPanel extends javax.swing.JPanel {
                         .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
                 .addGap(52, 52, 52)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(152, 152, 152))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLoginAsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginAsComboBoxActionPerformed
-        // TODO add your handling code here:
-           
-        
-//        if(jUsernameTextField.getText().equalsIgnoreCase("admin")){  
-//            try {
-//                BusinessAdminScreen businessAdminScreen = new BusinessAdminScreen(this.mainSplitPane);
-//                this.mainSplitPane.setRightComponent(businessAdminScreen.getBaseSplitPane().getRightComponent());
-//                this.mainSplitPane.setLeftComponent(businessAdminScreen.getBaseSplitPane().getLeftComponent());
-//            } catch (SQLException ex) {
-//             System.out.println("EROROROR");   
-//            }
-//        } else {
-//             // If User Logs In
-//            UserLeftPanelOptions UserLeftPanelOptions = new UserLeftPanelOptions(this.mainSplitPane);
-//            this.mainSplitPane.setLeftComponent(UserLeftPanelOptions);
-//
-//            UserWelcomeScreen UserRightPanelWelcome = new UserWelcomeScreen(this.mainSplitPane);
-//            this.mainSplitPane.setRightComponent(UserRightPanelWelcome);
-//
-//        }
-    }//GEN-LAST:event_jLoginAsComboBoxActionPerformed
-
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void jLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginBtnActionPerformed
 //        System.out.println("sdb" + jUsernameTextField.getText());
         if(jUsernameTextField.getText().equals("")){  
             System.out.println("username Cant be null bro");
@@ -215,23 +187,27 @@ public class LoginJPanel extends javax.swing.JPanel {
                     EventManagerScreen eventManagerScreen = new EventManagerScreen(this.mainSplitPane, userData);
                     this.mainSplitPane.setRightComponent(eventManagerScreen.getBaseSplitPane().getRightComponent());
                     this.mainSplitPane.setLeftComponent(eventManagerScreen.getBaseSplitPane().getLeftComponent());
-                }
+                } else if(role.equals("Catering Admin")){
+                    CateringAdminScreen cateringAdminScreen = new CateringAdminScreen(this.mainSplitPane, userData);
+                    this.mainSplitPane.setRightComponent(cateringAdminScreen.getBaseSplitPane().getRightComponent());
+                    this.mainSplitPane.setLeftComponent(cateringAdminScreen.getBaseSplitPane().getLeftComponent());
+                } 
 
             }
         } catch (SQLException ex) {
             System.out.println("error here");
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_jLoginBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.maple.resources.Button button1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JComboBox<String> jLoginAsComboBox;
+    private com.maple.resources.Button jLoginBtn;
     private com.maple.resources.TextField jPasswordTextField;
     private com.maple.resources.TextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables

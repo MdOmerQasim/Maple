@@ -52,4 +52,8 @@ public class EventController {
     public ArrayList<Event> getPrivateEventList() throws SQLException{
         return eventService.getPrivateEventList();
     }
+    
+    public ArrayList<Event> getEventDataByEnterprise(ArrayList<WorkRequest> wkList, int toId) throws SQLException{
+        return eventService.getEventDataByEnterpriseService(wkList, toId);
+    }
 }

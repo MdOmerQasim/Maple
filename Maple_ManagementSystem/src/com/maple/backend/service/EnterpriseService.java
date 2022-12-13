@@ -4,7 +4,9 @@
  */
 package com.maple.backend.service;
 
+import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.repository.EnterpriseRepository;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -45,6 +47,50 @@ public class EnterpriseService {
         return hotelData; 
     }
     
+    private ArrayList<Catering> cateringMapper(ResultSet resultSet) throws SQLException{
+        ArrayList<Catering> cateringData = new ArrayList<>();
+        
+        while(resultSet.next()){
+            Catering catering = new Catering();
+            catering.setCateringID(Integer.parseInt(resultSet.getString("C_ID")));
+            catering.setCateringName(resultSet.getString("C_NAME"));
+            catering.setCateringAddress(resultSet.getString("C_ADDRESS"));
+            catering.setCateringArea(resultSet.getString("C_AREA"));
+            catering.setCapacity(resultSet.getString("C_CAPACITY"));
+            catering.setCateringAdmin(resultSet.getString("C_ADMIN"));
+            catering.setBookedDates(resultSet.getString("C_BOOKED_DATES"));
+            catering.setPhoto(resultSet.getString("C_PHOTO"));
+            catering.setEmail(resultSet.getString("C_EMAIL"));
+            catering.setPhone(resultSet.getString("C_PHONE"));
+            catering.setStatus(resultSet.getString("C_STATUS"));
+            cateringData.add(catering);
+        }
+        
+        return cateringData; 
+    }
+    
+    private ArrayList<TravelAgent> travelMapper(ResultSet resultSet) throws SQLException{
+        ArrayList<TravelAgent> travelData = new ArrayList<>();
+        
+        while(resultSet.next()){
+            TravelAgent travel = new TravelAgent();
+            travel.setTravelAgentID(Integer.parseInt(resultSet.getString("TA_ID")));
+            travel.setTravelAgentName(resultSet.getString("TA_NAME"));
+            travel.setTravelAgentAddress(resultSet.getString("TA_ADDRESS"));
+            travel.setTravelAgentArea(resultSet.getString("TA_AREA"));
+            travel.setCapacity(resultSet.getString("TA_CAPACITY"));
+            travel.setTravelAgentAdmin(resultSet.getString("TA_ADMIN"));
+            travel.setBookedDates(resultSet.getString("TA_BOOKED_DATES"));
+            travel.setPhoto(resultSet.getString("TA_PHOTO"));
+            travel.setEmail(resultSet.getString("TA_EMAIL"));
+            travel.setPhone(resultSet.getString("TA_PHONE"));
+            travel.setStatus(resultSet.getString("TA_STATUS"));
+            travelData.add(travel);
+        }
+        
+        return travelData; 
+    }
+    
     public ResultSet getEnterpriseDataService(String type, int id) throws SQLException{
         return enterpriseRepository.getEnterpriseData(type, id);
     }
@@ -53,9 +99,27 @@ public class EnterpriseService {
         enterpriseRepository.insertHotelData(hotelData);
     }
     
+    public void insertCateringDataService(Catering cateringData) throws SQLException{
+        enterpriseRepository.insertCateringData(cateringData);
+    }
+    
+    public void insertTravelDataService(TravelAgent travelData) throws SQLException{
+        enterpriseRepository.insertTravelData(travelData);
+    }
+    
     public ArrayList<Hotel> getAllHotelDataService() throws SQLException{
         ResultSet resultSet = enterpriseRepository.getAllHotelData();
         return hotelMapper(resultSet);
+    }
+    
+    public ArrayList<Catering> getAllCateringDataService() throws SQLException{
+        ResultSet resultSet = enterpriseRepository.getAllCateringData();
+        return cateringMapper(resultSet);
+    }
+    
+    public ArrayList<TravelAgent> getAllTravelDataService() throws SQLException{
+        ResultSet resultSet = enterpriseRepository.getAllTravelData();
+        return travelMapper(resultSet);
     }
     
     

@@ -64,8 +64,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="button1" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="button2" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <Component id="jUploadBtn" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <Component id="jRegisterBtn" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPhotoLabel" min="-2" pref="82" max="-2" attributes="0"/>
@@ -181,11 +181,11 @@
                           <Component id="jPhotoLabel" min="-2" pref="78" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="button1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="jUploadBtn" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="button2" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="jRegisterBtn" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -313,12 +313,12 @@
         <Property name="text" type="java.lang.String" value="Confirm Password"/>
       </Properties>
     </Component>
-    <Component class="com.maple.resources.Button" name="button1">
+    <Component class="com.maple.resources.Button" name="jUploadBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Upload"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jUploadBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jAddressLabel">
@@ -371,12 +371,12 @@
         <Property name="labelText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="com.maple.resources.Button" name="button2">
+    <Component class="com.maple.resources.Button" name="jRegisterBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRegisterBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

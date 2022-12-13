@@ -4,7 +4,11 @@
  */
 package com.maple.frontend.hotelAdminScreen;
 
+import com.maple.backend.controller.EventController;
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
+import com.maple.backend.model.WorkRequest;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
@@ -25,6 +29,8 @@ public class HotelAdminScreen extends javax.swing.JPanel {
      */
     
     JSplitPane mainSplitPane;
+    WorkRequestController workRequestController;
+    EventController eventController;
     
     ArrayList<User> userData;
     
@@ -34,9 +40,11 @@ public class HotelAdminScreen extends javax.swing.JPanel {
         initComponents();
         this.mainSplitPane = jSplitPane;
         this.userData = userData;
-        
+        workRequestController = new WorkRequestController();
+        eventController = new EventController();
         hotelAdminId = userData.get(0).getID();
         populateUserData();
+        getNotificationData();
         //Load dashboard (by default)
         try {
             HotelAdminDashboard hotelAdminDashboard = new HotelAdminDashboard(userData);
@@ -46,6 +54,15 @@ public class HotelAdminScreen extends javax.swing.JPanel {
         }
     }
 
+    public void getNotificationData() throws SQLException{
+        // get notification count
+        ArrayList<WorkRequest> wkList = new ArrayList<>(); 
+        wkList = workRequestController.getWorkRequestByRoleService(hotelAdminId);
+        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, hotelAdminId);
+        int notification = eventList.size();
+        notificationBadge.setBadges(notification); 
+    }
+    
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText(userData.get(0).getName());
@@ -283,6 +300,7 @@ public class HotelAdminScreen extends javax.swing.JPanel {
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
+            getNotificationData();
             HotelAdminDashboard hotelAdminDashboard = new HotelAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(hotelAdminDashboard);
         } catch (SQLException ex) {
@@ -291,8 +309,13 @@ public class HotelAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
-        HotelAdminRequest hotelAdminRequest = new HotelAdminRequest(userData);
-        jRightSplitPane.setBottomComponent(hotelAdminRequest);
+        try {
+            getNotificationData();
+            HotelAdminRequest hotelAdminRequest = new HotelAdminRequest(userData);
+            jRightSplitPane.setBottomComponent(hotelAdminRequest);
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed
@@ -306,6 +329,7 @@ public class HotelAdminScreen extends javax.swing.JPanel {
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
         try {
+            getNotificationData();
             HotelAdminSettings hotelAdminSettings = new HotelAdminSettings(userData);
             jRightSplitPane.setBottomComponent(hotelAdminSettings);
         } catch (SQLException ex) {
