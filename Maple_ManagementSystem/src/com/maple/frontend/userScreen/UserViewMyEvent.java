@@ -14,7 +14,9 @@ import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
+import com.maple.resources.ScrollBar;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -59,9 +62,20 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             managerStatus.setVisible(false);
             populateTable();
             table.fixTable(jScrollPane);
+            fixScrollBar(jScrollPane1);
         } catch (SQLException ex) {
             Logger.getLogger(UserViewMyEvent.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void fixScrollBar(JScrollPane scroll){
+        scroll.setBorder(null);
+        scroll.setVerticalScrollBar(new ScrollBar());
+        scroll.getVerticalScrollBar().setBackground(Color.WHITE);
+        scroll.getViewport().setBackground(Color.WHITE);
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
     }
 
     /**
@@ -115,6 +129,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         managerStatus = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         table = new com.maple.resources.Table();
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         attendeesCountField.setEditable(false);
         attendeesCountField.setLabelText("Attendees Count");
