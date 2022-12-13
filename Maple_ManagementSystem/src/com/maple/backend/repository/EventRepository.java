@@ -57,5 +57,10 @@ public class EventRepository {
         this.obj.update(updateQuery, new String[]{});           
     }
     
+    public void updateCateringAdminFlowChosenCateringId(int cateringId, int eventId) throws SQLException{
+        String updateQuery = "UPDATE EVENT SET CHOSEN_CATERING_ID = '" + cateringId + "' WHERE EVENT_ID = " + eventId;
+        this.obj.update(updateQuery, new String[]{});           
+    }
+    
 
 }

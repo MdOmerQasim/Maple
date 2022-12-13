@@ -291,8 +291,12 @@ public class CateringAdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jDashboardBtnActionPerformed
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
-        CateringAdminRequest cateringAdminRequest = new CateringAdminRequest(userData);
-        jRightSplitPane.setBottomComponent(cateringAdminRequest);
+        try {
+            CateringAdminRequest cateringAdminRequest = new CateringAdminRequest(userData);
+            jRightSplitPane.setBottomComponent(cateringAdminRequest);
+        } catch (SQLException ex) {
+            Logger.getLogger(CateringAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRequestsBtnActionPerformed
 
     private void jLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutBtnActionPerformed

@@ -353,6 +353,41 @@ public class WorkRequestService {
         workRequestRepository.updateWorkRequestDataStatus(wkId, status);
     }
     
+    
+    public void updateCateringAdminWorkFlowStatusService(String eventName, int cateringAdminId, String status) throws SQLException{
+        
+        //finding hotel based on name in HOTEL table
+        ArrayList<Event> eventData = eventService.getAllEventListService();
+        ArrayList<Event> filteredEventList = new ArrayList<>();
+        eventData.stream()
+            .filter(evt -> evt.getEventName().equalsIgnoreCase(eventName))
+            .forEach(evt -> filteredEventList.add(evt));
+            
+        //getting eventId from EVENT table
+        int eventId = filteredEventList.get(0).getEventID();
+        
+        //get cateringID using cateringAdminId
+        ArrayList<Catering> cateringData = enterpriseService.getAllCateringDataService();
+        ArrayList<Catering> filteredCateringList = new ArrayList<>();
+        cateringData.stream()
+            .filter(catering -> catering.getCateringAdmin().equalsIgnoreCase(String.valueOf(cateringAdminId)))
+            .forEach(catering -> filteredCateringList.add(catering));
+        int cateringId = filteredCateringList.get(0).getCateringID();
+        
+        if(status.equalsIgnoreCase("ACCEPTED")){
+            eventRepository.updateCateringAdminFlowChosenCateringId(cateringId, eventId);
+        }
+        
+        
+        ArrayList<WorkRequest> wk = getAllWorkRequestData();
+        ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+        wk.stream()
+            .filter(w -> w.getEventID()==eventId && w.getType().equalsIgnoreCase("EVENTMANAGER_CATERINGADMIN"))
+            .forEach(w -> filteredWRList.add(w));
+        int lastIndex = filteredWRList.size()-1;
+        int wkId = filteredWRList.get(lastIndex).getID();
+        workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+    }
 
     
 }
