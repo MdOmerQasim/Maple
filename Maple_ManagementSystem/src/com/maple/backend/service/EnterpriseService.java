@@ -98,6 +98,10 @@ public class EnterpriseService {
         return enterpriseRepository.getEnterpriseData(type, id);
     }
     
+     public ResultSet getEnterpriseDataServiceEnterprise(String type, int id) throws SQLException{
+        return enterpriseRepository.getEnterpriseDataEnterprise(type, id);
+    }
+    
     public void insertHotelDataService(Hotel hotelData) throws SQLException{
         enterpriseRepository.insertHotelData(hotelData);
     }
