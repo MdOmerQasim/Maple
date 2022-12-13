@@ -94,7 +94,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         statusFilter = new javax.swing.JComboBox<>();
         typeField = new com.maple.resources.TextField();
         nameField = new com.maple.resources.TextField();
-        button1 = new com.maple.resources.Button();
         typeDropdown = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -102,9 +101,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         scrollBar1 = new com.maple.resources.ScrollBar();
         descriptionField = new com.maple.resources.TextField();
         jLabel3 = new javax.swing.JLabel();
-        dateFilter = new com.toedter.calendar.JDateChooser();
         fromField = new com.maple.resources.TextField();
-        jLabel2 = new javax.swing.JLabel();
         eventManagerField = new com.maple.resources.TextField();
         toField = new com.maple.resources.TextField();
         jPanel3 = new javax.swing.JPanel();
@@ -147,7 +144,12 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             }
         });
 
-        statusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Accepted", "Rejected" }));
+        statusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "ASSIGNED MANAGER", "Accepted", "Rejected" }));
+        statusFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusFilterActionPerformed(evt);
+            }
+        });
 
         typeField.setEditable(false);
         typeField.setText("Public");
@@ -160,8 +162,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         nameField.setEditable(false);
         nameField.setLabelText("Name");
-
-        button1.setText("Back");
 
         typeDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Public", "Private" }));
 
@@ -180,8 +180,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         fromField.setEditable(false);
         fromField.setLabelText("From");
-
-        jLabel2.setText("Date");
 
         eventManagerField.setEditable(false);
         eventManagerField.setLabelText("Event Manager");
@@ -410,61 +408,63 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fromField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(attendeesCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(areaField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(managerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                            .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fromField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(attendeesCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(areaField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(managerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(958, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(353, 353, 353)
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))))
+                .addContainerGap(918, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(15, 15, 15)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGap(91, 91, 91)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(39, 39, 39)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(dateFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(50, 50, 50)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(229, 229, 229)
-                                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel1)
+                        .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(15, 909, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
+                .addGap(106, 106, 106)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -497,22 +497,12 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(32, 32, 32)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3))
+                    .addComponent(jLabel1)
                     .addGap(14, 14, 14)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dateFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(1318, Short.MAX_VALUE)))
+                    .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1322, Short.MAX_VALUE)))
         );
 
         jScrollPane1.setViewportView(jPanel5);
@@ -537,11 +527,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_attendeesCountFieldActionPerformed
 
-    private WorkRequest getSpecificEvent(ArrayList<WorkRequest>wrEvents, String val, int toId) {
+    private WorkRequest getSpecificEvent(ArrayList<WorkRequest>wrEvents, String val, String toId) {
         // based on wr status show contents
         WorkRequest specWr = new WorkRequest();
         for(WorkRequest wr : wrEvents) {
-            if(wr.getType().equalsIgnoreCase(val) && wr.getToID() == toId){
+            if(wr.getType().equalsIgnoreCase(val) && wr.getToID() == Integer.parseInt(toId)){
                 specWr = wr;
             }
         }
@@ -676,7 +666,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     hotelType.setText(isAccomodation ? "Accomodation" : "Function Hall");
 
                     int id = selectedEvent.getChosenHotelID();
-                    WorkRequest hotelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_HOTELADMIN", id);
                     
                     hotelBtn.setVisible(false);
                     hotelName.setVisible(false);
@@ -685,26 +674,32 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     if(id != -1) {
                         jPanel1.setVisible(true);
                         hotelBtn.setVisible(true);
-                        hotelBtn.setText(hotelWr.getStatus());
                         hotelName.setVisible(true);
                         hotelAddress.setVisible(true);
                         hotelImage.setVisible(true);
                         
-                        ResultSet resultSet = enterpriseController.getEnterpriseData("HOTEL", id);
+                        ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("HOTEL", id);
                         Hotel hotelData = hotelMapper(resultSet);
+                        
+                        String adminId = hotelData.getHotelAdmin();
+                        WorkRequest hotelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_HOTELADMIN", adminId);
+                        hotelBtn.setText(hotelWr.getStatus());
                         //  get Hotel Details
                         hotelName.setText(hotelData.getHotelName());
                         hotelAddress.setText(hotelData.getHotelAddress());
                         hotelImage.setIcon(new ImageIcon(hotelData.getPhoto()));
 
+                    } else {
+                        jPanel1.setVisible(true);
+                        hotelBtn.setVisible(true);
+                        hotelBtn.setText("Pending");
                     }
                 }
                 if(isCatering) {
                     jPanel2.setVisible(false);
 
                     int id = selectedEvent.getChosenCateringID();
-                    WorkRequest caterWr = getSpecificEvent(wrEvents,"EVENTMANAGER_CATERINGADMIN",id);
-                    //change btn background  based on status
+                    
 
                     
                     cateringBtn.setVisible(false);
@@ -718,22 +713,28 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         cateringAddress.setVisible(true);
                         cateringImage.setVisible(true);
 
-                        cateringBtn.setText(caterWr.getStatus());
-                        ResultSet resultSet = enterpriseController.getEnterpriseData("CATERING", id);
+                        
+                        ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("CATERING", id);
                         Catering catrData = catrMapper(resultSet);
+                        
+                        String adminId = catrData.getCateringAdmin();
+                        WorkRequest caterWr = getSpecificEvent(wrEvents,"EVENTMANAGER_CATERINGADMIN",adminId);
+                        cateringBtn.setText(caterWr.getStatus());
                         // get Catering Details
                         cateringName.setText(catrData.getCateringName());
                         cateringAddress.setText(catrData.getCateringAddress());
                         cateringImage.setIcon(new ImageIcon(catrData.getPhoto()));
+                    }
+                    else {
+                        jPanel2.setVisible(true);
+                        cateringBtn.setVisible(true);
+                        cateringBtn.setText("Pending");
                     }
                 }
                 if(isTravel) {
                     jPanel3.setVisible(false);
 
                     int id = selectedEvent.getChosenTravelAgentID();
-                    WorkRequest travelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_TRAVELADMIN",id);
-                    travelBtn.setText(travelWr.getStatus());
-                    //change btn background  based on status
 
                     
                     travelBtn.setVisible(false);
@@ -747,13 +748,22 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         travelAddress.setVisible(true);
                         travelImage.setVisible(true);
 
-                        travelBtn.setText(travelWr.getStatus());
-                        ResultSet resultSet = enterpriseController.getEnterpriseData("TRAVEL", id);
+                        
+                        ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("TRAVEL", id);
                         TravelAgent travelData = travelAgentMapper(resultSet);
+                        
+                        String adminId = travelData.getTravelAgentAdmin();
+                        WorkRequest travelWr = getSpecificEvent(wrEvents,"EVENTMANAGER_TRAVELADMIN",adminId);
+                        travelBtn.setText("ACCEPTED");
                         //            get Travel Details
                         travelName.setText(travelData.getTravelAgentName());
                         travelAddress.setText(travelData.getTravelAgentAddress());
                         travelImage.setIcon(new ImageIcon(travelData.getPhoto()));
+                    }
+                      else {
+                        jPanel3.setVisible(true);
+                        travelBtn.setVisible(true);
+                        travelBtn.setText("Pending");
                     }
                 }
             } else {
@@ -764,6 +774,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             Logger.getLogger(UserViewMyEvent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tableMouseClicked
+
+    private void statusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusFilterActionPerformed
 
     private void populateTable() {
         try {
@@ -795,12 +809,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.maple.resources.TextField areaField;
     private com.maple.resources.TextField attendeesCountField;
-    private com.maple.resources.Button button1;
     private com.maple.resources.TextField cateringAddress;
     private com.maple.resources.Button cateringBtn;
     private javax.swing.JLabel cateringImage;
     private com.maple.resources.TextField cateringName;
-    private com.toedter.calendar.JDateChooser dateFilter;
     private com.maple.resources.TextField descriptionField;
     private com.maple.resources.TextField eventManagerField;
     private com.maple.resources.TextField fromField;
@@ -810,7 +822,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     private com.maple.resources.TextField hotelName;
     private javax.swing.JLabel hotelType;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
