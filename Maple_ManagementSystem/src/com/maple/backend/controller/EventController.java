@@ -29,6 +29,7 @@ public class EventController {
         return eventList.size()+1;
     }
     
+    
      // Get User events
     public ArrayList<Event> getFilteredEventsList(int userid, String status, String type) throws SQLException{
         return eventService.getFilteredEventsListService(userid, status, type);
@@ -50,5 +51,9 @@ public class EventController {
     
     public ArrayList<Event> getPrivateEventList() throws SQLException{
         return eventService.getPrivateEventList();
+    }
+    
+    public ArrayList<Event> getEventDataByEnterprise(ArrayList<WorkRequest> wkList, int toId) throws SQLException{
+        return eventService.getEventDataByEnterpriseService(wkList, toId);
     }
 }

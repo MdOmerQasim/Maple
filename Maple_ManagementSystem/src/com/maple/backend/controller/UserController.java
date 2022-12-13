@@ -63,5 +63,15 @@ public class UserController {
         return userService.getUserByNameService(name);
     }
     
+    public ArrayList<User> getMapleAdminAndManagerData() throws SQLException{
+        return userService.getMapleAdminAndManagerDataService();
+    }
     
+    public ArrayList<User> getMapleAdminData() throws SQLException{
+        return userService.getMapleAdminDataService();
+    }
+    
+    public ArrayList<User> getMapleManagerData() throws SQLException{
+        return userService.getMapleManagerDataService();
+    }
 }

@@ -105,5 +105,43 @@ public class UserService {
         return filteredData.get(0).getID();
     } 
     
+    public ArrayList<User> getMapleAdminAndManagerDataService() throws SQLException {
+        ArrayList<User> userData = new ArrayList<>();
+        ResultSet resultSet = userRepository.getAllUsers();
+        userData = userDataMapper(resultSet);
+        ArrayList<User> filteredData = new ArrayList<>();
+        userData.stream()
+                .filter(user -> user.getRole().equalsIgnoreCase("EVENT ADMIN") || 
+                        user.getRole().equalsIgnoreCase("BUSINESS ADMIN") || 
+                        user.getRole().equalsIgnoreCase("EVENT MANAGER"))
+                .forEach(user -> filteredData.add(user));
+        
+        return filteredData;
+    } 
+    
+    public ArrayList<User> getMapleAdminDataService() throws SQLException {
+        ArrayList<User> userData = new ArrayList<>();
+        ResultSet resultSet = userRepository.getAllUsers();
+        userData = userDataMapper(resultSet);
+        ArrayList<User> filteredData = new ArrayList<>();
+        userData.stream()
+                .filter(user -> user.getRole().equalsIgnoreCase("EVENT ADMIN") || 
+                        user.getRole().equalsIgnoreCase("BUSINESS ADMIN"))
+                .forEach(user -> filteredData.add(user));
+        
+        return filteredData;
+    } 
+    
+    public ArrayList<User> getMapleManagerDataService() throws SQLException {
+        ArrayList<User> userData = new ArrayList<>();
+        ResultSet resultSet = userRepository.getAllUsers();
+        userData = userDataMapper(resultSet);
+        ArrayList<User> filteredData = new ArrayList<>();
+        userData.stream()
+                .filter(user -> user.getRole().equalsIgnoreCase("EVENT MANAGER"))
+                .forEach(user -> filteredData.add(user));
+        
+        return filteredData;
+    }
     
 }

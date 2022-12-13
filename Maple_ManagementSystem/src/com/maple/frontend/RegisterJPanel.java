@@ -14,7 +14,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import com.maple.backend.service.EventService;
 import java.sql.SQLException;
@@ -76,78 +78,46 @@ public class RegisterJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jConfirmPasswordTextField = new javax.swing.JTextField();
-        jEmailTextField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jPhotoLabel = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPhoneNumberTextField = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jNameTextField = new javax.swing.JTextField();
-        jUsernameTextField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jRegisterAsComboBox = new javax.swing.JComboBox<>();
-        jPasswordTextField = new javax.swing.JTextField();
-        jRegisterButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jUploadButton = new javax.swing.JButton();
-        jPostalCodeTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jAddress = new javax.swing.JTextField();
+        jPostalCodeTextField = new com.maple.resources.TextField();
+        jNameTextField = new com.maple.resources.TextField();
+        jEmailTextField = new com.maple.resources.TextField();
+        jPhoneNumberTextField = new com.maple.resources.TextField();
+        jUsernameTextField = new com.maple.resources.TextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jPasswordTextField = new com.maple.resources.TextField();
+        jConfirmPasswordTextField = new com.maple.resources.TextField();
+        jLabel14 = new javax.swing.JLabel();
+        jUploadBtn = new com.maple.resources.Button();
         jAddressLabel = new javax.swing.JLabel();
         jAreaLabel = new javax.swing.JLabel();
-        jArea = new javax.swing.JTextField();
-        jTypeLabel = new javax.swing.JLabel();
-        jType = new javax.swing.JTextField();
-        jCapacityLabel = new javax.swing.JLabel();
-        jCapacity = new javax.swing.JTextField();
         jCompanyNameLabel = new javax.swing.JLabel();
-        jCompanyName = new javax.swing.JTextField();
-
-        jLabel3.setText("Username");
-
-        jEmailTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEmailTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Postal Code");
-
-        jLabel4.setText("Password");
-
-        jLabel6.setText("Name");
-
-        jPhoneNumberTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPhoneNumberTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Email");
+        jTypeLabel = new javax.swing.JLabel();
+        jCapacityLabel = new javax.swing.JLabel();
+        jType = new com.maple.resources.TextField();
+        jAddress = new com.maple.resources.TextField();
+        jArea = new com.maple.resources.TextField();
+        jCapacity = new com.maple.resources.TextField();
+        jCompanyName = new com.maple.resources.TextField();
+        jRegisterBtn = new com.maple.resources.Button();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Maple Management System");
 
-        jLabel8.setText("Phone Number");
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Register");
-
-        jNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNameTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Confirm password");
 
         jRegisterAsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Hotel Admin", "Catering Admin", "Travel Agent Admin" }));
         jRegisterAsComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -156,61 +126,69 @@ public class RegisterJPanel extends javax.swing.JPanel {
             }
         });
 
-        jRegisterButton.setText("Register");
-        jRegisterButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRegisterButtonMouseClicked(evt);
-            }
-        });
-
         jLabel10.setText("Register as");
-
-        jUploadButton.setText("Upload");
-        jUploadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jUploadButtonActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Photo");
 
-        jAddress.addActionListener(new java.awt.event.ActionListener() {
+        jPostalCodeTextField.setLabelText("");
+
+        jNameTextField.setLabelText("");
+
+        jEmailTextField.setLabelText("");
+
+        jPhoneNumberTextField.setLabelText("");
+
+        jUsernameTextField.setLabelText("");
+
+        jLabel6.setText("Name");
+
+        jLabel7.setText("Email");
+
+        jLabel8.setText("Phone Number");
+
+        jLabel9.setText("Username");
+
+        jLabel12.setText("Password");
+
+        jLabel13.setText("Postal Code");
+
+        jPasswordTextField.setLabelText("");
+
+        jConfirmPasswordTextField.setLabelText("");
+
+        jLabel14.setText("Confirm Password");
+
+        jUploadBtn.setText("Upload");
+        jUploadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAddressActionPerformed(evt);
+                jUploadBtnActionPerformed(evt);
             }
         });
 
-        jAddressLabel.setText(" address");
+        jAddressLabel.setText("Address");
 
-        jAreaLabel.setText(" area");
+        jAreaLabel.setText("Area");
 
-        jArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAreaActionPerformed(evt);
-            }
-        });
+        jCompanyNameLabel.setText("Company name");
 
-        jTypeLabel.setText(" type");
-
-        jType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTypeActionPerformed(evt);
-            }
-        });
+        jTypeLabel.setText("Type");
 
         jCapacityLabel.setText("Capacity");
 
-        jCapacity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCapacityActionPerformed(evt);
-            }
-        });
+        jType.setLabelText("");
 
-        jCompanyNameLabel.setText("company name");
+        jAddress.setLabelText("");
 
-        jCompanyName.addActionListener(new java.awt.event.ActionListener() {
+        jArea.setLabelText("");
+
+        jCapacity.setLabelText("");
+
+        jCompanyName.setLabelText("");
+
+        jRegisterBtn.setText("Register");
+        jRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCompanyNameActionPerformed(evt);
+                jRegisterBtnActionPerformed(evt);
             }
         });
 
@@ -218,151 +196,145 @@ public class RegisterJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 109, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(113, 113, 113))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(338, 338, 338))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jUploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
+                                .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(178, 178, 178))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jRegisterAsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jEmailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPhoneNumberTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(jPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(91, 91, 91)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jEmailTextField)
-                                            .addComponent(jUsernameTextField)
-                                            .addComponent(jRegisterAsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jPhoneNumberTextField)
-                                            .addComponent(jNameTextField)
-                                            .addComponent(jPasswordTextField)
-                                            .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jUploadButton)
-                                                .addGap(12, 12, 12)
-                                                .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jAddressLabel)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jAreaLabel)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jArea, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jCapacityLabel)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jCompanyNameLabel)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jTypeLabel)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(125, 125, 125))
+                                    .addComponent(jAddressLabel)
+                                    .addComponent(jAreaLabel)
+                                    .addComponent(jCompanyNameLabel)
+                                    .addComponent(jTypeLabel)
+                                    .addComponent(jCapacityLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jArea, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jRegisterAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAddressLabel)
+                    .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jRegisterAsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
                             .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jAreaLabel)
-                            .addComponent(jArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jAddressLabel)
-                        .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addComponent(jAreaLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(jEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jCompanyNameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCompanyNameLabel)
-                            .addComponent(jCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jPhoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTypeLabel)
-                    .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCapacityLabel)
-                    .addComponent(jCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jUploadButton)
-                        .addComponent(jLabel11))
-                    .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRegisterButton)
-                .addGap(77, 77, 77))
+                            .addComponent(jPhoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTypeLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jCapacityLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jConfirmPasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPostalCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPhotoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jUploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(30, 30, 30)
+                                .addComponent(jRegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jEmailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEmailTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jEmailTextFieldActionPerformed
-
-    private void jPhoneNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPhoneNumberTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPhoneNumberTextFieldActionPerformed
-
-    private void jNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNameTextFieldActionPerformed
 
     private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
 //        String role = jRegisterAsComboBox.getSelectedIndex(selectedHospitalAdmin.getGender());
@@ -371,7 +343,28 @@ public class RegisterJPanel extends javax.swing.JPanel {
         
     }                                               
 
-    private void jUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadButtonActionPerformed
+    private void jRegisterAsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterAsComboBoxActionPerformed
+        // TODO add your handling code here:
+        String role = jRegisterAsComboBox.getSelectedItem().toString();
+        if(!role.equalsIgnoreCase("Customer")){
+            jAddressLabel.setVisible(true);
+            jAddress.setVisible(true);
+            jCapacityLabel.setVisible(true);
+            jCapacity.setVisible(true);
+            jTypeLabel.setVisible(true);
+            jType.setVisible(true);
+            jArea.setVisible(true);
+            jAreaLabel.setVisible(true);
+            jCompanyNameLabel.setVisible(true);
+            jCompanyName.setVisible(true);
+            return;
+        }
+        disableAdditionalFields();
+       
+    }//GEN-LAST:event_jRegisterAsComboBoxActionPerformed
+
+    private void jUploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUploadBtnActionPerformed
+        // TODO add your handling code here:
         JFileChooser img_upload = new JFileChooser();
         img_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = img_upload.showDialog(null, "Choose my file");
@@ -390,9 +383,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
         else{
                 JOptionPane.showMessageDialog(this, "Upload is cancelled.");
             }
-    }//GEN-LAST:event_jUploadButtonActionPerformed
+    }//GEN-LAST:event_jUploadBtnActionPerformed
 
-    private void jRegisterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterButtonMouseClicked
+    private void jRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterBtnActionPerformed
+        // TODO add your handling code here:
         String role = jRegisterAsComboBox.getSelectedItem().toString();
         String name = jNameTextField.getText();
         String email = jEmailTextField.getText();
@@ -427,163 +421,169 @@ public class RegisterJPanel extends javax.swing.JPanel {
         }
         else if (phoneNum.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your phone number.");
-        }
-        else if (userName.equals("")){
+        } else if (userName.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a username.");
-        }
-        else if (password.equals("")){
+        } else if (password.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a password.");
-        }
-        else if (rePassword.equals("")){
+        } else if (rePassword.equals("")){
             JOptionPane.showMessageDialog(this, "Please re-enter the password.");
-        }
-        else if (!rePassword.equals(password)){
+        } else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
-        }
-        else if (path.equals("")){
+        } else if (path.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a photo.");
-        }
-        else{
-            String status = null ;
-        
-
-        if ("customer".equals(role)){
-            status = "active";
-        }
-//        int ID = user.getID();
-
-        int ID = 0;
+        } else{
             try {
-                ID = userController.getAllUsers();
+                String status = "PENDING" ;
+                if ("customer".equals(role)){
+                    status = "active";
+                }
+                
+            int ID = userController.getAllUsers();
+
+            
+            //insert in USER table
+            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
+
+            if(role.equalsIgnoreCase("HOTEL ADMIN")){
+                //insert in HCT table
+                Hotel hotelData = new Hotel();
+                hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
+                hotelData.setHotelName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setHotelAddress(address);
+                hotelData.setHotelAdmin(String.valueOf(ID));
+                hotelData.setHotelArea(area);
+                hotelData.setHotelType(type);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertHotelData(hotelData);
+
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("HOTELADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            } else if(role.equalsIgnoreCase("CATERING ADMIN")){
+                //insert in HCT table
+                Catering hotelData = new Catering();
+                hotelData.setCateringID(enterpriseController.getAllCateringData().size()+1); //TODO: generate
+                hotelData.setCateringName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setCateringAddress(address);
+                hotelData.setCateringAdmin(String.valueOf(ID));
+                hotelData.setCateringArea(area);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertCateringData(hotelData);
+                
+                
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("CATERINGADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            } else if(role.equalsIgnoreCase("TRAVEL AGENT ADMIN")){
+                //insert in HCT table
+                TravelAgent hotelData = new TravelAgent();
+                hotelData.setTravelAgentID(enterpriseController.getAllTravelData().size()+1); //TODO: generate
+                hotelData.setTravelAgentName(companyName);
+                hotelData.setBookedDates("");
+                hotelData.setCapacity(capacity);
+                hotelData.setEmail(email);
+                hotelData.setTravelAgentAddress(address);
+                hotelData.setTravelAgentAdmin(String.valueOf(ID));
+                hotelData.setTravelAgentArea(area);
+                hotelData.setPhone(phoneNum);
+                hotelData.setStatus("PENDING");
+
+                enterpriseController.insertTravelData(hotelData);
+                
+                
+                //Create WorkRequest
+                WorkRequest wr = new WorkRequest();
+                wr.setID(workRequestController.getAllWorkRequestData().size()+1);
+                wr.setType("TRAVELADMIN_BUSINESSADMIN");
+                wr.setFromID(ID);
+                wr.setToID(1); //TODO: pass businessAdmin Id
+                wr.setStatus("PENDING");
+                wr.setEventID(0);
+                wr.setEventManagerID(0);
+                workRequestController.createWorkRequest(wr);
+            }
+            
+
+
+
+
+            jNameTextField.setText("");
+            jEmailTextField.setText("");
+            jPhoneNumberTextField.setText("");
+            jUsernameTextField.setText("");
+            jPasswordTextField.setText("");
+            jConfirmPasswordTextField.setText("");
+            jPhotoLabel.setIcon(null);
+            jPostalCodeTextField.setText("");
+            jAddress.setText("");
+            jType.setText("");
+            jCapacity.setText("");
+            jCompanyName.setText("");
+            jArea.setText("");
+            disableAdditionalFields();
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        try {
-            //insert in USER table
-            userController.insertUserDataController(ID, role, name, email, phoneNum, userName, password, path, postalCode, status);
-            
-            //insert in HCT table
-            Hotel hotelData = new Hotel();
-            hotelData.setHotelID(enterpriseController.getAllHotelData().size()+1); //TODO: generate
-            hotelData.setHotelName(companyName);
-            hotelData.setBookedDates("");
-            hotelData.setCapacity(capacity);
-            hotelData.setEmail(email);
-            hotelData.setHotelAddress(address);
-            hotelData.setHotelAdmin(String.valueOf(ID));
-            hotelData.setHotelArea(area);
-            hotelData.setHotelType(type);
-            hotelData.setPhone(phoneNum);
-            hotelData.setStatus("PENDING");
-            
-            enterpriseController.insertHotelData(hotelData);
-            
-            //Create WorkRequest 
-            WorkRequest wr = new WorkRequest();
-            wr.setID(workRequestController.getAllWorkRequestData().size()+1);
-            wr.setType("HOTELADMIN_BUSINESSADMIN");
-            wr.setFromID(ID);
-            wr.setToID(1); //TODO: pass businessAdmin Id
-            wr.setStatus("PENDING");
-            wr.setEventID(0);
-            wr.setEventManagerID(0);
-            workRequestController.createWorkRequest(wr);
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        jNameTextField.setText("");
-        jEmailTextField.setText("");
-        jPhoneNumberTextField.setText("");
-        jUsernameTextField.setText("");
-        jPasswordTextField.setText("");
-        jConfirmPasswordTextField.setText("");
-        jPhotoLabel.setIcon(null);
-        jPostalCodeTextField.setText("");
-        jAddress.setText("");
-        jType.setText("");
-        jCapacity.setText("");
-        jCompanyName.setText("");
-        disableAdditionalFields();
-        }
-    }//GEN-LAST:event_jRegisterButtonMouseClicked
-
-    private void jRegisterAsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterAsComboBoxActionPerformed
-        // TODO add your handling code here:
-        String role = jRegisterAsComboBox.getSelectedItem().toString();
-        if(!role.equalsIgnoreCase("Customer")){
-            jAddressLabel.setVisible(true);
-            jAddress.setVisible(true);
-            jCapacityLabel.setVisible(true);
-            jCapacity.setVisible(true);
-            jTypeLabel.setVisible(true);
-            jType.setVisible(true);
-            jArea.setVisible(true);
-            jAreaLabel.setVisible(true);
-            jCompanyNameLabel.setVisible(true);
-            jCompanyName.setVisible(true);
-            return;
-        }
-        disableAdditionalFields();
-       
-    }//GEN-LAST:event_jRegisterAsComboBoxActionPerformed
-
-    private void jAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAddressActionPerformed
-
-    private void jAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAreaActionPerformed
-
-    private void jTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTypeActionPerformed
-
-    private void jCapacityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCapacityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCapacityActionPerformed
-
-    private void jCompanyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCompanyNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCompanyNameActionPerformed
+    }//GEN-LAST:event_jRegisterBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jAddress;
+    private com.maple.resources.TextField jAddress;
     private javax.swing.JLabel jAddressLabel;
-    private javax.swing.JTextField jArea;
+    private com.maple.resources.TextField jArea;
     private javax.swing.JLabel jAreaLabel;
-    private javax.swing.JTextField jCapacity;
+    private com.maple.resources.TextField jCapacity;
     private javax.swing.JLabel jCapacityLabel;
-    private javax.swing.JTextField jCompanyName;
+    private com.maple.resources.TextField jCompanyName;
     private javax.swing.JLabel jCompanyNameLabel;
-    private javax.swing.JTextField jConfirmPasswordTextField;
-    private javax.swing.JTextField jEmailTextField;
+    private com.maple.resources.TextField jConfirmPasswordTextField;
+    private com.maple.resources.TextField jEmailTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jNameTextField;
-    private javax.swing.JTextField jPasswordTextField;
-    private javax.swing.JTextField jPhoneNumberTextField;
+    private com.maple.resources.TextField jNameTextField;
+    private com.maple.resources.TextField jPasswordTextField;
+    private com.maple.resources.TextField jPhoneNumberTextField;
     private javax.swing.JLabel jPhotoLabel;
-    private javax.swing.JTextField jPostalCodeTextField;
+    private com.maple.resources.TextField jPostalCodeTextField;
     private javax.swing.JComboBox<String> jRegisterAsComboBox;
-    private javax.swing.JButton jRegisterButton;
-    private javax.swing.JTextField jType;
+    private com.maple.resources.Button jRegisterBtn;
+    private com.maple.resources.TextField jType;
     private javax.swing.JLabel jTypeLabel;
-    private javax.swing.JButton jUploadButton;
-    private javax.swing.JTextField jUsernameTextField;
+    private com.maple.resources.Button jUploadBtn;
+    private com.maple.resources.TextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables
 }

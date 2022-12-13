@@ -237,9 +237,49 @@ public class WorkRequestService {
             workRequestRepository.updateWorkRequestDataStatus(wkId, status);
             enterpriseRepository.updateHotelStatus(hotelAdminId, status);
         } else if(enterpriseType.equalsIgnoreCase("CATERING")){
+             //finding catering based on name in CATERING table
+            ArrayList<Catering> cateringData = enterpriseService.getAllCateringDataService();
+            ArrayList<Catering> filteredCateringList = new ArrayList<>();
+            cateringData.stream()
+                    .filter(catering -> catering.getCateringName().equalsIgnoreCase(enterpriseName))
+                    .forEach(catering -> filteredCateringList.add(catering));
+            //getting cateringAdminId from CATERING table
+            int cateringAdminId = Integer.parseInt(filteredCateringList.get(0).getCateringAdmin());
+            //using cateringAdminId to find wkId in WORKREQUEST table
+            ArrayList<WorkRequest> wk = getAllWorkRequestData();
+            ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+            wk.stream()
+                    .filter(w -> w.getFromID()==cateringAdminId)
+                    .forEach(w -> filteredWRList.add(w));
+            //getting wkId from list
+            int wkId = filteredWRList.get(0).getID();
             
+            //update
+            userRepository.updateUserStatus(cateringAdminId, status);
+            workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+            enterpriseRepository.updateCateringStatus(cateringAdminId, status);
         } else if(enterpriseType.equalsIgnoreCase("TRAVEL")){
+            //finding travel based on name in TRAVEL table
+            ArrayList<TravelAgent> travelData = enterpriseService.getAllTravelDataService();
+            ArrayList<TravelAgent> filteredTravelList = new ArrayList<>();
+            travelData.stream()
+                    .filter(travel -> travel.getTravelAgentName().equalsIgnoreCase(enterpriseName))
+                    .forEach(travel -> filteredTravelList.add(travel));
+            //getting travelAdminId from TRAVELAGENT table
+            int travelAdminId = Integer.parseInt(filteredTravelList.get(0).getTravelAgentAdmin());
+            //using cateringAdminId to find wkId in WORKREQUEST table
+            ArrayList<WorkRequest> wk = getAllWorkRequestData();
+            ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+            wk.stream()
+                    .filter(w -> w.getFromID()==travelAdminId)
+                    .forEach(w -> filteredWRList.add(w));
+            //getting wkId from list
+            int wkId = filteredWRList.get(0).getID();
             
+            //update
+            userRepository.updateUserStatus(travelAdminId, status);
+            workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+            enterpriseRepository.updateTravelStatus(travelAdminId, status);
         }
         
      
@@ -278,6 +318,76 @@ public class WorkRequestService {
         
     }
     
+    public void updateHotelAdminWorkFlowStatusService(String eventName, int hotelAdminId, String status) throws SQLException{
+        
+        //finding hotel based on name in HOTEL table
+        ArrayList<Event> eventData = eventService.getAllEventListService();
+        ArrayList<Event> filteredEventList = new ArrayList<>();
+        eventData.stream()
+            .filter(evt -> evt.getEventName().equalsIgnoreCase(eventName))
+            .forEach(evt -> filteredEventList.add(evt));
+            
+        //getting eventId from EVENT table
+        int eventId = filteredEventList.get(0).getEventID();
+        
+        //get hotelID using hotelAdminId
+        ArrayList<Hotel> hotelData = enterpriseService.getAllHotelDataService();
+        ArrayList<Hotel> filteredHotelList = new ArrayList<>();
+        hotelData.stream()
+            .filter(hotel -> hotel.getHotelAdmin().equalsIgnoreCase(String.valueOf(hotelAdminId)))
+            .forEach(doc -> filteredHotelList.add(doc));
+        int hotelId = filteredHotelList.get(0).getHotelID();
+        
+        if(status.equalsIgnoreCase("ACCEPTED")){
+            eventRepository.updateHotelAdminFlowChosenHotelId(hotelId, eventId);
+        }
+        
+        
+        ArrayList<WorkRequest> wk = getAllWorkRequestData();
+        ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+        wk.stream()
+            .filter(w -> w.getEventID()==eventId && w.getType().equalsIgnoreCase("EVENTMANAGER_HOTELADMIN"))
+            .forEach(w -> filteredWRList.add(w));
+        int lastIndex = filteredWRList.size()-1;
+        int wkId = filteredWRList.get(lastIndex).getID();
+        workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+    }
+    
+    
+    public void updateCateringAdminWorkFlowStatusService(String eventName, int cateringAdminId, String status) throws SQLException{
+        
+        //finding hotel based on name in HOTEL table
+        ArrayList<Event> eventData = eventService.getAllEventListService();
+        ArrayList<Event> filteredEventList = new ArrayList<>();
+        eventData.stream()
+            .filter(evt -> evt.getEventName().equalsIgnoreCase(eventName))
+            .forEach(evt -> filteredEventList.add(evt));
+            
+        //getting eventId from EVENT table
+        int eventId = filteredEventList.get(0).getEventID();
+        
+        //get cateringID using cateringAdminId
+        ArrayList<Catering> cateringData = enterpriseService.getAllCateringDataService();
+        ArrayList<Catering> filteredCateringList = new ArrayList<>();
+        cateringData.stream()
+            .filter(catering -> catering.getCateringAdmin().equalsIgnoreCase(String.valueOf(cateringAdminId)))
+            .forEach(catering -> filteredCateringList.add(catering));
+        int cateringId = filteredCateringList.get(0).getCateringID();
+        
+        if(status.equalsIgnoreCase("ACCEPTED")){
+            eventRepository.updateCateringAdminFlowChosenCateringId(cateringId, eventId);
+        }
+        
+        
+        ArrayList<WorkRequest> wk = getAllWorkRequestData();
+        ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+        wk.stream()
+            .filter(w -> w.getEventID()==eventId && w.getType().equalsIgnoreCase("EVENTMANAGER_CATERINGADMIN"))
+            .forEach(w -> filteredWRList.add(w));
+        int lastIndex = filteredWRList.size()-1;
+        int wkId = filteredWRList.get(lastIndex).getID();
+        workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+    }
 
     
 }

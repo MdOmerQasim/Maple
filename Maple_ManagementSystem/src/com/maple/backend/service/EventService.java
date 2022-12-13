@@ -40,9 +40,9 @@ public class EventService {
         
         ArrayList<Event> eventsDataList = new ArrayList<>();
         ResultSet resultSet = eventRepository.getEventData();
-        System.out.println("dataaaa");
+//        System.out.println("dataaaa");
         eventsDataList = eventDataMapper(resultSet);
-        System.out.println("eventlistt");
+        System.out.println("eventlistt" + eventsDataList);
         return eventsDataList; 
     
     }
@@ -114,5 +114,24 @@ public class EventService {
                 .filter(evt -> evt.getEventType().equalsIgnoreCase("PRIVATE"))
                 .forEach(evt -> filteredPrivateList.add(evt));
         return filteredPrivateList;
+    }
+    
+    public ArrayList<Event> getEventDataByEnterpriseService(ArrayList<WorkRequest> wkList, int toId) throws SQLException{
+        ArrayList<Event> filteredEventList = new ArrayList<>();
+        ArrayList<Integer> eventIdList = new ArrayList<>();
+        wkList.stream()
+                .filter(wk -> wk.getToID()==toId && wk.getStatus().equalsIgnoreCase("PENDING"))
+                .forEach(wk -> eventIdList.add(wk.getEventID()));
+        
+        //Filter eventId from WORKREQUEST table in EVENT table
+        ArrayList<Event> eventList = new ArrayList<>();
+        eventList = eventDataMapper(eventRepository.getEventData());
+        for(Integer eventId: eventIdList){
+             eventList.stream()
+                .filter(evt -> evt.getEventID()==eventId )
+                .forEach(evt -> filteredEventList.add(evt));
+        }
+        
+        return filteredEventList;
     }
 }
