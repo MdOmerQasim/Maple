@@ -132,6 +132,7 @@ public class HRAdminDashboard extends javax.swing.JPanel {
         jRefreshTableBtn = new com.maple.resources.ButtonBadges();
         jMapleAdmins = new com.maple.resources.Card();
 
+        setBackground(new java.awt.Color(245, 241, 241));
         setMaximumSize(new java.awt.Dimension(1196, 720));
         setMinimumSize(new java.awt.Dimension(1196, 720));
         setPreferredSize(new java.awt.Dimension(1196, 720));

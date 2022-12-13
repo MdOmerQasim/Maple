@@ -54,6 +54,8 @@ public class HotelAdminSettings extends javax.swing.JPanel {
         jConfirmPasswordField = new com.maple.resources.PasswordField();
         jOldPasswordField = new com.maple.resources.PasswordField();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jRoute.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jRoute.setForeground(new java.awt.Color(4, 72, 210));
         jRoute.setText("Admin / Settings");

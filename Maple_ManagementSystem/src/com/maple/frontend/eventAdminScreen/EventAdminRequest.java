@@ -175,6 +175,7 @@ public class EventAdminRequest extends javax.swing.JPanel {
         jAcceptBtn = new com.maple.resources.ButtonBadges();
         jManagerDropdown = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(245, 241, 241));
         setMaximumSize(new java.awt.Dimension(1196, 720));
         setMinimumSize(new java.awt.Dimension(1196, 720));
         setPreferredSize(new java.awt.Dimension(1196, 720));

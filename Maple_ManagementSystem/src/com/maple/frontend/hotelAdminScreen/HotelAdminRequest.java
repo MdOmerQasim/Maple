@@ -80,6 +80,8 @@ public class HotelAdminRequest extends javax.swing.JPanel {
         jRejectBtn = new com.maple.resources.ButtonBadges();
         jRefreshTableBtn = new com.maple.resources.ButtonBadges();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jRoute.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jRoute.setForeground(new java.awt.Color(4, 72, 210));
         jRoute.setText("Admin / Requests");

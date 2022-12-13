@@ -98,6 +98,8 @@ public class TravelAgentAdminDashboard extends javax.swing.JPanel {
         jHotelEmail = new com.maple.resources.TextField();
         jHotelPhone = new com.maple.resources.TextField();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jRoute.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jRoute.setForeground(new java.awt.Color(4, 72, 210));
         jRoute.setText("Admin / Dashboard");

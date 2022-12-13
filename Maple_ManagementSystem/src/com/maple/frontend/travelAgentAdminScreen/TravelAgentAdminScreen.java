@@ -95,18 +95,19 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
         jDashboardBtn = new com.maple.resources.Button();
         jRequestsBtn = new com.maple.resources.Button();
         jLogoutBtn = new com.maple.resources.Button();
-        jSettingsBtn = new com.maple.resources.Button();
 
         jBaseSplitPane.setDividerSize(0);
 
         jRightSplitPane.setDividerSize(0);
         jRightSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jRightBottomPanel.setBackground(new java.awt.Color(245, 241, 241));
+
         javax.swing.GroupLayout jRightBottomPanelLayout = new javax.swing.GroupLayout(jRightBottomPanel);
         jRightBottomPanel.setLayout(jRightBottomPanelLayout);
         jRightBottomPanelLayout.setHorizontalGroup(
             jRightBottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 991, Short.MAX_VALUE)
+            .addGap(0, 999, Short.MAX_VALUE)
         );
         jRightBottomPanelLayout.setVerticalGroup(
             jRightBottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +125,7 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
         jUserName.setText("User Name");
 
         jUserRole.setForeground(new java.awt.Color(127, 127, 127));
-        jUserRole.setText("Hotel Admin");
+        jUserRole.setText("Travel Agent Admin");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -236,14 +237,6 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
             }
         });
 
-        jSettingsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/settings.png"))); // NOI18N
-        jSettingsBtn.setText("Settings");
-        jSettingsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSettingsBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jBaseLeftPanelLayout = new javax.swing.GroupLayout(jBaseLeftPanel);
         jBaseLeftPanel.setLayout(jBaseLeftPanelLayout);
         jBaseLeftPanelLayout.setHorizontalGroup(
@@ -254,7 +247,6 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
                     .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSettingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -267,9 +259,7 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
                 .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jSettingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 492, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -325,15 +315,6 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
         this.mainSplitPane.setLeftComponent(homeLeftPanel);
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
-    private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
-//        try {
-//            CateringAdminSettings cateringAdminSettings = new CateringAdminSettings(userData);
-//            jRightSplitPane.setBottomComponent(cateringAdminSettings);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TravelAgentAdminScreen.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_jSettingsBtnActionPerformed
-
     public JSplitPane getBaseSplitPane(){
         return this.jBaseSplitPane;
     }
@@ -349,7 +330,6 @@ public class TravelAgentAdminScreen extends javax.swing.JPanel {
     private javax.swing.JPanel jRightBottomPanel;
     private javax.swing.JSplitPane jRightSplitPane;
     private javax.swing.JSeparator jSeparator1;
-    private com.maple.resources.Button jSettingsBtn;
     private javax.swing.JPanel jTopRightPanel;
     private com.maple.resources.ImageAvatar jUserImageIcon;
     private javax.swing.JLabel jUserName;
