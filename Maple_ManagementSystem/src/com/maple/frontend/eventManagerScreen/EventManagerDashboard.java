@@ -3,14 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend.eventManagerScreen;
+import com.maple.backend.controller.EventController;
 import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import com.maple.backend.service.EventService;
 import com.maple.backend.service.UserService;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +31,9 @@ public class EventManagerDashboard extends javax.swing.JPanel {
     EventService eventService;
     UserService userService;
     JSplitPane jRightSplitPane;
+    EventController eventController;
+    int publicClick = 0;
+    int privateClick = 0;
     public EventManagerDashboard(ArrayList<User> userData, JSplitPane jRightSplitPane) throws SQLException {
         
         initComponents();
@@ -35,11 +41,13 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         this.userData = userData;
         this.jRightSplitPane = jRightSplitPane;
         eventService = new EventService();
+        eventController = new EventController();
         populateTableData("all");
         eventTable.fixTable(jScrollPane3);
         AccomodationCount.setVisible(false);
         CaterCount.setVisible(false);
         TravelCount.setVisible(false);
+        populateCardData();
     }
 
     /**
@@ -54,9 +62,9 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLocation2 = new javax.swing.JLabel();
-        ongoingCard2 = new com.maple.resources.Card();
+        jPrivateEvent = new com.maple.resources.Card();
         jRefreshTableBtn2 = new com.maple.resources.ButtonBadges();
-        completedCard2 = new com.maple.resources.Card();
+        jPublicEvent = new com.maple.resources.Card();
         jScrollPane3 = new javax.swing.JScrollPane();
         eventTable = new com.maple.resources.Table();
         Name = new com.maple.resources.TextField();
@@ -90,15 +98,15 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         jLocation2.setForeground(new java.awt.Color(4, 72, 210));
         jLocation2.setText("Event Manager / Dashboard");
 
-        ongoingCard2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPrivateEvent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ongoingCard2MouseClicked(evt);
+                jPrivateEventMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ongoingCard2MouseEntered(evt);
+                jPrivateEventMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ongoingCard2MouseExited(evt);
+                jPrivateEventMouseExited(evt);
             }
         });
 
@@ -112,34 +120,46 @@ public class EventManagerDashboard extends javax.swing.JPanel {
             }
         });
 
+        jPublicEvent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPublicEventMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPublicEventMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPublicEventMouseExited(evt);
+            }
+        });
+
         eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Type", "Description", "Area", "Attendees Count", "Status"
+                "Event ID", "Name", "Type", "Description", "Area", "Attendees Count", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -209,11 +229,11 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                             .addComponent(jLocation2)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPrivateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jPublicEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,8 +284,8 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                         .addComponent(jLocation2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ongoingCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(completedCard2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPrivateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPublicEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(181, Short.MAX_VALUE)
                         .addComponent(jRefreshTableBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -283,7 +303,6 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                         .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Accomodation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(AccomodationCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Catering, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,51 +333,46 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ongoingCard2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseClicked
-        //Apply CSS
-        //        jEventCard.setBackground(Color.CYAN);
-        //        jCateringCard.setBackground(Color.white);
-        //        jTravelAgentCard.setBackground(Color.white);
-        //
-        //        try {
-            //            //Refresh Table Data
-            //            populateTableData("HOTEL");
-            //        } catch (SQLException ex) {
-            //
-            //        }
-        //
-        //        hotelClick = 1;
-        //        cateringClick = 0;
-        //        travelClick = 0;
-    }//GEN-LAST:event_ongoingCard2MouseClicked
+    private void jPrivateEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPrivateEventMouseClicked
+            
+    jPrivateEvent.setBackground(Color.CYAN);
+        jPublicEvent.setBackground(Color.white);
+        
+        try {
+            //Refresh Table Data
+            populateTableData("PRIVATE");
+        } catch (SQLException ex) {
+        }
+         publicClick = 0;
+        privateClick = 1;
+    }//GEN-LAST:event_jPrivateEventMouseClicked
 
-    private void ongoingCard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseEntered
+    private void jPrivateEventMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPrivateEventMouseEntered
         //        // TODO add your handling code here:
-        //        jEventCard.setBackground(Color.CYAN);
-    }//GEN-LAST:event_ongoingCard2MouseEntered
+                jPrivateEvent.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jPrivateEventMouseEntered
 
-    private void ongoingCard2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ongoingCard2MouseExited
+    private void jPrivateEventMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPrivateEventMouseExited
         // TODO add your handling code here:
-        //        if(hotelClick==1 && cateringClick==0 && travelClick==0){
-            //            jEventCard.setBackground(Color.CYAN);
-            //            return;
-            //        }
-        //        jEventCard.setBackground(Color.white);
-        //        hotelClick = 0;
-    }//GEN-LAST:event_ongoingCard2MouseExited
+                if(privateClick==1 && publicClick==0){
+                        jPrivateEvent.setBackground(Color.CYAN);
+                        return;
+                    }
+                jPrivateEvent.setBackground(Color.white);
+                privateClick = 0;
+    }//GEN-LAST:event_jPrivateEventMouseExited
 
     private void jRefreshTableBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRefreshTableBtn2ActionPerformed
-        //        try {
-            //            populateTableData("ALL");
-            //        } catch (SQLException ex) {}
-        //        //Reset card colors
-        //        jEventCard.setBackground(Color.white);
-        //        jCateringCard.setBackground(Color.white);
-        //        jTravelAgentCard.setBackground(Color.white);
-        //        //Reset card click counter
-        //        hotelClick = 0;
-        //        cateringClick = 0;
-        //        travelClick = 0;
+                try {
+                        populateTableData("ALL");
+                    } catch (SQLException ex) {}
+                //Reset card colors
+                jPrivateEvent.setBackground(Color.white);
+                jPublicEvent.setBackground(Color.white);
+                //Reset card click counter
+                publicClick = 0;
+                privateClick = 0;
+//                travelClick = 0;
     }//GEN-LAST:event_jRefreshTableBtn2ActionPerformed
 
     private void eventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMouseClicked
@@ -436,6 +450,33 @@ public class EventManagerDashboard extends javax.swing.JPanel {
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
     }//GEN-LAST:event_requestButtonActionPerformed
 
+    private void jPublicEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPublicEventMouseClicked
+        jPrivateEvent.setBackground(Color.white);
+        jPublicEvent.setBackground(Color.CYAN);
+        
+        try {
+            //Refresh Table Data
+            populateTableData("PUBLIC");
+        } catch (SQLException ex) {
+        }
+        
+        publicClick = 1;
+        privateClick = 0;
+    }//GEN-LAST:event_jPublicEventMouseClicked
+
+    private void jPublicEventMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPublicEventMouseEntered
+        jPublicEvent.setBackground(Color.CYAN);
+    }//GEN-LAST:event_jPublicEventMouseEntered
+
+    private void jPublicEventMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPublicEventMouseExited
+        if(privateClick==0 && publicClick==1){
+                        jPublicEvent.setBackground(Color.CYAN);
+                        return;
+                    }
+                jPublicEvent.setBackground(Color.white);
+                publicClick = 0;
+    }//GEN-LAST:event_jPublicEventMouseExited
+
     private void populateTableData(String type) throws SQLException {
 //        System.out.println("dfjb");
         DefaultTableModel dtmodel = (DefaultTableModel) eventTable.getModel();
@@ -447,18 +488,54 @@ public class EventManagerDashboard extends javax.swing.JPanel {
             for (Event e: eventList){
                 
                 if(e.status.equalsIgnoreCase("assigned manager")){
-                Object[] obj = new Object[6];
+                Object[] obj = new Object[7];
                 obj[0] = e;
                 obj[1] = e.eventName;
-                obj[1] = e.eventType;
-                obj[2] = e.eventDescription;
-                obj[3] = e.eventArea;
-                obj[4] = e.atendeesCount;
-                obj[5] = e.status;
+                obj[2] = e.eventType;
+                obj[3] = e.eventDescription;
+                obj[4] = e.eventArea;
+                obj[5] = e.atendeesCount;
+                obj[6] = e.status;
                 dtmodel.addRow(obj);
             }
           }
             
+        }
+        
+        else if (type.equalsIgnoreCase("private")){
+            ArrayList<Event> eventList = eventService.getEventsListService();
+            for (Event e: eventList){
+                
+                if(e.status.equalsIgnoreCase("assigned manager") && e.eventType.equalsIgnoreCase("private")){
+                Object[] obj = new Object[7];
+                obj[0] = e;
+                obj[1] = e.eventName;
+                obj[2] = e.eventType;
+                obj[3] = e.eventDescription;
+                obj[4] = e.eventArea;
+                obj[5] = e.atendeesCount;
+                obj[6] = e.status;
+                dtmodel.addRow(obj);
+            }
+        }
+        }
+        
+        else if (type.equalsIgnoreCase("public")){
+            ArrayList<Event> eventList = eventService.getEventsListService();
+            for (Event e: eventList){
+                
+                if(e.status.equalsIgnoreCase("assigned manager") && e.eventType.equalsIgnoreCase("public")){
+                Object[] obj = new Object[7];
+                obj[0] = e;
+                obj[1] = e.eventName;
+                obj[2] = e.eventType;
+                obj[3] = e.eventDescription;
+                obj[4] = e.eventArea;
+                obj[5] = e.atendeesCount;
+                obj[6] = e.status;
+                dtmodel.addRow(obj);
+            }
+        }
         }
 //        ArrayList<Catering> cateringFilteredList = new ArrayList<>();
 //        ArrayList<TravelAgent> travelAgentFilteredList = new ArrayList<>();
@@ -544,7 +621,30 @@ public class EventManagerDashboard extends javax.swing.JPanel {
 //            }
 //        } 
     }
-
+    
+    private void populateCardData() throws SQLException{
+        
+        //Load Icons
+        jPrivateEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+        jPublicEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+          
+        //Set Description
+        jPrivateEvent.setDescription("Private Events");
+        jPublicEvent.setDescription("Public Events");
+        
+        ArrayList<Event> publicCompletedEventList = new ArrayList<>();
+        eventController.getPublicEventList().stream()
+                .filter(evt -> evt.getStatus().equalsIgnoreCase("ASSIGNED MANAGER"))
+                .forEach(evt -> publicCompletedEventList.add(evt));
+        
+        ArrayList<Event> privateCompletedEventList = new ArrayList<>();
+        eventController.getPrivateEventList().stream()
+                .filter(evt -> evt.getStatus().equalsIgnoreCase("ASSIGNED MANAGER"))
+                .forEach(evt -> privateCompletedEventList.add(evt));
+        //Assign Request Values
+        jPrivateEvent.setValues("# " + privateCompletedEventList.size());
+        jPublicEvent.setValues("# " + publicCompletedEventList.size());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.maple.resources.TextField Accomodation;
     private com.maple.resources.TextField AccomodationCount;
@@ -557,16 +657,16 @@ public class EventManagerDashboard extends javax.swing.JPanel {
     private com.maple.resources.TextField PostalCode;
     private com.maple.resources.TextField Travel;
     private com.maple.resources.TextField TravelCount;
-    private com.maple.resources.Card completedCard2;
     private com.maple.resources.Table eventTable;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLocation2;
     private javax.swing.JPanel jPanel1;
+    private com.maple.resources.Card jPrivateEvent;
+    private com.maple.resources.Card jPublicEvent;
     private com.maple.resources.ButtonBadges jRefreshTableBtn2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private com.maple.resources.Card ongoingCard2;
     private com.maple.resources.Button requestButton;
     // End of variables declaration//GEN-END:variables
 }

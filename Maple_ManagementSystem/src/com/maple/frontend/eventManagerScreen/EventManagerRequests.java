@@ -12,6 +12,7 @@ import com.maple.backend.model.User;
 import com.maple.backend.model.WorkRequest;
 import com.maple.backend.service.EnterpriseService;
 import com.maple.backend.controller.WorkRequestController;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -44,6 +45,12 @@ public class EventManagerRequests extends javax.swing.JPanel {
         
         AccoLabel.setVisible(false);
         AccoTextField.setVisible(false);
+        
+        CaterLabel.setVisible(false);
+        CaterTextField.setVisible(false);
+        
+        TravelLabel.setVisible(false);
+        TravelTextField.setVisible(false);
         
         if (e.getAccomodationNeeded().equalsIgnoreCase("yes")){
             accoPanel.setVisible(true);
@@ -404,7 +411,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
             hotelList = enterpriseService.getAllHotelDataService();
                     for (Hotel h : hotelList){
             if(h.getHotelName().equalsIgnoreCase(hotel)){
-                int hotel_id = h.getHotelID();
+//                int hotel_id = h.getHotelID();
                 String ha_id = h.getHotelAdmin();
                 WorkRequest wr = new WorkRequest();
                 int event_manager_id = e.getEventManagerID();
@@ -520,6 +527,9 @@ public class EventManagerRequests extends javax.swing.JPanel {
         }catch (SQLException ex) {
             Logger.getLogger(EventManagerRequests.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
+        
+        
     }//GEN-LAST:event_buttonTravelActionPerformed
 
 
