@@ -53,6 +53,8 @@ public class HRAdminManageScreen extends javax.swing.JPanel {
         jClearBtn = new com.maple.resources.ButtonBadges();
         jRole = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jLocation.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLocation.setForeground(new java.awt.Color(4, 72, 210));
         jLocation.setText("Admin / Manage");

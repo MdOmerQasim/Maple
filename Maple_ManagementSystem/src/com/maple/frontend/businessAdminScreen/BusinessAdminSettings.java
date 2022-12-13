@@ -59,6 +59,8 @@ public class BusinessAdminSettings extends javax.swing.JPanel {
         jClearBtn = new com.maple.resources.ButtonBadges();
         jSaveBtn = new com.maple.resources.ButtonBadges();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jLocation.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLocation.setForeground(new java.awt.Color(4, 72, 210));
         jLocation.setText("Admin / Settings");

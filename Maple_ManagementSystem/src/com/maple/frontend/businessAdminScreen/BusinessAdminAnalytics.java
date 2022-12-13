@@ -104,6 +104,8 @@ public class BusinessAdminAnalytics extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jRoute.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jRoute.setForeground(new java.awt.Color(4, 72, 210));
         jRoute.setText("Admin / Analytics");

@@ -172,6 +172,7 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
 
         jRightSplitPane.setTopComponent(jTopRightPanel);
 
+        jBottonRightPanel.setBackground(new java.awt.Color(245, 241, 241));
         jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1100, 800));

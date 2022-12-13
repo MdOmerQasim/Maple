@@ -86,6 +86,8 @@ public class UserCreateEvent extends javax.swing.JPanel {
         attendeesCountText = new com.maple.resources.TextField();
         callbackBtn = new com.maple.resources.Button();
 
+        setBackground(new java.awt.Color(245, 241, 241));
+
         jLabel1.setText("Type");
 
         jLabel2.setText("Name");

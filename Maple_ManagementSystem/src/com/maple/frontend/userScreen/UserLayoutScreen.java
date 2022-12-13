@@ -168,6 +168,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
 
         jRightSplitPane.setTopComponent(jTopRightPanel);
 
+        jBottonRightPanel.setBackground(new java.awt.Color(245, 241, 241));
         jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1100, 800));
@@ -245,7 +246,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
                 .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jBaseLeftPanelLayout.setVerticalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

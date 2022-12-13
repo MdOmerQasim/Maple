@@ -103,6 +103,8 @@ public class CateringAdminScreen extends javax.swing.JPanel {
         jRightSplitPane.setDividerSize(0);
         jRightSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jRightBottomPanel.setBackground(new java.awt.Color(245, 241, 241));
+
         javax.swing.GroupLayout jRightBottomPanelLayout = new javax.swing.GroupLayout(jRightBottomPanel);
         jRightBottomPanel.setLayout(jRightBottomPanelLayout);
         jRightBottomPanelLayout.setHorizontalGroup(

@@ -177,6 +177,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
         jRejectBtn = new com.maple.resources.ButtonBadges();
         jAcceptBtn = new com.maple.resources.ButtonBadges();
 
+        setBackground(new java.awt.Color(245, 241, 241));
         setMaximumSize(new java.awt.Dimension(1196, 720));
         setMinimumSize(new java.awt.Dimension(1196, 720));
         setPreferredSize(new java.awt.Dimension(1196, 720));
@@ -477,6 +478,7 @@ public class BusinessAdminRequest extends javax.swing.JPanel {
     private void jHotelCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHotelCardMouseExited
         if(hotelClick==1 && cateringClick==0 && travelClick==0){
             jHotelCard.setBackground(Color.CYAN);
+//            jHotelCard.setBackground(new Color(245,241,241));
             return;
         }
             jHotelCard.setBackground(Color.white);

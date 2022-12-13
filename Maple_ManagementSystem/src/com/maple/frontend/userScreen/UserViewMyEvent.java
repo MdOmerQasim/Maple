@@ -129,6 +129,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        jPanel5.setBackground(new java.awt.Color(245, 241, 241));
+
         attendeesCountField.setEditable(false);
         attendeesCountField.setLabelText("Attendees Count");
         attendeesCountField.addActionListener(new java.awt.event.ActionListener() {
