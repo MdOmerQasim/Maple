@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend.cateringAdminScreen;
+package com.maple.frontend.travelAgentAdminScreen;
 
 import com.maple.backend.controller.EventController;
 import com.maple.backend.controller.WorkRequestController;
@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mohammedomerqasimshaik
  */
-public class CateringAdminRequest extends javax.swing.JPanel {
+public class TravelAgentAdminRequest extends javax.swing.JPanel {
 
     /**
      * Creates new form HotelAdminRequest
@@ -28,14 +28,14 @@ public class CateringAdminRequest extends javax.swing.JPanel {
     ArrayList<User> userData;
     WorkRequestController workRequestController;
     EventController eventController;
-    int cateringAdminId;
+    int travelAdminId;
 
-    public CateringAdminRequest(ArrayList<User> userData) throws SQLException {
+    public TravelAgentAdminRequest(ArrayList<User> userData) throws SQLException {
         initComponents();
         this.userData = userData;
         workRequestController = new WorkRequestController();
         eventController = new EventController();
-        cateringAdminId = userData.get(0).getID();
+        travelAdminId = userData.get(0).getID();
         table.fixTable(jScrollPane2);
         jAcceptBtn.setEnabled(false);
         jRejectBtn.setEnabled(false);
@@ -48,8 +48,8 @@ public class CateringAdminRequest extends javax.swing.JPanel {
         DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
         dtmodel.setRowCount(0);
         ArrayList<WorkRequest> wkList = new ArrayList<>(); 
-        wkList = workRequestController.getWorkRequestByRoleService(cateringAdminId);
-        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, cateringAdminId);
+        wkList = workRequestController.getWorkRequestByRoleService(travelAdminId);
+        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, travelAdminId);
         for(Event evt: eventList){
             Object[] obj = new Object[6];
             obj[0] = evt.getEventName();
@@ -202,7 +202,7 @@ public class CateringAdminRequest extends javax.swing.JPanel {
             DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
             Object eventName = (Object) dtmodel.getValueAt(selectedRow, 0); //hotelName
             //update STATUS in WORK_REQUEST & HOTEL table
-            workRequestController.updateCateringAdminWorkFlowStatus(eventName.toString(), cateringAdminId, "ACCEPTED");
+            workRequestController.updateTravelAgentAdminWorkFlowStatus(eventName.toString(), travelAdminId, "ACCEPTED");
 
             //refresh data in table
             populateTableData();
@@ -212,7 +212,7 @@ public class CateringAdminRequest extends javax.swing.JPanel {
             jAcceptBtn.setEnabled(false);
             jRejectBtn.setEnabled(false);
         } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TravelAgentAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jAcceptBtnActionPerformed
@@ -226,7 +226,7 @@ public class CateringAdminRequest extends javax.swing.JPanel {
             DefaultTableModel dtmodel = (DefaultTableModel) table.getModel();
             Object eventName = (Object) dtmodel.getValueAt(selectedRow, 0); //hotelName
             //update STATUS in WORK_REQUEST & HOTEL table
-            workRequestController.updateCateringAdminWorkFlowStatus(eventName.toString(), cateringAdminId, "REJECTED");
+            workRequestController.updateTravelAgentAdminWorkFlowStatus(eventName.toString(), travelAdminId, "REJECTED");
 
             //refresh data in table
             populateTableData();
@@ -236,7 +236,7 @@ public class CateringAdminRequest extends javax.swing.JPanel {
             jAcceptBtn.setEnabled(false);
             jRejectBtn.setEnabled(false);
         } catch (SQLException ex) {
-            Logger.getLogger(CateringAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TravelAgentAdminRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jRejectBtnActionPerformed

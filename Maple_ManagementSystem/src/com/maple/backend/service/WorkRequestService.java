@@ -388,6 +388,41 @@ public class WorkRequestService {
         int wkId = filteredWRList.get(lastIndex).getID();
         workRequestRepository.updateWorkRequestDataStatus(wkId, status);
     }
+    
+    public void updateTravelAgentAdminWorkFlowStatusService(String eventName, int travelAdminId, String status) throws SQLException{
+        
+        //finding hotel based on name in HOTEL table
+        ArrayList<Event> eventData = eventService.getAllEventListService();
+        ArrayList<Event> filteredEventList = new ArrayList<>();
+        eventData.stream()
+            .filter(evt -> evt.getEventName().equalsIgnoreCase(eventName))
+            .forEach(evt -> filteredEventList.add(evt));
+            
+        //getting eventId from EVENT table
+        int eventId = filteredEventList.get(0).getEventID();
+        
+        //get cateringID using cateringAdminId
+        ArrayList<TravelAgent> cateringData = enterpriseService.getAllTravelDataService();
+        ArrayList<TravelAgent> filteredTravelList = new ArrayList<>();
+        cateringData.stream()
+            .filter(travel -> travel.getTravelAgentAdmin().equalsIgnoreCase(String.valueOf(travelAdminId)))
+            .forEach(travel -> filteredTravelList.add(travel));
+        int travelId = filteredTravelList.get(0).getTravelAgentID();
+        
+        if(status.equalsIgnoreCase("ACCEPTED")){
+            eventRepository.updateTravelAgentAdminFlowChosenCateringId(travelId, eventId);
+        }
+        
+        
+        ArrayList<WorkRequest> wk = getAllWorkRequestData();
+        ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
+        wk.stream()
+            .filter(w -> w.getEventID()==eventId && w.getType().equalsIgnoreCase("EVENTMANAGER_TRAVELAGENTADMIN"))
+            .forEach(w -> filteredWRList.add(w));
+        int lastIndex = filteredWRList.size()-1;
+        int wkId = filteredWRList.get(lastIndex).getID();
+        workRequestRepository.updateWorkRequestDataStatus(wkId, status);
+    }
 
     
 }

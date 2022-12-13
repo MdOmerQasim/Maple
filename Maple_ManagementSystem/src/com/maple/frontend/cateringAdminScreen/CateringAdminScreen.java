@@ -4,7 +4,11 @@
  */
 package com.maple.frontend.cateringAdminScreen;
 
+import com.maple.backend.controller.EventController;
+import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
+import com.maple.backend.model.WorkRequest;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
@@ -25,6 +29,9 @@ public class CateringAdminScreen extends javax.swing.JPanel {
      */
     
     JSplitPane mainSplitPane;
+    WorkRequestController workRequestController;
+    EventController eventController;
+    
     
     ArrayList<User> userData;
     
@@ -34,7 +41,8 @@ public class CateringAdminScreen extends javax.swing.JPanel {
         initComponents();
         this.mainSplitPane = jSplitPane;
         this.userData = userData;
-        
+        workRequestController = new WorkRequestController();
+        eventController = new EventController();
         cateringAdminId = userData.get(0).getID();
         populateUserData();
         //Load dashboard (by default)
@@ -50,7 +58,15 @@ public class CateringAdminScreen extends javax.swing.JPanel {
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText(userData.get(0).getName());
         // get notification count
-        int notification = 10;
+        getNotificationData();
+    }
+    
+    public void getNotificationData() throws SQLException{
+        // get notification count
+        ArrayList<WorkRequest> wkList = new ArrayList<>(); 
+        wkList = workRequestController.getWorkRequestByRoleService(cateringAdminId);
+        ArrayList<Event> eventList = eventController.getEventDataByEnterprise(wkList, cateringAdminId);
+        int notification = eventList.size();
         notificationBadge.setBadges(notification); //TODO: get workRequest count for businessAdmin
     }
     
@@ -283,6 +299,7 @@ public class CateringAdminScreen extends javax.swing.JPanel {
 
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
+            getNotificationData();
             CateringAdminDashboard cateringAdminDashboard = new CateringAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(cateringAdminDashboard);
         } catch (SQLException ex) {
@@ -292,6 +309,7 @@ public class CateringAdminScreen extends javax.swing.JPanel {
 
     private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
         try {
+            getNotificationData();
             CateringAdminRequest cateringAdminRequest = new CateringAdminRequest(userData);
             jRightSplitPane.setBottomComponent(cateringAdminRequest);
         } catch (SQLException ex) {
@@ -310,6 +328,7 @@ public class CateringAdminScreen extends javax.swing.JPanel {
 
     private void jSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSettingsBtnActionPerformed
         try {
+            getNotificationData();
             CateringAdminSettings cateringAdminSettings = new CateringAdminSettings(userData);
             jRightSplitPane.setBottomComponent(cateringAdminSettings);
         } catch (SQLException ex) {
