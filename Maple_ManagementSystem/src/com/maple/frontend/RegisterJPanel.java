@@ -458,6 +458,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setHotelType(type);
                 hotelData.setPhone(phoneNum);
                 hotelData.setStatus("PENDING");
+                hotelData.setPhoto(path);
 
                 enterpriseController.insertHotelData(hotelData);
 
@@ -483,6 +484,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setCateringAdmin(String.valueOf(ID));
                 hotelData.setCateringArea(area);
                 hotelData.setPhone(phoneNum);
+                hotelData.setPhoto(path);
                 hotelData.setStatus("PENDING");
 
                 enterpriseController.insertCateringData(hotelData);
@@ -510,6 +512,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setTravelAgentAdmin(String.valueOf(ID));
                 hotelData.setTravelAgentArea(area);
                 hotelData.setPhone(phoneNum);
+                hotelData.setPhoto(path);
                 hotelData.setStatus("PENDING");
 
                 enterpriseController.insertTravelData(hotelData);
