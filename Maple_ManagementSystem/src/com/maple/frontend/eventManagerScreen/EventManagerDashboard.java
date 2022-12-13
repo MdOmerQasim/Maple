@@ -445,6 +445,8 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         if (type.equalsIgnoreCase("all")){
             ArrayList<Event> eventList = eventService.getEventsListService();
             for (Event e: eventList){
+                
+                if(e.status.equalsIgnoreCase("assigned manager")){
                 Object[] obj = new Object[6];
                 obj[0] = e;
                 obj[1] = e.eventName;
@@ -455,7 +457,7 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                 obj[5] = e.status;
                 dtmodel.addRow(obj);
             }
-//          
+          }
             
         }
 //        ArrayList<Catering> cateringFilteredList = new ArrayList<>();
