@@ -40,14 +40,13 @@ public class EventManagerRequests extends javax.swing.JPanel {
         this.e = e;
         enterpriseService = new EnterpriseService();
         workRequestController = new WorkRequestController();
+        
         accoPanel.setVisible(false);
         caterPanel.setVisible(false);
         travelPanel.setVisible(false);
         
         accoStatus.setVisible(false);
         CaterStatus.setVisible(false);
-        
-//        TravelLabel.setVisible(false);
         TravelStatus.setVisible(false);
         
         if (e.getAccomodationNeeded().equalsIgnoreCase("yes")){
@@ -102,7 +101,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
                 accoStatus.setForeground(Color.green);
             }
             else if(accoStatus.getText().equalsIgnoreCase("pending")){
-                accoStatus.setForeground(Color.yellow);
+                accoStatus.setForeground(Color.orange);
             }
                 }
             }
@@ -132,12 +131,17 @@ public class EventManagerRequests extends javax.swing.JPanel {
             CaterStatus.setText(wr.getStatus());
             if(CaterStatus.getText().equalsIgnoreCase("rejected")){
                 CaterStatus.setForeground(Color.red);
+                
+                selectCater.setVisible(true);
+                jLabel5.setVisible(true);
+                buttonCater.setVisible(true);
+                
             }
             else if(CaterStatus.getText().equalsIgnoreCase("accepted")){
                 CaterStatus.setForeground(Color.green);
             }
             else if(CaterStatus.getText().equalsIgnoreCase("pending")){
-                CaterStatus.setForeground(Color.yellow);
+                CaterStatus.setForeground(Color.orange);
             }
             ArrayList<Catering> cList = enterpriseService.getAllCateringDataService();
             for (Catering h: cList){
@@ -172,22 +176,27 @@ public class EventManagerRequests extends javax.swing.JPanel {
                     selectTravel.setVisible(false);
             jLabel6.setVisible(false);
             buttonTravel.setVisible(false);
-//            TravelLabel.setVisible(true);
+            selectTravel.setVisible(false);
             TravelStatus.setVisible(true);
             
             TravelStatus.setText(wr.getStatus());
             if(TravelStatus.getText().equalsIgnoreCase("rejected")){
                 TravelStatus.setForeground(Color.red);
+                jLabel6.setVisible(true);
+            buttonTravel.setVisible(true);
+            selectTravel.setVisible(true);
             }
             else if(TravelStatus.getText().equalsIgnoreCase("accepted")){
                 TravelStatus.setForeground(Color.green);
             }
             else if(TravelStatus.getText().equalsIgnoreCase("pending")){
-                TravelStatus.setForeground(Color.yellow);
+                TravelStatus.setForeground(Color.ORANGE);
             }
             ArrayList<TravelAgent> cList = enterpriseService.getAllTravelDataService();
             for (TravelAgent h: cList){
+                System.out.println("ashdbshbd" + h.getTravelAgentAdmin()+ wr.getToID());
                 if(Integer.parseInt(h.getTravelAgentAdmin()) == (wr.getToID())){
+                                 System.out.println("skjdfbhdbf");
                     TAName.setText(h.getTravelAgentName());
                     TAAddress.setText(h.getTravelAgentAddress());
                 }
@@ -195,10 +204,19 @@ public class EventManagerRequests extends javax.swing.JPanel {
                    ImageIcon icon = new ImageIcon(path);    
                 travelPhoto.setIcon(icon);
             }
-                }
+                } 
             }
         }
-        
+////        ArrayList<Catering> cList = enterpriseService.getAllCateringDataService();
+//            for (Catering h: cList){
+//                if(Integer.parseInt(h.getCateringAdmin()) == (wr.getToID())){
+//                    CaterName.setText(h.getCateringName());
+//                    CaterAddress.setText(h.getCateringAddress());
+//                }
+//                String path = h.getPhoto().replace("\\", "\\\\");
+//                   ImageIcon icon = new ImageIcon(path);    
+//                caterPhoto.setIcon(icon);
+////            }
         ArrayList<TravelAgent> tList = enterpriseService.getAllTravelDataService();
         ArrayList<String> travelList = new ArrayList<>();
         
@@ -244,6 +262,8 @@ public class EventManagerRequests extends javax.swing.JPanel {
         TAName = new com.maple.resources.TextField();
         TAAddress = new com.maple.resources.TextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLocation2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLocation2.setForeground(new java.awt.Color(4, 72, 210));
         jLocation2.setText("Event Manager / Request");
@@ -256,6 +276,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
 
         selectAcco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        buttonAcco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         buttonAcco.setText("REQUEST");
         buttonAcco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +290,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
         AccoAddress.setEditable(false);
         AccoAddress.setLabelText("Hotel Address");
 
+        accoStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         accoStatus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout accoPanelLayout = new javax.swing.GroupLayout(accoPanel);
@@ -325,12 +347,15 @@ public class EventManagerRequests extends javax.swing.JPanel {
                         .addGap(27, 27, 27))))
         );
 
+        caterPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setText("Catering");
 
         jLabel5.setText("Select a caterer");
 
         selectCater.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        buttonCater.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         buttonCater.setText("REQUEST");
         buttonCater.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +363,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
             }
         });
 
+        CaterStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CaterStatus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         CaterName.setEditable(false);
@@ -370,9 +396,9 @@ public class EventManagerRequests extends javax.swing.JPanel {
                         .addGroup(caterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CaterName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CaterAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
-                        .addComponent(caterPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)))
+                        .addGap(80, 80, 80)))
+                .addComponent(caterPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(CaterStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -405,12 +431,15 @@ public class EventManagerRequests extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        travelPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel3.setText("Travel");
 
-        jLabel6.setText("Select a travel agent");
+        jLabel6.setText("Select an agent");
 
         selectTravel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        buttonTravel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         buttonTravel.setText("REQUEST");
         buttonTravel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +447,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
             }
         });
 
+        TravelStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TravelStatus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TAName.setEditable(false);
@@ -447,20 +477,18 @@ public class EventManagerRequests extends javax.swing.JPanel {
                 .addGroup(travelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TAAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TAName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(69, 69, 69)
                 .addComponent(travelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(TravelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         travelPanelLayout.setVerticalGroup(
             travelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, travelPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(travelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(travelPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(travelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(travelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TravelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(travelPanelLayout.createSequentialGroup()
                         .addComponent(TAName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,7 +502,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
                             .addComponent(selectTravel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonTravel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -536,10 +564,16 @@ public class EventManagerRequests extends javax.swing.JPanel {
             selectCater.setVisible(false);
             jLabel5.setVisible(false);
             buttonCater.setVisible(false);
-//            CaterLabel.setVisible(true);
             CaterStatus.setVisible(true);
             
             CaterStatus.setText("PENDING");
+            CaterStatus.setForeground(Color.ORANGE);
+            CaterName.setText(c.getCateringName());
+            CaterAddress.setText(c.getCateringAddress());
+            String path = c.getPhoto().replace("\\", "\\\\");
+                   ImageIcon icon = new ImageIcon(path);    
+                caterPhoto.setIcon(icon);
+            
             }
         }
         }catch (SQLException ex) {
@@ -556,14 +590,14 @@ public class EventManagerRequests extends javax.swing.JPanel {
                     for (TravelAgent t : tList){
             if(t.getTravelAgentName().equalsIgnoreCase(travel)){
 //                int hotel_id = h.getHotelID();
-                int ta_id = t.getTravelAgentID();
+                String ta_id = t.getTravelAgentAdmin();
                 WorkRequest wr = new WorkRequest();
                 int event_manager_id = e.getEventManagerID();
                 int event_id = e.getEventID();
             wr.setID(workRequestController.getAllWorkRequestData().size()+1);
             wr.setType("EVENTMANAGER_TRAVELAGENTADMIN");
             wr.setFromID(event_manager_id);
-            wr.setToID(ta_id); 
+            wr.setToID(Integer.parseInt(ta_id)); 
             wr.setStatus("PENDING");
             wr.setEventID(event_id);
             wr.setEventManagerID(event_manager_id);
@@ -577,6 +611,18 @@ public class EventManagerRequests extends javax.swing.JPanel {
             TravelStatus.setVisible(true);
             
             TravelStatus.setText("PENDING");
+            TravelStatus.setForeground(Color.ORANGE);
+            
+//            ArrayList<TravelAgent> cList = enterpriseService.getAllTravelDataService();
+//            for (TravelAgent h: cList){
+//                if(Integer.parseInt(h.getTravelAgentAdmin()) == (wr.getToID())){
+                    TAName.setText(t.getTravelAgentName());
+                    TAAddress.setText(t.getTravelAgentAddress());
+//                }
+                String path = t.getPhoto().replace("\\", "\\\\");
+                   ImageIcon icon = new ImageIcon(path);    
+                travelPhoto.setIcon(icon);
+//            }
             }
         }
         }catch (SQLException ex) {
@@ -617,16 +663,20 @@ public class EventManagerRequests extends javax.swing.JPanel {
 //                    AccoLabel.setVisible(true);
                     accoStatus.setVisible(true);
 
-                    AccoName.setVisible(true);
-                    AccoAddress.setVisible(true);
+//                    AccoName.setVisible(true);
+//                    AccoAddress.setVisible(true);
 //                    accoPhoto.setVisible(true);
-
+                    String path = h.getPhoto().replace("\\", "\\\\");
+                   ImageIcon icon = new ImageIcon(path);    
+                accoPhoto.setIcon(icon);
                     accoStatus.setText("PENDING");
-                    accoStatus.setBackground(Color.yellow);
+                    accoStatus.setForeground(Color.orange);
 //                    accoStatus.set
 
                     AccoName.setText(h.getHotelName());
                     AccoAddress.setText(h.getHotelAddress());
+                    
+                    
 //                    accoPhoto.setIcon();
                 }
             }
