@@ -425,9 +425,15 @@ public class EventManagerDashboard extends javax.swing.JPanel {
             Event e = (Event) model.getValueAt(selectedRowIndex, 0);
             System.out.println("selectedEvent");
         
-        EventManagerRequests eventManagerRequests = new EventManagerRequests(userData, e);
+        EventManagerRequests eventManagerRequests;
+        try {
+            eventManagerRequests = new EventManagerRequests(userData, e);
+                        jRightSplitPane.setBottomComponent(eventManagerRequests);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EventManagerDashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
-            jRightSplitPane.setBottomComponent(eventManagerRequests);
     }//GEN-LAST:event_requestButtonActionPerformed
 
     private void populateTableData(String type) throws SQLException {
