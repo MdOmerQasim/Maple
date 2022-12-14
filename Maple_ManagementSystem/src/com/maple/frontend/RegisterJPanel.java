@@ -18,6 +18,7 @@ import com.maple.backend.model.Catering;
 import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
+import com.maple.resources.sendMail;
 import java.awt.Cursor;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -39,6 +40,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
     User user;
     UserController userController;
     EnterpriseController enterpriseController;
+    sendMail sendMail;
     
     public RegisterJPanel(JSplitPane jSplitPane) throws SQLException {
         initComponents();
@@ -47,6 +49,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         userController = new UserController();
         workRequestController = new WorkRequestController();
         enterpriseController = new EnterpriseController();
+        sendMail = new sendMail();
         jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/user.png"))); 
         jEnterprise.setVisible(false);
 //        disableAdditionalFields();
@@ -392,6 +395,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setHotelType(type);
                 hotelData.setPhone(phoneNum);
                 hotelData.setStatus("PENDING");
+                hotelData.setPhoto(path);
 
                 enterpriseController.insertHotelData(hotelData);
 
@@ -405,6 +409,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
+                
+                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Hotel" ,"New Hotel has been registered.Please login to the system and verify it" );
+                
             } else if(role.equalsIgnoreCase("CATERING ADMIN")){
                 //insert in HCT table
                 Catering hotelData = new Catering();
@@ -417,6 +424,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setCateringAdmin(String.valueOf(ID));
                 hotelData.setCateringArea(area);
                 hotelData.setPhone(phoneNum);
+                hotelData.setPhoto(path);
                 hotelData.setStatus("PENDING");
 
                 enterpriseController.insertCateringData(hotelData);
@@ -432,6 +440,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
+                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Catering" ,"New Catering has been registered.Please login to the system and verify it" );
+
             } else if(role.equalsIgnoreCase("TRAVEL AGENT ADMIN")){
                 //insert in HCT table
                 TravelAgent hotelData = new TravelAgent();
@@ -444,6 +454,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 hotelData.setTravelAgentAdmin(String.valueOf(ID));
                 hotelData.setTravelAgentArea(area);
                 hotelData.setPhone(phoneNum);
+                hotelData.setPhoto(path);
                 hotelData.setStatus("PENDING");
 
                 enterpriseController.insertTravelData(hotelData);
@@ -459,6 +470,8 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
+                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Travel" ,"New Travel has been registered.Please login to the system and verify it" );
+
             }
             
 
