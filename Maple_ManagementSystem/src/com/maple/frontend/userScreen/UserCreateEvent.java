@@ -164,6 +164,14 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("*");
 
+        areaText.setLabelText("");
+
+        nameText.setLabelText("");
+
+        descText.setLabelText("");
+
+        attendeesCountText.setLabelText("");
+
         callbackBtn.setBackground(new java.awt.Color(255, 153, 0));
         callbackBtn.setForeground(new java.awt.Color(255, 255, 255));
         callbackBtn.setText("Request Callback");

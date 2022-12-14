@@ -630,8 +630,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             nameField.setText(selectedEvent.getEventName());
             areaField.setText(selectedEvent.getEventArea());
             descriptionField.setText(selectedEvent.getEventDescription());
-            fromField.setText(selectedEvent.getEventFrom().toString());
-            toField.setText(selectedEvent.getEventTo().toString());
+            fromField.setText(selectedEvent.getEventFrom().toString().substring(0, 10));
+            toField.setText(selectedEvent.getEventTo().toString().substring(0, 10));
             attendeesCountField.setText(selectedEvent.getAtendeesCount());
             int eventManagerId = selectedEvent.getEventManagerID();
             if(eventManagerId != -1) {
@@ -787,8 +787,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 obj[1] = eve.getEventName();
                 obj[2] = eve.getEventDescription();
                 obj[3] = eve.getEventArea();
-                obj[4] = eve.getEventFrom();
-                obj[5] = eve.getEventTo();
+                obj[4] = eve.getEventFrom().substring(0, 10);
+                obj[5] = eve.getEventTo().substring(0, 10);
                 dtmodel.addRow(obj);
             }
         } catch (SQLException ex) {
