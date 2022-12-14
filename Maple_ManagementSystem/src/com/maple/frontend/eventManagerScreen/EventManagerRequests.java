@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.maple.frontend.eventManagerScreen;
-
 import com.maple.backend.model.Catering;
 import com.maple.backend.model.Event;
 import com.maple.backend.model.Hotel;
@@ -86,7 +85,7 @@ public class EventManagerRequests extends javax.swing.JPanel {
                     AccoAddress.setText(h.getHotelAddress());
                 }
                 String path = h.getPhoto().replace("\\", "\\\\");
-                   ImageIcon icon = new ImageIcon(path);    
+                ImageIcon icon = new ImageIcon(path);    
                 accoPhoto.setIcon(icon);
             }
             
