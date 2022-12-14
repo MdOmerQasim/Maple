@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
 /**
@@ -36,6 +37,9 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         //custom
         jUserName.setText(this.loggedInUser.getName());
         jUserRole.setText(this.loggedInUser.getRole());
+        String path = this.loggedInUser.getPhoto().replace("\\", "\\\\");
+        ImageIcon icon = new ImageIcon(path);    
+        jUserImageIcon.setIcon(icon);
         btnBadgeNotification.setBadges(9);
         UserWelcomeScreen userWelcomeScreen = new UserWelcomeScreen();
         jRightSplitPane.setRightComponent(userWelcomeScreen);

@@ -44,7 +44,9 @@ public class EventAdminScreen extends javax.swing.JPanel {
     }
     
     public void populateUserData() throws SQLException{
-        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
+        String path = this.userData.get(0).getPhoto().replace("\\", "\\\\");
+        ImageIcon icon = new ImageIcon(path);    
+        jUserImageIcon.setIcon(icon);
         jUserName.setText(userData.get(0).getName());
         getNotificationData();
     }
