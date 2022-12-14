@@ -3,7 +3,7 @@
 
 ## PROJECT TITLE
 
-MAPLE MANAGEMENT
+MAPLE MANAGEMENT SYSTEM
 
 ## PROJECT DESCRIPTION
 For the Maple Management System, We considered developing an application that will assist users in hiring event managers to plan their event. For their own gatherings, users can also reserve hotels, caterers, and travel services.
@@ -88,4 +88,21 @@ When Event Manager assigns a particular catering to an event, catering work requ
 
 
 When Event Manager assigns a particular travel to an event, travel work request will be created to travel admin for approval
+
+
+
+## CLASS DIAGRAM
+
+![image](https://user-images.githubusercontent.com/113491692/207495424-e6b8f5c9-6dbb-4fdc-b5fa-06e5cb093708.png)
+
+
+## USE CASE DIAGRAM
+
+![image](https://user-images.githubusercontent.com/113491692/207495542-e5b060a8-0575-4ef8-aba1-a71caed48bf8.png)
+
+## SEQUENCE DIAGRAM
+
+![image](https://user-images.githubusercontent.com/113491692/207495629-5911f267-4404-4ab4-97e6-c79c1f0e43ec.png)
+
+
 
