@@ -390,11 +390,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             else if (toDate.getDate().equals("")){
                 JOptionPane.showMessageDialog(this, "Please enter a valid to date.");
                 return;
-            } else if(!hotelCheckbox.isSelected() || !cateringCheckbox.isSelected() || !travelCheckbox.isSelected()){
-                JOptionPane.showMessageDialog(this, "Please select atleast one service.");
-                return;
-            }
-            
+            }            
 
             Event newEvent = new Event();
             int eventId = 0;
