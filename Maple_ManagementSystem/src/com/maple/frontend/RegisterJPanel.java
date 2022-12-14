@@ -19,10 +19,13 @@ import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import com.maple.resources.sendMail;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JSplitPane;
 
 /**
@@ -324,6 +327,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
     private void jRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterBtnActionPerformed
         // TODO add your handling code here:
+        
         String role = jRegisterAsComboBox.getSelectedItem().toString();
         String name = jNameTextField.getText();
         String email = jEmailTextField.getText();
@@ -338,6 +342,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         String type = "";
         String companyName = "";
         
+        
         //TODO: pass these too
         if(!role.equalsIgnoreCase("CUSTOMER")){
             address = jAddress.getText();
@@ -349,26 +354,38 @@ public class RegisterJPanel extends javax.swing.JPanel {
         
         if (role.equals("")){
             JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
-        }
-        else if (name.equals("")){
+        } else if (name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your name.");
-        }
-        else if (email.equals("")){
+            jNameTextField.setBackground(new Color(255, 204, 203));
+        } else if (email.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your email id.");
-        }
-        else if (phoneNum.equals("")){
+            jEmailTextField.setBackground(new Color(255, 204, 203));
+        } else if (phoneNum.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your phone number.");
+            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
         } else if (userName.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a username.");
+            jUsernameTextField.setBackground(new Color(255, 204, 203));
+        } else if (userName.length() < 3){
+            JOptionPane.showMessageDialog(this, "Username should be of atleast 3 characters.");
+            jUsernameTextField.setBackground(new Color(255, 204, 203));
         } else if (password.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a password.");
+            jPasswordTextField.setBackground(new Color(255, 204, 203));
+        } else if (password.length() < 4){
+            JOptionPane.showMessageDialog(this, "Password should be of atleast 4 characters.");
+            jPasswordTextField.setBackground(new Color(255, 204, 203));
         } else if (rePassword.equals("")){
             JOptionPane.showMessageDialog(this, "Please re-enter the password.");
+            jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+
         } else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
-        } else if (path.equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter a photo.");
-        } else{
+            jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+
+        } 
+        
+        else{
             try {
                 String status = "PENDING" ;
                 if ("customer".equalsIgnoreCase(role)){
@@ -410,7 +427,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
                 
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Hotel" ,"New Hotel has been registered.Please login to the system and verify it" );
+//                sendMail.sendEmailFunction("infomaple0@gmail.com", "New Work Rquest has been created for Hotel" ,"New Hotel has been registered.Please login to the system and verify it" );
                 
             } else if(role.equalsIgnoreCase("CATERING ADMIN")){
                 //insert in HCT table
@@ -440,7 +457,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Catering" ,"New Catering has been registered.Please login to the system and verify it" );
+//                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Catering" ,"New Catering has been registered.Please login to the system and verify it" );
 
             } else if(role.equalsIgnoreCase("TRAVEL AGENT ADMIN")){
                 //insert in HCT table
@@ -470,14 +487,10 @@ public class RegisterJPanel extends javax.swing.JPanel {
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Travel" ,"New Travel has been registered.Please login to the system and verify it" );
+//                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Travel" ,"New Travel has been registered.Please login to the system and verify it" );
 
             }
             
-
-
-
-
             jNameTextField.setText("");
             jEmailTextField.setText("");
             jPhoneNumberTextField.setText("");
@@ -495,6 +508,21 @@ public class RegisterJPanel extends javax.swing.JPanel {
             jEnterprise.setVisible(false);
             jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/user.png"))); 
             
+            
+            jConfirmPasswordTextField.setBackground(new Color(255, 255, 255));
+            jUsernameTextField.setBackground(new Color(255, 255, 255));
+            jNameTextField.setBackground(new Color(255, 255, 255));
+            jEmailTextField.setBackground(new Color(255, 255, 255));
+                    jPhoneNumberTextField.setBackground(new Color(255, 255, 255));
+                            jUsernameTextField.setBackground(new Color(255, 255, 255));
+                            jPasswordTextField.setBackground(new Color(255, 255, 255));
+                                    jPostalCodeTextField.setBackground(new Color(255, 255, 255));
+                                    jAddress.setBackground(new Color(255, 255, 255));
+                                            jType.setBackground(new Color(255, 255, 255));
+                                            jCapacity.setBackground(new Color(255, 255, 255));
+                                                    jCompanyName.setBackground(new Color(255, 255, 255));
+                                                    jArea.setBackground(new Color(255, 255, 255));
+
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -534,13 +562,11 @@ public class RegisterJPanel extends javax.swing.JPanel {
             File file = img_upload.getSelectedFile();
             String path = file.getAbsolutePath().replace("\\", "\\\\");
             this.path = path;
-            try {
-                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//            Image
 //                user.setPhoto(photo);
-                jUserPhoto.setIcon(new ImageIcon(photo));
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error while saving image.");
-            }
+                jUserPhoto.setIcon(new ImageIcon(path));
+
         }
         else{
                 JOptionPane.showMessageDialog(this, "Upload is cancelled.");
@@ -554,7 +580,21 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jUserPhoto.setBorderSize(2);
 
     }//GEN-LAST:event_jUserPhotoMouseEntered
-
+    
+//    public static boolean valCellNo(String input){
+//        String emailRegex = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+//        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+//        Matcher matcher = emailPat.matcher(input);
+//        return matcher.find();
+//    }
+    
+    public static boolean valEmail(String input){
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPat.matcher(input);
+        return matcher.find();
+    }
+    
     private void jUserPhotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseExited
         // TODO add your handling code here:
         jUserPhoto.setBorderSize(0);

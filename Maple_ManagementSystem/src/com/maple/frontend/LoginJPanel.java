@@ -14,6 +14,7 @@ import com.maple.frontend.hotelAdminScreen.HotelAdminScreen;
 import com.maple.frontend.hrAdminScreen.HRAdminScreen;
 import com.maple.frontend.travelAgentAdminScreen.TravelAgentAdminScreen;
 import com.maple.frontend.userScreen.UserLayoutScreen;
+import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JSplitPane;
 import java.util.ArrayList;
@@ -143,16 +144,25 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void jLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginBtnActionPerformed
 //        System.out.println("sdb" + jUsernameTextField.getText());
         if(jUsernameTextField.getText().equals("")){  
-            System.out.println("username Cant be null bro");
+//            System.out.println("username Cant be null bro");
+              JOptionPane.showMessageDialog(this, "Please enter a username.");
+                        jUsernameTextField.setBackground(new Color(255, 204, 203));
         }
         else if(jPasswordTextField.getText().equals("")){  
-            System.out.println("Password Cant be null bro");
+//            System.out.println("Password Cant be null bro");
+JOptionPane.showMessageDialog(this, "Please enter a password.");
+                        jPasswordTextField.setBackground(new Color(255, 204, 203));
         }
+        else{
         
         String username = jUsernameTextField.getText();
         String password = jPasswordTextField.getText();
         String role = jLoginAsComboBox.getSelectedItem().toString();
         
+        if(role.equals("-- Select --")){
+            JOptionPane.showMessageDialog(null, "Please select a role");
+        }
+        else{
         try {
 
             int validUser = userController.validateUser(username, password, role);
@@ -201,8 +211,8 @@ public class LoginJPanel extends javax.swing.JPanel {
 
             }
         } catch (SQLException ex) {
-            System.out.println("error here");
-        }
+            System.out.println("error here.");
+        }}}
     }//GEN-LAST:event_jLoginBtnActionPerformed
 
 
