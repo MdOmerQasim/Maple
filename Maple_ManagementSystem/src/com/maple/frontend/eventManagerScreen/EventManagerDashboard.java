@@ -254,7 +254,7 @@ public class EventManagerDashboard extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPrivateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(80, 80, 80)
                         .addComponent(jPublicEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -651,8 +651,8 @@ public class EventManagerDashboard extends javax.swing.JPanel {
     private void populateCardData() throws SQLException{
         
         //Load Icons
-        jPrivateEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
-        jPublicEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+        jPrivateEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/private.png")));
+        jPublicEvent.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/public.png")));
           
         //Set Description
         jPrivateEvent.setDescription("Private Events");
