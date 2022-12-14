@@ -31,7 +31,8 @@ public class CateringAdminSettings extends javax.swing.JPanel {
         initComponents();
         this.userData = userData;
         userController = new UserController();
-        jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg")));
+        String path = this.userData.get(0).getPhoto().replace("\\", "\\\\");
+        jUserPhoto.setIcon(new ImageIcon(path));
         jName.setText(userData.get(0).getName());
         jName.setEnabled(false);
     }
