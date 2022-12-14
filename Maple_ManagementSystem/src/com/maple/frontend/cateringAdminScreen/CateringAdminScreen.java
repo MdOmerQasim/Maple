@@ -127,7 +127,7 @@ public class CateringAdminScreen extends javax.swing.JPanel {
         jUserName.setText("User Name");
 
         jUserRole.setForeground(new java.awt.Color(127, 127, 127));
-        jUserRole.setText("Hotel Admin");
+        jUserRole.setText("Catering Admin");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
