@@ -227,12 +227,14 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jConfirmPasswordTextField" linkSize="1" max="32767" attributes="0"/>
-                      <Component id="jEmailTextField" linkSize="1" max="32767" attributes="0"/>
-                      <Component id="jUsernameTextField" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jRegisterAsComboBox" linkSize="1" min="-2" pref="180" max="-2" attributes="0"/>
+                  <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jConfirmPasswordTextField" linkSize="1" max="32767" attributes="0"/>
+                          <Component id="jUsernameTextField" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jRegisterAsComboBox" linkSize="1" min="-2" pref="180" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jEmailTextField" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
