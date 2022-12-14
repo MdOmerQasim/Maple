@@ -152,7 +152,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         String username = jUsernameTextField.getText();
         String password = jPasswordTextField.getText();
         String role = jLoginAsComboBox.getSelectedItem().toString();
-
+        
         try {
 
             int validUser = userController.validateUser(username, password, role);
