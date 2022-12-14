@@ -22,12 +22,12 @@ public class EventRepository {
     }
     
     public void createAnEvent(Event newEvent) throws SQLException{
-        System.out.println("create repo line 1");
+//        System.out.println("create repo line 1");
         String sql = "insert into event(status, event_id,event_type,event_name,event_description,event_area,attendees_count,accomodation_needed,accomodation_count,function_hall_needed,function_hall_count,catering_needed,catering_count,travel_needed,travel_count,event_from,event_to,event_manager_id,chosen_hotel_id,chosen_catering_id,chosen_travel_id, event_user_id) values('" + newEvent.getStatus()+ "','" + newEvent.getEventID() + "','" + newEvent.getEventType() + "','" + newEvent.getEventName() + "','" + newEvent.getEventDescription() + "','" + newEvent.getEventArea() + "','" + newEvent.getAtendeesCount() + "','" + newEvent.getAccomodationNeeded() + "','" + newEvent.getAccomodationCount() + "','" + newEvent.getFunctionHallNeeded() + "','" + newEvent.getFunctionHallCount() + "','" + newEvent.getCateringNeeded()+"','" + newEvent.getCateringCount()+"','" + newEvent.getTravelNeeded()+"','" + newEvent.getTravelCount()+"','" + newEvent.getEventFrom()+ "','" + newEvent.getEventTo()+ "','" + newEvent.getEventManagerID()+ "','" + newEvent.getChosenHotelID()+ "','" + newEvent.getChosenCateringID()+ "','" + newEvent.getChosenTravelAgentID()+ "','" + newEvent.getUserID()+ "')";
-        System.out.println("create " + sql);
+//        System.out.println("create " + sql);
 
         obj.update(sql, new String[]{});
-        System.out.println("create end");
+//        System.out.println("create end");
 //        String fetchQuery = "INSERT";
 //        this.obj.update(fetchQuery, new String[]{});        
     }

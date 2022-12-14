@@ -617,7 +617,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             
             // TODO add your handling code here:
             int selectedRowIndex = table.getSelectedRow();
-            System.out.println(selectedRowIndex);
+//            System.out.println(selectedRowIndex);
             if(selectedRowIndex < 0 ){
                 JOptionPane.showMessageDialog(this, "Please select a row to view");
                 return;
@@ -625,7 +625,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
 
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             Event selectedEvent = (Event) model.getValueAt(selectedRowIndex, 0);
-            System.out.println("selectedEvent");
+//            System.out.println("selectedEvent");
             typeField.setText(selectedEvent.getEventType());
             nameField.setText(selectedEvent.getEventName());
             areaField.setText(selectedEvent.getEventArea());
@@ -638,8 +638,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                 ArrayList<User> eventManager  = userController.getUserById(eventManagerId);
                 eventManagerField.setVisible(true);
                 eventManagerField.setText(eventManager.get(0).getName());
-                System.out.println("managerr");
-                System.out.println(eventManager.get(0).getName());
+//                System.out.println("managerr");
+//                System.out.println(eventManager.get(0).getName());
                 managerStatus.setVisible(false);
                 
                 boolean isAccomodation = selectedEvent.getAccomodationNeeded().equalsIgnoreCase("yes") ? true : false;
@@ -780,7 +780,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             String type = typeDropdown.getSelectedItem().toString();
             
             eventList = eventController.getFilteredEventsList(this.loggedInUser.getID(),status,type); //TODO: Pass USER ID 
-            System.out.println(eventList);
+//            System.out.println(eventList);
             for(Event eve: eventList){
                 Object[] obj = new Object[6];
                 obj[0] = eve;  // index val

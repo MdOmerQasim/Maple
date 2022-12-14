@@ -65,8 +65,10 @@ public class HotelAdminScreen extends javax.swing.JPanel {
     
     public void populateUserData() throws SQLException{
 //        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
-String path = this.userData.get(0).getPhoto().replace("\\", "\\\\");
 
+//System.out.println("PATH - " + this.userData.get(0).getPhoto());
+String path = this.userData.get(0).getPhoto().replace("\\", "\\\\");
+//System.out.println("PATH - " + path);
 ImageIcon icon = new ImageIcon(path);    
 
 jUserImageIcon.setIcon(icon);         

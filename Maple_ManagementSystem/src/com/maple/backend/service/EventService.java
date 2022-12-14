@@ -29,7 +29,7 @@ public class EventService {
     public void createAnEventService(Event newEvent) {
         try {
             eventRepository.createAnEvent(newEvent);
-            System.out.println("use service");
+//            System.out.println("use service");
         } catch (SQLException ex) {
             Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,7 +42,7 @@ public class EventService {
         ResultSet resultSet = eventRepository.getEventData();
 //        System.out.println("dataaaa");
         eventsDataList = eventDataMapper(resultSet);
-        System.out.println("eventlistt" + eventsDataList);
+//        System.out.println("eventlistt" + eventsDataList);
         return eventsDataList; 
     
     }

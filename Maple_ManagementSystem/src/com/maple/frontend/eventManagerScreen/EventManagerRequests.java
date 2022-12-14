@@ -193,9 +193,9 @@ public class EventManagerRequests extends javax.swing.JPanel {
             }
             ArrayList<TravelAgent> cList = enterpriseService.getAllTravelDataService();
             for (TravelAgent h: cList){
-                System.out.println("ashdbshbd" + h.getTravelAgentAdmin()+ wr.getToID());
+//                System.out.println("ashdbshbd" + h.getTravelAgentAdmin()+ wr.getToID());
                 if(Integer.parseInt(h.getTravelAgentAdmin()) == (wr.getToID())){
-                                 System.out.println("skjdfbhdbf");
+//                                 System.out.println("skjdfbhdbf");
                     TAName.setText(h.getTravelAgentName());
                     TAAddress.setText(h.getTravelAgentAddress());
                 }
