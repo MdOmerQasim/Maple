@@ -159,7 +159,6 @@ JOptionPane.showMessageDialog(this, "Please enter a password.");
         String password = jPasswordTextField.getText();
         String role = jLoginAsComboBox.getSelectedItem().toString();
         
-        System.out.println("dkjf" + role);
         if(role.equals("-- Select --")){
             JOptionPane.showMessageDialog(null, "Please select a role");
         }
@@ -212,7 +211,7 @@ JOptionPane.showMessageDialog(this, "Please enter a password.");
 
             }
         } catch (SQLException ex) {
-            System.out.println("error here");
+            System.out.println("error here.");
         }}}
     }//GEN-LAST:event_jLoginBtnActionPerformed
 

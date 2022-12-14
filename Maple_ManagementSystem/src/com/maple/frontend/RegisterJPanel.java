@@ -350,9 +350,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
             companyName = jCompanyName.getText();
         }
         
-        if (role.equals("")){
-            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
-        }
+//        if (role.equals("")){
+//            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
+//        }
         else if (name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your name.");
 jNameTextField.setBackground(new Color(255, 204, 203));
@@ -367,10 +367,10 @@ jNameTextField.setBackground(new Color(255, 204, 203));
             jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
 
         }
-        else if (valCellNo(phoneNum)){
-            JOptionPane.showMessageDialog(this, "Please enter valid phone number.");
-            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
-        }
+//        else if (valCellNo(phoneNum)){
+//            JOptionPane.showMessageDialog(this, "Please enter valid phone number.");
+//            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
+//        }
 //        else if (valEmail(email)){
 //            JOptionPane.showMessageDialog(this, "Please enter valid email.");
 //            jEmailTextField.setBackground(new Color(255, 204, 203));
@@ -448,7 +448,7 @@ jNameTextField.setBackground(new Color(255, 204, 203));
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
                 
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Hotel" ,"New Hotel has been registered.Please login to the system and verify it" );
+                sendMail.sendEmailFunction("infomaple0@gmail.com","New work request has been created for hotel." ,"New hotel has been registered. Please login to the system and verify it");
                 
             } else if(role.equalsIgnoreCase("CATERING ADMIN")){
                 //insert in HCT table
