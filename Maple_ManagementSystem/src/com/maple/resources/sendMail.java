@@ -27,15 +27,16 @@ public class sendMail {
     String subject;
     String text;
     
-    public sendMail(String toEmail, String subject, String text) {
+    public sendMail() {
         this.fromEmail = "infomaple0@gmail.com";
         this.fromPwd = "wlgjpjtrfsyeuani";
+        
+    }
+    
+    public void sendEmailFunction(String toEmail, String subject, String text) {
         this.toEmail = toEmail;
         this.subject = subject;
         this.text = text;
-    }
-    
-    public void sendEmailFunction() {
         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 // Get a Properties object
         Properties props = System.getProperties();

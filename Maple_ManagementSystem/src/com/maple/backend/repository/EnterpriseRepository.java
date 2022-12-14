@@ -38,6 +38,21 @@ public class EnterpriseRepository {
         return this.obj.query(fetchQuery, new String[]{}); 
     }
     
+    public ResultSet getEnterpriseDataEnterprise(String type, int id) throws SQLException{
+        
+        String fetchQuery = "";
+        
+        if(type.equalsIgnoreCase("HOTEL")){
+            fetchQuery = "SELECT * FROM HOTEL WHERE H_ID = " + id;
+        } else if (type.equalsIgnoreCase("CATERING")){
+            fetchQuery = "SELECT * FROM CATERING WHERE C_ID = " + id;
+        } else if (type.equalsIgnoreCase("TRAVEL")){
+            fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ID = " + id;
+        }
+        
+        return this.obj.query(fetchQuery, new String[]{});           
+    }
+    
     public ResultSet getEnterpriseData(String type, int id) throws SQLException{
         
         String fetchQuery = "";
@@ -47,7 +62,7 @@ public class EnterpriseRepository {
         } else if (type.equalsIgnoreCase("CATERING")){
             fetchQuery = "SELECT * FROM CATERING WHERE C_ADMIN = " + id;
         } else if (type.equalsIgnoreCase("TRAVEL")){
-            fetchQuery = "SELECT * FROM TRAVEL WHERE TA_ADMIN = " + id;
+            fetchQuery = "SELECT * FROM TRAVELAGENT WHERE TA_ADMIN = " + id;
         }
         
         return this.obj.query(fetchQuery, new String[]{});           

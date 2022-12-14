@@ -28,6 +28,10 @@ public class EnterpriseController {
         return enterpriseService.getEnterpriseDataService(type, id);
     }
     
+     public ResultSet getEnterpriseDataEnterprise(String type, int id) throws SQLException{
+        return enterpriseService.getEnterpriseDataServiceEnterprise(type, id);
+    }
+    
     public void insertHotelData(Hotel hotelData) throws SQLException{
         enterpriseService.insertHotelDataService(hotelData);
     }

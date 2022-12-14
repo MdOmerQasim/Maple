@@ -34,6 +34,13 @@ public class EventManagerScreen extends javax.swing.JPanel {
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
         this.userData = userData;
+        try {
+            EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData, jRightSplitPane);
+//            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
+            jRightSplitPane.setBottomComponent(eventManagerDashboard);
+        } catch (SQLException ex) {
+            System.out.println("exception in dashboard event manager");
+        }
 //        businessAdminId = userData.get(0).getID();
 //        populateUserData();
 //        //Load Dashboard Screen (by default)
@@ -76,7 +83,6 @@ public class EventManagerScreen extends javax.swing.JPanel {
         jBaseLeftPanel = new javax.swing.JPanel();
         mapleLogo = new com.maple.resources.ImageAvatar();
         jDashboardBtn = new com.maple.resources.Button();
-        jRequestsBtn = new com.maple.resources.Button();
         jLogoutBtn = new com.maple.resources.Button();
 
         jBaseSplitPane.setDividerSize(0);
@@ -209,14 +215,6 @@ public class EventManagerScreen extends javax.swing.JPanel {
             }
         });
 
-        jRequestsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn.setText("Requests");
-        jRequestsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRequestsBtnActionPerformed(evt);
-            }
-        });
-
         jLogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/logout.png"))); // NOI18N
         jLogoutBtn.setText("Logout");
         jLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +232,6 @@ public class EventManagerScreen extends javax.swing.JPanel {
                 .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -245,9 +242,7 @@ public class EventManagerScreen extends javax.swing.JPanel {
                 .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jDashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 551, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -283,19 +278,9 @@ public class EventManagerScreen extends javax.swing.JPanel {
         this.mainSplitPane.setLeftComponent(homeLeftPanel);
     }//GEN-LAST:event_jLogoutBtnActionPerformed
 
-    private void jRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtnActionPerformed
-        try {
-            BusinessAdminRequest businessAdminRequest = new BusinessAdminRequest(userData);
-            jRightSplitPane.setBottomComponent(businessAdminRequest);
-        } catch (SQLException ex) {
-            
-        }
-//        requests will have all the requests that event manager has made to HCT and its details.
-    }//GEN-LAST:event_jRequestsBtnActionPerformed
-
     private void jDashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDashboardBtnActionPerformed
         try {
-            EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData);
+            EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData, jRightSplitPane);
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(eventManagerDashboard);
         } catch (SQLException ex) {
@@ -316,7 +301,6 @@ public class EventManagerScreen extends javax.swing.JPanel {
     private javax.swing.JPanel jBottonRightPanel;
     private com.maple.resources.Button jDashboardBtn;
     private com.maple.resources.Button jLogoutBtn;
-    private com.maple.resources.Button jRequestsBtn;
     private javax.swing.JSplitPane jRightSplitPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jTopRightPanel;

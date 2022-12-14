@@ -34,11 +34,7 @@
                               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                               <Component id="jHotelPhone" linkSize="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jHotelType" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jHotelCapacity" linkSize="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jHotelCapacity" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jHotelAddress" linkSize="1" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -67,10 +63,7 @@
                           <Component id="jHotelArea" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jHotelCapacity" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jHotelType" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jHotelCapacity" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jHotelPhone" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -128,11 +121,6 @@
     <Component class="com.maple.resources.TextField" name="jHotelCapacity">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Capacity"/>
-      </Properties>
-    </Component>
-    <Component class="com.maple.resources.TextField" name="jHotelType">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Hotel Type"/>
       </Properties>
     </Component>
     <Component class="com.maple.resources.TextField" name="jHotelEmail">

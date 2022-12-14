@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.maple.frontend.cateringAdminScreen;
+package com.maple.frontend.travelAgentAdminScreen;
 
 import com.maple.backend.controller.EnterpriseController;
 import com.maple.backend.model.Catering;
-import com.maple.backend.model.Hotel;
+import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.User;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author mohammedomerqasimshaik
  */
-public class CateringAdminDashboard extends javax.swing.JPanel {
+public class TravelAgentAdminDashboard extends javax.swing.JPanel {
 
     /**
      * Creates new form HotelAdminDashboard
@@ -26,7 +26,7 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
     
     EnterpriseController enterpriseController;
     
-    public CateringAdminDashboard(ArrayList<User> userData) throws SQLException {
+    public TravelAgentAdminDashboard(ArrayList<User> userData) throws SQLException {
         initComponents();
         this.userData = userData;
         enterpriseController = new EnterpriseController();
@@ -39,13 +39,13 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
     
     private void populateHotelData() throws SQLException{
 
-        ResultSet resultSet = enterpriseController.getEnterpriseData("CATERING", userData.get(0).getID());        
-        Catering hotelData = cateringMapper(resultSet);
+        ResultSet resultSet = enterpriseController.getEnterpriseData("TRAVEL", userData.get(0).getID());        
+        TravelAgent hotelData = travelAgentMapper(resultSet);
 
 //        jHotelPhoto.setIcon(icon);
-        jHotelName.setText(hotelData.getCateringName());
-        jHotelAddress.setText(hotelData.getCateringAddress());
-        jHotelArea.setText(hotelData.getCateringArea());
+        jHotelName.setText(hotelData.getTravelAgentName());
+        jHotelAddress.setText(hotelData.getTravelAgentAddress());
+        jHotelArea.setText(hotelData.getTravelAgentArea());
         jHotelCapacity.setText(hotelData.getCapacity());
         jHotelEmail.setText(hotelData.getEmail());
         jHotelPhone.setText(hotelData.getPhone());
@@ -61,23 +61,23 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
         jHotelPhone.setEnabled(false);
     }
     
-    private Catering cateringMapper(ResultSet resultSet) throws SQLException{
-        Catering catering = new Catering();
+    private TravelAgent travelAgentMapper(ResultSet resultSet) throws SQLException{
+        TravelAgent travel = new TravelAgent();
         while(resultSet.next()){
-            catering.setCateringID(Integer.parseInt(resultSet.getString("C_ID")));
-            catering.setCateringName(resultSet.getString("C_NAME"));
-            catering.setCateringAddress(resultSet.getString("C_ADDRESS"));
-            catering.setCateringArea(resultSet.getString("C_AREA"));
-            catering.setCapacity(resultSet.getString("C_CAPACITY"));
-            catering.setCateringAdmin(resultSet.getString("C_ADMIN"));
-            catering.setBookedDates(resultSet.getString("C_BOOKED_DATES"));
-            catering.setPhoto(resultSet.getString("C_PHOTO"));
-            catering.setEmail(resultSet.getString("C_EMAIL"));
-            catering.setPhone(resultSet.getString("C_PHONE"));
-//            catering.setStatus(resultSet.getString("C_STATUS"));
+           travel.setTravelAgentID(Integer.parseInt(resultSet.getString("TA_ID")));
+            travel.setTravelAgentName(resultSet.getString("TA_NAME"));
+            travel.setTravelAgentAddress(resultSet.getString("TA_ADDRESS"));
+            travel.setTravelAgentArea(resultSet.getString("TA_AREA"));
+            travel.setCapacity(resultSet.getString("TA_CAPACITY"));
+            travel.setTravelAgentAdmin(resultSet.getString("TA_ADMIN"));
+            travel.setBookedDates(resultSet.getString("TA_BOOKED_DATES"));
+            travel.setPhoto(resultSet.getString("TA_PHOTO"));
+            travel.setEmail(resultSet.getString("TA_EMAIL"));
+            travel.setPhone(resultSet.getString("TA_PHONE"));
+//            travel.setStatus(resultSet.getString("TA_STATUS"));
         }
         
-        return catering; 
+        return travel; 
     }
     
     /**
@@ -134,17 +134,15 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
                         .addComponent(jHotelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(jHotelCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jHotelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(66, 66, 66)
                                 .addComponent(jHotelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jHotelCapacity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jHotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jHotelArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jRoute))
                 .addContainerGap(305, Short.MAX_VALUE))
@@ -157,23 +155,21 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jRoute)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jHotelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jHotelCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
+                        .addComponent(jHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jHotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jHotelArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
+                        .addGap(52, 52, 52)
+                        .addComponent(jHotelCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jHotelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jHotelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jHotelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jHotelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents

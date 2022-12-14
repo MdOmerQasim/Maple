@@ -68,7 +68,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jRequestsBtn = new com.maple.resources.Button();
         jLogoutBtn = new com.maple.resources.Button();
         jRequestsBtn1 = new com.maple.resources.Button();
-        jRequestsBtn2 = new com.maple.resources.Button();
 
         jBaseSplitPane.setDividerSize(0);
         jBaseSplitPane.setMaximumSize(new java.awt.Dimension(1100, 800));
@@ -169,6 +168,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
 
         jRightSplitPane.setTopComponent(jTopRightPanel);
 
+        jBottonRightPanel.setBackground(new java.awt.Color(245, 241, 241));
         jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1100, 800));
@@ -220,18 +220,10 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         });
 
         jRequestsBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn1.setText("View My Events");
+        jRequestsBtn1.setText("My Events");
         jRequestsBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRequestsBtn1ActionPerformed(evt);
-            }
-        });
-
-        jRequestsBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/maple/icons/analytics.png"))); // NOI18N
-        jRequestsBtn2.setText("View Public Events");
-        jRequestsBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRequestsBtn2ActionPerformed(evt);
             }
         });
 
@@ -239,25 +231,20 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jBaseLeftPanel.setLayout(jBaseLeftPanelLayout);
         jBaseLeftPanelLayout.setHorizontalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jBaseLeftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
                 .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(11, 11, 11)))
                     .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(19, 19, 19)
                         .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jBaseLeftPanelLayout.setVerticalGroup(
             jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,16 +253,11 @@ public class UserLayoutScreen extends javax.swing.JPanel {
                 .addComponent(mapleLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jRequestsBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
-            .addGroup(jBaseLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jBaseLeftPanelLayout.createSequentialGroup()
-                    .addGap(206, 206, 206)
-                    .addComponent(jRequestsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(554, Short.MAX_VALUE)))
         );
 
         jBaseSplitPane.setLeftComponent(jBaseLeftPanel);
@@ -333,12 +315,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         jRightSplitPane.setBottomComponent(userViewMyEventRightPanel);
     }//GEN-LAST:event_jRequestsBtn1ActionPerformed
 
-    private void jRequestsBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRequestsBtn2ActionPerformed
-        // TODO add your handling code here:
-        UserViewPublicEvents userViewPublicRightPanel = new UserViewPublicEvents(this.mainSplitPane);
-        jRightSplitPane.setBottomComponent(userViewPublicRightPanel);
-    }//GEN-LAST:event_jRequestsBtn2ActionPerformed
-
     public JSplitPane getBaseSplitPane(){
         return this.jBaseSplitPane;
     }
@@ -354,7 +330,6 @@ public class UserLayoutScreen extends javax.swing.JPanel {
     private com.maple.resources.Button jLogoutBtn;
     private com.maple.resources.Button jRequestsBtn;
     private com.maple.resources.Button jRequestsBtn1;
-    private com.maple.resources.Button jRequestsBtn2;
     private javax.swing.JSplitPane jRightSplitPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jTopRightPanel;

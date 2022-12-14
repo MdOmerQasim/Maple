@@ -4,14 +4,14 @@
  */
 package com.maple.frontend.eventAdminScreen;
 
+import com.maple.backend.controller.EventController;
 import com.maple.backend.controller.WorkRequestController;
+import com.maple.backend.model.Event;
 import com.maple.backend.model.User;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 
@@ -25,7 +25,7 @@ public class EventAdminScreen extends javax.swing.JPanel {
     JSplitPane mainSplitPane;
     
     WorkRequestController workRequestController;
-    
+    EventController eventController;
     ArrayList<User> userData;
     
     int eventAdminId;
@@ -34,6 +34,7 @@ public class EventAdminScreen extends javax.swing.JPanel {
         initComponents();
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
+        eventController = new EventController();
         this.userData = userData;
         eventAdminId = userData.get(0).getID();
         populateUserData();
@@ -45,14 +46,21 @@ public class EventAdminScreen extends javax.swing.JPanel {
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
         jUserName.setText(userData.get(0).getName());
-//        getNotificationData();
+        getNotificationData();
     }
     public void getNotificationData() throws SQLException{
         // get notification count
-//        int notification = workRequestController.getHotelEnterpriseData(businessAdminId, "PENDING").size() + 
-//                workRequestController.getCateringEnterpriseData(businessAdminId, "PENDING").size() + 
-//                workRequestController.getTravelAgentEnterpriseData(businessAdminId, "PENDING").size();
-//        notificationBadge.setBadges(notification); 
+        ArrayList<Event> publicPendingEventList = new ArrayList<>();
+        eventController.getPublicEventList().stream()
+                .filter(evt -> evt.getStatus().equalsIgnoreCase("PENDING"))
+                .forEach(evt -> publicPendingEventList.add(evt));
+        
+        ArrayList<Event> privatePendingEventList = new ArrayList<>();
+        eventController.getPrivateEventList().stream()
+                .filter(evt -> evt.getStatus().equalsIgnoreCase("PENDING"))
+                .forEach(evt -> privatePendingEventList.add(evt));
+        int notification = publicPendingEventList.size() + privatePendingEventList.size();
+        notificationBadge.setBadges(notification); 
     }
     
     /**
@@ -170,6 +178,7 @@ public class EventAdminScreen extends javax.swing.JPanel {
 
         jRightSplitPane.setTopComponent(jTopRightPanel);
 
+        jBottonRightPanel.setBackground(new java.awt.Color(245, 241, 241));
         jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1100, 800));
         jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1100, 800));

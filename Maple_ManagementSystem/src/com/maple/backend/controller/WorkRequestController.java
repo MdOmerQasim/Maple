@@ -80,6 +80,11 @@ public class WorkRequestController {
         workRequestService.updateCateringAdminWorkFlowStatusService(eventName, cateringAdminId, status);
     }
     
+    //TravelAgent admin accepts/rejects event manager request -> update EVENT and WORK_REQUEST table
+    public void updateTravelAgentAdminWorkFlowStatus(String eventName, int travelAdminId, String status) throws SQLException{
+        workRequestService.updateTravelAgentAdminWorkFlowStatusService(eventName, travelAdminId, status);
+    }
+    
     
     
 }

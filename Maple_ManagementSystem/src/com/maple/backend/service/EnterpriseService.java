@@ -41,6 +41,7 @@ public class EnterpriseService {
             hotel.setEmail(resultSet.getString("H_EMAIL"));
             hotel.setPhone(resultSet.getString("H_PHONE"));
             hotel.setStatus(resultSet.getString("H_STATUS"));
+            hotel.setPhoto(resultSet.getString("H_PHOTO"));
             hotelData.add(hotel);
         }
         
@@ -63,6 +64,7 @@ public class EnterpriseService {
             catering.setEmail(resultSet.getString("C_EMAIL"));
             catering.setPhone(resultSet.getString("C_PHONE"));
             catering.setStatus(resultSet.getString("C_STATUS"));
+            catering.setPhoto(resultSet.getString("C_PHOTO"));
             cateringData.add(catering);
         }
         
@@ -85,6 +87,7 @@ public class EnterpriseService {
             travel.setEmail(resultSet.getString("TA_EMAIL"));
             travel.setPhone(resultSet.getString("TA_PHONE"));
             travel.setStatus(resultSet.getString("TA_STATUS"));
+            travel.setPhoto(resultSet.getString("TA_PHOTO"));
             travelData.add(travel);
         }
         
@@ -93,6 +96,10 @@ public class EnterpriseService {
     
     public ResultSet getEnterpriseDataService(String type, int id) throws SQLException{
         return enterpriseRepository.getEnterpriseData(type, id);
+    }
+    
+     public ResultSet getEnterpriseDataServiceEnterprise(String type, int id) throws SQLException{
+        return enterpriseRepository.getEnterpriseDataEnterprise(type, id);
     }
     
     public void insertHotelDataService(Hotel hotelData) throws SQLException{
