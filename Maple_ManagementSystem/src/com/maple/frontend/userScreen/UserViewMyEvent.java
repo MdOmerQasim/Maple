@@ -108,20 +108,20 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         travelBtn = new com.maple.resources.Button();
         travelAddress = new com.maple.resources.TextField();
         travelName = new com.maple.resources.TextField();
-        travelImage = new javax.swing.JLabel();
+        travelImage1 = new com.maple.resources.ImageAvatar();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         hotelBtn = new com.maple.resources.Button();
         hotelAddress = new com.maple.resources.TextField();
         hotelName = new com.maple.resources.TextField();
-        hotelImage = new javax.swing.JLabel();
         hotelType = new javax.swing.JLabel();
+        hotelImage1 = new com.maple.resources.ImageAvatar();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cateringBtn = new com.maple.resources.Button();
         cateringAddress = new com.maple.resources.TextField();
         cateringName = new com.maple.resources.TextField();
-        cateringImage = new javax.swing.JLabel();
+        cateringImage1 = new com.maple.resources.ImageAvatar();
         managerStatus = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         table = new com.maple.resources.Table();
@@ -210,9 +210,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         travelName.setEditable(false);
         travelName.setLabelText("Name");
 
-        travelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        travelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -227,10 +224,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(travelName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(travelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(travelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(131, 131, 131)
+                        .addComponent(travelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
@@ -248,8 +245,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                             .addComponent(travelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(travelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(travelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,9 +267,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         hotelName.setEditable(false);
         hotelName.setLabelText("Name");
 
-        hotelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        hotelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         hotelType.setText("Hotel Type");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -284,10 +278,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(hotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(hotelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(131, 131, 131)
+                        .addComponent(hotelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(241, 241, 241)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,8 +308,8 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(hotelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(hotelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -336,9 +330,6 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         cateringName.setEditable(false);
         cateringName.setLabelText("Name");
 
-        cateringImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cateringImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -353,10 +344,10 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(cateringName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(cateringAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(cateringImage, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(131, 131, 131)
+                        .addComponent(cateringImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
@@ -372,11 +363,11 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cateringAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cateringName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(49, Short.MAX_VALUE))
+                        .addContainerGap(59, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(cateringImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(cateringImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
 
         managerStatus.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -420,47 +411,43 @@ public class UserViewMyEvent extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                            .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(managerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(eventManagerField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(managerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(120, 120, 120)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(154, 154, 154)
-                                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel3)))
-                                    .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(descriptionField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(fromField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(45, 45, 45)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(45, 45, 45)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(attendeesCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(areaField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel1)
+                                .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(120, 120, 120)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(typeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(154, 154, 154)
+                                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)))
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(descriptionField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fromField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(45, 45, 45)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(45, 45, 45)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(attendeesCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(areaField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLocation))
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,7 +508,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1399, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -673,13 +660,13 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     hotelBtn.setVisible(false);
                     hotelName.setVisible(false);
                     hotelAddress.setVisible(false);
-                    hotelImage.setVisible(false);
+                    hotelImage1.setVisible(false);
                     if(id != -1) {
                         jPanel1.setVisible(true);
                         hotelBtn.setVisible(true);
                         hotelName.setVisible(true);
                         hotelAddress.setVisible(true);
-                        hotelImage.setVisible(true);
+                        hotelImage1.setVisible(true);
                         
                         ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("HOTEL", id);
                         Hotel hotelData = hotelMapper(resultSet);
@@ -690,7 +677,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         //  get Hotel Details
                         hotelName.setText(hotelData.getHotelName());
                         hotelAddress.setText(hotelData.getHotelAddress());
-                        hotelImage.setIcon(new ImageIcon(hotelData.getPhoto()));
+                        hotelImage1.setIcon(new ImageIcon(hotelData.getPhoto()));
 
                     } else {
                         jPanel1.setVisible(true);
@@ -708,13 +695,13 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     cateringBtn.setVisible(false);
                     cateringName.setVisible(false);
                     cateringAddress.setVisible(false);
-                    cateringImage.setVisible(false);
+                    cateringImage1.setVisible(false);
                     if(id != -1) {
                          jPanel2.setVisible(true);
                         cateringBtn.setVisible(true);
                         cateringName.setVisible(true);
                         cateringAddress.setVisible(true);
-                        cateringImage.setVisible(true);
+                        cateringImage1.setVisible(true);
 
                         
                         ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("CATERING", id);
@@ -726,7 +713,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         // get Catering Details
                         cateringName.setText(catrData.getCateringName());
                         cateringAddress.setText(catrData.getCateringAddress());
-                        cateringImage.setIcon(new ImageIcon(catrData.getPhoto()));
+                        cateringImage1.setIcon(new ImageIcon(catrData.getPhoto()));
                     }
                     else {
                         jPanel2.setVisible(true);
@@ -743,13 +730,13 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                     travelBtn.setVisible(false);
                     travelName.setVisible(false);
                     travelAddress.setVisible(false);
-                    travelImage.setVisible(false);
+                    travelImage1.setVisible(false);
                     if(id != -1) {
                         jPanel3.setVisible(true);
                         travelBtn.setVisible(true);
                         travelName.setVisible(true);
                         travelAddress.setVisible(true);
-                        travelImage.setVisible(true);
+                        travelImage1.setVisible(true);
 
                         
                         ResultSet resultSet = enterpriseController.getEnterpriseDataEnterprise("TRAVEL", id);
@@ -761,7 +748,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
                         //            get Travel Details
                         travelName.setText(travelData.getTravelAgentName());
                         travelAddress.setText(travelData.getTravelAgentAddress());
-                        travelImage.setIcon(new ImageIcon(travelData.getPhoto()));
+                        travelImage1.setIcon(new ImageIcon(travelData.getPhoto()));
                     }
                       else {
                         jPanel3.setVisible(true);
@@ -814,14 +801,14 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     private com.maple.resources.TextField attendeesCountField;
     private com.maple.resources.TextField cateringAddress;
     private com.maple.resources.Button cateringBtn;
-    private javax.swing.JLabel cateringImage;
+    private com.maple.resources.ImageAvatar cateringImage1;
     private com.maple.resources.TextField cateringName;
     private com.maple.resources.TextField descriptionField;
     private com.maple.resources.TextField eventManagerField;
     private com.maple.resources.TextField fromField;
     private com.maple.resources.TextField hotelAddress;
     private com.maple.resources.Button hotelBtn;
-    private javax.swing.JLabel hotelImage;
+    private com.maple.resources.ImageAvatar hotelImage1;
     private com.maple.resources.TextField hotelName;
     private javax.swing.JLabel hotelType;
     private javax.swing.JLabel jLabel1;
@@ -845,7 +832,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
     private com.maple.resources.TextField toField;
     private com.maple.resources.TextField travelAddress;
     private com.maple.resources.Button travelBtn;
-    private javax.swing.JLabel travelImage;
+    private com.maple.resources.ImageAvatar travelImage1;
     private com.maple.resources.TextField travelName;
     private javax.swing.JComboBox<String> typeDropdown;
     private com.maple.resources.TextField typeField;

@@ -350,9 +350,9 @@ public class RegisterJPanel extends javax.swing.JPanel {
             companyName = jCompanyName.getText();
         }
         
-//        if (role.equals("")){
+        if (role.equals("")){
 //            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
-//        }
+        }
         else if (name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your name.");
 jNameTextField.setBackground(new Color(255, 204, 203));
