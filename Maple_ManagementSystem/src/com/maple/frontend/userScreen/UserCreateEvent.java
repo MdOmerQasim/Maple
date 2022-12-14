@@ -387,7 +387,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setChosenCateringID(-1);
             newEvent.setChosenTravelAgentID(-1);
             newEvent.setStatus("Pending");
-            System.out.println("dddddd");
+//            System.out.println("dddddd");
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
                     newEvent.setAccomodationNeeded("yes");
@@ -405,7 +405,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
                 newEvent.setTravelNeeded("yes");
                 newEvent.setTravelCount(Integer.parseInt(travelCount.getText()));
             }
-            System.out.println("hgvg");
+//            System.out.println("hgvg");
             // create an event
             eventController.createAnEvent(newEvent);
             

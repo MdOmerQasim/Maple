@@ -298,7 +298,7 @@ public class WorkRequestService {
             
             //getting eventId from EVENT table
             int eventId = filteredEventList.get(0).getEventID();
-            System.out.println("EVENT ID - " + eventId);
+//            System.out.println("EVENT ID - " + eventId);
             //using hotelAdminId to find wkId in WORKREQUEST table
             ArrayList<WorkRequest> wk = getAllWorkRequestData();
             ArrayList<WorkRequest> filteredWRList = new ArrayList<>();
@@ -308,7 +308,7 @@ public class WorkRequestService {
             
             //getting wkId from list
             int wkId = filteredWRList.get(0).getID();
-            System.out.println("WK ID - " + wkId);
+//            System.out.println("WK ID - " + wkId);
             //update
             workRequestRepository.updateWorkRequestDataEventManagerId(wkId, eventManagerId);
             workRequestRepository.updateWorkRequestDataStatus(wkId);

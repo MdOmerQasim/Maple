@@ -71,7 +71,7 @@ public class sendMail {
            Transport.send(msg);
            System.out.println("Message sent.");
          }catch (MessagingException e){ 
-           System.out.println("Erreur d'envoi, cause: " + e);
+//           System.out.println("Erreur d'envoi, cause: " + e);
          }
     }
 }

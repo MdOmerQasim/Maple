@@ -32,7 +32,7 @@ public class UserService {
             u.setUserName(rs.getString("userName"));
             u.setPostalCode(rs.getString("postalCode"));
             u.setRole(rs.getString("role"));
-            u.setPhoto(rs.getString("role"));
+            u.setPhoto(rs.getString("photo"));
             userData.add(u);
         }
         return userData;
