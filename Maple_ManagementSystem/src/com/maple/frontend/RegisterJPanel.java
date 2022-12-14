@@ -327,6 +327,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
     private void jRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterBtnActionPerformed
         // TODO add your handling code here:
+        
         String role = jRegisterAsComboBox.getSelectedItem().toString();
         String name = jNameTextField.getText();
         String email = jEmailTextField.getText();
@@ -341,6 +342,7 @@ public class RegisterJPanel extends javax.swing.JPanel {
         String type = "";
         String companyName = "";
         
+        
         //TODO: pass these too
         if(!role.equalsIgnoreCase("CUSTOMER")){
             address = jAddress.getText();
@@ -351,62 +353,39 @@ public class RegisterJPanel extends javax.swing.JPanel {
         }
         
         if (role.equals("")){
-//            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
-        }
-        else if (name.equals("")){
+            JOptionPane.showMessageDialog(this, "Please select a valid role to register.");
+        } else if (name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your name.");
-jNameTextField.setBackground(new Color(255, 204, 203));
-        }
-        else if (email.equals("")){
+            jNameTextField.setBackground(new Color(255, 204, 203));
+        } else if (email.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your email id.");
             jEmailTextField.setBackground(new Color(255, 204, 203));
-
-        }
-        else if (phoneNum.equals("")){
+        } else if (phoneNum.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your phone number.");
             jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
-
-        }
-//        else if (valCellNo(phoneNum)){
-//            JOptionPane.showMessageDialog(this, "Please enter valid phone number.");
-//            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
-//        }
-//        else if (valEmail(email)){
-//            JOptionPane.showMessageDialog(this, "Please enter valid email.");
-//            jEmailTextField.setBackground(new Color(255, 204, 203));
-//        }
-            
-        
-         else if (userName.equals("")){
+        } else if (userName.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a username.");
-                        jUsernameTextField.setBackground(new Color(255, 204, 203));
-        }
-         
-        else if (userName.length() < 3){
+            jUsernameTextField.setBackground(new Color(255, 204, 203));
+        } else if (userName.length() < 3){
             JOptionPane.showMessageDialog(this, "Username should be of atleast 3 characters.");
             jUsernameTextField.setBackground(new Color(255, 204, 203));
-        }
-         
-        else if (password.equals("")){
+        } else if (password.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a password.");
             jPasswordTextField.setBackground(new Color(255, 204, 203));
-        }
-         
-        else if (password.length() < 8){
-            JOptionPane.showMessageDialog(this, "Password should be of atleast 8 characters.");
+        } else if (password.length() < 4){
+            JOptionPane.showMessageDialog(this, "Password should be of atleast 4 characters.");
             jPasswordTextField.setBackground(new Color(255, 204, 203));
-        }
-         else if (rePassword.equals("")){
+        } else if (rePassword.equals("")){
             JOptionPane.showMessageDialog(this, "Please re-enter the password.");
-                        jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+            jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
 
         } else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
-                        jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+            jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
 
-        } else if (path.equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter a photo.");
-        } else{
+        } 
+        
+        else{
             try {
                 String status = "PENDING" ;
                 if ("customer".equalsIgnoreCase(role)){
@@ -602,12 +581,12 @@ jNameTextField.setBackground(new Color(255, 204, 203));
 
     }//GEN-LAST:event_jUserPhotoMouseEntered
     
-    public static boolean valCellNo(String input){
-        String emailRegex = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
-        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
-        Matcher matcher = emailPat.matcher(input);
-        return matcher.find();
-    }
+//    public static boolean valCellNo(String input){
+//        String emailRegex = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+//        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+//        Matcher matcher = emailPat.matcher(input);
+//        return matcher.find();
+//    }
     
     public static boolean valEmail(String input){
         String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
