@@ -44,7 +44,12 @@ public class BusinessAdminScreen extends javax.swing.JPanel {
     
     public void populateUserData() throws SQLException{
         jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
-        jUserName.setText(userData.get(0).getName());
+//String path = this.userData.get(0).getPhoto().replace("\\", "\\\\");
+//
+//ImageIcon icon = new ImageIcon(path);    
+//
+//jUserImageIcon.setIcon(icon);        
+jUserName.setText(userData.get(0).getName());
         getNotificationData();
     }
     public void getNotificationData() throws SQLException{

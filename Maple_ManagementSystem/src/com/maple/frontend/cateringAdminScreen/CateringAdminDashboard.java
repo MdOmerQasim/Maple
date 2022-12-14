@@ -11,6 +11,7 @@ import com.maple.backend.model.User;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -43,6 +44,9 @@ public class CateringAdminDashboard extends javax.swing.JPanel {
         Catering hotelData = cateringMapper(resultSet);
 
 //        jHotelPhoto.setIcon(icon);
+String path = hotelData.getPhoto().replace("\\", "\\\\");
+        ImageIcon icon = new ImageIcon(path);    
+                jHotelPhoto.setIcon(icon);
         jHotelName.setText(hotelData.getCateringName());
         jHotelAddress.setText(hotelData.getCateringAddress());
         jHotelArea.setText(hotelData.getCateringArea());
