@@ -5,7 +5,6 @@
 package com.maple.frontend.userScreen;
 
 import com.maple.backend.model.User;
-import com.maple.frontend.businessAdminScreen.*;
 import com.maple.frontend.HomeJPanel;
 import com.maple.frontend.HomeLeftJPanel;
 import java.sql.SQLException;
