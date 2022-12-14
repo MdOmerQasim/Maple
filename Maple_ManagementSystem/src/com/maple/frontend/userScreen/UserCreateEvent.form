@@ -438,12 +438,24 @@
       </Properties>
     </Component>
     <Component class="com.maple.resources.TextField" name="areaText">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="com.maple.resources.TextField" name="nameText">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="com.maple.resources.TextField" name="descText">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="com.maple.resources.TextField" name="attendeesCountText">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="com.maple.resources.Button" name="callbackBtn">
       <Properties>

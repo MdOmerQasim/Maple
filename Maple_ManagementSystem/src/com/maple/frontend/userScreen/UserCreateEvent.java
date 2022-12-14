@@ -167,6 +167,14 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("*");
 
+        areaText.setLabelText("");
+
+        nameText.setLabelText("");
+
+        descText.setLabelText("");
+
+        attendeesCountText.setLabelText("");
+
         callbackBtn.setBackground(new java.awt.Color(255, 153, 0));
         callbackBtn.setForeground(new java.awt.Color(255, 255, 255));
         callbackBtn.setText("Request Callback");
@@ -410,7 +418,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setChosenCateringID(-1);
             newEvent.setChosenTravelAgentID(-1);
             newEvent.setStatus("Pending");
-            System.out.println("dddddd");
+//            System.out.println("dddddd");
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
                     newEvent.setAccomodationNeeded("yes");
@@ -428,7 +436,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
                 newEvent.setTravelNeeded("yes");
                 newEvent.setTravelCount(Integer.parseInt(travelCount.getText()));
             }
-            System.out.println("hgvg");
+//            System.out.println("hgvg");
             // create an event
             eventController.createAnEvent(newEvent);
             

@@ -401,14 +401,14 @@ public class EventManagerDashboard extends javax.swing.JPanel {
         
         
         int selectedRowIndex = eventTable.getSelectedRow();
-            System.out.println(selectedRowIndex);
+//            System.out.println(selectedRowIndex);
             if(selectedRowIndex < 0 ){
                 JOptionPane.showMessageDialog(this, "Please select a row to view");
                 return;
             }
             DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
             Event e = (Event) model.getValueAt(selectedRowIndex, 0);
-            System.out.println("selectedEvent");
+//            System.out.println("selectedEvent");
             
             int user_id = e.getUserID();
         try {
@@ -452,14 +452,14 @@ public class EventManagerDashboard extends javax.swing.JPanel {
 
     private void requestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestButtonActionPerformed
             int selectedRowIndex = eventTable.getSelectedRow();
-            System.out.println(selectedRowIndex);
+//            System.out.println(selectedRowIndex);
             if(selectedRowIndex < 0 ){
                 JOptionPane.showMessageDialog(this, "Please select a row first");
                 return;
             }
             DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
             Event e = (Event) model.getValueAt(selectedRowIndex, 0);
-            System.out.println("selectedEvent");
+//            System.out.println("selectedEvent");
         
         EventManagerRequests eventManagerRequests;
         try {

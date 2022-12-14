@@ -42,7 +42,7 @@ public class EventManagerScreen extends javax.swing.JPanel {
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(eventManagerDashboard);
         } catch (SQLException ex) {
-            System.out.println("exception in dashboard event manager");
+//            System.out.println("exception in dashboard event manager");
         }
 //        businessAdminId = userData.get(0).getID();
 //        populateUserData();
@@ -288,7 +288,7 @@ public class EventManagerScreen extends javax.swing.JPanel {
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
             jRightSplitPane.setBottomComponent(eventManagerDashboard);
         } catch (SQLException ex) {
-            System.out.println("exception in dashboard event manager");
+//            System.out.println("exception in dashboard event manager");
         }
 // dashboard will have all teh events that event admin has assigned to him, along with user details.
     }//GEN-LAST:event_jDashboardBtnActionPerformed
