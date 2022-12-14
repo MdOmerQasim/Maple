@@ -1,5 +1,5 @@
 
-[09:42 pm] Devadharshini Nagarajan
+
 
 ## PROJECT TITLE
 
@@ -30,4 +30,62 @@ This application is designed to be versatile, with the ability to fulfill severa
 * Catering Admin
 * TravelAgent Admin
 * HR Admin
+
+## WORK REQUESTS
+
+
+
+* HOTEL_ADMIN to BUSINESS_ADMIN:
+
+
+
+When a user registers for a hotel, the hotel admin and the hotel are created, and a request is sent to the business administrator for approval.
+
+
+
+* CATERING_ADMIN to BUSINESS_ADMIN:
+
+
+
+When a user registers for a catering, the catering admin and the catering are created, and a request is sent to the business administrator for approval.
+
+
+
+* TRAVELAGENT_ADMIN to BUSINESS_ADMIN:
+
+
+
+When a user registers for a travel, the travel admin and the travel are created, and a request is sent to the business administrator for approval.
+
+
+
+* USER to EVENT_ADMIN
+
+
+
+When user creats an event, approval request will be created to Event Admin
+
+
+
+* EVENT_MANAGER to HOTEL_ADMIN:
+
+
+
+When Event Manager assigns a particular hotel to an event, hotel work request will be created to hotel admin for approval
+
+
+
+* EVENT_MANAGER to CATERING_ADMIN:
+
+
+
+When Event Manager assigns a particular catering to an event, catering work request will be created to catering admin for approval
+
+
+
+* EVENT_MANAGER to TRAVELAGENT_ADMIN:
+
+
+
+When Event Manager assigns a particular travel to an event, travel work request will be created to travel admin for approval
 
