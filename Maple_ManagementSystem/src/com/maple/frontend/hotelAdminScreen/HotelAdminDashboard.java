@@ -10,6 +10,7 @@ import com.maple.backend.model.User;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -47,9 +48,11 @@ public class HotelAdminDashboard extends javax.swing.JPanel {
         jHotelArea.setText(hotelData.getHotelArea());
         jHotelCapacity.setText(hotelData.getCapacity());
         jHotelType.setText(hotelData.getHotelType());
-        jHotelEmail.setText(hotelData.getEmail());
+        jHotelEmail.setText(hotelData.getEmail());  
         jHotelPhone.setText(hotelData.getPhone());
-        
+        String path = hotelData.getPhoto().replace("\\", "\\\\");
+        ImageIcon icon = new ImageIcon(path);    
+                jHotelPhoto.setIcon(icon);
     }
     
     private void disableFields(){

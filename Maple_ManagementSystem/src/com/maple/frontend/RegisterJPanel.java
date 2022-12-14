@@ -19,10 +19,13 @@ import com.maple.backend.model.Hotel;
 import com.maple.backend.model.TravelAgent;
 import com.maple.backend.model.WorkRequest;
 import com.maple.resources.sendMail;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JSplitPane;
 
 /**
@@ -352,20 +355,55 @@ public class RegisterJPanel extends javax.swing.JPanel {
         }
         else if (name.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your name.");
+jNameTextField.setBackground(new Color(255, 204, 203));
         }
         else if (email.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your email id.");
+            jEmailTextField.setBackground(new Color(255, 204, 203));
+
         }
         else if (phoneNum.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter your phone number.");
-        } else if (userName.equals("")){
+            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
+
+        }
+        else if (valCellNo(phoneNum)){
+            JOptionPane.showMessageDialog(this, "Please enter valid phone number.");
+            jPhoneNumberTextField.setBackground(new Color(255, 204, 203));
+        }
+//        else if (valEmail(email)){
+//            JOptionPane.showMessageDialog(this, "Please enter valid email.");
+//            jEmailTextField.setBackground(new Color(255, 204, 203));
+//        }
+            
+        
+         else if (userName.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a username.");
-        } else if (password.equals("")){
+                        jUsernameTextField.setBackground(new Color(255, 204, 203));
+        }
+         
+        else if (userName.length() < 3){
+            JOptionPane.showMessageDialog(this, "Username should be of atleast 3 characters.");
+            jUsernameTextField.setBackground(new Color(255, 204, 203));
+        }
+         
+        else if (password.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a password.");
-        } else if (rePassword.equals("")){
+            jPasswordTextField.setBackground(new Color(255, 204, 203));
+        }
+         
+        else if (password.length() < 8){
+            JOptionPane.showMessageDialog(this, "Password should be of atleast 8 characters.");
+            jPasswordTextField.setBackground(new Color(255, 204, 203));
+        }
+         else if (rePassword.equals("")){
             JOptionPane.showMessageDialog(this, "Please re-enter the password.");
+                        jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+
         } else if (!rePassword.equals(password)){
             JOptionPane.showMessageDialog(this, "Your passwords do not match.");
+                        jConfirmPasswordTextField.setBackground(new Color(255, 204, 203));
+
         } else if (path.equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a photo.");
         } else{
@@ -474,10 +512,6 @@ public class RegisterJPanel extends javax.swing.JPanel {
 
             }
             
-
-
-
-
             jNameTextField.setText("");
             jEmailTextField.setText("");
             jPhoneNumberTextField.setText("");
@@ -495,6 +529,21 @@ public class RegisterJPanel extends javax.swing.JPanel {
             jEnterprise.setVisible(false);
             jUserPhoto.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/user.png"))); 
             
+            
+            jConfirmPasswordTextField.setBackground(new Color(255, 255, 255));
+            jUsernameTextField.setBackground(new Color(255, 255, 255));
+            jNameTextField.setBackground(new Color(255, 255, 255));
+            jEmailTextField.setBackground(new Color(255, 255, 255));
+                    jPhoneNumberTextField.setBackground(new Color(255, 255, 255));
+                            jUsernameTextField.setBackground(new Color(255, 255, 255));
+                            jPasswordTextField.setBackground(new Color(255, 255, 255));
+                                    jPostalCodeTextField.setBackground(new Color(255, 255, 255));
+                                    jAddress.setBackground(new Color(255, 255, 255));
+                                            jType.setBackground(new Color(255, 255, 255));
+                                            jCapacity.setBackground(new Color(255, 255, 255));
+                                                    jCompanyName.setBackground(new Color(255, 255, 255));
+                                                    jArea.setBackground(new Color(255, 255, 255));
+
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -554,7 +603,21 @@ public class RegisterJPanel extends javax.swing.JPanel {
         jUserPhoto.setBorderSize(2);
 
     }//GEN-LAST:event_jUserPhotoMouseEntered
-
+    
+    public static boolean valCellNo(String input){
+        String emailRegex = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
+        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPat.matcher(input);
+        return matcher.find();
+    }
+    
+    public static boolean valEmail(String input){
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPat = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPat.matcher(input);
+        return matcher.find();
+    }
+    
     private void jUserPhotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserPhotoMouseExited
         // TODO add your handling code here:
         jUserPhoto.setBorderSize(0);
