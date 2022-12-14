@@ -36,7 +36,7 @@ public class UserLayoutScreen extends javax.swing.JPanel {
         //custom
         jUserName.setText(this.loggedInUser.getName());
         jUserRole.setText(this.loggedInUser.getRole());
-        btnBadgeNotification.setBadges(9);
+        btnBadgeNotification.setBadges(0);
         UserWelcomeScreen userWelcomeScreen = new UserWelcomeScreen();
         jRightSplitPane.setRightComponent(userWelcomeScreen);
     }

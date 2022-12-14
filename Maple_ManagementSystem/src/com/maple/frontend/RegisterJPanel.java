@@ -448,7 +448,7 @@ jNameTextField.setBackground(new Color(255, 204, 203));
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
                 
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New work request has been created for hotel." ,"New hotel has been registered. Please login to the system and verify it");
+//                sendMail.sendEmailFunction("infomaple0@gmail.com", "New Work Rquest has been created for Hotel" ,"New Hotel has been registered.Please login to the system and verify it" );
                 
             } else if(role.equalsIgnoreCase("CATERING ADMIN")){
                 //insert in HCT table
@@ -478,7 +478,7 @@ jNameTextField.setBackground(new Color(255, 204, 203));
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Catering" ,"New Catering has been registered.Please login to the system and verify it" );
+//                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Catering" ,"New Catering has been registered.Please login to the system and verify it" );
 
             } else if(role.equalsIgnoreCase("TRAVEL AGENT ADMIN")){
                 //insert in HCT table
@@ -508,7 +508,7 @@ jNameTextField.setBackground(new Color(255, 204, 203));
                 wr.setEventID(0);
                 wr.setEventManagerID(0);
                 workRequestController.createWorkRequest(wr);
-                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Travel" ,"New Travel has been registered.Please login to the system and verify it" );
+//                sendMail.sendEmailFunction("infomaple0@gmail.com","New Work Rquest has been created for Travel" ,"New Travel has been registered.Please login to the system and verify it" );
 
             }
             
@@ -583,13 +583,11 @@ jNameTextField.setBackground(new Color(255, 204, 203));
             File file = img_upload.getSelectedFile();
             String path = file.getAbsolutePath().replace("\\", "\\\\");
             this.path = path;
-            try {
-                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//                Image photo = ImageIO.read(file).getScaledInstance(65, 105, 65);
+//            Image
 //                user.setPhoto(photo);
-                jUserPhoto.setIcon(new ImageIcon(photo));
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error while saving image.");
-            }
+                jUserPhoto.setIcon(new ImageIcon(path));
+
         }
         else{
                 JOptionPane.showMessageDialog(this, "Upload is cancelled.");

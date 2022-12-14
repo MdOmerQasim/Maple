@@ -34,6 +34,9 @@ public class EventManagerScreen extends javax.swing.JPanel {
         this.mainSplitPane = jSplitPane;
         workRequestController = new WorkRequestController();
         this.userData = userData;
+        jUserName.setText(userData.get(0).getName());
+        jUserImageIcon.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/p1.jpg"))); //TODO: get userImage from backend
+        
         try {
             EventManagerDashboard eventManagerDashboard = new EventManagerDashboard(userData, jRightSplitPane);
 //            BusinessAdminDashboard businessAdminDashboard = new BusinessAdminDashboard(userData);
@@ -172,19 +175,20 @@ public class EventManagerScreen extends javax.swing.JPanel {
 
         jRightSplitPane.setTopComponent(jTopRightPanel);
 
-        jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1100, 800));
-        jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1100, 800));
-        jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1100, 800));
+        jBottonRightPanel.setBackground(new java.awt.Color(245, 241, 241));
+        jBottonRightPanel.setMaximumSize(new java.awt.Dimension(1196, 720));
+        jBottonRightPanel.setMinimumSize(new java.awt.Dimension(1196, 720));
+        jBottonRightPanel.setPreferredSize(new java.awt.Dimension(1196, 720));
 
         javax.swing.GroupLayout jBottonRightPanelLayout = new javax.swing.GroupLayout(jBottonRightPanel);
         jBottonRightPanel.setLayout(jBottonRightPanelLayout);
         jBottonRightPanelLayout.setHorizontalGroup(
             jBottonRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
+            .addGap(0, 1196, Short.MAX_VALUE)
         );
         jBottonRightPanelLayout.setVerticalGroup(
             jBottonRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         jRightSplitPane.setRightComponent(jBottonRightPanel);
@@ -197,7 +201,7 @@ public class EventManagerScreen extends javax.swing.JPanel {
         );
         jBaseRightPanelLayout.setVerticalGroup(
             jBaseRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jRightSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jRightSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         jBaseSplitPane.setRightComponent(jBaseRightPanel);

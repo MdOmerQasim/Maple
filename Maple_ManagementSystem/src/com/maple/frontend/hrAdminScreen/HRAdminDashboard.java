@@ -102,8 +102,8 @@ public class HRAdminDashboard extends javax.swing.JPanel {
     private void populateCardData() throws SQLException{
         
         //Load Icons
-        jMapleManagers.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
-        jMapleAdmins.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/hotel.png")));
+        jMapleManagers.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/manager.png")));
+        jMapleAdmins.setIcon(new ImageIcon(getClass().getResource("/com/maple/icons/admin.png")));
           
         //Set Description
         jMapleManagers.setDescription("Event Managers");
