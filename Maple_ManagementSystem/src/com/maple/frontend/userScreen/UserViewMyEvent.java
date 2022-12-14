@@ -207,7 +207,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         travelName.setEditable(false);
         travelName.setLabelText("Name");
 
-        travelImage.setText("Image");
+        travelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         travelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -267,7 +267,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         hotelName.setEditable(false);
         hotelName.setLabelText("Name");
 
-        hotelImage.setText("Image");
+        hotelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hotelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         hotelType.setText("Hotel Type");
@@ -333,7 +333,7 @@ public class UserViewMyEvent extends javax.swing.JPanel {
         cateringName.setEditable(false);
         cateringName.setLabelText("Name");
 
-        cateringImage.setText("Image");
+        cateringImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cateringImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
