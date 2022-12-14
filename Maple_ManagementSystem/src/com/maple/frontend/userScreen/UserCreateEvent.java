@@ -81,7 +81,6 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         areaText = new com.maple.resources.TextField();
         nameText = new com.maple.resources.TextField();
         descText = new com.maple.resources.TextField();
@@ -164,8 +163,13 @@ public class UserCreateEvent extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(255, 0, 0));
         jLabel16.setText("*");
 
-        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel17.setText("*");
+        areaText.setLabelText("");
+
+        nameText.setLabelText("");
+
+        descText.setLabelText("");
+
+        attendeesCountText.setLabelText("");
 
         callbackBtn.setBackground(new java.awt.Color(255, 153, 0));
         callbackBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,9 +193,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,9 +322,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
                                 .addGap(11, 11, 11)))))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hotelCheckbox, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -382,11 +382,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             else if (toDate.getDate().equals("")){
                 JOptionPane.showMessageDialog(this, "Please enter a valid to date.");
                 return;
-            } else if(!hotelCheckbox.isSelected() || !cateringCheckbox.isSelected() || !travelCheckbox.isSelected()){
-                JOptionPane.showMessageDialog(this, "Please select atleast one service.");
-                return;
-            }
-            
+            }            
 
             Event newEvent = new Event();
             int eventId = 0;
@@ -410,7 +406,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
             newEvent.setChosenCateringID(-1);
             newEvent.setChosenTravelAgentID(-1);
             newEvent.setStatus("Pending");
-            System.out.println("dddddd");
+//            System.out.println("dddddd");
             if(hotelCheckbox.isSelected()){
                 if(hotelDropdown.getSelectedItem().toString() == "Accomodation") {
                     newEvent.setAccomodationNeeded("yes");
@@ -428,7 +424,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
                 newEvent.setTravelNeeded("yes");
                 newEvent.setTravelCount(Integer.parseInt(travelCount.getText()));
             }
-            System.out.println("hgvg");
+//            System.out.println("hgvg");
             // create an event
             eventController.createAnEvent(newEvent);
             
@@ -446,7 +442,7 @@ public class UserCreateEvent extends javax.swing.JPanel {
            
            
             wrController.createWorkRequest(wk);
-            JOptionPane.showMessageDialog(null, "Event Request has been created!");
+            
             
             typeDropdown.setSelectedIndex(0);
             nameText.setText("");
@@ -463,6 +459,8 @@ public class UserCreateEvent extends javax.swing.JPanel {
             travelCount.setText("");
             
             sendMail.sendEmailFunction(this.loggedInUser.getEmail(), "Thanks for creating an Event", "New event has been created successfully. Kindy wait until a Manager has been assigned to you. You will receive a callback soon!");
+            JOptionPane.showMessageDialog(null, "Event Request has been created!");
+        
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Failed to create event");
         }
@@ -490,7 +488,6 @@ public class UserCreateEvent extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -37,7 +37,7 @@ public class EventController {
     
     // Create Event    
      public void createAnEvent(Event newEvent) throws SQLException{
-         System.out.println("usr controll");
+//         System.out.println("usr controll");
         eventService.createAnEventService(newEvent);
     }
      
